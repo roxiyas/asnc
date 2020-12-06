@@ -49,6 +49,21 @@
 					</li>
 				</li>
 			</ul>
+			<ul class="nav">
+				<li class="nav-header"></li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							<i class="ion-md-settings fa-spin bg-primary"></i>Configuraciones
+						</a>
+						<ul class="sub-menu">
+							<li><a href="<?=base_url()?>index.php/user"><i class="fas fa-lg fa-fw m-r-10 fa-list-alt text-info"></i>Entes</a></li>
+							<li><a href="<?=base_url()?>index.php/user"><i class="fas fa-lg fa-fw m-r-10 fa-list-alt text-info"></i>Organismos</a></li>
+							<li><a href="<?=base_url()?>index.php/user"><i class="fas fa-lg fa-fw m-r-10 fa-list-alt text-info"></i>Unidad Ejecutora</a></li>
+						</ul>
+					</li>
+				</li>
+			</ul>
 		</div>
 	</div>
 	<div class="sidebar-bg"></div>
