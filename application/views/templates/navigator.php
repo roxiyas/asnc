@@ -40,8 +40,8 @@
 				<li class="nav-header"></li>
 					<li class="has-sub">
 						<a href="javascript:;">
-						<b class="caret"></b>
-						<i class="ion-ios-briefcase bg-primary"></i>Usuarios
+							<b class="caret"></b>
+							<i class="fas fa-user bg-primary"></i>Usuarios
 						</a>
 						<ul class="sub-menu">
 							<li><a href="<?=base_url()?>index.php/user"><i class="fas fa-lg fa-fw m-r-10 fa-list-alt text-info"></i>Registros</a></li>
