@@ -57,9 +57,9 @@
 							<i class="ion-md-settings fa-spin bg-primary"></i>Configuraciones
 						</a>
 						<ul class="sub-menu">
-							<li><a href="<?=base_url()?>index.php/user"><i class="fas fa-lg fa-fw m-r-10 fa-list-alt text-info"></i>Entes</a></li>
-							<li><a href="<?=base_url()?>index.php/user"><i class="fas fa-lg fa-fw m-r-10 fa-list-alt text-info"></i>Organismos</a></li>
-							<li><a href="<?=base_url()?>index.php/user"><i class="fas fa-lg fa-fw m-r-10 fa-list-alt text-info"></i>Unidad Ejecutora</a></li>
+							<li><a href="<?=base_url()?>index.php/configuracion/organismo"><i class="fas fa-lg fa-fw m-r-10 fa-list-alt text-info"></i>Organismos</a></li>
+							<li><a href="<?=base_url()?>index.php/configuracion/entes"><i class="fas fa-lg fa-fw m-r-10 fa-list-alt text-info"></i>Entes</a></li>
+							<li><a href="<?=base_url()?>index.php/configuracion/unid_ejecutora"><i class="fas fa-lg fa-fw m-r-10 fa-list-alt text-info"></i>Unidad Ejecutora</a></li>
 						</ul>
 					</li>
 				</li>
