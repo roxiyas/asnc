@@ -22,14 +22,16 @@
 		<div id="page-container" class="fade">
 			<div class="login login-with-news-feed">
 				<div class="news-feed">
-					<div class="news-image" style="background-image: url(<?=base_url()?>Plantilla/admin/assets/img/gallery/gallery-portrait-11-thumb.jpg);"></div>
-					<div class="news-caption">
-					</div>
+					<div class="news-image" style="background-image: url(<?=base_url()?>Plantilla/img/2.png);"></div>
+					<!-- <img style="background-repeat: no-repeat;" src="<?=base_url()?>Plantilla/img/2.png" alt=""> -->
 				</div>
 				<div class="right-content" style="padding-top:7%">
 					<div class="login-header">
-						<div class="brand">
-							<span class="logo"><i style="color:#007aff" class="ion-md-laptop"></i></span><b>Sistema Nacional de Contrataciones</b>
+						<div class="brand  text-center">
+							<span class="logo">
+								<i style="color:darkred" class="fas fa-user-shield"></i>
+							</span>
+							<b class="ml-3"> Bienvenido</b>
 						</div>
 						<div class="icon">
 							<i class="fa fa-sign-in"></i>
@@ -44,7 +46,7 @@
 								<input type="password" class="form-control form-control-lg" placeholder="Contraseña" name="contrasena" required />
 							</div>
 							<div class="login-buttons">
-								<button type="submit" class="btn btn-block btn-lg" style="background-color:#007aff;color:#FFFFFF">Ingresar</button>
+								<button type="submit" class="btn btn-block btn-lg" style="background-color:darkred;color:#FFFFFF">Ingresar</button>
 							</div>
 							<hr />
 						</form>

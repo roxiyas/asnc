@@ -11,18 +11,23 @@ class Login extends CI_Controller {
         $usuario = $_POST['usuario'];
         $contrasena = $_POST ['contrasena'];
         $data = $this->login_model->iniciar($usuario,$contrasena);
-			if($data){
-                $user_data =[
-                    'usuario'    => $data['usuario'],
-                    'cedula'     => $data['cedula'],
-                    'nombre_ape' => $data['nombre_ape'],
-                    'rol'        => $data['id_rol'],
-                    'session'    => TRUE,
-                ];
-                $this->session->set_userdata($user_data);
-                redirect('home/index');
-            }else{
-                redirect('login/index');
-            }
+
+		if($data){
+            $user_data =[
+                'nombre'    => $data['nombre'],
+                'email'     => $data['email'],
+                'perfil'    => $data['perfil'],
+                'session'   => TRUE,
+            ];
+            $this->session->set_userdata($user_data);
+            redirect('home/index');
+        }else{
+            redirect('login/index');
         }
+    }
+
+	public function logout(){
+		$this->session->sess_destroy();
+		redirect('login/index');
+	}
 }
