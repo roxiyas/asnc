@@ -129,7 +129,7 @@
                                     </div>
                                     <div class="form-group col-12">
     									<label>Dirección</label>
-    									<textarea class="form-control" rows="3" cols="125"></textarea>
+    									<textarea class="form-control" id="direccion" name="direccion" rows="3" cols="125"></textarea>
 								    </div>
                                 </div>
     						</div>

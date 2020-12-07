@@ -24,9 +24,7 @@ $(document).ready(function(){
 
     $('#id_municipio').change(function(){
         var id_municipio = $(this).val();
-
         var base_url = window.location.origin+'/asnc/index.php/configuracion/listar_parroquia';
-
         $.ajax({
             url: base_url,
             method:'post',

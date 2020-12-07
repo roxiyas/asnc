@@ -3,15 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Configuracion extends CI_Controller {
 
-	public function entes(){
-		if(!$this->session->userdata('session'))
-		redirect('login');
-		$this->load->view('templates/header.php');
-        $this->load->view('templates/navigator.php');
-        $this->load->view('configuracion/entes.php');
-        $this->load->view('templates/footer.php');
-	}
-
 	public function organismo(){
 		if(!$this->session->userdata('session'))
 		redirect('login');
@@ -66,4 +57,16 @@ class Configuracion extends CI_Controller {
 			print_r($fecha_gaceta);die;
 	}
 
+	public function entes(){
+		if(!$this->session->userdata('session'))
+		redirect('login');
+
+		$data['tipo_rif'] = $this->Configuracion_model->consulta_tipo_rif();
+		$data['estados'] = $this->Configuracion_model->consulta_estados();
+
+		$this->load->view('templates/header.php');
+		$this->load->view('templates/navigator.php');
+		$this->load->view('configuracion/entes.php', $data);
+		$this->load->view('templates/footer.php');
+	}
 }
