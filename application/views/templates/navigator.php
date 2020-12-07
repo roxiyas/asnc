@@ -83,6 +83,23 @@
 					</li>
 				</li>
 			</ul>
+			<ul class="nav">
+				<li class="nav-header"></li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							<i class="fas fa-user" style="background:darkred;"></i>Tablas
+						</a>
+						<ul class="sub-menu">
+							<li>
+								<a href="<?=base_url()?>index.php/Fuente/Fuentefinanc">
+									<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>Fuente de Financiamiento
+								</a>
+							</li>
+						</ul>
+					</li>
+				</li>
+			</ul>
 		</div>
 	</div>
 	<div class="sidebar-bg"></div>
