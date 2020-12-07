@@ -7,22 +7,22 @@
 		<meta content="" name="author" />
 
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-		<link href="<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
-		<link href="<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/plugins/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
-		<link href="<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/plugins/font-awesome/5.3/css/all.min.css" rel="stylesheet" />
-		<link href="<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
-		<link href="<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/plugins/animate/animate.min.css" rel="stylesheet" />
-		<link href="<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/css/apple/style.min.css" rel="stylesheet" />
-		<link href="<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/css/apple/style-responsive.min.css" rel="stylesheet" />
-		<link href="<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/css/apple/theme/default.css" rel="stylesheet" id="theme" />
-		<script src="<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/plugins/pace/pace.min.js"></script>
+		<link href="<?=base_url()?>Plantilla/admin/assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+		<link href="<?=base_url()?>Plantilla/admin/assets/plugins/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="<?=base_url()?>Plantilla/admin/assets/plugins/font-awesome/5.3/css/all.min.css" rel="stylesheet" />
+		<link href="<?=base_url()?>Plantilla/admin/assets/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
+		<link href="<?=base_url()?>Plantilla/admin/assets/plugins/animate/animate.min.css" rel="stylesheet" />
+		<link href="<?=base_url()?>Plantilla/admin/assets/css/apple/style.min.css" rel="stylesheet" />
+		<link href="<?=base_url()?>Plantilla/admin/assets/css/apple/style-responsive.min.css" rel="stylesheet" />
+		<link href="<?=base_url()?>Plantilla/admin/assets/css/apple/theme/default.css" rel="stylesheet" id="theme" />
+		<script src="<?=base_url()?>Plantilla/admin/assets/plugins/pace/pace.min.js"></script>
 	</head>
 	<body class="pace-top bg-white">
 		<div id="page-loader" class="fade show"><span class="spinner"></span></div>
 		<div id="page-container" class="fade">
 			<div class="login login-with-news-feed">
 				<div class="news-feed">
-					<div class="news-image" style="background-image: url(<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/img/gallery/gallery-portrait-11-thumb.jpg);"></div>
+					<div class="news-image" style="background-image: url(<?=base_url()?>Plantilla/admin/assets/img/gallery/gallery-portrait-11-thumb.jpg);"></div>
 					<div class="news-caption">
 					</div>
 				</div>
@@ -36,7 +36,7 @@
 						</div>
 					</div>
 					<div class="login-content">
-						<form action="<?=base_url()?>index.php/home/index" method="POST" class="margin-bottom-0">
+						<form action="<?=base_url()?>index.php/login/validacion" method="POST" class="margin-bottom-0">
 							<div class="form-group m-b-15">
 								<input type="text" class="form-control form-control-lg" placeholder="Usuario" name="usuario"required />
 							</div>
@@ -54,13 +54,13 @@
 		</div>
 
 		<!-- ================== BEGIN BASE JS ================== -->
-		<script src="<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/plugins/jquery/jquery-3.3.1.min.js"></script>
-		<script src="<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
-		<script src="<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/plugins/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-		<script src="<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-		<script src="<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/plugins/js-cookie/js.cookie.js"></script>
-		<script src="<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/js/theme/apple.min.js"></script>
-		<script src="<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/js/apps.min.js"></script>
+		<script src="<?=base_url()?>Plantilla/admin/assets/plugins/jquery/jquery-3.3.1.min.js"></script>
+		<script src="<?=base_url()?>Plantilla/admin/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+		<script src="<?=base_url()?>Plantilla/admin/assets/plugins/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+		<script src="<?=base_url()?>Plantilla/admin/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="<?=base_url()?>Plantilla/admin/assets/plugins/js-cookie/js.cookie.js"></script>
+		<script src="<?=base_url()?>Plantilla/admin/assets/js/theme/apple.min.js"></script>
+		<script src="<?=base_url()?>Plantilla/admin/assets/js/apps.min.js"></script>
 		<!-- ================== END BASE JS ================== -->
 
 		<script>
