@@ -35,8 +35,9 @@
                                 <div class="row">
                                     <div class="col-3">
                                         <select id="tipo_rif" name="tipo_rif" class="default-select2 form-control">
-                                            <option value="1">J-</option>
-                                            <option value="2">G-</option>
+                                            <?php foreach ($tipo_rif as $data): ?>
+                                                <option value="<?=$data['id_rif']?>"><?=$data['desc_rif']?></option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                     <div class="form-group col-9">
@@ -107,7 +108,9 @@
                                         <label>Estado</label>
                                         <select id="id_estado" name="id_estado" class="default-select2 form-control">
                                             <option>Seleccione</option>
-                                            <option value="1">Distrito</option>
+                                            <?php foreach ($estados as $data): ?>
+                                                <option value="<?=$data['id_estado']?>"><?=$data['descripcion']?></option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                     <div class="form-group col-4">
@@ -145,23 +148,6 @@
                                     </div>
                                 </div>
     						</div>
-    						<div class="tab-pane fade" id="default-tab-3">
-    							<p>
-    								<span class="fa-stack fa-4x pull-left m-r-10">
-    									<i class="fa fa-square-o fa-stack-2x"></i>
-    									<i class="fab fa-twitter fa-stack-1x"></i>
-    								</span>
-    								Praesent tincidunt nulla ut elit vestibulum viverra. Sed placerat magna eget eros accumsan elementum.
-    								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis lobortis neque.
-    								Maecenas justo odio, bibendum fringilla quam nec, commodo rutrum quam.
-    								Donec cursus erat in lacus congue sodales. Nunc bibendum id augue sit amet placerat.
-    								Quisque et quam id felis tempus volutpat at at diam. Vivamus ac diam turpis.Sed at lacinia augue.
-    								Nulla facilisi. Fusce at erat suscipit, dapibus elit quis, luctus nulla.
-    								Quisque adipiscing dui nec orci fermentum blandit.
-    								Sed at lacinia augue. Nulla facilisi. Fusce at erat suscipit, dapibus elit quis, luctus nulla.
-    								Quisque adipiscing dui nec orci fermentum blandit.
-    							</p>
-    						</div>
     					</div>
                         <div class="col-12 text-center">
                             <button type="submit" class="btn btn-success" style="color: black;">Guardar</button>
@@ -172,3 +158,4 @@
         </div>
     </div>
 </div>
+<script src="<?=base_url()?>/js/dependientes.js"></script>

@@ -4,6 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Configuracion extends CI_Controller {
 
 	public function entes(){
+		if(!$this->session->userdata('session'))
+		redirect('login');
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
         $this->load->view('configuracion/entes.php');
@@ -11,13 +13,38 @@ class Configuracion extends CI_Controller {
 	}
 
 	public function organismo(){
+		if(!$this->session->userdata('session'))
+		redirect('login');
+		$data['tipo_rif'] = $this->Configuracion_model->consulta_tipo_rif();
+		$data['estados'] = $this->Configuracion_model->consulta_estados();
+
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
-        $this->load->view('configuracion/organismo.php');
+        $this->load->view('configuracion/organismo.php', $data);
         $this->load->view('templates/footer.php');
 	}
 
+	public function listar_municipio(){
+		if(!$this->session->userdata('session'))
+		redirect('login');
+
+		$data = $this->input->post();
+		$data =	$this->Configuracion_model->listar_municipio($data);
+		echo json_encode($data);
+	}
+
+	public function listar_parroquia(){
+		if(!$this->session->userdata('session'))
+		redirect('login');
+		$data = $this->input->post();
+		$data =	$this->Configuracion_model->listar_parroquia($data);
+		echo json_encode($data);
+	}
+
 	public function save_organismo(){
+		if(!$this->session->userdata('session'))
+		redirect('login');
+
 			$organo				= $this->input->post("organo");
 			$cod_onapre	 		= $this->input->post("cod_onapre");
 			$siglas 			= $this->input->post("siglas");
