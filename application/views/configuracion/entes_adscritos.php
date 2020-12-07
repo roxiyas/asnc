@@ -7,7 +7,7 @@
 					<h4 class="panel-title">Registro de Entes</h4>
 				</div>
                 <div class="panel-body">
-                    <form action="<?=base_url()?>index.php/configuracion/save_ente" method="POST" class="form-horizontal">
+                    <form action="<?=base_url()?>index.php/configuracion/save_ente_adscrito" method="POST" class="form-horizontal">
                         <div class="row">
                             <div class="form-group col-7">
                                 <label>Ente</label>
@@ -17,7 +17,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-5">
-                                <label>Organo Perteneciente</label>
+                                <label>Ente Perteneciente</label>
                                     <select id="id_organo" name="id_organo" class="default-select2 form-control">
                                         <option>Seleccione</option>
                                         <!-- <?php foreach ($tipo_rif as $data): ?>
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="col-3">
-                                <label>Rif del Ente</label>
+                                <label>Rif del Ente Adscrito</label>
                                 <div class="row">
                                     <div class="col-3">
                                         <select id="tipo_rif" name="tipo_rif" class="default-select2 form-control">

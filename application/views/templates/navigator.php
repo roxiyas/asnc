@@ -75,8 +75,8 @@
 								</a>
 							</li>
 							<li>
-								<a href="<?=base_url()?>index.php/configuracion/unid_ejecutora">
-									<i class="fas fa-lg fa-fw m-r-10 fa-city"></i>Unidad Ejecutora
+								<a href="<?=base_url()?>index.php/configuracion/entes_adscritos">
+									<i class="fas fa-lg fa-fw m-r-10 fa-city"></i>Entes Adscritos
 								</a>
 							</li>
 						</ul>
