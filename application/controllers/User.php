@@ -20,7 +20,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('email', 'Correo eléctronico', 'required|valid_email|is_unique[usuarios.email]');
 		$this->form_validation->set_rules('password', 'Password', 'required|max_length[10]|min_length[8]|alpha_numeric');
 		$this->form_validation->set_rules('repeatPassord', 'Confirma contraseña', 'required|matches[password]');
-
+		
 		if ($this->form_validation->run() == FALSE){
 			$this->load->view('templates/header.php');
 	        $this->load->view('templates/navigator.php');

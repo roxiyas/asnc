@@ -129,7 +129,7 @@
                                     </div>
                                     <div class="form-group col-12">
     									<label>Dirección</label>
-    									<textarea class="form-control" id="direccion" name="direccion" rows="3" cols="125"></textarea>
+    									<textarea class="form-control" id="direccion_fiscal" name="direccion_fiscal" rows="3" cols="125"></textarea>
 								    </div>
                                 </div>
     						</div>
@@ -158,4 +158,7 @@
         </div>
     </div>
 </div>
+<?php if ($this->session->flashdata('sa-success2')) { ?>
+    <div hidden id="sa-success2"> <?= $this->session->flashdata('sa-success2') ?> </div>
+<?php } ?>
 <script src="<?=base_url()?>/js/dependientes.js"></script>

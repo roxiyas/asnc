@@ -14,6 +14,7 @@ class Login extends CI_Controller {
 
 		if($data){
             $user_data =[
+				'id_user'	=> $data['id'],
                 'nombre'    => $data['nombre'],
                 'email'     => $data['email'],
                 'perfil'    => $data['perfil'],

@@ -36,25 +36,32 @@ class Configuracion extends CI_Controller {
 		if(!$this->session->userdata('session'))
 		redirect('login');
 
-			$organo				= $this->input->post("organo");
-			$cod_onapre	 		= $this->input->post("cod_onapre");
-			$siglas 			= $this->input->post("siglas");
-			$tipo_rif			= $this->input->post("tipo_rif");
-			$rif 				= $this->input->post("rif");
-			$id_clasificacion 	= $this->input->post("id_clasificacion");
-			$tel_local 			= $this->input->post("tel_local");
-			$tel_local_2 		= $this->input->post("tel_local_2");
-			$tel_movil			= $this->input->post("tel_movil");
-			$tel_movil_2 		= $this->input->post("tel_movil_2");
-			$pag_web 			= $this->input->post("pag_web");
-			$email				= $this->input->post("email");
-			$id_estado 			= $this->input->post("id_estado");
-			$id_municipio 		= $this->input->post("id_municipio");
-			$id_parroquia 		= $this->input->post("id_parroquia");
-			$gaceta_oficial		= $this->input->post("gaceta_oficial");
-			$fecha_gaceta		= $this->input->post("fecha_gaceta");
+		$data = array(
+			'id_organoads'		=> '1',
+			'desc_organo'		=> $this->input->post("organo"),
+			'cod_onapre'	 	=> $this->input->post("cod_onapre"),
+			'siglas' 			=> $this->input->post("siglas"),
+			'tipo_rif'			=> $this->input->post("tipo_rif"),
+			'rif' 				=> $this->input->post("rif"),
+			'id_clasificacion' 	=> $this->input->post("id_clasificacion"),
+			'tel_local' 		=> $this->input->post("tel_local"),
+			'tel_local_2' 		=> $this->input->post("tel_local_2"),
+			'tel_movil'			=> $this->input->post("tel_movil"),
+			'tel_movil_2' 		=> $this->input->post("tel_movil_2"),
+			'pag_web' 			=> $this->input->post("pag_web"),
+			'email'				=> $this->input->post("email"),
+			'id_estado' 		=> $this->input->post("id_estado"),
+			'id_municipio' 		=> $this->input->post("id_municipio"),
+			'id_parroquia' 		=> $this->input->post("id_parroquia"),
+			'direccion_fiscal' 	=> $this->input->post("direccion_fiscal"),
+			'gaceta_oficial'	=> $this->input->post("gaceta_oficial"),
+			'fecha_gaceta'		=> $this->input->post("fecha_gaceta"),
+			'usuario' 			=> $this->session->userdata('id_user')
+		);
 
-			print_r($fecha_gaceta);die;
+		$data = $this->Configuracion_model->save_organismo($data);
+		$this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
+		redirect('configuracion/organismo');
 	}
 
 	public function entes(){

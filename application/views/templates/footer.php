@@ -10,7 +10,8 @@
 <![endif]-->
 <script src="<?=base_url()?>Plantilla/admin/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="<?=base_url()?>Plantilla/admin/assets/plugins/js-cookie/js.cookie.js"></script>
-<script src="<?=base_url()?>Plantilla/admin/assets/js/theme/default.min.js"></script>
+<!-- <script src="<?=base_url()?>Plantilla/admin/assets/js/theme/default.min.js"></script> -->
+<script src="<?=base_url()?>Plantilla/admin/assets/js/theme/material.min.js"></script>
 <script src="<?=base_url()?>Plantilla/admin/assets/js/apps.min.js"></script>
 <!-- ================== END BASE JS ================== -->
 
@@ -37,10 +38,18 @@
 <script src="<?=base_url()?>Plantilla/admin/assets/js/demo/form-plugins.demo.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
+<script src="<?=base_url()?>Plantilla/admin/assets/plugins/parsley/dist/parsley.js"></script>
+<script src="<?=base_url()?>Plantilla/admin/assets/plugins/highlight/highlight.common.js"></script>
+<script src="<?=base_url()?>Plantilla/admin/assets/js/demo/render.highlight.js"></script>
+
+<script src="<?=base_url()?>Plantilla/admin/assets/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="<?=base_url()?>Plantilla/admin/assets/plugins/sweetalert/jquery.sweet-alert.custom.js"></script>
+
 <script>
 	$(document).ready(function() {
 		App.init();
-		FormPlugins.init();
+		Highlight.init();
+		// FormPlugins.init();
 	});
 </script>
 <script>
