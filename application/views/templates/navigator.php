@@ -92,7 +92,7 @@
 						</a>
 						<ul class="sub-menu">
 							<li>
-								<a href="<?=base_url()?>index.php/Fuente/Fuentefinanc">
+								<a href="<?=base_url()?>index.php/Fuentefinanc/index">
 									<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>Fuente de Financiamiento
 								</a>
 							</li>
