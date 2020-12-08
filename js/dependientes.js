@@ -42,22 +42,40 @@ $(document).ready(function(){
         });
     });
 
-    // CUENTA DANTE
-    $('#id_org').change(function(){
-        var id_org = $(this).val();
-        var base_url = window.location.origin+'/asnc/index.php/user/listar_entes';
-        $.ajax({
-            url: base_url,
-            method:'post',
-            data: {id_org: id_org},
-            dataType:'json',
-
-            success: function(response){
-                $('#id_ente').find('option').not(':first').remove();
-                $.each(response, function(index, data){
-                    $('#id_ente').append('<option value="'+data['id_entes']+'">'+data['desc_entes']+' / '+data['rif']+'</option>');
-                });
-            }
-        });
-    });
+    // // CUENTA DANTE
+    // $('#id_org').change(function(){
+    //     var id_org = $(this).val();
+    //     var base_url = window.location.origin+'/asnc/index.php/User/listar_entes';
+    //     $.ajax({
+    //         url: base_url,
+    //         method:'post',
+    //         data: {id_org: id_org},
+    //         dataType:'json',
+    //
+    //         success: function(response){
+    //             $('#id_ente').find('option').not(':first').remove();
+    //             $.each(response, function(index, data){
+    //                 $('#id_ente').append('<option value="'+data['id_entes']+'">'+data['desc_entes']+' / '+data['rif']+'</option>');
+    //             });
+    //         }
+    //     });
+    // });
+    //
+    // $('#id_ente').change(function(){
+    //     var id_ente = $(this).val();
+    //     var base_url = window.location.origin+'/asnc/index.php/User/listar_entesads';
+    //     $.ajax({
+    //         url: base_url,
+    //         method:'post',
+    //         data: {id_ente: id_ente},
+    //         dataType:'json',
+    //
+    //         success: function(response){
+    //             $('#id_ente_ads').find('option').not(':first').remove();
+    //             $.each(response, function(index, data){
+    //                 $('#id_ente_ads').append('<option value="'+data['id_entes_ads']+'">'+data['desc_entes_ads']+' / '+data['rif']+'</option>');
+    //             });
+    //         }
+    //     });
+    // });
 });

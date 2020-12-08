@@ -51,7 +51,7 @@
 							<hr />
 							<div class="login-buttons mt-2">
 								<button type="button"
-	                                onclick="location.href='<?php echo base_url()?>index.php/User/cuentadante'"
+	                                onclick="location.href='<?php echo base_url()?>index.php/User/contrato'"
 	                                class="btn btn-grey btn-lg">Registrar Cuenta-Dante</button>
 							</div>
 						</form>

@@ -38,10 +38,62 @@ class User_model extends CI_Model {
 
     public function consultar_organos(){
         $this->db->select('o.id_organo,
+                          o.codigo,
                           concat(tr.desc_rif, \' - \' ,o.rif) as rif,
                           o.desc_organo');
         $this->db->join('tipo_rif tr', 'tr.id_rif = o.tipo_rif');
+        $this->db->order_by('o.id_organo');
         $query = $this->db->get('organos o');
         return $query->result_array();
     }
+
+    public function consultar_entes(){
+        $this->db->select('e.id_entes,
+                           e.codigo,
+                          concat(tr.desc_rif, \' - \' ,e.rif) as rif,
+                          e.desc_entes');
+        $this->db->order_by('e.id_entes');
+        $this->db->join('tipo_rif tr', 'tr.id_rif = e.tipo_rif');
+        $query = $this->db->get('entes e');
+        $response = $query->result_array();
+        return $response;
+    }
+
+    public function consultar_enteads(){
+        $this->db->select('ea.id_entes_ads,
+                           ea.codigo,
+                          concat(tr.desc_rif, \' - \' ,ea.rif) as rif,
+                          ea.desc_entes_ads ');
+        $this->db->order_by('ea.id_entes_ads');
+        $this->db->join('tipo_rif tr', 'tr.id_rif = ea.tipo_rif');
+        $query = $this->db->get('entes_ads ea ');
+        $response = $query->result_array();
+        return $response;
+    }
+
+    // public function consultar_entes($data){
+    //     $response = array();
+    //     $this->db->select('e.id_entes,
+    //                       concat(tr.desc_rif, \' - \' ,e.rif) as rif,
+    //                       e.desc_entes');
+    //     $this->db->where('id_organo', $data['id_org']);
+    //     $this->db->order_by('e.id_entes');
+    //     $this->db->join('tipo_rif tr', 'tr.id_rif = e.tipo_rif');
+    //     $query = $this->db->get('entes e');
+    //     $response = $query->result_array();
+    //     return $response;
+    // }
+    //
+    // public function consultar_entesads($data){
+    //     $response = array();
+    //     $this->db->select('ea.id_entes_ads,
+    //                       concat(tr.desc_rif, \' - \' ,ea.rif) as rif,
+    //                       ea.desc_entes_ads ');
+    //     $this->db->where('id_entes', $data['id_ente']);
+    //     $this->db->order_by('ea.id_entes_ads');
+    //     $this->db->join('tipo_rif tr', 'tr.id_rif = ea.tipo_rif');
+    //     $query = $this->db->get('entes_ads ea ');
+    //     $response = $query->result_array();
+    //     return $response;
+    // }
 }

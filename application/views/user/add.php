@@ -17,16 +17,25 @@
                                     <option>aca quiero una consulta a la bd </option>
                                 </select>
                             </div>
-                            <div class="form-group col-3">
-                                <label>Entes</label>
-                                <select class="default-select2 form-control">
-                                    <option>aca quiero una consulta a la bd </option>
-                                </select>
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Organismo</label>
-                                <select class="default-select2 form-control">
-                                    <option>aca quiero una consulta a la bd </option>
+                            <div class=" col-6 form-group">
+                                <label>Organo</label>
+                                <select id="id_unidad" name="id_unidad" class="default-select2 form-control">
+                                    <option>Seleccione</option>
+                                    <optgroup label="Órganos">
+                                        <?php foreach ($organo as $data): ?>
+                                            <option value="<?=$data['codigo']?>"><?=$data['desc_organo']?> / <?=$data['rif']?></option>
+                                        <?php endforeach; ?>
+                                    </optgroup>
+    								<optgroup label="Entes">
+                                        <?php foreach ($entes as $data): ?>
+                                            <option value="<?=$data['codigo']?>"><?=$data['desc_entes']?> / <?=$data['rif']?></option>
+                                        <?php endforeach; ?>
+                                    </optgroup>
+                                    <optgroup label="Ente Adscrito">
+                                        <?php foreach ($enteads as $data): ?>
+                                            <option value="<?=$data['codigo']?>"><?=$data['desc_entes_ads']?> / <?=$data['rif']?></option>
+                                        <?php endforeach; ?>
+                                    </optgroup>
                                 </select>
                             </div>
                             <div class="form-group col-3">
@@ -77,7 +86,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
     <script>
-        
+
         <?php if($this->session->flashdata("success")): ?>
 
             Swal.fire({
