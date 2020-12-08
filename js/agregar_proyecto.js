@@ -13,26 +13,38 @@ function remove_med() {
 }
 
 function agregar_ccnuToCartTable(cells){
+	var par = $("#par_presupuestaria").val();
+	var fuente = $("#fuente_financiamiento").val();
+	var acti = $("#actividad_comercial").val();
+	var est = $("#estado").val();
+
+
+	var ccnu = $("#id_ccnu").val();
    var ccnu = $("#id_ccnu").val();
    // var id_medicina = code.split("/")[0]
    // var medicina = code.split("/")[1]
 
-   var esp = $("#especificación").val();
+   var esp = $("#especificacion").val();
    // var id_presenacion = name.split("/")[0]
    // var presentacion = name.split("/")[1]
  	var can  = $("#cantidad").val();
    	var cos  = $("#costo_unitario").val();
    	var pret  = $("#precio_total").val();
 
-	if (ccnu == 0 || esp == 0 || can == 0){
-		console.log('No paso');
-	}else{
+	// if (ccnu == 0 || esp == 0 || can == 0){
+	// 	console.log('No paso');
+	// }else{
 		var newRow = document.createElement('tr');
 		var increment = increment +1;
 		newRow.className='myTr';
 		newRow.innerHTML = `
+		<td>${par}<input type="text" name="par_presupuestaria[]" id="ins-type-${increment}" hidden value="${par}"></td>
+		<td>${fuente}<input type="text" name="fuente_financiamiento[]" id="ins-type-${increment}" hidden value="${fuente}"></td>
+		<td>${acti}<input type="text" name="actividad_comercial[]" id="ins-type-${increment}" hidden value="${acti}"></td>
+		<td>${est}<input type="text" name="estado[]" id="ins-type-${increment}" hidden value="${est}"></td>
+
 		  <td>${ccnu}<input type="text" name="id_ccnu[]" id="ins-type-${increment}" hidden value="${ccnu}"></td>
-		  <td>${esp}<input type="text" name="especificación[]" id="ins-subtype-${increment}" hidden value="${esp} "></td>
+		  <td>${esp}<input type="text" name="especificacion[]" id="ins-subtype-${increment}" hidden value="${esp} "></td>
 		  <td>${can}<input type="text" hidden name="cantidad[]" id="ins-pres-${increment}" value="${can}"></td>
 		  <td>${cos}<input type="text" hidden name="costo_unitario[]" id="ins-pres-${increment}" value="${cos}"></td>
 		  <td>${pret}<input type="text" hidden name="precio_total[]" id="ins-pres-${increment}" value="${pret}"></td>
@@ -43,7 +55,7 @@ function agregar_ccnuToCartTable(cells){
 		cellremove_medBtn.appendChild(createremove_medBtn())
 		newRow.appendChild(cellremove_medBtn);
 		document.querySelector('#target_req tbody').appendChild(newRow);
-	}
+	// }
 }
 
 function createremove_medBtn() {

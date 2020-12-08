@@ -25,39 +25,41 @@
                                     <div class="col-12">
                                         <h5>Toda la información del Ente</h5>
                                     </div>
-                                    <div class="col-2">
-                                        <label>fecha <b style="color:red">*</b></label>
-                                        <input id="fecha" type="date" class="form-control">
+                                    <div class="col-12 form-group">
+                                        <label>Nombre del Proyecto <b style="color:red">*</b></label>
+                                        <input id="especificación" type="text" class="form-control">
                                     </div>
+
                                     <div class="form-group col-4">
                                         <label>Partida Presupuestaria</label>
-                                            <select id="id_ente" name="id_ente" class="default-select2 form-control">
+                                            <select id="par_presupuestaria" name="par_presupuestaria" class="default-select2 form-control">
                                                 <option>Seleccione</option>
+                                                <option value="1">Prueba P</option>
                                             </select>
                                     </div>
                                     <div class="form-group col-4">
                                         <label>Fuente de Financiamiento</label>
-                                            <select id="id_ente" name="id_ente" class="default-select2 form-control">
+                                            <select id="fuente_financiamiento" name="fuente_financiamiento" class="default-select2 form-control">
                                                 <option>Seleccione</option>
+                                                <option value="1">Prueba F</option>
                                             </select>
                                     </div>
                                     <div class="form-group col-4">
                                         <label>Actividad Comercial</label>
-                                            <select id="id_ente" name="id_ente" class="default-select2 form-control">
+                                            <select id="actividad_comercial" name="actividad_comercial" class="default-select2 form-control">
                                                 <option>Seleccione</option>
+                                                <option value="1">Prueba</option>
                                             </select>
                                     </div>
                                     <div class="form-group col-4">
                                         <label>Estado</label>
-                                            <select id="id_ente" name="id_ente" class="default-select2 form-control">
+                                            <select id="estado" name="estado" class="default-select2 form-control">
                                                 <option>Seleccione</option>
                                                 <option value="1">caracas</option>
                                             </select>
                                     </div>
 
-                                    <div class="col-1">
-
-                                    </div>
+                                    <div class="col-1"></div>
                                     <div class="col-4">
                                         <label>CCNU <b style="color:red">*</b></label>
                                         <select  id="id_ccnu" class="form-control default-select2">
@@ -68,7 +70,7 @@
                                     </div>
                                     <div class="col-2">
                                         <label>Especificación <b style="color:red">*</b></label>
-                                        <input id="especificación" type="text" class="form-control">
+                                        <input id="especificacion" type="text" class="form-control">
                                     </div>
                                     <div class="col-2">
                                         <label>Cantidad <b style="color:red">*</b></label>
@@ -95,10 +97,14 @@
                                         <table id="target_req" class="table table-bordered table-hover">
                                             <thead style="background:#4caa9d;">
                                                 <tr class="text-center">
+                                                    <th>Part. Presupuestaria</th>
+                                                    <th>Fuente</th>
+                                                    <th>Actv. Comercial</th>
+                                                    <th>Estado</th>
                                                     <th>CCNU</th>
-                                                    <th>Especificación</th>
-                                                    <th>Cantidad</th>
-                                                    <th>Costo Unitario</th>
+                                                    <th>Esp.</th>
+                                                    <th>Cant.</th>
+                                                    <th>Costo Unit.</th>
                                                     <th>Precio Total</th>
                                                     <th>Acciones</th>
                                                 </tr>
