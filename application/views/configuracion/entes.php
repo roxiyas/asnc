@@ -18,11 +18,11 @@
                             </div>
                             <div class="form-group col-5">
                                 <label>Organo Perteneciente</label>
-                                    <select id="id_organo" name="id_organo" class="default-select2 form-control">
+                                    <select id="id_organo" name="id_organo"  class="default-select2 form-control">
                                         <option>Seleccione</option>
-                                        <!-- <?php foreach ($tipo_rif as $data): ?>
-                                            <option value="<?=$data['id_rif']?>"><?=$data['desc_rif']?></option>
-                                        <?php endforeach; ?> -->
+                                        <?php foreach ($organismos as $data): ?>
+                                            <option value="<?=$data['id_organo']?>"><?=$data['desc_organo']?></option>
+                                        <?php endforeach; ?>
                                     </select>
                             </div>
                             <div class="form-group col-3">
@@ -42,14 +42,14 @@
                             <div class="col-3">
                                 <label>Rif del Ente</label>
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <select id="tipo_rif" name="tipo_rif" class="default-select2 form-control">
                                             <?php foreach ($tipo_rif as $data): ?>
                                                 <option value="<?=$data['id_rif']?>"><?=$data['desc_rif']?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
-                                    <div class="form-group col-9">
+                                    <div class="form-group col-8">
                                         <input type="number" name="rif" class="form-control <?php echo form_error('rif') ? 'is-invalid':'' ; ?>" placeholder="Código" value="<?php echo set_value('rif'); ?>">
                                         <div class="invalid-feedback">
                                             <?php echo form_error('rif'); ?>
@@ -138,7 +138,7 @@
                                     </div>
                                     <div class="form-group col-12">
     									<label>Dirección</label>
-    									<textarea class="form-control" id="direccion" name="direccion" rows="3" cols="125"></textarea>
+    									<textarea class="form-control" id="direccion_fiscal" name="direccion_fiscal" rows="3" cols="125"></textarea>
 								    </div>
                                 </div>
     						</div>
@@ -167,4 +167,7 @@
         </div>
     </div>
 </div>
+<?php if ($this->session->flashdata('sa-success2')) { ?>
+    <div hidden id="sa-success2"> <?= $this->session->flashdata('sa-success2') ?> </div>
+<?php } ?>
 <script src="<?=base_url()?>/js/dependientes.js"></script>

@@ -49,6 +49,11 @@
 								<button type="submit" class="btn btn-block btn-lg" style="background-color:darkred;color:#FFFFFF">Ingresar</button>
 							</div>
 							<hr />
+							<div class="login-buttons mt-2">
+								<button type="button"
+	                                onclick="location.href='<?php echo base_url()?>index.php/User/cuentadante'"
+	                                class="btn btn-grey btn-lg">Registrar Cuenta-Dante</button>
+							</div>
 						</form>
 					</div>
 				</div>

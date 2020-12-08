@@ -41,4 +41,23 @@ $(document).ready(function(){
             }
         });
     });
+
+    // CUENTA DANTE
+    $('#id_org').change(function(){
+        var id_org = $(this).val();
+        var base_url = window.location.origin+'/asnc/index.php/user/listar_entes';
+        $.ajax({
+            url: base_url,
+            method:'post',
+            data: {id_org: id_org},
+            dataType:'json',
+
+            success: function(response){
+                $('#id_ente').find('option').not(':first').remove();
+                $.each(response, function(index, data){
+                    $('#id_ente').append('<option value="'+data['id_entes']+'">'+data['desc_entes']+' / '+data['rif']+'</option>');
+                });
+            }
+        });
+    });
 });

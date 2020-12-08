@@ -9,37 +9,38 @@
                 <div class="panel-body">
                     <form action="<?=base_url()?>index.php/configuracion/save_ente_adscrito" method="POST" class="form-horizontal">
                         <div class="row">
-                            <div class="form-group col-7">
-                                <label>Ente</label>
+                            <div class="form-group col-4">
+                                <label>Ente Perteneciente</label>
+                                    <select id="id_ente" name="id_ente" class="default-select2 form-control">
+                                        <option>Seleccione</option>
+                                        <?php foreach ($entes as $data): ?>
+                                            <option value="<?=$data['id_entes']?>"><?=$data['desc_entes']?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>Ente Adscrito</label>
                                 <input type="text" name="ente" class="form-control <?php echo form_error('ente') ? 'is-invalid':'' ; ?>" placeholder="Nombre" value="<?php echo set_value('ente'); ?>">
                                 <div class="invalid-feedback">
                                     <?php echo form_error('ente'); ?>
                                 </div>
                             </div>
-                            <div class="form-group col-5">
-                                <label>Ente Perteneciente</label>
-                                    <select id="id_organo" name="id_organo" class="default-select2 form-control">
-                                        <option>Seleccione</option>
-                                        <!-- <?php foreach ($tipo_rif as $data): ?>
-                                            <option value="<?=$data['id_rif']?>"><?=$data['desc_rif']?></option>
-                                        <?php endforeach; ?> -->
-                                    </select>
-                            </div>
-                            <div class="form-group col-3">
+
+                            <div class="form-group col-4">
                                 <label>Código ONAPRE</label>
                                 <input type="text" name="cod_onapre" class="form-control <?php echo form_error('cod_onapre') ? 'is-invalid':'' ; ?>" placeholder="Código" value="<?php echo set_value('cod_onapre'); ?>">
                                 <div class="invalid-feedback">
                                     <?php echo form_error('cod_onapre'); ?>
                                 </div>
                             </div>
-                            <div class="form-group col-3">
-                                <label>Siglas del Ente</label>
+                            <div class="form-group col-4">
+                                <label>Siglas del Ente Adscrito</label>
                                 <input type="text" name="siglas" class="form-control <?php echo form_error('siglas') ? 'is-invalid':'' ; ?>" placeholder="Código" value="<?php echo set_value('siglas'); ?>">
                                 <div class="invalid-feedback">
                                     <?php echo form_error('siglas'); ?>
                                 </div>
                             </div>
-                            <div class="col-3">
+                            <div class="col-4">
                                 <label>Rif del Ente Adscrito</label>
                                 <div class="row">
                                     <div class="col-3">
@@ -57,7 +58,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-3 form-group">
+                            <div class="col-4 form-group">
                                 <label>Clasificación</label>
                                 <select id="id_clasificacion" name="id_clasificacion" class="default-select2 form-control">
                                     <option>Ejemplo</option>
@@ -138,7 +139,7 @@
                                     </div>
                                     <div class="form-group col-12">
     									<label>Dirección</label>
-    									<textarea class="form-control" id="direccion" name="direccion" rows="3" cols="125"></textarea>
+    									<textarea class="form-control" id="direccion_fiscal" name="direccion_fiscal" rows="3" cols="125"></textarea>
 								    </div>
                                 </div>
     						</div>

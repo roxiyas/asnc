@@ -9,7 +9,17 @@
                 <div class="panel-body">
                     <form action="<?=base_url()?>index.php/configuracion/save_organismo" method="POST" class="form-horizontal">
                         <div class="row">
-                            <div class="form-group col-8">
+                            <div class="form-group col-4">
+                                <label>Órgano Perteneciente</label>
+                                <select id="id_organoads" name="id_organoads" class="default-select2 form-control">
+                                    <?php foreach ($organismos as $data): ?>
+                                        <option>Seleccione</option>
+                                        <option value="0">Órgano Padre</option>
+                                        <option value="<?=$data['id_organo']?>"><?=$data['desc_organo']?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-4">
                                 <label>Órgano</label>
                                 <input type="text" name="organo" class="form-control <?php echo form_error('organo') ? 'is-invalid':'' ; ?>" placeholder="Nombre" value="<?php echo set_value('organo'); ?>">
                                 <div class="invalid-feedback">

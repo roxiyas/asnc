@@ -32,6 +32,16 @@ class User_model extends CI_Model {
         $this->db->where("id",$id);
         $this->db->delete("user");
     }
-    
-}
 
+
+    // CUENTA DANTE
+
+    public function consultar_organos(){
+        $this->db->select('o.id_organo,
+                          concat(tr.desc_rif, \' - \' ,o.rif) as rif,
+                          o.desc_organo');
+        $this->db->join('tipo_rif tr', 'tr.id_rif = o.tipo_rif');
+        $query = $this->db->get('organos o');
+        return $query->result_array();
+    }
+}

@@ -48,8 +48,8 @@
 <script>
 	$(document).ready(function() {
 		App.init();
-		Highlight.init();
-		// FormPlugins.init();
+		//Highlight.init();
+		FormPlugins.init();
 	});
 </script>
 <script>
