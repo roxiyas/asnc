@@ -40,20 +40,11 @@
 				</li>
 			</ul>
 			<ul class="nav">
-				<li class="nav-header"></li>
-					<li class="has-sub">
-						<a href="javascript:;">
-							<b class="caret"></b>
-							<i class="fas fa-user" style="background:darkred;"></i>Usuarios
-						</a>
-						<ul class="sub-menu">
-							<li>
-								<a href="<?=base_url()?>index.php/user">
-									<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>Registros
-								</a>
-							</li>
-						</ul>
-					</li>
+				<li>
+					<a href="<?=base_url()?>index.php/programacion">
+						<i class="fas fa-calendar" style="background:darkred;"></i>
+						Programación Anual
+					</a>
 				</li>
 			</ul>
 			<ul class="nav">
@@ -94,6 +85,23 @@
 							<li>
 								<a href="<?=base_url()?>index.php/Fuentefinanc/index">
 									<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>Fuente de Financiamiento
+								</a>
+							</li>
+						</ul>
+					</li>
+				</li>
+			</ul>
+			<ul class="nav">
+				<li class="nav-header"></li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							<i class="fas fa-user" style="background:darkred;"></i>Usuarios
+						</a>
+						<ul class="sub-menu">
+							<li>
+								<a href="<?=base_url()?>index.php/user">
+									<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>Registros
 								</a>
 							</li>
 						</ul>
