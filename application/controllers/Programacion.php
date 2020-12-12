@@ -27,17 +27,18 @@ class Programacion extends CI_Controller {
 
         $aData = array(
 			'nombre_programacion'  => $this->input->POST('nombre_proyecto'),
-            'id_estado'   		   => $this->input->POST('id_estado'),
-            'fecha_desde'   	   => $this->input->POST('fecha_desde'),
-            'fecha_hasta'   	   => $this->input->POST('fecha_hasta'),
             'unidad'   		       => $this->session->userdata('id_unidad'),
             'id_usuario' 		   => $this->session->userdata('id_user'),
             'estatus'              => 1
 	   );
 
+
+
         $proyecto = array(
-			'id_actividad_comercial' => $this->input->post('actividad_comercial'),
+            'id_par_presupuestaria'  => $this->input->post('par_presupuestaria'),
 			'id_ccnu' 		         => $this->input->post('id_ccnu'),
+            'fecha_desde'   	     => $this->input->POST('fecha_desde'),
+            'fecha_hasta'   	     => $this->input->POST('fecha_hasta'),
 			'especificacion' 		 => $this->input->post('especificacion'),
             'id_unidad_medida' 		 => $this->input->post('id_unidad_medida'),
             'i' 		             => $this->input->post('i'),
@@ -52,9 +53,11 @@ class Programacion extends CI_Controller {
 		);
 
         $proyecto_financ = array(
+            'id_estado'   		        => $this->input->post('id_estado'),
             'id_par_presupuestaria' 	=> $this->input->post('par_presupuestaria'),
-            'id_fuente_financiamiento' => $this->input->post('fuente_financiamiento'),
-            'porcentaje' 	        => $this->input->post('porcentaje')
+            'id_fuente_financiamiento'  => $this->input->post('fuente_financiamiento'),
+            'porcentaje' 	            => $this->input->post('porcentaje'),
+            'id_actividad_comercial'    => $this->input->post('actividad_comercial'),
         );
 
         $data = $this->Programacion_model->save_programacion($aData,$proyecto,$proyecto_financ);

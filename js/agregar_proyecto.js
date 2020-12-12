@@ -14,12 +14,18 @@ function remove_proy() {
 }
 
 function agregar_ccnuToCartTable(cells){
-	var acti = $("#actividad_comercial").val();
-	var acti1 = acti.split("/")[0];
-   	var acti2 = acti.split("/")[1];
+	var pp = $("#par_presupuestaria").val();
+	var pp1 = pp.split("/")[0];
+   	var pp2 = pp.split("/")[1];
+	var pp3 = pp.split("/")[2];
+
 	var ccnu = $("#id_ccnu").val();
 	var ccnu1 = ccnu.split("/")[0];
    	var ccnu2 = ccnu.split("/")[1];
+
+	var fecha_desde = $("#fecha_desde").val();
+	var fecha_hasta = $("#fecha_hasta").val();
+
    	var esp = $("#especificacion").val();
 	var id_unid = $("#id_unidad_medida").val();
  	var can  = $("#cantidad").val();
@@ -36,15 +42,19 @@ function agregar_ccnuToCartTable(cells){
    	var al_iva2 = al_iva.split("/")[1];
    	var ica_est  = $("#iva_estimado").val();
    	var mo_est  = $("#monto_estimado").val();
-	if (ccnu == 0 || esp == 0 || can == 0){
+	if (ccnu == 0 || esp == 0 || pp == 0){
 		console.log('No paso');
 	}else{
 		var newRow = document.createElement('tr');
 		var increment = increment +1;
 		newRow.className='myTr';
 		newRow.innerHTML = `
-		<td>${acti2}<input type="text" name="actividad_comercial[]" id="ins-type-${increment}" hidden value="${acti1}"></td>
+		<td>${pp3}<input type="text" name="par_presupuestaria[]" id="ins-type-${increment}" hidden value="${pp1}"></td>
+
 		<td>${ccnu2}<input type="text" name="id_ccnu[]" id="ins-type-${increment}" hidden value="${ccnu1}"></td>
+		<td>${fecha_desde}<input type="text" name="fecha_desde[]" id="ins-type-${increment}" hidden value="${fecha_desde}"></td>
+		<td>${fecha_hasta}<input type="text" name="fecha_hasta[]" id="ins-type-${increment}" hidden value="${fecha_hasta}"></td>
+
 		<td>${esp}<input type="text" name="especificacion[]" id="ins-subtype-${increment}" hidden value="${esp}"></td>
 		<td>${id_unid}<input type="text" name="id_unidad_medida[]" id="ins-subtype-${increment}" hidden value="${id_unid}"></td>
 

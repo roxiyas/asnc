@@ -29,39 +29,31 @@
                                         <label>Nombre del Proyecto <b style="color:red">*</b></label>
                                         <input id="nombre_proyecto" name="nombre_proyecto" type="text" class="form-control" required>
                                     </div>
-                                    <div class="form-group col-4">
-                                        <label>Estado</label>
-                                        <select id="id_estado" name="id_estado" class="default-select2 form-control" required>
-                                            <option>Seleccione</option>
-                                            <?php foreach ($estados as $data): ?>
-                                                <option value="<?=$data['id_estado']?>"><?=$data['descripcion']?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-4 form-group">
-                                        <label>Fecha Desde<b style="color:red">*</b></label>
-                                        <input id="fecha_desde" name="fecha_desde" type="date" class="form-control" required>
-                                    </div>
-                                    <div class="col-4 form-group">
-                                        <label>Fecha Hasta<b style="color:red">*</b></label>
-                                        <input id="fecha_hasta" name="fecha_hasta" type="date" class="form-control" required>
-                                    </div>
                                 </div>
-                                <hr style="    border-top: 1px solid rgba(0, 0, 0, 0.17);">
                                 <div class="row">
-                                    <div class="form-group col-4">
+                                    <div class="form-group col-12">
                                         <label>Partida Presupuestaria</label>
                                             <select id="par_presupuestaria" required name="par_presupuestaria" class="default-select2 form-control">
-                                                <option>Seleccione</option>
+                                                <option value="0">Seleccione</option>
                                                 <?php foreach ($part_pres as $data): ?>
-                                                    <option value="<?=$data['id_partida_presupuestaria']?>/<?=$data['desc_partida_presupuestaria']?>"><?=$data['codigopartida_presupuestaria']?>/<?=$data['desc_partida_presupuestaria']?></option>
+                                                    <option value="<?=$data['id_partida_presupuestaria']?>/<?=$data['desc_partida_presupuestaria']?>/<?=$data['codigopartida_presupuestaria']?>"><?=$data['codigopartida_presupuestaria']?>/<?=$data['desc_partida_presupuestaria']?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                     </div>
-                                    <div class="form-group col-4">
+                                    <hr style="    border-top: 1px solid rgba(0, 0, 0, 0.17);">
+                                    <div class="form-group col-3">
+                                        <label>Estado</label>
+                                        <select id="id_estado" name="id_estado" class="default-select2 form-control" required>
+                                            <option value="0">Seleccione</option>
+                                            <?php foreach ($estados as $data): ?>
+                                                <option value="<?=$data['id_estado']?>/<?=$data['descripcion']?>"><?=$data['descripcion']?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-3">
                                         <label>Fuente de Financiamiento</label>
                                         <select id="fuente_financiamiento" name="fuente_financiamiento" class="default-select2 form-control" required>
-                                            <option>Seleccione</option>
+                                            <option value="0">Seleccione</option>
                                             <?php foreach ($fuente as $data): ?>
                                                 <option value="<?=$data['id_fuente_financiamiento']?>/<?=$data['desc_fuente_financiamiento']?>"><?=$data['desc_fuente_financiamiento']?></option>
                                             <?php endforeach; ?>
@@ -71,20 +63,33 @@
                                         <label>Porcentaje<b style="color:red">*</b></label>
                                         <input id="porcentaje" type="text" class="form-control" required    >
                                     </div>
-
-                                    <div class="col-1 mt-4">
+                                    <div class="form-group col-3">
+                                        <label>Objeto Comercial</label>
+                                        <select id="actividad_comercial" name="actividad_comercial" class="default-select2 form-control">
+                                            <option value="0">Seleccione</option>
+                                            <?php foreach ($act_com as $data): ?>
+                                                <option value="<?=$data['id_objeto_contrata']?>/<?=$data['desc_objeto_contrata']?>"><?=$data['desc_objeto_contrata']?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <h5 class="text-center"><b style="color:red;">NOTA:</b> Debe llenar todos lo items para llenar la tabla.</h5>
+                                    </div>
+                                    <div class="col-5"></div>
+                                    <div class="col-7 mt-4">
                                         <button type="button" onclick="agregar_ff(this);" style="background-color:#4caa9d;color:white;" class="btn btn-circle waves-effect waves-circle waves-float">
                                             <i class="fa fa-lg fa-plus"></i>
                                         </button>
                                     </div>
-
                                     <div class="table-responsive mt-3">
                                         <h5 class="text-center"><b style="color:red;">NOTA:</b> La tabla debe tener al menos un registro agregado, para proceder con la solicitud.</h5>
                                         <table id="target_ff" class="table table-bordered table-hover">
                                             <thead style="background:#4caa9d;">
                                                 <tr class="text-center">
                                                     <th>Partida Presupuestaria</th>
+                                                    <th>Estado</th>
                                                     <th>Fuente de Financiamiento</th>
+                                                    <th>Objeto Comercial</th>
                                                     <th>%</th>
                                                     <th>Acciones</th>
                                                 </tr>
@@ -93,24 +98,22 @@
                                         </table>
                                     </div>
 
-                                    <div class="form-group col-4 mt-2">
-                                        <label>Objeto Comercial</label>
-                                            <select id="actividad_comercial" name="actividad_comercial" class="default-select2 form-control">
-                                                <option>Seleccione</option>
-                                                <?php foreach ($act_com as $data): ?>
-                                                    <option value="<?=$data['id_objeto_contrata']?>/<?=$data['desc_objeto_contrata']?>"><?=$data['desc_objeto_contrata']?></option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                    </div>
-
                                     <div class="form-group col-8">
                                         <label>CCNU <b style="color:red">*</b></label>
                                         <select  id="id_ccnu" class="form-control default-select2">
-                                            <option value="">SELECCIONE</option>
+                                            <option value="0">SELECCIONE</option>
                                             <?php foreach ($ccnu as $data): ?>
                                                 <option value="<?=$data['codigo_ccnu']?>/<?=$data['desc_ccnu']?>"><?=$data['desc_ccnu']?></option>
                                             <?php endforeach; ?>
                                         </select>
+                                    </div>
+                                    <div class="col-2 form-group">
+                                        <label>Fecha Desde<b style="color:red">*</b></label>
+                                        <input id="fecha_desde" name="fecha_desde" type="date" class="form-control" required>
+                                    </div>
+                                    <div class="col-2 form-group">
+                                        <label>Fecha Hasta<b style="color:red">*</b></label>
+                                        <input id="fecha_hasta" name="fecha_hasta" type="date" class="form-control" required>
                                     </div>
                                     <div class="form-group col-6">
                                         <label>Especificación <b style="color:red">*</b></label>
@@ -205,8 +208,10 @@
                                         <table id="target_req" class="table table-bordered table-hover">
                                             <thead style="background:#4caa9d;">
                                                 <tr class="text-center">
-                                                    <th>Obj. Comercial</th>
+                                                    <th>Partida Pres.</th>
                                                     <th>CCNU</th>
+                                                    <th>Fecha Desde</th>
+                                                    <th>Fecha Hasta</th>
                                                     <th>Esp.</th>
                                                     <th>Unid. Medida</th>
                                                     <th>I</th>
@@ -215,7 +220,7 @@
                                                     <th>IV</th>
                                                     <th>Costo Unit.</th>
                                                     <th>Precio Total</th>
-                                                    <th>Alic. IVA Estimado</th>
+                                                    <th>IVA Estimado</th>
                                                     <th>Monto Iva Est.</th>
                                                     <th>Monto Total Est.</th>
                                                     <th>Acciones</th>
