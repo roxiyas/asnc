@@ -23,9 +23,9 @@
                             <form action="<?=base_url()?>index.php/programacion/save_programacion" method="POST" class="form-horizontal">
                                 <div class="row">
                                     <div class="col-12">
-                                        <h5>Toda la información del Ente</h5>
+                                        <h4> <b>Órgano / Ente: Cod: <?=$unidad?> - Nombre: <?=$des_unidad?></b> </h4>
                                     </div>
-                                    <div class="col-12 form-group">
+                                    <div class="col-12 mt-2 form-group">
                                         <label>Nombre del Proyecto <b style="color:red">*</b></label>
                                         <input id="nombre_proyecto" name="nombre_proyecto" type="text" class="form-control" required>
                                     </div>

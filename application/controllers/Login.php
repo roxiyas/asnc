@@ -11,18 +11,32 @@ class Login extends CI_Controller {
         $usuario = $_POST['usuario'];
         $contrasena = $_POST ['contrasena'];
         $data = $this->login_model->iniciar($usuario,$contrasena);
-
+		//print_r($data);die;
 		if($data){
-            $user_data =[
-				'id_user'	=> $data['id'],
-                'nombre'    => $data['nombre'],
-                'email'     => $data['email'],
-                'perfil'    => $data['perfil'],
-				'id_unidad' => $data['unidad'],
-                'session'   => TRUE,
+            $inf =[
+				'id_unidad' => $data['unidad']
             ];
-            $this->session->set_userdata($user_data);
-            redirect('home/index');
+
+			$id_unidad = $inf['id_unidad'];
+			$data2 = $this->login_model->consultar_organo($id_unidad);
+
+			if ($data2) {
+				$user_data =[
+					'id_user'	=> $data['id'],
+	                'nombre'    => $data['nombre'],
+	                'email'     => $data['email'],
+	                'perfil'    => $data['perfil'],
+					'id_unidad' => $data['unidad'],
+					'unidad' 	=> $data2['desc_organo'],
+	                'session'   => TRUE,
+	            ];
+
+				$this->session->set_userdata($user_data);
+	            redirect('home/index');
+			}
+			else {
+				redirect('login/index');
+			}
         }else{
             redirect('login/index');
         }

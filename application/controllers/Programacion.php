@@ -7,6 +7,22 @@ class Programacion extends CI_Controller {
         if(!$this->session->userdata('session'))
 		redirect('login');
 
+        $unidad = $this->session->userdata('id_unidad');
+
+        $data['ver_prog'] = $this->Programacion_model->consultar_program($unidad);
+        $this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+        $this->load->view('programacion/ver.php', $data);
+        $this->load->view('templates/footer.php');
+    }
+
+    public function add(){
+        if(!$this->session->userdata('session'))
+        redirect('login');
+
+        $data['unidad'] = $this->session->userdata('id_unidad');
+        $data['des_unidad'] = $this->session->userdata('unidad');
+
         $data['part_pres'] = $this->Programacion_model->consulta_part_pres();
         $data['fuente'] = $this->Programacion_model->consulta_fuente();
         $data['act_com'] = $this->Programacion_model->consulta_act_com();
@@ -31,8 +47,6 @@ class Programacion extends CI_Controller {
             'id_usuario' 		   => $this->session->userdata('id_user'),
             'estatus'              => 1
 	   );
-
-
 
         $proyecto = array(
             'id_par_presupuestaria'  => $this->input->post('par_presupuestaria'),
@@ -65,4 +79,6 @@ class Programacion extends CI_Controller {
         $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
 		redirect('programacion/index');
     }
+
+
 }

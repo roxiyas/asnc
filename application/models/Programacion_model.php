@@ -1,6 +1,13 @@
 <?php
     class Programacion_model extends CI_model{
 
+        public function consultar_program($unidad){
+            $this->db->select('*');
+            $this->db->where('unidad', $unidad);
+            $query = $this->db->get('programacion');
+            return $query->result_array();
+        }
+
         public function consulta_part_pres(){
             $this->db->select('*');
             $query = $this->db->get('partida_presupuestaria');
