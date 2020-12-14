@@ -33,7 +33,6 @@ function agregar_ffToCartTable(cells){
    	var acti2 = acti.split("/")[1];
 
 
-
 	if (pp1 == 0 || estad1 == 0 || ff1 == 0|| acti1 == 0){
 		console.log('No paso');
 	}else{

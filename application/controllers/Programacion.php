@@ -9,7 +9,9 @@ class Programacion extends CI_Controller {
 
         $unidad = $this->session->userdata('id_unidad');
 
-        $data['ver_prog'] = $this->Programacion_model->consultar_program($unidad);
+        $data['ver_proyectos'] = $this->Programacion_model->consultar_proyectos($unidad);
+
+        $data['ver_acc_centralizada'] = $this->Programacion_model->consultar_acc_centralizada($unidad);
         $this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
         $this->load->view('programacion/ver.php', $data);
@@ -23,6 +25,7 @@ class Programacion extends CI_Controller {
         $data['unidad'] = $this->session->userdata('id_unidad');
         $data['des_unidad'] = $this->session->userdata('unidad');
 
+        //Proyecto
         $data['part_pres'] = $this->Programacion_model->consulta_part_pres();
         $data['fuente'] = $this->Programacion_model->consulta_fuente();
         $data['act_com'] = $this->Programacion_model->consulta_act_com();
@@ -30,6 +33,10 @@ class Programacion extends CI_Controller {
         $data['estados'] 	= $this->Configuracion_model->consulta_estados();
         $data['unid'] 	= $this->Programacion_model->consulta_unid();
         $data['iva'] 	= $this->Programacion_model->consulta_iva();
+
+        //ACCION CENTRALIZADA
+        $data['act_com2'] = $this->Programacion_model->consulta_act_com2();
+        $data['acc_cent'] = $this->Programacion_model->accion_centralizada();
 
         $this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
@@ -43,6 +50,7 @@ class Programacion extends CI_Controller {
 
         $aData = array(
 			'nombre_programacion'  => $this->input->POST('nombre_proyecto'),
+            'id_accion_centralizada' => 0,
             'unidad'   		       => $this->session->userdata('id_unidad'),
             'id_usuario' 		   => $this->session->userdata('id_user'),
             'estatus'              => 1
@@ -75,6 +83,53 @@ class Programacion extends CI_Controller {
         );
 
         $data = $this->Programacion_model->save_programacion($aData,$proyecto,$proyecto_financ);
+
+        $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
+		redirect('programacion/index');
+    }
+
+    // ACCIÓN CENTRALIZADA
+
+    public function save_programacion_acc(){
+        if(!$this->session->userdata('session'))
+        redirect('login');
+
+        $aData = array(
+			'nombre_programacion'    => 'N/P',
+            'id_accion_centralizada' => $this->input->POST('id_accion_centralizada'),
+            'unidad'   		         => $this->session->userdata('id_unidad'),
+            'id_usuario' 		     => $this->session->userdata('id_user'),
+            'estatus'                => 1
+	   );
+
+        $proyecto = array(
+            'id_par_presupuestaria'  => $this->input->post('par_presupuestaria_acc'),
+			'id_ccnu' 		         => $this->input->post('id_ccnu_acc'),
+            'fecha_desde'   	     => date('Y-m-d'),
+            'fecha_hasta'   	     => date('Y-m-d'),
+			'especificacion' 		 => $this->input->post('especificacion_acc'),
+            'id_unidad_medida' 		 => $this->input->post('id_unidad_medida_acc'),
+            'i' 		             => $this->input->post('i_acc'),
+            'ii' 		             => $this->input->post('ii_acc'),
+            'iii' 		             => $this->input->post('iii_acc'),
+            'iv' 		             => $this->input->post('iv_acc'),
+            'costo_unitario' 	     => $this->input->post('costo_unitario_acc'),
+            'precio_total' 		     => $this->input->post('precio_total_acc'),
+            'id_alicuota_iva' 		 => $this->input->post('id_alicuota_iva_acc'),
+            'iva_estimado' 		     => $this->input->post('iva_estimado_acc'),
+            'monto_estimado' 		 => $this->input->post('monto_estimado_acc'),
+		);
+
+        $proyecto_financ = array(
+            'id_estado'   		        => $this->input->post('id_estado_acc'),
+            'id_par_presupuestaria' 	=> $this->input->post('par_presupuestaria_acc'),
+            'id_fuente_financiamiento'  => $this->input->post('fuente_financiamiento_acc'),
+            'porcentaje' 	            => $this->input->post('porcentaje_acc'),
+            'id_actividad_comercial'    => $this->input->post('actividad_comercial_acc'),
+        );
+
+
+        $data = $this->Programacion_model->save_programacion_acc($aData,$proyecto,$proyecto_financ);
 
         $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
 		redirect('programacion/index');

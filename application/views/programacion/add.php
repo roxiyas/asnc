@@ -29,8 +29,6 @@
                                         <label>Nombre del Proyecto <b style="color:red">*</b></label>
                                         <input id="nombre_proyecto" name="nombre_proyecto" type="text" class="form-control" required>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="form-group col-12">
                                         <label>Partida Presupuestaria</label>
                                             <select id="par_presupuestaria" required name="par_presupuestaria" class="default-select2 form-control">
@@ -78,7 +76,7 @@
                                     <div class="col-5"></div>
                                     <div class="col-7 mt-4">
                                         <button type="button" onclick="agregar_ff(this);" style="background-color:#4caa9d;color:white;" class="btn btn-circle waves-effect waves-circle waves-float">
-                                            <i class="fa fa-lg fa-plus"></i>
+                                            Agregar
                                         </button>
                                     </div>
                                     <div class="table-responsive mt-3">
@@ -89,17 +87,16 @@
                                                     <th>Partida Presupuestaria</th>
                                                     <th>Estado</th>
                                                     <th>Fuente de Financiamiento</th>
-                                                    <th>Objeto Comercial</th>
                                                     <th>%</th>
+                                                    <th>Objeto Comercial</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
                                         </table>
                                     </div>
-
                                     <div class="form-group col-8">
-                                        <label>CCNU <b style="color:red">*</b></label>
+                                        <label>CCNU <b style="color:red">*</b></label><br>
                                         <select  id="id_ccnu" class="form-control default-select2">
                                             <option value="0">SELECCIONE</option>
                                             <?php foreach ($ccnu as $data): ?>
@@ -120,7 +117,7 @@
                                         <input id="especificacion" type="text" class="form-control" required>
                                     </div>
                                     <div class="form-group col-6">
-                                        <label>Unidad de Medida <b style="color:red">*</b></label>
+                                        <label>Unidad de Medida <b style="color:red">*</b></label><br>
                                         <select  id="id_unidad_medida" class="form-control default-select2">
                                             <option value="">SELECCIONE</option>
                                             <?php foreach ($unid as $data): ?>
@@ -128,38 +125,40 @@
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
-                                    <div class="form-group col-2">
-                                        <label>Cantidad x Distribuir <b style="color:red">*</b></label>
-                                        <input id="cantidad" name="cantidad" onblur="calculo();" value="100" type="number" class="form-control" disabled>
-                                    </div>
-                                    <div class="form-group col-2">
+                                    <div class="form-group col-1">
                                         <label>I<b style="color:red">*</b></label>
-                                        <input id="I" name="I" onblur="calculo();" type="number" value="0" class="form-control">
+                                        <input id="I" name="I" type="number"  value="0" class="form-control" style="width: 140%;">
                                     </div>
-                                    <div class="form-group col-2">
+                                    <div class="form-group col-1">
                                         <label>II<b style="color:red">*</b></label>
-                                        <input id="II" name="II" onblur="calculo();" type="number" value="0" class="form-control">
+                                        <input id="II" name="II"  type="number" value="0" class="form-control" style="width: 140%;">
                                     </div>
-                                    <div class="form-group col-2">
+                                    <div class="form-group col-1">
                                         <label>III<b style="color:red">*</b></label>
-                                        <input id="III" name="III" onblur="calculo();" type="number" value="0" class="form-control">
+                                        <input id="III" name="III"  type="number" value="0" class="form-control" style="width: 140%;">
+                                    </div>
+                                    <div class="form-group col-1">
+                                        <label>IV<b style="color:red">*</b></label>
+                                        <input id="IV" name="IV"  type="number" value="0" class="form-control" style="width: 140%;">
                                     </div>
                                     <div class="form-group col-2">
-                                        <label>IV<b style="color:red">*</b></label>
-                                        <input id="IV" name="IV" onblur="calculo();" type="number" value="0" class="form-control">
+                                        <label>Cantd. Total Distribuir <b style="color:red">*</b></label>
+                                        <input id="cant_total_distribuir" name="cant_total_distribuir"  type="number" class="form-control" disabled>
                                     </div>
 
-                                    <div class="form-group col-2">
+                                    <div class="form-group col-3">
                                         <label>Costo Unitario <b style="color:red">*</b></label>
-                                        <input id="costo_unitario" name="costo_unitario" onblur="calculo();" type="number" class="form-control">
+                                        <input id="costo_unitario" name="costo_unitario"  type="number" class="form-control">
                                     </div>
+
                                     <div class="form-group col-3">
                                         <label>Precio Total <b style="color:red">*</b></label>
                                         <input id="precio_total" name="precio_total" type="number" class="form-control" disabled>
                                     </div>
-                                    <div class="form-group col-3">
-                                        <label>Alícuota IVA Estimado<b style="color:red">*</b></label>
-                                        <select onchange="calculo();" name="id_alicuota_iva" id="id_alicuota_iva" class="form-control default-select2">
+                                    <div class="col-4"></div>
+                                    <div class="form-group col-2">
+                                        <label>Alícuota IVA Estimado<b style="color:red">*</b></label><br>
+                                        <select name="id_alicuota_iva" id="id_alicuota_iva" class="form-control default-select2">
                                             <option value="">SELECCIONE</option>
                                             <?php foreach ($iva as $data): ?>
                                                 <option value="<?=$data['desc_alicuota_iva']?>/<?=$data['desc_porcentaj']?>"><?=$data['desc_porcentaj']?></option>
@@ -174,13 +173,9 @@
                                         <label>Monto total Estimado<b style="color:red">*</b></label>
                                         <input id="monto_estimado" name="monto_estimado" type="number" class="form-control" disabled>
                                     </div>
-
-                                    <div class="col-12 text-center mt-2 mb-2">
-                                        <button type="button" onclick="agregar_ccnu(this);" style="background-color:#4caa9d;color:white;" class="btn btn-circle waves-effect waves-circle waves-float">
-                                            <i class="fa fa-lg fa-plus"></i>
-                                        </button>
+                                    <div class="col-12">
+                                        <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                                     </div>
-                                    <hr>
                                     <div class="form-group col-2">
                                         <label>Estimado I Trimestre</b></label>
                                         <input id="estimado_i" name="estimado_i" type="number" class="form-control" disabled>
@@ -201,8 +196,25 @@
                                         <label>Estimado Total Trimestres + Iva Estimado</label>
                                         <input id="estimado_total_t" name="estimado_total_t" type="number" class="form-control" disabled>
                                     </div>
+                                    <div class="col-12">
+                                        <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
+                                    </div>
 
-                                    <div class="table-responsive mt-3">
+                                    <div class="col-3 text-right">
+                                        <button type="button" onclick="calcular_otros(this);" style="background-color:#3e941c;color:white;" class="btn btn-circle waves-effect btn-lg waves-circle waves-float">
+                                            Calcular
+                                        </button>
+                                    </div>
+                                    <div class="col-5 mt-3 text-center">
+                                        <h4><b><= </b>Debe primero <b>Calcular</b> y luego <b>Agregar =></b></h4>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="button" onclick="agregar_ccnu(this);" style="background-color:#4caa9d;color:white;" class="btn btn-circle waves-effect btn-lg waves-circle waves-float">
+                                            Agregar
+                                        </button>
+                                    </div>
+
+                                    <div class="table-responsive mt-4">
                                         <h5 class="text-center">Lista de Requerimiento</h5>
                                         <h5 class="text-center"><b style="color:red;">NOTA:</b> La tabla debe tener al menos un requerimiento agregado, para proceder con la solicitud.</h5>
                                         <table id="target_req" class="table table-bordered table-hover">
@@ -230,12 +242,238 @@
                                         </table>
                                     </div>
                                 </div>
-                                <button type="submit" name="button">Enviar</button>
+                                <!--////////////////////////////SEGUNDA PARTE DE LA CARGA -->
+                                <div class="col-12 text-center mt-3">
+                                    <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" name="button">Guardar</button>
+                                </div>
                             </form>
                         </div>
+
                         <div class="tab-pane fade" id="accion_centralizada">
-                            <div class="row">
-                            </div>
+                            <form action="<?=base_url()?>index.php/programacion/save_programacion_acc" method="POST" class="form-horizontal">
+                                <div class="row">
+                                    <div class="col-12 form-group">
+                                        <h4> <b>Órgano / Ente: Cod: <?=$unidad?> - Nombre: <?=$des_unidad?></b> </h4>
+                                    </div>
+                                    <div class="col-6 form-group">
+                                        <label>Acción Centralizada<b style="color:red">*</b></label><br>
+                                        <select name="id_accion_centralizada" id="id_accion_centralizada" class="select2 form-control">
+                                            <option value="">SELECCIONE</option>
+                                            <?php foreach ($acc_cent as $data): ?>
+                                            <option value="<?=$data['id_accion_centralizada']?>"><?=$data['desc_accion_centralizada']?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-6"></div>
+                                    <div class="form-group col-12">
+                                        <label>Partida Presupuestaria</label><br>
+                                            <select style="width: 100%;"  id="par_presupuestaria_acc" required name="par_presupuestaria_acc" class="default-select2 form-control">
+                                                <option value="0">Seleccione</option>
+                                                <?php foreach ($part_pres as $data): ?>
+                                                    <option value="<?=$data['id_partida_presupuestaria']?>/<?=$data['desc_partida_presupuestaria']?>/<?=$data['codigopartida_presupuestaria']?>"><?=$data['codigopartida_presupuestaria']?>/<?=$data['desc_partida_presupuestaria']?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                    </div>
+                                    <hr style="border-top: 1px solid rgba(0, 0, 0, 0.17);">
+                                    <div class="form-group col-3">
+                                        <label>Estado</label><br>
+                                        <select style="width: 100%;" id="id_estado_acc" name="id_estado_acc" class="default-select2 form-control" required>
+                                            <option value="0">Seleccione</option>
+                                            <?php foreach ($estados as $data): ?>
+                                                <option value="<?=$data['id_estado']?>/<?=$data['descripcion']?>"><?=$data['descripcion']?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <label>Fuente de Financiamiento</label>
+                                        <select style="width: 100%;" id="fuente_financiamiento_acc" name="fuente_financiamiento_acc" class="default-select2 form-control" required>
+                                            <option value="0">Seleccione</option>
+                                            <?php foreach ($fuente as $data): ?>
+                                                <option value="<?=$data['id_fuente_financiamiento']?>/<?=$data['desc_fuente_financiamiento']?>"><?=$data['desc_fuente_financiamiento']?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <label>Porcentaje<b style="color:red">*</b></label>
+                                        <input id="porcentaje_acc" type="text" class="form-control" required>
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <label>Objeto Comercial</label><br>
+                                        <select style="width: 100%;" id="actividad_comercial_acc" name="actividad_comercial_acc" class="default-select2 form-control">
+                                            <option value="0">Seleccione</option>
+                                            <?php foreach ($act_com2 as $data): ?>
+                                                <option value="<?=$data['id_objeto_contrata']?>/<?=$data['desc_objeto_contrata']?>"><?=$data['desc_objeto_contrata']?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <h5 class="text-center"><b style="color:red;">NOTA:</b> Debe llenar todos lo items para llenar la tabla.</h5>
+                                    </div>
+                                    <div class="col-5"></div>
+                                    <div class="col-7 mt-4">
+                                        <button type="button" onclick="agregar_acc_ff(this);" style="background-color:#4caa9d;color:white;" class="btn btn-circle waves-effect waves-circle waves-float">
+                                            Agregar
+                                        </button>
+                                    </div>
+                                    <div class="table-responsive mt-3">
+                                        <h5 class="text-center"><b style="color:red;">NOTA:</b> La tabla debe tener al menos un registro agregado, para proceder con la solicitud.</h5>
+                                        <table id="target_acc_ff" class="table table-bordered table-hover">
+                                            <thead style="background:#4caa9d;">
+                                                <tr class="text-center">
+                                                    <th>Partida Presupuestaria</th>
+                                                    <th>Estado</th>
+                                                    <th>Fuente de Financiamiento</th>
+                                                    <th>%</th>
+                                                    <th>Objeto Comercial</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+
+
+                                    <div class="form-group col-8">
+                                        <label>CCNU <b style="color:red">*</b></label><br>
+                                        <select  id="id_ccnu_acc" class="form-control default-select2">
+                                            <option value="0">SELECCIONE</option>
+                                            <?php foreach ($ccnu as $data): ?>
+                                                <option value="<?=$data['codigo_ccnu']?>/<?=$data['desc_ccnu']?>"><?=$data['desc_ccnu']?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label>Especificación <b style="color:red">*</b></label>
+                                        <input id="especificacion_acc" type="text" class="form-control" required>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label>Unidad de Medida <b style="color:red">*</b></label><br>
+                                        <select  id="id_unidad_medida_acc" class="form-control default-select2">
+                                            <option value="">SELECCIONE</option>
+                                            <?php foreach ($unid as $data): ?>
+                                                <option value="<?=$data['id_unidad_medida']?>"><?=$data['desc_unidad_medida']?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-1">
+                                        <label>I<b style="color:red">*</b></label>
+                                        <input id="I_acc" name="I_acc" type="number"  value="0" class="form-control" style="width: 140%;">
+                                    </div>
+                                    <div class="form-group col-1">
+                                        <label>II<b style="color:red">*</b></label>
+                                        <input id="II_acc" name="II_acc"  type="number" value="0" class="form-control" style="width: 140%;">
+                                    </div>
+                                    <div class="form-group col-1">
+                                        <label>III<b style="color:red">*</b></label>
+                                        <input id="III_acc" name="III_acc"  type="number" value="0" class="form-control" style="width: 140%;">
+                                    </div>
+                                    <div class="form-group col-1">
+                                        <label>IV<b style="color:red">*</b></label>
+                                        <input id="IV_acc" name="IV_acc"  type="number" value="0" class="form-control" style="width: 140%;">
+                                    </div>
+                                    <div class="form-group col-2">
+                                        <label>Cantd. Total Distribuir <b style="color:red">*</b></label>
+                                        <input id="cant_total_distribuir_acc" name="cant_total_distribuir_acc"  type="number" class="form-control" disabled>
+                                    </div>
+
+                                    <div class="form-group col-3">
+                                        <label>Costo Unitario <b style="color:red">*</b></label>
+                                        <input id="costo_unitario_acc" name="costo_unitario_acc"  type="number" class="form-control">
+                                    </div>
+
+                                    <div class="form-group col-3">
+                                        <label>Precio Total <b style="color:red">*</b></label>
+                                        <input id="precio_total_acc" name="precio_total_acc" type="number" class="form-control" disabled>
+                                    </div>
+                                    <div class="col-4"></div>
+                                    <div class="form-group col-2">
+                                        <label>Alícuota IVA Estimado<b style="color:red">*</b></label><br>
+                                        <select name="id_alicuota_iva_acc" id="id_alicuota_iva_acc" class="form-control default-select2">
+                                            <option value="">SELECCIONE</option>
+                                            <?php foreach ($iva as $data): ?>
+                                                <option value="<?=$data['desc_alicuota_iva']?>/<?=$data['desc_porcentaj']?>"><?=$data['desc_porcentaj']?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <label>Monto IVA Estimado<b style="color:red">*</b></label>
+                                        <input id="iva_estimado_acc" name="iva_estimado_acc" type="number" class="form-control" disabled>
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <label>Monto total Estimado<b style="color:red">*</b></label>
+                                        <input id="monto_estimado_acc" name="monto_estimado_acc" type="number" class="form-control" disabled>
+                                    </div>
+                                    <div class="col-12">
+                                        <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
+                                    </div>
+                                    <div class="form-group col-2">
+                                        <label>Estimado I Trimestre</b></label>
+                                        <input id="estimado_i_acc" name="estimado_i_acc" type="number" class="form-control" disabled>
+                                    </div>
+                                    <div class="form-group col-2">
+                                        <label>Estimado II Trimestre</label>
+                                        <input id="estimado_ii_acc" name="estimado_ii_acc" type="number" class="form-control" disabled>
+                                    </div>
+                                    <div class="form-group col-2">
+                                        <label>Estimado III Trimestre</label>
+                                        <input id="estimado_iii_acc" name="estimado_iii_acc" type="number" class="form-control" disabled>
+                                    </div>
+                                    <div class="form-group col-2">
+                                        <label>Estimado IV Trimestre</label>
+                                        <input id="estimado_iV_acc" name="estimado_iV_acc" type="number" class="form-control" disabled>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label>Estimado Total Trimestres + Iva Estimado</label>
+                                        <input id="estimado_total_t_acc" name="estimado_total_t_acc" type="number" class="form-control" disabled>
+                                    </div>
+                                    <div class="col-12">
+                                        <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
+                                    </div>
+
+                                    <div class="col-3 text-right">
+                                        <button type="button" onclick="calcular_bienes(this);" style="background-color:#4caa9d;color:white;" class="btn btn-circle waves-effect waves-circle waves-float">
+                                            Calcular
+                                        </button>
+                                    </div>
+                                    <div class="col-5 mt-3 text-center">
+                                        <h4><b><= </b>Debe primero <b>Calcular</b> y luego <b>Agregar =></b></h4>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="button" onclick="agregar_ccnu_acc(this);" style="background-color:#4caa9d;color:white;" class="btn btn-circle waves-effect btn-lg waves-circle waves-float">
+                                            Agregar
+                                        </button>
+                                    </div>
+
+                                    <div class="table-responsive mt-4">
+                                        <h5 class="text-center">Lista de Requerimiento</h5>
+                                        <h5 class="text-center"><b style="color:red;">NOTA:</b> La tabla debe tener al menos un requerimiento agregado, para proceder con la solicitud.</h5>
+                                        <table id="target_req_acc" class="table table-bordered table-hover">
+                                            <thead style="background:#4caa9d;">
+                                                <tr class="text-center">
+                                                    <th>Partida Pres.</th>
+                                                    <th>CCNU</th>
+                                                    <th>Esp.</th>
+                                                    <th>Unid. Medida</th>
+                                                    <th>I</th>
+                                                    <th>II</th>
+                                                    <th>III</th>
+                                                    <th>IV</th>
+                                                    <th>Costo Unit.</th>
+                                                    <th>Precio Total</th>
+                                                    <th>IVA Estimado</th>
+                                                    <th>Monto Iva Est.</th>
+                                                    <th>Monto Total Est.</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center mt-3">
+                                    <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" name="button">Guardar</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -247,6 +485,11 @@
     <div hidden id="sa-success2"> <?= $this->session->flashdata('sa-success2') ?> </div>
 <?php } ?>
 <script src="<?=base_url()?>/js/calculos.js"></script>
+
+<script src="<?=base_url()?>/js/calculos3.js"></script>
 <script src="<?=base_url()?>/js/dependientes.js"></script>
 <script src="<?=base_url()?>/js/agregar_proyecto.js"></script>
 <script src="<?=base_url()?>/js/agregar_proyecto_ff.js"></script>
+
+<script src="<?=base_url()?>/js/agregar_acc_centralizada_ff.js"></script>
+<script src="<?=base_url()?>/js/agregar_acc_centralizada.js"></script>
