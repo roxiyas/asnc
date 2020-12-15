@@ -24,7 +24,10 @@
                             <form action="<?=base_url()?>index.php/programacion/save_programacion" method="POST" class="form-horizontal">
                                 <div class="row">
                                     <div class="col-12">
-                                        <h4> <b>Órgano / Ente: Cod: <?=$unidad?> - Nombre: <?=$des_unidad?></b> </h4>
+                                        <div class="col-12">
+                                            <h4> <b>Nombre Órgano / Ente: <?=$des_unidad?></b></h4>
+                                            <h4><b>RIF.: <?=$rif?> <br> Código ONAPRE: <?=$codigo_onapre?></b></h4>
+                                        </div>
                                     </div>
 
                                     <div class="col-9 mt-3" >

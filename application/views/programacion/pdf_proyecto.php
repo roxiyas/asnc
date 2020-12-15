@@ -6,7 +6,8 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-12">
-                            <h4> <b>Órgano / Ente: Cod: <?=$unidad?> - Nombre: <?=$des_unidad?></b> </h4>
+                            <h4> <b>Nombre Órgano / Ente: <?=$des_unidad?></b></h4>
+                            <h4><b>RIF.: <?=$rif?> <br> Código ONAPRE: <?=$codigo_onapre?></b></h4>
                         </div>
                          <?php foreach($inf_1 as $inf_1):?><?php endforeach;?>
                         <div class="col-9 mt-2 form-group">
@@ -19,6 +20,7 @@
                         </div>
                         <hr style="border-top: 1px solid rgba(0, 0, 0, 0.17);">
                         <div class="table-responsive mt-3">
+                            <h5 class="text-center">Programación Anual.</h5>
                             <table id="target_ff" class="table table-bordered table-hover">
                                 <thead style="background:#4caa9d;">
                                     <tr class="text-center">
@@ -45,8 +47,7 @@
 
                         <hr style="border-top: 1px solid rgba(0, 0, 0, 0.17);">
                         <div class="table-responsive mt-4">
-                            <h5 class="text-center">Lista de Requerimiento</h5>
-                            <h5 class="text-center"><b style="color:red;">NOTA:</b> La tabla debe tener al menos un requerimiento agregado, para proceder con la solicitud.</h5>
+                            <h5 class="text-center">Items de la Programación.</h5>
                             <table id="target_req" class="table table-bordered table-hover">
                                 <thead style="background:#4caa9d;">
                                     <tr class="text-center">

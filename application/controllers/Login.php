@@ -28,6 +28,8 @@ class Login extends CI_Controller {
 	                'perfil'    => $data['perfil'],
 					'id_unidad' => $data['unidad'],
 					'unidad' 	=> $data2['desc_organo'],
+					'codigo_onapre' => $data2['cod_onapre'],
+					'rif'			=> $data2['rif'],
 	                'session'   => TRUE,
 	            ];
 

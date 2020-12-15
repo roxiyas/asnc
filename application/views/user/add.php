@@ -20,7 +20,7 @@
                             <div class=" col-6 form-group">
                                 <label>Organo</label>
                                 <select id="id_unidad" name="id_unidad" class="default-select2 form-control">
-                                    <option>Seleccione</option>
+                                    <option value="0">Seleccione</option>
                                     <optgroup label="Órganos">
                                         <?php foreach ($organo as $data): ?>
                                             <option value="<?=$data['codigo']?>"><?=$data['desc_organo']?> / <?=$data['rif']?></option>

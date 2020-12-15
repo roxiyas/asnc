@@ -24,6 +24,8 @@ class Programacion extends CI_Controller {
 
         $data['unidad'] = $this->session->userdata('id_unidad');
         $data['des_unidad'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+        $data['codigo_onapre'] = $this->session->userdata('codigo_onapre');
 
         //Proyecto
         $data['part_pres'] = $this->Programacion_model->consulta_part_pres();
@@ -95,6 +97,9 @@ class Programacion extends CI_Controller {
         $id_programacion = $this->input->get('id');
         $data['unidad'] = $this->session->userdata('id_unidad');
         $data['des_unidad'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+        $data['codigo_onapre'] = $this->session->userdata('codigo_onapre');
+
         $data['inf_1'] = $this->Programacion_model->inf_1($id_programacion);
         $data['inf_2'] = $this->Programacion_model->inf_2($id_programacion);
         $data['inf_3'] = $this->Programacion_model->inf_3($id_programacion);
@@ -160,6 +165,8 @@ class Programacion extends CI_Controller {
         $id_programacion = $this->input->get('id');
         $data['unidad'] = $this->session->userdata('id_unidad');
         $data['des_unidad'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+        $data['codigo_onapre'] = $this->session->userdata('codigo_onapre');
         $data['inf_1_acc'] = $this->Programacion_model->inf_1_acc($id_programacion);
         $data['inf_2'] = $this->Programacion_model->inf_2($id_programacion);
         $data['inf_3_acc'] = $this->Programacion_model->inf_3_acc($id_programacion);
