@@ -25,12 +25,22 @@
                                     <div class="col-12">
                                         <h4> <b>Órgano / Ente: Cod: <?=$unidad?> - Nombre: <?=$des_unidad?></b> </h4>
                                     </div>
-                                    <div class="col-12 mt-2 form-group">
+                                    <div class="col-9 mt-2 form-group">
                                         <label>Nombre del Proyecto <b style="color:red">*</b></label>
                                         <input id="nombre_proyecto" name="nombre_proyecto" type="text" class="form-control" required>
                                     </div>
+                                    <div class="form-group col-3">
+                                        <label>Objeto Comercial</label>
+                                        <select id="id_obj_comercial" name="id_obj_comercial" class="default-select2 form-control">
+                                            <option value="0">Seleccione</option>
+                                            <?php foreach ($act_com as $data): ?>
+                                                <option value="<?=$data['id_objeto_contrata']?>"><?=$data['desc_objeto_contrata']?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
                                     <div class="form-group col-12">
                                         <label>Partida Presupuestaria</label>
+                                            <input type="hidden" name="par_presupuestaria_ff" id="par_presupuestaria_ff">
                                             <select id="par_presupuestaria" required name="par_presupuestaria" class="default-select2 form-control">
                                                 <option value="0">Seleccione</option>
                                                 <?php foreach ($part_pres as $data): ?>
@@ -41,10 +51,10 @@
                                     <hr style="    border-top: 1px solid rgba(0, 0, 0, 0.17);">
                                     <div class="form-group col-3">
                                         <label>Estado</label>
-                                        <select id="id_estado" name="id_estado" class="default-select2 form-control" required>
+                                        <select id="id_estado" name="id_estado" class="default-select2 form-control" multiple="multiple" required>
                                             <option value="0">Seleccione</option>
                                             <?php foreach ($estados as $data): ?>
-                                                <option value="<?=$data['id_estado']?>/<?=$data['descripcion']?>"><?=$data['descripcion']?></option>
+                                                <option value="<?=$data['descripcion']?>"><?=$data['descripcion']?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -60,15 +70,6 @@
                                     <div class="form-group col-3">
                                         <label>Porcentaje<b style="color:red">*</b></label>
                                         <input id="porcentaje" type="text" class="form-control" required    >
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <label>Objeto Comercial</label>
-                                        <select id="actividad_comercial" name="actividad_comercial" class="default-select2 form-control">
-                                            <option value="0">Seleccione</option>
-                                            <?php foreach ($act_com as $data): ?>
-                                                <option value="<?=$data['id_objeto_contrata']?>/<?=$data['desc_objeto_contrata']?>"><?=$data['desc_objeto_contrata']?></option>
-                                            <?php endforeach; ?>
-                                        </select>
                                     </div>
                                     <div class="col-12">
                                         <h5 class="text-center"><b style="color:red;">NOTA:</b> Debe llenar todos lo items para llenar la tabla.</h5>
@@ -88,7 +89,6 @@
                                                     <th>Estado</th>
                                                     <th>Fuente de Financiamiento</th>
                                                     <th>%</th>
-                                                    <th>Objeto Comercial</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
@@ -127,23 +127,23 @@
                                     </div>
                                     <div class="form-group col-1">
                                         <label>I<b style="color:red">*</b></label>
-                                        <input id="I" name="I" type="number" onblur="calculo();"  value="0" class="form-control" style="width: 140%;">
+                                        <input id="I" name="I" type="number" onblur="calculo();" min="0" max="100"  value="0" class="form-control" style="width: 140%;">
                                     </div>
                                     <div class="form-group col-1">
                                         <label>II<b style="color:red">*</b></label>
-                                        <input id="II" name="II"  type="number" onblur="calculo();" value="0" class="form-control" style="width: 140%;">
+                                        <input id="II" name="II"  type="number" onblur="calculo();" min="0" max="100" value="0" class="form-control" style="width: 140%;">
                                     </div>
                                     <div class="form-group col-1">
                                         <label>III<b style="color:red">*</b></label>
-                                        <input id="III" name="III"  type="number" onblur="calculo();" value="0" class="form-control" style="width: 140%;">
+                                        <input id="III" name="III"  type="number" onblur="calculo();" min="0" max="100" value="0" class="form-control" style="width: 140%;">
                                     </div>
                                     <div class="form-group col-1">
                                         <label>IV<b style="color:red">*</b></label>
-                                        <input id="IV" name="IV"  type="number" onblur="calculo();" value="0" class="form-control" style="width: 140%;">
+                                        <input id="IV" name="IV"  type="number" onblur="calculo();" min="0" max="100" value="0" class="form-control" style="width: 140%;">
                                     </div>
                                     <div class="form-group col-2">
                                         <label>Cantd. Total Distribuir <b style="color:red">*</b></label>
-                                        <input id="cant_total_distribuir" onblur="calculo();" value="100" name="cant_total_distribuir"  type="number" class="form-control" disabled>
+                                        <input id="cant_total_distribuir" onblur="calculo();" value="100" min="0" max="100" name="cant_total_distribuir"  type="number" class="form-control" disabled>
                                     </div>
 
                                     <div class="form-group col-3">
@@ -216,7 +216,6 @@
                                                     <th>II</th>
                                                     <th>III</th>
                                                     <th>IV</th>
-                                                    <th>Costo Unit.</th>
                                                     <th>Precio Total</th>
                                                     <th>IVA Estimado</th>
                                                     <th>Monto Iva Est.</th>

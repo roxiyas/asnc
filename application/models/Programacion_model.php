@@ -68,7 +68,7 @@
                             'ii'                        => $proyecto['ii'][$i],
                             'iii'                       => $proyecto['iii'][$i],
                             'iv'                        => $proyecto['iv'][$i],
-                            'costo_unitario'            => $proyecto['costo_unitario'][$i],
+                            'costo_unitario'            => 0,
                             'precio_total'              => $proyecto['precio_total'][$i],
                             'alicuota_iva'              => $proyecto['id_alicuota_iva'][$i],
                             'monto_iva_estimado'        => $proyecto['iva_estimado'][$i],
@@ -78,6 +78,7 @@
                     }
 
                     $cant_pff = $proyecto_financ['id_par_presupuestaria'];
+
                     $count_pff = count($cant_pff);
 
                     for ($i=0; $i < $count_pff; $i++) {
@@ -88,7 +89,6 @@
                             'id_partidad_presupuestaria' => $proyecto_financ['id_par_presupuestaria'][$i],
                             'id_fuente_financiamiento'   => $proyecto_financ['id_fuente_financiamiento'][$i],
                             'porcentaje'                 => $proyecto_financ['porcentaje'][$i],
-                            'id_obj_comercial'           => $proyecto_financ['id_actividad_comercial'][$i],
                         );
                         $this->db->insert('public.proyecto_financ',$data2);
                     }

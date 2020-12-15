@@ -49,11 +49,12 @@ class Programacion extends CI_Controller {
         redirect('login');
 
         $aData = array(
-			'nombre_programacion'  => $this->input->POST('nombre_proyecto'),
+			'nombre_programacion'    => $this->input->POST('nombre_proyecto'),
+            'id_obj_comercial'       => $this->input->post('id_obj_comercial'),
             'id_accion_centralizada' => 0,
-            'unidad'   		       => $this->session->userdata('id_unidad'),
-            'id_usuario' 		   => $this->session->userdata('id_user'),
-            'estatus'              => 1
+            'unidad'   		         => $this->session->userdata('id_unidad'),
+            'id_usuario' 		     => $this->session->userdata('id_user'),
+            'estatus'                => 1
 	   );
 
         $proyecto = array(
@@ -67,7 +68,6 @@ class Programacion extends CI_Controller {
             'ii' 		             => $this->input->post('ii'),
             'iii' 		             => $this->input->post('iii'),
             'iv' 		             => $this->input->post('iv'),
-            'costo_unitario' 	     => $this->input->post('costo_unitario'),
             'precio_total' 		     => $this->input->post('precio_total'),
             'id_alicuota_iva' 		 => $this->input->post('id_alicuota_iva'),
             'iva_estimado' 		     => $this->input->post('iva_estimado'),
@@ -76,11 +76,11 @@ class Programacion extends CI_Controller {
 
         $proyecto_financ = array(
             'id_estado'   		        => $this->input->post('id_estado'),
-            'id_par_presupuestaria' 	=> $this->input->post('par_presupuestaria'),
+            'id_par_presupuestaria' 	=> $this->input->post('par_presupuestaria_ff'),
             'id_fuente_financiamiento'  => $this->input->post('fuente_financiamiento'),
             'porcentaje' 	            => $this->input->post('porcentaje'),
-            'id_actividad_comercial'    => $this->input->post('actividad_comercial'),
         );
+
 
         $data = $this->Programacion_model->save_programacion($aData,$proyecto,$proyecto_financ);
 

@@ -29,7 +29,6 @@ function agregar_ccnuToCartTable(cells){
    	var esp = $("#especificacion").val();
 	var id_unid = $("#id_unidad_medida").val();
  	var can  = $("#cantidad").val();
-   	var cos  = $("#costo_unitario").val();
    	var pret  = $("#precio_total").val();
 
 	var i = $('#I').val();
@@ -63,7 +62,6 @@ function agregar_ccnuToCartTable(cells){
 		<td>${iii}<input type="text" hidden name="iii[]" id="ins-pres-${increment}" value="${iii}"></td>
 		<td>${iv}<input type="text" hidden name="iv[]" id="ins-pres-${increment}" value="${iv}"></td>
 
-		<td>${cos}<input type="text" hidden name="costo_unitario[]" id="ins-pres-${increment}" value="${cos}"></td>
 		<td>${pret}<input type="text" hidden name="precio_total[]" id="ins-pres-${increment}" value="${pret}"></td>
 		<td>${al_iva2}<input type="text" hidden name="id_alicuota_iva[]" id="ins-pres-${increment}" value="${al_iva1}"></td>
 		<td>${ica_est}<input type="text" hidden name="iva_estimado[]" id="ins-pres-${increment}" value="${ica_est}"></td>

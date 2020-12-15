@@ -73,3 +73,6 @@
         </div>
     </div>
 </div>
+<?php if ($this->session->flashdata('sa-success2')) { ?>
+    <div hidden id="sa-success2"> <?= $this->session->flashdata('sa-success2') ?> </div>
+<?php } ?>
