@@ -88,6 +88,23 @@ class Programacion extends CI_Controller {
 		redirect('programacion/index');
     }
 
+    public function ver_programacion_proy(){
+        if(!$this->session->userdata('session'))
+        redirect('login');
+
+        $id_programacion = $this->input->get('id');
+        $data['unidad'] = $this->session->userdata('id_unidad');
+        $data['des_unidad'] = $this->session->userdata('unidad');
+        $data['inf_1'] = $this->Programacion_model->inf_1($id_programacion);
+        $data['inf_2'] = $this->Programacion_model->inf_2($id_programacion);
+        $data['inf_3'] = $this->Programacion_model->inf_3($id_programacion);
+
+        $this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+        $this->load->view('programacion/pdf_proyecto.php', $data);
+        $this->load->view('templates/footer.php');
+
+    }
     // ACCIÓN CENTRALIZADA
 
     public function save_programacion_acc(){
@@ -97,6 +114,7 @@ class Programacion extends CI_Controller {
         $aData = array(
 			'nombre_programacion'    => 'N/P',
             'id_accion_centralizada' => $this->input->POST('id_accion_centralizada'),
+            'id_obj_comercial'    => $this->input->post('id_obj_comercial_cc'),
             'unidad'   		         => $this->session->userdata('id_unidad'),
             'id_usuario' 		     => $this->session->userdata('id_user'),
             'estatus'                => 1
@@ -122,10 +140,9 @@ class Programacion extends CI_Controller {
 
         $proyecto_financ = array(
             'id_estado'   		        => $this->input->post('id_estado_acc'),
-            'id_par_presupuestaria' 	=> $this->input->post('par_presupuestaria_acc'),
+            'id_par_presupuestaria' 	=> $this->input->post('par_presupuestaria_acc_ff'),
             'id_fuente_financiamiento'  => $this->input->post('fuente_financiamiento_acc'),
             'porcentaje' 	            => $this->input->post('porcentaje_acc'),
-            'id_actividad_comercial'    => $this->input->post('actividad_comercial_acc'),
         );
 
 
@@ -135,5 +152,21 @@ class Programacion extends CI_Controller {
 		redirect('programacion/index');
     }
 
+    public function ver_programacion_acc(){
+        if(!$this->session->userdata('session'))
+        redirect('login');
 
+        $id_programacion = $this->input->get('id');
+        $data['unidad'] = $this->session->userdata('id_unidad');
+        $data['des_unidad'] = $this->session->userdata('unidad');
+        $data['inf_1_acc'] = $this->Programacion_model->inf_1_acc($id_programacion);
+        $data['inf_2'] = $this->Programacion_model->inf_2($id_programacion);
+        $data['inf_3_acc'] = $this->Programacion_model->inf_3_acc($id_programacion);
+
+        $this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+        $this->load->view('programacion/pdf_acc.php', $data);
+        $this->load->view('templates/footer.php');
+
+    }
 }

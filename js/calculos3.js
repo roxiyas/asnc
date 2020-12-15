@@ -1,15 +1,16 @@
     function calcular_bienes(){
 
-        var cantidad = 100;
+        var cantidad_a_dis = $('#cant_a_distribuir_acc').val();
+        $('#cant_total_distribuir_acc').val(cantidad_a_dis);
         var i = $('#I_acc').val();
         var ii = $('#II_acc').val();
         var iii = $('#III_acc').val();
         var iv = $('#IV_acc').val();
-        var calculo2 = cantidad - i - ii - iii - iv
+        var cant_total_distribuir = cantidad_a_dis - i - ii - iii - iv
 
 
         var cantidad2 = Number(i) + Number(ii) + Number(iii) + Number(iv)
-        $('#cant_total_distribuir_acc').val(cantidad2);
+        $('#cant_total_distribuir_acc').val(cant_total_distribuir);
 
 
         var costo_unitario = $('#costo_unitario_acc').val();
@@ -27,16 +28,16 @@
         var monto_total_estimado = Number(total) + Number(iva_estimado);
         $('#monto_estimado_acc').val(monto_total_estimado);
 
-        var primer = (Number(i) * Number(costo_unitario))
+        var primer =  parseFloat(Number(monto_total_estimado) / Number(cantidad2) * Number(i)).toFixed(2);
         $('#estimado_i_acc').val(primer);
-        var segun = (Number(ii) * costo_unitario)
+        var segun = parseFloat(Number(monto_total_estimado) / Number(cantidad2) * Number(ii)).toFixed(2);
         $('#estimado_ii_acc').val(segun);
-        var terc = (Number(iii) * costo_unitario)
+        var terc = parseFloat(Number(monto_total_estimado) / Number(cantidad2) * Number(iii)).toFixed(2);
         $('#estimado_iii_acc').val(terc);
-        var cuar = (Number(iv) * costo_unitario)
+        var cuar = parseFloat(Number(monto_total_estimado) / Number(cantidad2) * Number(iv)).toFixed(2);
         $('#estimado_iV_acc').val(cuar);
 
-        var total_est = primer+segun+terc+cuar+Number(iva_estimado)
+        var total_est = Number(primer)+Number(segun)+Number(terc)+Number(cuar)
         $('#estimado_total_t_acc').val(total_est);
 
     }

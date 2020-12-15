@@ -242,17 +242,26 @@
                                     </div>
                                     <div class="col-6 form-group">
                                         <label>Acción Centralizada<b style="color:red">*</b></label><br>
-                                        <select name="id_accion_centralizada" id="id_accion_centralizada" class="select2 form-control">
+                                        <select style="width: 100%;"  name="id_accion_centralizada" id="id_accion_centralizada" class="default-select2 form-control">
                                             <option value="">SELECCIONE</option>
                                             <?php foreach ($acc_cent as $data): ?>
                                             <option value="<?=$data['id_accion_centralizada']?>"><?=$data['desc_accion_centralizada']?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
-                                    <div class="col-6"></div>
+                                    <div class="form-group col-6">
+                                        <label>Objeto Comercial</label><br>
+                                        <select style="width: 100%;" id="id_obj_comercial_cc" name="id_obj_comercial_cc" class="default-select2 form-control">
+                                            <option value="0">Seleccione</option>
+                                            <?php foreach ($act_com2 as $data): ?>
+                                                <option value="<?=$data['id_objeto_contrata']?>"><?=$data['desc_objeto_contrata']?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
                                     <div class="form-group col-12">
                                         <label>Partida Presupuestaria</label><br>
-                                            <select style="width: 100%;"  id="par_presupuestaria_acc" required name="par_presupuestaria_acc" class="default-select2 form-control">
+                                            <input type="hidden" name="par_presupuestaria_acc_ff" id="par_presupuestaria_acc_ff">
+                                            <select style="width: 100%;" id="par_presupuestaria_acc" required name="par_presupuestaria_acc" class="default-select2 form-control">
                                                 <option value="0">Seleccione</option>
                                                 <?php foreach ($part_pres as $data): ?>
                                                     <option value="<?=$data['id_partida_presupuestaria']?>/<?=$data['desc_partida_presupuestaria']?>/<?=$data['codigopartida_presupuestaria']?>"><?=$data['codigopartida_presupuestaria']?>/<?=$data['desc_partida_presupuestaria']?></option>
@@ -260,12 +269,12 @@
                                             </select>
                                     </div>
                                     <hr style="border-top: 1px solid rgba(0, 0, 0, 0.17);">
-                                    <div class="form-group col-3">
+                                    <div class="form-group col-6">
                                         <label>Estado</label><br>
-                                        <select style="width: 100%;" id="id_estado_acc" name="id_estado_acc" class="default-select2 form-control" required>
+                                        <select style="width: 100%;" id="id_estado_acc" name="id_estado_acc" class="default-select2 form-control" multiple="multiple" required>
                                             <option value="0">Seleccione</option>
                                             <?php foreach ($estados as $data): ?>
-                                                <option value="<?=$data['id_estado']?>/<?=$data['descripcion']?>"><?=$data['descripcion']?></option>
+                                                <option value="<?=$data['descripcion']?>"><?=$data['descripcion']?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -282,15 +291,7 @@
                                         <label>Porcentaje<b style="color:red">*</b></label>
                                         <input id="porcentaje_acc" type="text" class="form-control" required>
                                     </div>
-                                    <div class="form-group col-3">
-                                        <label>Objeto Comercial</label><br>
-                                        <select style="width: 100%;" id="actividad_comercial_acc" name="actividad_comercial_acc" class="default-select2 form-control">
-                                            <option value="0">Seleccione</option>
-                                            <?php foreach ($act_com2 as $data): ?>
-                                                <option value="<?=$data['id_objeto_contrata']?>/<?=$data['desc_objeto_contrata']?>"><?=$data['desc_objeto_contrata']?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
+
                                     <div class="col-12">
                                         <h5 class="text-center"><b style="color:red;">NOTA:</b> Debe llenar todos lo items para llenar la tabla.</h5>
                                     </div>
@@ -309,7 +310,6 @@
                                                     <th>Estado</th>
                                                     <th>Fuente de Financiamiento</th>
                                                     <th>%</th>
-                                                    <th>Objeto Comercial</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
@@ -317,70 +317,73 @@
                                         </table>
                                     </div>
 
-
-                                    <div class="form-group col-8">
+                                    <div class="form-group col-6">
                                         <label>CCNU <b style="color:red">*</b></label><br>
-                                        <select  id="id_ccnu_acc" class="form-control default-select2">
+                                        <select  style="width: 100%;" id="id_ccnu_acc" class="form-control default-select2">
                                             <option value="0">SELECCIONE</option>
                                             <?php foreach ($ccnu as $data): ?>
                                                 <option value="<?=$data['codigo_ccnu']?>/<?=$data['desc_ccnu']?>"><?=$data['desc_ccnu']?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
+                                    <div class="col-6"></div>
                                     <div class="form-group col-6">
                                         <label>Especificación <b style="color:red">*</b></label>
                                         <input id="especificacion_acc" type="text" class="form-control" required>
                                     </div>
                                     <div class="form-group col-6">
                                         <label>Unidad de Medida <b style="color:red">*</b></label><br>
-                                        <select  id="id_unidad_medida_acc" class="form-control default-select2">
+                                        <select  style="width: 100%;" id="id_unidad_medida_acc" class="form-control default-select2">
                                             <option value="">SELECCIONE</option>
                                             <?php foreach ($unid as $data): ?>
                                                 <option value="<?=$data['id_unidad_medida']?>"><?=$data['desc_unidad_medida']?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
+                                    <div class="form-group col-2">
+                                        <label>Cantidad a Distribuir <b style="color:red">*</b></label>
+                                        <input id="cant_a_distribuir_acc" name="cant_a_distribuir_acc" onblur="calcular_bienes();"  type="number" class="form-control">
+                                    </div>
                                     <div class="form-group col-1">
                                         <label>I<b style="color:red">*</b></label>
-                                        <input id="I_acc" name="I_acc" type="number"  value="0" class="form-control" style="width: 140%;">
+                                        <input id="I_acc" name="I_acc" type="number" onblur="calcular_bienes();"  value="0" class="form-control" style="width: 140%;">
                                     </div>
                                     <div class="form-group col-1">
                                         <label>II<b style="color:red">*</b></label>
-                                        <input id="II_acc" name="II_acc"  type="number" value="0" class="form-control" style="width: 140%;">
+                                        <input id="II_acc" name="II_acc"  type="number" onblur="calcular_bienes();" value="0" class="form-control" style="width: 140%;">
                                     </div>
                                     <div class="form-group col-1">
                                         <label>III<b style="color:red">*</b></label>
-                                        <input id="III_acc" name="III_acc"  type="number" value="0" class="form-control" style="width: 140%;">
+                                        <input id="III_acc" name="III_acc"  type="number" onblur="calcular_bienes();" value="0" class="form-control" style="width: 140%;">
                                     </div>
                                     <div class="form-group col-1">
                                         <label>IV<b style="color:red">*</b></label>
-                                        <input id="IV_acc" name="IV_acc"  type="number" value="0" class="form-control" style="width: 140%;">
+                                        <input id="IV_acc" name="IV_acc"  type="number" onblur="calcular_bienes();" value="0" class="form-control" style="width: 140%;">
                                     </div>
                                     <div class="form-group col-2">
                                         <label>Cantd. Total Distribuir <b style="color:red">*</b></label>
                                         <input id="cant_total_distribuir_acc" name="cant_total_distribuir_acc"  type="number" class="form-control" disabled>
                                     </div>
-
-                                    <div class="form-group col-3">
+                                    <div class="form-group col-4">
                                         <label>Costo Unitario <b style="color:red">*</b></label>
-                                        <input id="costo_unitario_acc" name="costo_unitario_acc"  type="number" class="form-control">
+                                        <input id="costo_unitario_acc" name="costo_unitario_acc" onblur="calcular_bienes();"  type="number" class="form-control">
                                     </div>
-
+                                    <div class="col-2"></div>
                                     <div class="form-group col-3">
-                                        <label>Precio Total <b style="color:red">*</b></label>
+                                        <label>Precio Total Estimado<b style="color:red">*</b></label>
                                         <input id="precio_total_acc" name="precio_total_acc" type="number" class="form-control" disabled>
                                     </div>
-                                    <div class="col-4"></div>
+
                                     <div class="form-group col-2">
                                         <label>Alícuota IVA Estimado<b style="color:red">*</b></label><br>
-                                        <select name="id_alicuota_iva_acc" id="id_alicuota_iva_acc" class="form-control default-select2">
+                                        <select style="width: 100%;" name="id_alicuota_iva_acc" id="id_alicuota_iva_acc" onchange="calcular_bienes();" class="form-control default-select2">
                                             <option value="">SELECCIONE</option>
                                             <?php foreach ($iva as $data): ?>
                                                 <option value="<?=$data['desc_alicuota_iva']?>/<?=$data['desc_porcentaj']?>"><?=$data['desc_porcentaj']?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
-                                    <div class="form-group col-3">
+                                    <div class="form-group col-2">
                                         <label>Monto IVA Estimado<b style="color:red">*</b></label>
                                         <input id="iva_estimado_acc" name="iva_estimado_acc" type="number" class="form-control" disabled>
                                     </div>
@@ -415,15 +418,7 @@
                                         <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                                     </div>
 
-                                    <div class="col-3 text-right">
-                                        <button type="button" onclick="calcular_bienes(this);" style="background-color:#4caa9d;color:white;" class="btn btn-circle waves-effect waves-circle waves-float">
-                                            Calcular
-                                        </button>
-                                    </div>
-                                    <div class="col-5 mt-3 text-center">
-                                        <h4><b><= </b>Debe primero <b>Calcular</b> y luego <b>Agregar =></b></h4>
-                                    </div>
-                                    <div class="col-3">
+                                    <div class="col-12 text-center">
                                         <button type="button" onclick="agregar_ccnu_acc(this);" style="background-color:#4caa9d;color:white;" class="btn btn-circle waves-effect btn-lg waves-circle waves-float">
                                             Agregar
                                         </button>

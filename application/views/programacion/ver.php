@@ -23,12 +23,13 @@
                                 <td><?=$lista['nombre_programacion']?> </td>
                                 <td><?=$lista['fecha']?> </td>
                                 <td class="center">
-                                    <a href="<?php echo base_url();?>index.php/cms/listar_datos_present_edit?id=<?php echo $lista['id_programacion'];?>"
-                                        class="button" id="editar" onclick="editar_presentacion">
+                                    <a href="<?php echo base_url();?>index.php/programacion/ver_programacion_proy?id=<?php echo $lista['id_programacion'];?>"
+                                        class="button">
                                         <i class="fas fa-lg fa-fw fa-eye" style="color: green;"></i>
                                     <a/>
                                     <a href="<?php echo base_url();?>index.php/cms/listar_datos_present_edit?id=<?php echo $lista['id_programacion'];?>"
                                         class="button" id="editar" onclick="editar_presentacion"><i class="fas fa-lg fa-fw  fa-edit"></i><a />
+
                                     <a href="<?php echo base_url();?>index.php/cms/eliminar_presentacion?id=<?php echo $lista['id_programacion'];?>"
                                         class="button"><i class="fas fa-lg fa-fw  fa-trash-alt" style="color:red"></i><a />
                                 </td>
@@ -37,14 +38,15 @@
                         </tbody>
                     </table>
                 </div>
-                <hr style="    border-top: 1px solid rgba(0, 0, 0, 0.17);">
-                <div class="col-12 mt-2">
+                <hr style=" border-top: 1px solid rgba(0, 0, 0, 0.17);">
+                <div class="col-12 mt-4">
                     <h3 class="text-center">Acción Centralizada Registradas</h3>
                     <table class="table table-hover">
                         <thead style="background:#4caa9d;">
                             <tr class="text-center">
                                 <th>Id Programacion</th>
                                 <th>Acción Centralizada</th>
+                                <th>Fecha</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -53,15 +55,14 @@
                             <tr class="odd gradeX" style="text-align:center">
                                 <td><?=$lista['id_programacion']?> </td>
                                 <td><?=$lista['desc_accion_centralizada']?> </td>
+                                <td><?=$lista['fecha']?> </td>
                                 <td class="center">
-                                    <a href="<?php echo base_url();?>index.php/cms/listar_datos_present_edit?id=<?php echo $lista['id_programacion'];?>"
+                                    <a href="<?php echo base_url();?>index.php/programacion/ver_programacion_acc?id=<?php echo $lista['id_programacion'];?>"
                                         class="button" id="editar" onclick="editar_presentacion">
                                         <i class="fas fa-lg fa-fw fa-eye" style="color: green;"></i>
                                     <a/>
-                                    <a href="<?php echo base_url();?>index.php/cms/listar_datos_present_edit?id=<?php echo $lista['id_programacion'];?>"
-                                        class="button" id="editar" onclick="editar_presentacion"><i class="fas fa-lg fa-fw  fa-edit"></i><a />
-                                    <a href="<?php echo base_url();?>index.php/cms/eliminar_presentacion?id=<?php echo $lista['id_programacion'];?>"
-                                        class="button"><i class="fas fa-lg fa-fw  fa-trash-alt" style="color:red"></i><a />
+                                    <a class="button"><i class="fas fa-lg fa-fw fa-edit" style="color:blue"></i><a />
+                                    <a class="button"><i class="fas fa-lg fa-fw fa-trash-alt" style="color:red"></i><a />
                                 </td>
                             </tr>
                             <?php endforeach;?>
