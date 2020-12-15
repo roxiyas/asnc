@@ -48,8 +48,8 @@
                                                 <?php endforeach; ?>
                                             </select>
                                     </div>
-                                    <hr style="    border-top: 1px solid rgba(0, 0, 0, 0.17);">
-                                    <div class="form-group col-3">
+                                    <hr style="border-top: 1px solid rgba(0, 0, 0, 0.17);">
+                                    <div class="form-group col-6">
                                         <label>Estado</label>
                                         <select id="id_estado" name="id_estado" class="default-select2 form-control" multiple="multiple" required>
                                             <option value="0">Seleccione</option>
