@@ -41,3 +41,17 @@
         $('#estimado_total_t_acc').val(total_est);
 
     }
+
+    function control(){
+        var acc_cargar_acc = $('#cambiar').val();
+
+        if (acc_cargar_acc === '1') {
+            console.log(1);
+            $("#acc_acc").hide();
+            $("#proyecto_acc").show();
+        }else if (acc_cargar_acc === '2') {
+            console.log(2);
+            $("#proyecto_acc").hide();
+            $("#acc_acc").show();
+        }
+    }

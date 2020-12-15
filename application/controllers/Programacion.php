@@ -50,8 +50,8 @@ class Programacion extends CI_Controller {
 
         $aData = array(
 			'nombre_programacion'    => $this->input->POST('nombre_proyecto'),
+            'id_accion_centralizada' => $this->input->POST('id_accion_centralizada'),
             'id_obj_comercial'       => $this->input->post('id_obj_comercial'),
-            'id_accion_centralizada' => 0,
             'unidad'   		         => $this->session->userdata('id_unidad'),
             'id_usuario' 		     => $this->session->userdata('id_user'),
             'estatus'                => 1
@@ -112,13 +112,14 @@ class Programacion extends CI_Controller {
         redirect('login');
 
         $aData = array(
-			'nombre_programacion'    => 'N/P',
-            'id_accion_centralizada' => $this->input->POST('id_accion_centralizada'),
-            'id_obj_comercial'    => $this->input->post('id_obj_comercial_cc'),
+			'nombre_programacion'    => $this->input->POST('nombre_proyecto_acc'),
+            'id_accion_centralizada' => $this->input->POST('id_accion_centralizada_acc'),
+            'id_obj_comercial'       => $this->input->post('id_obj_comercial_cc'),
             'unidad'   		         => $this->session->userdata('id_unidad'),
             'id_usuario' 		     => $this->session->userdata('id_user'),
             'estatus'                => 1
 	   );
+
 
         $proyecto = array(
             'id_par_presupuestaria'  => $this->input->post('par_presupuestaria_acc'),

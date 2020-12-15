@@ -10,14 +10,6 @@
         $('#cant_total_distribuir').val(can_x_distr);
 
         var cantidad_total = Number(i) + Number(ii) + Number(iii) + Number(iv)
-        if (cantidad_total > cantidad) {
-            alert('[ERROR] El campo debe tener un valor de...');
-            return false;
-        }else {
-            // var costo_unitario = $('#costo_unitario').val();
-            // var tota = cantidad2 * costo_unitario
-            // var total = parseFloat(tota);
-            // $('#precio_total').val(total);
 
             var precio_total = $('#precio_total').val();
              var total = parseFloat(precio_total);
@@ -50,9 +42,22 @@
 
             var total_est = primer+segun+terc+cuar
             $('#estimado_total_t').val(total_est);
-        }
 
 
 
 
     }
+
+    // function cambiar(){
+    //     var acc_cargar = $('#acc_cargar').val();
+    //
+    //     if (acc_cargar === '1') {
+    //         console.log(1);
+    //         $("#acc_s").hide();
+    //         $("#proyecto_s").show();
+    //     }else if (acc_cargar === '2') {
+    //         console.log(2);
+    //         $("#proyecto_s").hide();
+    //         $("#acc_s").show();
+    //     }
+    // }

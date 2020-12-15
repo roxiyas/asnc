@@ -8,16 +8,17 @@
                         <li class="nav-items">
                             <a href="#proyecto" data-toggle="tab" class="nav-link active">
                                 <span class="d-sm-none">Tab 1</span>
-                                <span class="d-sm-block d-none">Proyecto</span>
+                                <span class="d-sm-block d-none">Obras / Servicios</span>
                             </a>
                         </li>
                         <li class="nav-items">
                             <a href="#accion_centralizada" data-toggle="tab" class="nav-link">
                                 <span class="d-sm-none">Tab 2</span>
-                                <span class="d-sm-block d-none">Accion Centralizada</span>
+                                <span class="d-sm-block d-none">Bienes</span>
                             </a>
                         </li>
                     </ul>
+
                     <div class="tab-content">
                         <div class="tab-pane fade active show" id="proyecto">
                             <form action="<?=base_url()?>index.php/programacion/save_programacion" method="POST" class="form-horizontal">
@@ -25,11 +26,34 @@
                                     <div class="col-12">
                                         <h4> <b>Órgano / Ente: Cod: <?=$unidad?> - Nombre: <?=$des_unidad?></b> </h4>
                                     </div>
-                                    <div class="col-9 mt-2 form-group">
-                                        <label>Nombre del Proyecto <b style="color:red">*</b></label>
-                                        <input id="nombre_proyecto" name="nombre_proyecto" type="text" class="form-control" required>
+
+                                    <div class="col-9 mt-3" >
+                                        <label>Acción a Cargar</label>
+                                        <select id="acc_cargar" name="acc_cargar" class="select2 form-control">
+                                            <option value="0">Seleccione</option>
+                                            <option value="1">Proyecto</option>
+                                            <option value="2">Acción Centralizada</option>
+                                        </select>
                                     </div>
-                                    <div class="form-group col-3">
+                                    <div class="col-3"></div>
+
+                                    <div class="col-6 mt-3 form-group" id="acc_s" style="display:none;">
+                                        <label>Acción Centralizada<b style="color:red">*</b></label><br>
+                                        <select style="width: 100%;"  name="id_accion_centralizada" id="id_accion_centralizada" class="default-select2 form-control">
+                                            <option value="0">SELECCIONE</option>
+                                            <?php foreach ($acc_cent as $data): ?>
+                                            <option value="<?=$data['id_accion_centralizada']?>"><?=$data['desc_accion_centralizada']?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-6 mt-3 form-group" id="proyecto_s" style="display:none;">
+                                        <label>Nombre del Proyecto <b style="color:red">*</b></label>
+                                        <input id="nombre_proyecto" name="nombre_proyecto" value="Nombre" type="text" class="form-control" required>
+                                    </div>
+
+
+                                    <div class="form-group mt-3 col-3">
                                         <label>Objeto Comercial</label>
                                         <select id="id_obj_comercial" name="id_obj_comercial" class="default-select2 form-control">
                                             <option value="0">Seleccione</option>
@@ -240,16 +264,34 @@
                                     <div class="col-12 form-group">
                                         <h4> <b>Órgano / Ente: Cod: <?=$unidad?> - Nombre: <?=$des_unidad?></b> </h4>
                                     </div>
-                                    <div class="col-6 form-group">
-                                        <label>Acción Centralizada<b style="color:red">*</b></label><br>
-                                        <select style="width: 100%;"  name="id_accion_centralizada" id="id_accion_centralizada" class="default-select2 form-control">
+
+                                    <div class="col-9 mt-3" >
+                                        <label>Acción a Cargar</label>
+                                        <select style="width: 100%;" name="cambiar" id="cambiar" onchange="control();" class="form-control default-select2">
                                             <option value="">SELECCIONE</option>
+                                            <option value="1">Proyecto</option>
+                                            <option value="2">Acción</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-3"></div>
+
+                                    <div class="col-6 mt-3 form-group" id="acc_acc" style="display:none">
+                                        <label>Acción Centralizada<b style="color:red">*</b></label><br>
+                                        <select style="width: 100%;"  name="id_accion_centralizada_acc" id="id_accion_centralizada_acc" class="default-select2 form-control">
+                                            <option value="0">SELECCIONE</option>
                                             <?php foreach ($acc_cent as $data): ?>
                                             <option value="<?=$data['id_accion_centralizada']?>"><?=$data['desc_accion_centralizada']?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
-                                    <div class="form-group col-6">
+
+                                    <div class="col-6 mt-3 form-group" id="proyecto_acc" style="display:none;">
+                                        <label>Nombre del Proyecto <b style="color:red">*</b></label>
+                                        <input id="nombre_proyecto_acc" name="nombre_proyecto_acc" value="Nombre" type="text" class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group mt-3 col-6">
                                         <label>Objeto Comercial</label><br>
                                         <select style="width: 100%;" id="id_obj_comercial_cc" name="id_obj_comercial_cc" class="default-select2 form-control">
                                             <option value="0">Seleccione</option>
@@ -454,6 +496,7 @@
                                     <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" name="button">Guardar</button>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -465,7 +508,7 @@
     <div hidden id="sa-success2"> <?= $this->session->flashdata('sa-success2') ?> </div>
 <?php } ?>
 <script src="<?=base_url()?>/js/calculos.js"></script>
-
+<script src="<?=base_url()?>/js/calculos2.js"></script>
 <script src="<?=base_url()?>/js/calculos3.js"></script>
 <script src="<?=base_url()?>/js/dependientes.js"></script>
 <script src="<?=base_url()?>/js/agregar_proyecto.js"></script>
