@@ -127,38 +127,33 @@
                                     </div>
                                     <div class="form-group col-1">
                                         <label>I<b style="color:red">*</b></label>
-                                        <input id="I" name="I" type="number"  value="0" class="form-control" style="width: 140%;">
+                                        <input id="I" name="I" type="number" onblur="calculo();"  value="0" class="form-control" style="width: 140%;">
                                     </div>
                                     <div class="form-group col-1">
                                         <label>II<b style="color:red">*</b></label>
-                                        <input id="II" name="II"  type="number" value="0" class="form-control" style="width: 140%;">
+                                        <input id="II" name="II"  type="number" onblur="calculo();" value="0" class="form-control" style="width: 140%;">
                                     </div>
                                     <div class="form-group col-1">
                                         <label>III<b style="color:red">*</b></label>
-                                        <input id="III" name="III"  type="number" value="0" class="form-control" style="width: 140%;">
+                                        <input id="III" name="III"  type="number" onblur="calculo();" value="0" class="form-control" style="width: 140%;">
                                     </div>
                                     <div class="form-group col-1">
                                         <label>IV<b style="color:red">*</b></label>
-                                        <input id="IV" name="IV"  type="number" value="0" class="form-control" style="width: 140%;">
+                                        <input id="IV" name="IV"  type="number" onblur="calculo();" value="0" class="form-control" style="width: 140%;">
                                     </div>
                                     <div class="form-group col-2">
                                         <label>Cantd. Total Distribuir <b style="color:red">*</b></label>
-                                        <input id="cant_total_distribuir" name="cant_total_distribuir"  type="number" class="form-control" disabled>
-                                    </div>
-
-                                    <div class="form-group col-3">
-                                        <label>Costo Unitario <b style="color:red">*</b></label>
-                                        <input id="costo_unitario" name="costo_unitario"  type="number" class="form-control">
+                                        <input id="cant_total_distribuir" onblur="calculo();" value="100" name="cant_total_distribuir"  type="number" class="form-control" disabled>
                                     </div>
 
                                     <div class="form-group col-3">
                                         <label>Precio Total <b style="color:red">*</b></label>
-                                        <input id="precio_total" name="precio_total" type="number" class="form-control" disabled>
+                                        <input id="precio_total" name="precio_total" type="number" onblur="calculo();" class="form-control">
                                     </div>
                                     <div class="col-4"></div>
                                     <div class="form-group col-2">
                                         <label>Alícuota IVA Estimado<b style="color:red">*</b></label><br>
-                                        <select name="id_alicuota_iva" id="id_alicuota_iva" class="form-control default-select2">
+                                        <select name="id_alicuota_iva" id="id_alicuota_iva" onchange="calculo();" class="form-control default-select2">
                                             <option value="">SELECCIONE</option>
                                             <?php foreach ($iva as $data): ?>
                                                 <option value="<?=$data['desc_alicuota_iva']?>/<?=$data['desc_porcentaj']?>"><?=$data['desc_porcentaj']?></option>
@@ -171,7 +166,7 @@
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Monto total Estimado<b style="color:red">*</b></label>
-                                        <input id="monto_estimado" name="monto_estimado" type="number" class="form-control" disabled>
+                                        <input id="monto_estimado" name="monto_estimado"  type="number" class="form-control" disabled>
                                     </div>
                                     <div class="col-12">
                                         <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
@@ -199,16 +194,7 @@
                                     <div class="col-12">
                                         <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                                     </div>
-
-                                    <div class="col-3 text-right">
-                                        <button type="button" onclick="calcular_otros(this);" style="background-color:#3e941c;color:white;" class="btn btn-circle waves-effect btn-lg waves-circle waves-float">
-                                            Calcular
-                                        </button>
-                                    </div>
-                                    <div class="col-5 mt-3 text-center">
-                                        <h4><b><= </b>Debe primero <b>Calcular</b> y luego <b>Agregar =></b></h4>
-                                    </div>
-                                    <div class="col-3">
+                                    <div class="col-12 text-center">
                                         <button type="button" onclick="agregar_ccnu(this);" style="background-color:#4caa9d;color:white;" class="btn btn-circle waves-effect btn-lg waves-circle waves-float">
                                             Agregar
                                         </button>
