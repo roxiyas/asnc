@@ -7,9 +7,14 @@ class Programacion extends CI_Controller {
         if(!$this->session->userdata('session'))
 		redirect('login');
 
+        $data['unidad'] = $this->session->userdata('id_unidad');
+        $data['des_unidad'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+        $data['codigo_onapre'] = $this->session->userdata('codigo_onapre');
         $unidad = $this->session->userdata('id_unidad');
 
         $data['ver_proyectos'] = $this->Programacion_model->consultar_proyectos($unidad);
+        $data['fecha'] = date('yy');
 
         $data['ver_acc_centralizada'] = $this->Programacion_model->consultar_acc_centralizada($unidad);
         $this->load->view('templates/header.php');

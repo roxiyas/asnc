@@ -74,7 +74,7 @@
                             <label>Dirección Fiscal</label>
                             <input type="text" class="form-control" name="direccion_fiscal" disabled />
                         </div>
-                        <div class="col-4 form-group">
+                        <div class="col-5 form-group">
                             <label style="margin-bottom: -1;">Nombre y Apellido de Funcionario Representante ante el SNC</label>
                             <label>(CUENTADANTE):</label>
                             <input type="text" class="form-control" name="nom_ape_cd" />
@@ -84,22 +84,22 @@
                             <label>(CUENTADANTE):</label>
                             <input type="text" class="form-control" name="tel_cd" />
                         </div>
-                        <div class="col-3 form-group">
+                        <div class="col-4 form-group">
                             <label style="margin-bottom: -1;">Correo Institucional</label><br>
                             <label>(CUENTADANTE):</label>
                             <input type="text" class="form-control" name="correo" />
                         </div>
-                        <div class="col-2 form-group">
+                        <div class="col-4 form-group">
                             <label style="margin-bottom: -1;">Fecha</label><br>
-                            <label>x</label>
+                            <label> de la Gaceta o Resolución</label>
                             <input type="date" class="form-control" name="fecha" />
                         </div>
                         <div class="col-4 form-group">
-                            <label>Nº de la Gaceta o Resolución</label><br>
-                            <input type="date" class="form-control" name="n_gaceta" />
+                            <label class="mt-3">Nº de la Gaceta o Resolución</label><br>
+                            <input type="text" class="form-control" name="n_gaceta" />
                         </div>
-                        <div class="col-8 form-group">
-                            <label>Observación</label><br>
+                        <div class="col-4 form-group">
+                            <label class="mt-3">Observación</label><br>
                             <input type="text" class="form-control" name="observacion" />
                         </div>
                         <div class="col-4 form-group">

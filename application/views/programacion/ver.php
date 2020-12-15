@@ -6,6 +6,12 @@
             <div  class="panel panel-inverse" >
                 <button onclick="location.href='<?php echo base_url()?>index.php/Programacion/add'" type="button" class="btn btn-lg btn-primary mt-2 mb-2" name="button">Agregar Programación</button>
                 <div class="col-12">
+                    <h4> <b>Nombre Órgano / Ente: <?=$des_unidad?></b></h4>
+                    <h4><b>RIF.: <?=$rif?> <br> Código ONAPRE: <?=$codigo_onapre?></b></h4>
+                    <h4> <b>Progamación del año: <?=$fecha?></b></h4>
+                </div>
+
+                <div class="col-12">
                     <h3 class="text-center">Proyectos Registrado</h3>
                     <table class="table table-hover">
                         <thead style="background:#4caa9d;">
