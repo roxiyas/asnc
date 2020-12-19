@@ -3,20 +3,23 @@ function agregar_ff(button) {
 	var row = button.parentNode.parentNode;
   	var cells = row.querySelectorAll('td:not(:last-of-type)');
   	agregar_ffToCartTable(cells);
+
+	var par = $("#porcentaje").val('0');
+	$("#fuente_financiamiento").val($("#fuente_financiamiento").data("default-value"));
 }
 
 function remove_ff() {
 	var row = this.parentNode.parentNode;
     document.querySelector('#target_ff tbody').removeChild(row);
-	// var fd = $("#fecha_desde").val('0');
-	// var fh = $("#fecha_hasta").val('0');
-	// var par = $("#par_presupuestaria").val('0');
+	$('#fuente_financiamiento').prop('selectedIndex',0);
+	var par = $("#porcentaje").val('0');
 }
 
 function agregar_ffToCartTable(cells){
 	var pp = $("#par_presupuestaria").val();
 	var pp1 = pp.split("/")[0];
    	var pp2 = pp.split("/")[1];
+	var pp3 = pp.split("/")[2];
 
 	var estad = $("#id_estado").val();
 
@@ -33,11 +36,12 @@ function agregar_ffToCartTable(cells){
 		var increment = increment +1;
 		newRow.className='myTr';
 		newRow.innerHTML = `
-		<td>${pp2}<input type="text" name="par_presupuestaria_ff[]" id="ins-type-${increment}" hidden value="${pp1}"></td>
+		<td>${pp3}<input type="text" name="par_presupuestaria_ff[]" id="ins-type-${increment}" hidden value="${pp1}"></td>
+		<td>${pp2}<input type="text" name="des_par_presupuestaria_ff[]" id="ins-type-${increment}" hidden value="${pp1}"></td>
 		<td>${estad}<input type="text" name="id_estado[]" id="ins-type-${increment}" hidden value="${estad}"></td>
 
 		<td>${ff2}<input type="text" name="fuente_financiamiento[]" id="ins-type-${increment}" hidden value="${ff1}"></td>
-		<td>${pc}<input type="text" name="porcentaje[]" id="ins-type-${increment}" hidden value="${pc}"></td>
+		<td >${pc}<input type="text" name="porcentaje[]" id="ins-type-${increment}" hidden value="${pc}"></td>
 
 		`;
 

@@ -12,38 +12,41 @@
                          <?php foreach($inf_1 as $inf_1):?><?php endforeach;?>
                         <div class="col-9 mt-2 form-group">
                             <label>Nombre del Proyecto <b style="color:red">*</b></label>
-                            <input value="<?=$inf_1['nombre_programacion']?>" type="text" class="form-control" disabled>
+                            <input value="<?=$inf_1['nombre_proyecto']?>" type="text" class="form-control" disabled>
                         </div>
                         <div class="form-group mt-2  col-3">
                             <label>Objeto Comercial</label>
                             <input value="<?=$inf_1['desc_objeto_contrata']?>" type="text" class="form-control" disabled>
                         </div>
                         <hr style="border-top: 1px solid rgba(0, 0, 0, 0.17);">
-                        <div class="table-responsive mt-3">
-                            <h5 class="text-center">Programación Anual.</h5>
-                            <table id="target_ff" class="table table-bordered table-hover">
-                                <thead style="background:#4caa9d;">
-                                    <tr class="text-center">
-                                        <th>Código Part. Presupuestaria</th>
-                                        <th>Partida Presupuestaria</th>
-                                        <th>Estado</th>
-                                        <th>Fuente de Financiamiento</th>
-                                        <th>%</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach($inf_2 as $inf_2):?>
-                                        <tr class="odd gradeX" style="text-align:center">
-                                            <td ><?=$inf_2['codigopartida_presupuestaria']?></td>
-                                            <td><?=$inf_2['desc_partida_presupuestaria']?></td>
-                                            <td><?=$inf_2['id_estado']?></td>
-                                            <td><?=$inf_2['desc_fuente_financiamiento']?></td>
-                                            <td><?=$inf_2['porcentaje']?></td>
+                        <div class="col-11" style="margin-left: 40px;">
+                            <div class="table-responsive mt-3">
+                                <h5 class="text-center">Programación Anual.</h5>
+                                <table id="target_ff" class="table table-bordered table-hover">
+                                    <thead style="background:#4caa9d;">
+                                        <tr class="text-center">
+                                            <th>Código Part. Presupuestaria</th>
+                                            <th>Partida Presupuestaria</th>
+                                            <th>Estado</th>
+                                            <th>Fuente de Financiamiento</th>
+                                            <th>%</th>
                                         </tr>
-                                    <?php endforeach;?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach($inf_2 as $inf_2):?>
+                                            <tr class="odd gradeX" style="text-align:center">
+                                                <td ><?=$inf_2['codigopartida_presupuestaria']?></td>
+                                                <td><?=$inf_2['desc_partida_presupuestaria']?></td>
+                                                <td><?=$inf_2['id_estado']?></td>
+                                                <td><?=$inf_2['desc_fuente_financiamiento']?></td>
+                                                <td><?=$inf_2['porcentaje']?></td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+
 
                         <hr style="border-top: 1px solid rgba(0, 0, 0, 0.17);">
                         <div class="table-responsive mt-4">
@@ -92,7 +95,7 @@
                     </div>
                     <!--////////////////////////////SEGUNDA PARTE DE LA CARGA -->
                     <div class="col-12 text-center mt-3">
-                        <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" onclick="location.href='<?=base_url()?>index.php/Programacion'" name="button">Volver</button>
+                        <a class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" href="javascript:history.back()"> Volver</a>
                     </div>
                 </div>
             </div>

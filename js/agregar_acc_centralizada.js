@@ -3,14 +3,50 @@ function agregar_ccnu_acc(button) {
 	var row = button.parentNode.parentNode;
   	var cells = row.querySelectorAll('td:not(:last-of-type)');
   	agregar_ccnu_accToCartTable(cells);
+
+	$("#id_unidad_medida_acc").val($("#id_unidad_medida_acc").data("default-value"));
+	$("#id_alicuota_iva_acc").val($("#id_alicuota_iva_acc").data("default-value"));
+
+	$("#especificacion_acc").val('');
+	$("#cantidad_acc").val('0');
+	$("#precio_total_acc").val('0');
+	$("#costo_unitario_acc").val('0');
+	$('#I_acc').val('0');
+	$('#II_acc').val('0');
+	$('#III_acc').val('0');
+	$('#IV_acc').val('0');
+	$("#cant_total_distribuir_acc").val('0');
+	$("#iva_estimado_acc").val('0');
+	$("#monto_estimado_acc").val('0');
+	$("#estimado_i_acc").val('0');
+	$("#estimado_ii_acc").val('0');
+	$("#estimado_iii_acc").val('0');
+	$("#estimado_iV_acc").val('0');
+	$("#estimado_total_t_acc").val('0');
 }
 
 function remove_proy_acc() {
 	var row = this.parentNode.parentNode;
     document.querySelector('#target_req_acc tbody').removeChild(row);
-	// var fd = $("#fecha_desde").val('0');
-	// var fh = $("#fecha_hasta").val('0');
-	// var par = $("#par_presupuestaria").val('0');
+	$("#id_unidad_medida_acc").val($("#id_unidad_medida_acc").data("default-value"));
+	$("#id_alicuota_iva_acc").val($("#id_alicuota_iva_acc").data("default-value"));
+
+	$("#especificacion_acc").val('');
+	$("#cantidad_acc").val('0');
+	$("#precio_total_acc").val('0');
+	$("#costo_unitario_acc").val('0');
+	$('#I_acc').val('0');
+	$('#II_acc').val('0');
+	$('#III_acc').val('0');
+	$('#IV_acc').val('0');
+	$("#cant_total_distribuir_acc").val('0');
+	$("#iva_estimado_acc").val('0');
+	$("#monto_estimado_acc").val('0');
+	$("#estimado_i_acc").val('0');
+	$("#estimado_ii_acc").val('0');
+	$("#estimado_iii_acc").val('0');
+	$("#estimado_iV_acc").val('0');
+	$("#estimado_total_t_acc").val('0');
 }
 
 function agregar_ccnu_accToCartTable(cells){
@@ -25,9 +61,15 @@ function agregar_ccnu_accToCartTable(cells){
 
    	var esp = $("#especificacion_acc").val();
 	var id_unid = $("#id_unidad_medida_acc").val();
+	var id_unid1 = id_unid.split("/")[0];
+	var id_unid2 = id_unid.split("/")[1];
+
  	var can  = $("#cantidad_acc").val();
    	var cos  = $("#costo_unitario_acc").val();
    	var pret  = $("#precio_total_acc").val();
+
+	var cantidad = $("#cantidad_acc").val();
+	var total_distribuir = $("#cant_total_distribuir_acc").val();
 
 	var i = $('#I_acc').val();
 	var ii = $('#II_acc').val();
@@ -51,16 +93,20 @@ function agregar_ccnu_accToCartTable(cells){
 		<td>${ccnu2}<input type="text" name="id_ccnu_acc[]" id="ins-type-${increment}" hidden value="${ccnu1}"></td>
 
 		<td>${esp}<input type="text" name="especificacion_acc[]" id="ins-subtype-${increment}" hidden value="${esp}"></td>
-		<td>${id_unid}<input type="text" name="id_unidad_medida_acc[]" id="ins-subtype-${increment}" hidden value="${id_unid}"></td>
+		<td>${id_unid2}<input type="text" name="id_unidad_medida_acc[]" id="ins-subtype-${increment}" hidden value="${id_unid1}"></td>
 
-		<td>${i}<input type="text" hidden name="i_acc[]" id="ins-pres-${increment}" value="${i}"></td>
-		<td>${ii}<input type="text" hidden name="ii_acc[]" id="ins-pres-${increment}" value="${ii}"></td>
-		<td>${iii}<input type="text" hidden name="iii_acc[]" id="ins-pres-${increment}" value="${iii}"></td>
-		<td>${iv}<input type="text" hidden name="iv_acc[]" id="ins-pres-${increment}" value="${iv}"></td>
+		<td>${cantidad}<input type="text" hidden name="cantidad_acc[]" id="ins-pres-${increment}" value="${cantidad}"></td>
+
+		<td>${i}<input type="text" hidden name="I_acc[]" id="ins-pres-${increment}" value="${i}"></td>
+		<td>${ii}<input type="text" hidden name="II_acc[]" id="ins-pres-${increment}" value="${ii}"></td>
+		<td>${iii}<input type="text" hidden name="III_acc[]" id="ins-pres-${increment}" value="${iii}"></td>
+		<td>${iv}<input type="text" hidden name="IV_acc[]" id="ins-pres-${increment}" value="${iv}"></td>
+
+		<td>${total_distribuir}<input type="text" hidden name="cant_total_distribuir_acc[]" id="ins-pres-${increment}" value="${total_distribuir}"></td>
 
 		<td>${cos}<input type="text" hidden name="costo_unitario_acc[]" id="ins-pres-${increment}" value="${cos}"></td>
 		<td>${pret}<input type="text" hidden name="precio_total_acc[]" id="ins-pres-${increment}" value="${pret}"></td>
-		<td>${al_iva2}<input type="text" hidden name="id_alicuota_iva_acc[]" id="ins-pres-${increment}" value="${al_iva1}"></td>
+		<td>${al_iva1}<input type="text" hidden name="id_alicuota_iva_acc[]" id="ins-pres-${increment}" value="${al_iva1}"></td>
 		<td>${ica_est}<input type="text" hidden name="iva_estimado_acc[]" id="ins-pres-${increment}" value="${ica_est}"></td>
 		<td>${mo_est}<input type="text" hidden name="monto_estimado_acc[]" id="ins-pres-${increment}" value="${mo_est}"></td>
 		`;

@@ -29,6 +29,14 @@
 	<!-- ================== END BASE CSS STYLE ================== -->
  	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
 	<!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+
+	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+
+	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/DataTables/extensions/AutoFill/css/autoFill.bootstrap.min.css" rel="stylesheet" />
+	
+	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+
 	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
 	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" />
 	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/ionRangeSlider/css/ion.rangeSlider.css" rel="stylesheet" />
@@ -49,13 +57,14 @@
 	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-glyphicons.css" rel="stylesheet" />
 	<!-- ================== END PAGE LEVEL STYLE ================== -->
 
+	<!-- <link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" rel="stylesheet"/> -->
+
 	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/parsley/src/parsley.css" rel="stylesheet" />
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="<?=base_url()?>Plantilla/admin/assets/plugins/pace/pace.min.js"></script>
 	<!-- ================== END BASE JS ================== -->
 
 	<script src="<?=base_url()?>Plantilla/admin/assets/plugins/jquery/jquery-3.3.1.min.js"></script>
-	<script src="<?=base_url()?>application/views/templates/js/jquery.mask.js"></script>
 
 </head>
 <body>

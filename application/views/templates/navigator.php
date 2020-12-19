@@ -13,9 +13,9 @@
 		<ul class="navbar-nav navbar-right">
 			<li class="dropdown navbar-user">
 				<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-					<img src="<?=base_url()?>Plantilla/color-admin-v4.2/admin/assets/img/user/user-13.jpg" alt="" />
-					<span class="d-none d-md-inline"><?=$this->session->userdata('nombre')?></span> <b
-						class="caret"></b>
+					<img src="<?=base_url()?>Plantilla/admin/assets/img/user/user-13.jpg" alt="" />
+					<span class="d-none d-md-inline"><?=$this->session->userdata('nombre')?></span>
+					<b class="caret"></b>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right">
 					<a href="<?=base_url()?>index.php/login/logout" class="dropdown-item">Cerrar Sesión</a>
@@ -38,16 +38,12 @@
 						</div>
 					</a>
 				</li>
-			</ul>
-			<ul class="nav">
 				<li>
 					<a href="<?=base_url()?>index.php/programacion">
 						<i class="fas fa-calendar" style="background:darkred;"></i>
 						Programación Anual
 					</a>
-				</li>
-			</ul>
-			<ul class="nav">
+				</li
 				<li class="nav-header"></li>
 					<li class="has-sub">
 						<a href="javascript:;">
@@ -73,8 +69,6 @@
 						</ul>
 					</li>
 				</li>
-			</ul>
-			<ul class="nav">
 				<li class="nav-header"></li>
 					<li class="has-sub">
 						<a href="javascript:;">
@@ -90,8 +84,6 @@
 						</ul>
 					</li>
 				</li>
-			</ul>
-			<ul class="nav">
 				<li class="nav-header"></li>
 					<li class="has-sub">
 						<a href="javascript:;">
@@ -108,6 +100,7 @@
 					</li>
 				</li>
 			</ul>
+
 		</div>
 	</div>
 	<div class="sidebar-bg"></div>

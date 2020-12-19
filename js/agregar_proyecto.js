@@ -3,14 +3,51 @@ function agregar_ccnu(button) {
 	var row = button.parentNode.parentNode;
   	var cells = row.querySelectorAll('td:not(:last-of-type)');
   	agregar_ccnuToCartTable(cells);
+
+	$("#id_unidad_medida").val($("#id_unidad_medida").data("default-value"));
+	$("#id_alicuota_iva").val($("#id_alicuota_iva").data("default-value"));
+ 	$("#especificacion").val('');
+	$("#fecha_desde").val('');
+	$("#fecha_hasta").val('');
+	$("#cantidad").val('0');
+	$("#precio_total").val('0');
+	$('#I').val('0');
+	$('#II').val('0');
+	$('#III').val('0');
+	$('#IV').val('0');
+	$("#cant_total_distribuir").val('0');
+	$("#iva_estimado").val('0');
+	$("#monto_estimado").val('0');
+	$("#estimado_i").val('0');
+	$("#estimado_ii").val('0');
+	$("#estimado_iii").val('0');
+	$("#estimado_iV").val('0');
+	$("#estimado_total_t").val('0');
 }
 
 function remove_proy() {
 	var row = this.parentNode.parentNode;
     document.querySelector('#target_req tbody').removeChild(row);
-	// var fd = $("#fecha_desde").val('0');
-	// var fh = $("#fecha_hasta").val('0');
-	// var par = $("#par_presupuestaria").val('0');
+
+	$("#id_unidad_medida").val($("#id_unidad_medida").data("default-value"));
+	$("#id_alicuota_iva").val($("#id_alicuota_iva").data("default-value"));
+ 	$("#especificacion").val('');
+	$("#fecha_desde").val('');
+	$("#fecha_hasta").val('');
+	$("#cantidad").val('0');
+	$("#precio_total").val('0');
+	$('#I').val('0');
+	$('#II').val('0');
+	$('#III').val('0');
+	$('#IV').val('0');
+	$("#cant_total_distribuir").val('0');
+	$("#iva_estimado").val('0');
+	$("#monto_estimado").val('0');
+	$("#estimado_i").val('0');
+	$("#estimado_ii").val('0');
+	$("#estimado_iii").val('0');
+	$("#estimado_iV").val('0');
+	$("#estimado_total_t").val('0');
 }
 
 function agregar_ccnuToCartTable(cells){
@@ -28,6 +65,9 @@ function agregar_ccnuToCartTable(cells){
 
    	var esp = $("#especificacion").val();
 	var id_unid = $("#id_unidad_medida").val();
+	var id_unid1 = id_unid.split("/")[0];
+	var id_unid2 = id_unid.split("/")[1];
+
  	var can  = $("#cantidad").val();
    	var pret  = $("#precio_total").val();
 
@@ -55,7 +95,7 @@ function agregar_ccnuToCartTable(cells){
 		<td>${fecha_hasta}<input type="text" name="fecha_hasta[]" id="ins-type-${increment}" hidden value="${fecha_hasta}"></td>
 
 		<td>${esp}<input type="text" name="especificacion[]" id="ins-subtype-${increment}" hidden value="${esp}"></td>
-		<td>${id_unid}<input type="text" name="id_unidad_medida[]" id="ins-subtype-${increment}" hidden value="${id_unid}"></td>
+		<td>${id_unid2}<input type="text" name="id_unidad_medida[]" id="ins-subtype-${increment}" hidden value="${id_unid1}"></td>
 
 		<td>${i}<input type="text" hidden name="i[]" id="ins-pres-${increment}" value="${i}"></td>
 		<td>${ii}<input type="text" hidden name="ii[]" id="ins-pres-${increment}" value="${ii}"></td>
@@ -63,7 +103,7 @@ function agregar_ccnuToCartTable(cells){
 		<td>${iv}<input type="text" hidden name="iv[]" id="ins-pres-${increment}" value="${iv}"></td>
 
 		<td>${pret}<input type="text" hidden name="precio_total[]" id="ins-pres-${increment}" value="${pret}"></td>
-		<td>${al_iva2}<input type="text" hidden name="id_alicuota_iva[]" id="ins-pres-${increment}" value="${al_iva1}"></td>
+		<td>${al_iva1}<input type="text" hidden name="id_alicuota_iva[]" id="ins-pres-${increment}" value="${al_iva1}"></td>
 		<td>${ica_est}<input type="text" hidden name="iva_estimado[]" id="ins-pres-${increment}" value="${ica_est}"></td>
 		<td>${mo_est}<input type="text" hidden name="monto_estimado[]" id="ins-pres-${increment}" value="${mo_est}"></td>
 		`;

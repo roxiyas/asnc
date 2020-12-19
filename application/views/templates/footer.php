@@ -14,7 +14,7 @@
 <script src="<?=base_url()?>Plantilla/admin/assets/js/theme/material.min.js"></script>
 <script src="<?=base_url()?>Plantilla/admin/assets/js/apps.min.js"></script>
 <!-- ================== END BASE JS ================== -->
-
+<!-- <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script> -->
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 <script src="<?=base_url()?>Plantilla/admin/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 <script src="<?=base_url()?>Plantilla/admin/assets/plugins/ionRangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
@@ -36,6 +36,18 @@
 <script src="<?=base_url()?>Plantilla/admin/assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.js"></script>
 <script src="<?=base_url()?>Plantilla/admin/assets/plugins/clipboard/clipboard.min.js"></script>
 <script src="<?=base_url()?>Plantilla/admin/assets/js/demo/form-plugins.demo.min.js"></script>
+
+<script src="<?=base_url()?>Plantilla/admin/assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+<script src="<?=base_url()?>Plantilla/admin/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+<script src="<?=base_url()?>Plantilla/admin/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?=base_url()?>Plantilla/admin/assets/js/demo/table-manage-default.demo.min.js"></script>
+
+<script src="<?=base_url()?>Plantilla/admin/assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+<script src="<?=base_url()?>Plantilla/admin/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+<script src="<?=base_url()?>Plantilla/admin/assets/plugins/DataTables/extensions/AutoFill/js/dataTables.autoFill.min.js"></script>
+<script src="<?=base_url()?>Plantilla/admin/assets/plugins/DataTables/extensions/AutoFill/js/autoFill.bootstrap.min.js"></script>
+<script src="<?=base_url()?>Plantilla/admin/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?=base_url()?>Plantilla/admin/assets/js/demo/table-manage-autofill.demo.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <script src="<?=base_url()?>Plantilla/admin/assets/plugins/parsley/dist/parsley.js"></script>
@@ -48,7 +60,8 @@
 <script>
 	$(document).ready(function() {
 		App.init();
-		//Highlight.init();
+		TableManageDefault.init();
+		TableManageAutofill.init();
 		FormPlugins.init();
 	});
 </script>

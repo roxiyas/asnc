@@ -32,7 +32,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($inf_2 as $inf_2):?>
+                                    <?php foreach($inf_2_acc as $inf_2):?>
                                         <tr class="odd gradeX" style="text-align:center">
                                             <td ><?=$inf_2['codigopartida_presupuestaria']?></td>
                                             <td><?=$inf_2['desc_partida_presupuestaria']?></td>
@@ -79,8 +79,8 @@
                                             <td><?=$inf_3['costo_unitario']?></td>
                                             <td><?=$inf_3['precio_total']?></td>
                                             <td><?=$inf_3['alicuota_iva']?></td>
-                                            <td><?=$inf_3['monto_iva_estimado']?></td>
-                                            <td><?=$inf_3['monto_total_estimado']?></td>
+                                            <td><?=$inf_3['iva_estimado']?></td>
+                                            <td><?=$inf_3['monto_estimado']?></td>
                                         </tr>
                                     <?php endforeach;?>
                                 </tbody>
