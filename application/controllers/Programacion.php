@@ -158,21 +158,27 @@ class Programacion extends CI_Controller {
         if(!$this->session->userdata('session'))
         redirect('login');
 
-        $id_p_proyecto = $this->input->get('id');
+        $parametros = $this->input->get('id');
+        $separar        = explode("/", $parametros);
+        $data['id_p_proyecto']  = $separar['0'];
+        $data['id_programacion'] = $separar['1'];
+
         $data['unidad'] = $this->session->userdata('id_unidad');
         $data['des_unidad'] = $this->session->userdata('unidad');
         $data['rif'] = $this->session->userdata('rif');
         $data['codigo_onapre'] = $this->session->userdata('codigo_onapre');
 
-        $data['inf_1'] = $this->Programacion_model->inf_1($id_p_proyecto);
-        $data['inf_2'] = $this->Programacion_model->inf_2($id_p_proyecto);
-        $data['inf_3'] = $this->Programacion_model->inf_3($id_p_proyecto);
+        $data['programacion_anio'] = $this->Programacion_model->consultar_prog_anio($data['id_programacion'], $data['unidad']);
+        $data['anio'] = $data['programacion_anio']['anio'];
+
+        $data['inf_1'] = $this->Programacion_model->inf_1($data['id_p_proyecto']);
+        $data['inf_2'] = $this->Programacion_model->inf_2($data['id_p_proyecto']);
+        $data['inf_3'] = $this->Programacion_model->inf_3($data['id_p_proyecto']);
 
         $this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
         $this->load->view('programacion/pdf_proyecto.php', $data);
         $this->load->view('templates/footer.php');
-
     }
 
     public function editar_proy(){
@@ -427,15 +433,22 @@ class Programacion extends CI_Controller {
         if(!$this->session->userdata('session'))
         redirect('login');
 
-        $id_p_acc_centralizada = $this->input->get('id');
+        $parametros = $this->input->get('id');
+        $separar        = explode("/", $parametros);
+        $data['id_p_acc_centralizada']  = $separar['0'];
+        $data['id_programacion'] = $separar['1'];
+
         $data['unidad'] = $this->session->userdata('id_unidad');
         $data['des_unidad'] = $this->session->userdata('unidad');
         $data['rif'] = $this->session->userdata('rif');
         $data['codigo_onapre'] = $this->session->userdata('codigo_onapre');
 
-        $data['inf_1_acc'] = $this->Programacion_model->inf_1_acc($id_p_acc_centralizada);
-        $data['inf_2_acc'] = $this->Programacion_model->inf_2_acc_pdf($id_p_acc_centralizada);
-        $data['inf_3_acc'] = $this->Programacion_model->inf_3_acc_pdf($id_p_acc_centralizada);
+        $data['programacion_anio'] = $this->Programacion_model->consultar_prog_anio($data['id_programacion'], $data['unidad']);
+        $data['anio'] = $data['programacion_anio']['anio'];
+
+        $data['inf_1_acc'] = $this->Programacion_model->inf_1_acc($data['id_p_acc_centralizada']);
+        $data['inf_2_acc'] = $this->Programacion_model->inf_2_acc_pdf($data['id_p_acc_centralizada']);
+        $data['inf_3_acc'] = $this->Programacion_model->inf_3_acc_pdf($data['id_p_acc_centralizada']);
 
         $this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');

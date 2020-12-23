@@ -20,20 +20,20 @@
                         </div>
                     </div>
                     <div class="col-12 text-center">
-                        <button onclick="location.href='<?php echo base_url()?>index.php/Programacion/add?id=<?php echo $id_programacion;?>'" type="button" class="btn btn-lg mt-2 mb-2" style="background: #8b0000d9; color: white;" name="button">
-                            Agregar Información
+                        <button onclick="location.href='<?php echo base_url()?>index.php/Programacion/add?id=<?php echo $id_programacion;?>'" type="button" class="btn btn-lg mt-2 mb-2 btn-default"  name="button">
+                            Agregar Información de Obra / Servicio / Bien
                         </button>
                     </div>
 
                     <div class="col-1"></div>
                     <div class="col-10 mt-3">
-                        <h3 class="text-center">Proyectos Registrado</h3>
-                        <table id="data-table-default" class="table table-hover">
-                            <thead style="background:#222222">
+                        <h3 class="text-center">Tabla Refrente a Proyectos Registrados</h3>
+                        <table id="data-table-default" class="table table-bordered table-hover">
+                            <thead style="background:#e4e7e8">
                                 <tr class="text-center">
-                                    <th style=" color: #fff;">Nombre Programación</th>
-                                    <th style=" color: #fff;">Objeto Comercial</th>
-                                    <th style=" color: #fff;">Acciones</th>
+                                    <th>Nombre Programación</th>
+                                    <th>Objeto Comercial</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,7 +42,7 @@
                                     <td><?=$ver_proyecto['nombre_proyecto']?> </td>
                                     <td><?=$ver_proyecto['desc_objeto_contrata']?> </td>
                                     <td class="center">
-                                        <a href="<?php echo base_url();?>index.php/programacion/ver_programacion_proy?id=<?php echo $ver_proyecto['id_p_proyecto'];?>"
+                                        <a href="<?php echo base_url();?>index.php/programacion/ver_programacion_proy?id=<?php echo $ver_proyecto['id_p_proyecto'];?>/<?php echo $ver_proyecto['id_programacion'];?>"
                                             class="button">
                                             <i class="fas fa-lg fa-fw fa-eye" style="color: green;"></i>
                                         <a/>
@@ -63,13 +63,13 @@
                     <div class="col-1"></div>
                     <div class="col-1"></div>
                     <div class="col-10 mt-4">
-                        <h3 class="text-center">Acción Centralizada Registradas</h3>
+                        <h3 class="text-center">Tabla Refrente a Acción Centralizada Registradas</h3>
                         <table id="data-table-autofill" class="table table-hover">
-                            <thead style="background:#222222;">
+                            <thead style="background:#e4e7e8">
                                 <tr class="text-center">
-                                    <th style=" color: #fff;">Acción Centralizada</th>
-                                    <th style=" color: #fff;">Objeto Comercial</th>
-                                    <th style=" color: #fff;">Acciones</th>
+                                    <th>Acción Centralizada</th>
+                                    <th>Objeto Comercial</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -78,7 +78,7 @@
                                     <td><?=$ver_acc_centralizad['desc_accion_centralizada']?> </td>
                                     <td><?=$ver_acc_centralizad['desc_objeto_contrata']?> </td>
                                     <td class="center">
-                                        <a href="<?php echo base_url();?>index.php/programacion/ver_programacion_acc?id=<?php echo $ver_acc_centralizad['id_p_acc_centralizada'];?>"
+                                        <a href="<?php echo base_url();?>index.php/programacion/ver_programacion_acc?id=<?php echo $ver_acc_centralizad['id_p_acc_centralizada'];?>/<?php echo $ver_proyecto['id_programacion'];?>"
                                             class="button">
                                             <i class="fas fa-lg fa-fw fa-eye" style="color: green;"></i>
                                         <a/>

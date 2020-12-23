@@ -16,6 +16,7 @@
         }
 
         public function consultar_prog_anio($id_programacion, $unidad){
+
             $this->db->select('*');
             $this->db->where('unidad', $unidad);
             $this->db->where('id_programacion', $id_programacion);
@@ -193,7 +194,7 @@
             return $query->result_array();
         }
 
-        public function inf_2($data){
+        public function inf_2($id_p_proyecto){
             $this->db->select('pf.id_enlace,
                         	   pf.id_partidad_presupuestaria,
                         	   pp.desc_partida_presupuestaria,
@@ -204,13 +205,13 @@
                         	   pf.porcentaje ');
             $this->db->join('partida_presupuestaria pp','pp.id_partida_presupuestaria = pf.id_partidad_presupuestaria');
             $this->db->join('fuente_financiamiento ff','ff.id_fuente_financiamiento = pf.id_fuente_financiamiento');
-            $this->db->where('pf.id_enlace', $data['id_p_proyecto']);
+            $this->db->where('pf.id_enlace', $id_p_proyecto);
             $this->db->where('pf.id_p_acc', 0);
             $query = $this->db->get('p_ffinanciamiento pf');
             return $query->result_array();
         }
 
-        public function inf_3($data){
+        public function inf_3($id_p_proyecto){
             $this->db->select('pi2.id_p_items,
                         	   pi2.id_enlace,
                                pi2.id_partidad_presupuestaria,
@@ -234,7 +235,7 @@
             $this->db->join('ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
             $this->db->join('partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
             $this->db->join('unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
-            $this->db->where('pi2.id_enlace', $data['id_p_proyecto']);
+            $this->db->where('pi2.id_enlace', $id_p_proyecto);
             $this->db->where('pi2.id_p_acc', 0);
             $query = $this->db->get('p_items pi2');
             return $query->result_array();
