@@ -249,7 +249,7 @@ class Programacion extends CI_Controller {
         if(!$this->session->userdata('session'))
         redirect('login');
 		$data = $this->input->post();
-		$data = $this->Programacion_model->inf_2($data);
+		$data = $this->Programacion_model->inf_2_edit($data);
 		echo json_encode($data);
     }
 
@@ -257,7 +257,7 @@ class Programacion extends CI_Controller {
         if(!$this->session->userdata('session'))
         redirect('login');
 		$data = $this->input->post();
-		$data = $this->Programacion_model->inf_3($data);
+		$data = $this->Programacion_model->inf_3_edit($data);
 		echo json_encode($data);
     }
 

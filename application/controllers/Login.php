@@ -19,7 +19,6 @@ class Login extends CI_Controller {
 
 			$id_unidad = $inf['id_unidad'];
 			$data2 = $this->login_model->consultar_organo($id_unidad);
-
 			if ($data2) {
 				$user_data =[
 					'id_user'	=> $data['id'],

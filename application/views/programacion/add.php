@@ -34,6 +34,7 @@
                                                     Código ONAPRE: <?=$codigo_onapre?> <br>
                                                     Año: <b><?=$anio?></b></p>
                                                     <input type="hidden" id="id_programacion" name="id_programacion" value="<?=$id_programacion?>">
+                                                    <input type="hidden" name="fecha_est" id="fecha_est" value="<?=$anio?>">
                                                 </blockquote>
                                             </div>
                                         </div>
@@ -65,7 +66,7 @@
                                     </div>
 
                                     <div class="form-group mt-3 col-3">
-                                        <label>Objeto Comercial</label>
+                                        <label>Objeto de Contratación</label>
                                         <select id="id_obj_comercial" name="id_obj_comercial" class="default-select2 form-control">
                                             <option value="0">Seleccione</option>
                                             <?php foreach ($act_com as $data): ?>
@@ -152,14 +153,24 @@
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
-                                    <div class="col-2 form-group">
+                                    <div class="form-group col-4">
+    									<label>Rango de Fecha</label>
+    									<!-- <div class="col-md-8"> -->
+    										<div class="input-group input-daterange">
+    											<input type="text" class="form-control" id="fecha_desde" onchange="verif_d();" onblur="habilitar_trim();" name="start" placeholder="Desde" />
+    											<span class="input-group-addon">-</span>
+    											<input type="text" class="form-control"  id="fecha_hasta" onchange="verif_h();" onblur="habilitar_trim();" name="end" placeholder="Hasta" />
+    										</div>
+    									<!-- </div> -->
+    								</div>
+                                    <!-- <div class="col-2 form-group">
                                         <label>Fecha Desde<b style="color:red">*</b></label>
-                                        <input id="fecha_desde" name="fecha_desde" type="date" class="form-control">
+                                        <input id="fecha_desde" name="fecha_desde" type="date" onblur="verif_d();" class="form-control">
                                     </div>
                                     <div class="col-2 form-group">
                                         <label>Fecha Hasta<b style="color:red">*</b></label>
-                                        <input id="fecha_hasta" name="fecha_hasta" type="date" class="form-control">
-                                    </div>
+                                        <input id="fecha_hasta" name="fecha_hasta" type="date" onblur="verif_h();" class="form-control">
+                                    </div> -->
                                     <div class="form-group col-6">
                                         <label>Especificación <b style="color:red">*</b></label>
                                         <input id="especificacion" type="text" class="form-control">
@@ -178,19 +189,19 @@
                                         <div class="row mt-2">
                                             <div class="form-group col-2">
                                                 <label>I<b style="color:red">*</b></label>
-                                                <input id="I" name="I" type="text" onblur="calculo();" placeholder="0" class="form-control" onkeypress="return valideKey(event);">
+                                                <input id="I" name="I" type="text" onblur="calculo();" placeholder="0" class="form-control" onkeypress="return valideKey(event);" disabled>
                                             </div>
                                             <div class="form-group col-2">
                                                 <label>II<b style="color:red">*</b></label>
-                                                <input id="II" name="II" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);">
+                                                <input id="II" name="II" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
                                             </div>
                                             <div class="form-group col-2">
                                                 <label>III<b style="color:red">*</b></label>
-                                                <input id="III" name="III" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);">
+                                                <input id="III" name="III" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
                                             </div>
                                             <div class="form-group col-2">
                                                 <label>IV<b style="color:red">*</b></label>
-                                                <input id="IV" name="IV" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);">
+                                                <input id="IV" name="IV" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
                                             </div>
                                             <div class="form-group col-4">
                                                 <label>Cantd. Total Distribuir <b style="color:red">*</b></label>
@@ -461,14 +472,14 @@
                                                 <input id="IV_acc" name="IV_acc" onblur="calcular_bienes();" value="0" class="form-control" onkeypress="return valideKey(event);">
                                             </div>
                                             <div class="form-group col-2">
-                                                <label>Cantd. Total Distribuir <b style="color:red">*</b></label>
-                                                <input id="cant_total_distribuir_acc" name="cant_total_distribuir_acc" class="form-control"  disabled>
+                                                <label>Cantd. restante a Distribuir <b style="color:red">*</b></label>
+                                                <input id="cant_total_distribuir_acc" onkeyup="verif();" name="cant_total_distribuir_acc" class="form-control"  disabled>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group col-2">
                                         <label>Costo Unitario <b style="color:red">*</b></label>
-                                        <input style="width: 115%;" id="costo_unitario_acc" name="costo_unitario_acc" onblur="calcular_bienes();" class="form-control" onkeypress="return valideKey(event);">
+                                        <input style="width: 115%;" id="costo_unitario_acc" name="costo_unitario_acc"  onblur="calcular_bienes();" class="form-control" onkeypress="return valideKey(event);">
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Precio Total Estimado<b style="color:red">*</b></label>

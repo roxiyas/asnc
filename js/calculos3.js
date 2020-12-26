@@ -19,27 +19,45 @@ function porc_acc(){
     }
 }
 
+function calcular_bienes(){
 
-    function calcular_bienes(){
-
-        var cantidad_acc = $('#cantidad_acc').val();
-        $('#cant_total_distribuir_acc').val(cantidad_acc);
-        var i = $('#I_acc').val();
-        var ii = $('#II_acc').val();
-        var iii = $('#III_acc').val();
-        var iv = $('#IV_acc').val();
-        var cant_total_distribuir = cantidad_acc - i - ii - iii - iv
+    var cantidad_acc = $('#cantidad_acc').val();
+    $('#cant_total_distribuir_acc').val(cantidad_acc);
+    var i = $('#I_acc').val();
+    var ii = $('#II_acc').val();
+    var iii = $('#III_acc').val();
+    var iv = $('#IV_acc').val();
+    var cant_total_distribuir = cantidad_acc - i - ii - iii - iv
 
 
-        var cantidad2 = Number(i) + Number(ii) + Number(iii) + Number(iv)
-        $('#cant_total_distribuir_acc').val(cant_total_distribuir);
+    var cantidad2 = Number(i) + Number(ii) + Number(iii) + Number(iv)
+    $('#cant_total_distribuir_acc').val(cant_total_distribuir);
 
+    if (cant_total_distribuir < 0) {
+        swal({
+            title: "¡ATENCION!",
+            text: "La cantidad a distribuir no puede ser menor a la Cantidad estipulada! Por favor modifique para seguir con la carga.",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonColor: "#00897b",
+            confirmButtonText: "CONTINUAR",
+            closeOnConfirm: false
+        }, function(){
+            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        });
+
+        $("#costo_unitario_acc").prop('disabled', true);
+        $("#id_alicuota_iva_acc").prop('disabled', true);
+    }else{
+        $("#costo_unitario_acc").prop('disabled', false);
+        $("#id_alicuota_iva_acc").prop('disabled', false);
         //Remplazar decimales para caculos
             var costo_unitario = $('#costo_unitario_acc').val();
             var newstr = costo_unitario.replace('.', "");
             var newstr2 = newstr.replace('.', "");
             var newstr3 = newstr2.replace('.', "");
-            var precio = newstr3.replace(',', ".");
+            var newstr4 = newstr3.replace('.', "");
+            var precio = newstr4.replace(',', ".");
 
             var tota = cantidad2 * precio
             var tota2 = parseFloat(tota).toFixed(2);
@@ -50,20 +68,22 @@ function porc_acc(){
         var separar = id_alicuota_iva.split("/");
         var porcentaje = parseFloat(separar['0']);
 
-        var newstr4 = precio_total_acc.replace('.', "");
-        var newstr5 = newstr4.replace('.', "");
+        var newstr5 = precio_total_acc.replace('.', "");
         var newstr6 = newstr5.replace('.', "");
-        var precio_total_ac = newstr6.replace(',', ".");
+        var newstr7 = newstr6.replace('.', "");
+        var newstr8 = newstr7.replace('.', "");
+        var precio_total_ac = newstr8.replace(',', ".");
 
         var monto_iva_estimado = precio_total_ac*porcentaje;
         var iva_estimado = parseFloat(monto_iva_estimado).toFixed(2);
         var iva_estimado_acc = Intl.NumberFormat("de-DE").format(iva_estimado);
         $('#iva_estimado_acc').val(iva_estimado_acc);
 
-        var newstr7 = iva_estimado_acc.replace('.', "");
-        var newstr8 = newstr7.replace('.', "");
-        var newstr9 = newstr8.replace('.', "");
-        var iva_estimado_ac = newstr9.replace(',', ".");
+        var newstr9 = iva_estimado_acc.replace('.', "");
+        var newstr10 = newstr9.replace('.', "");
+        var newstr11 = newstr10.replace('.', "");
+        var newstr12 = newstr11.replace('.', "");
+        var iva_estimado_ac = newstr12.replace(',', ".");
 
         var monto_t_estimado = Number(precio_total_ac) + Number(iva_estimado_ac);
         var monto_total_estimadoo = parseFloat(monto_t_estimado).toFixed(2);
@@ -96,17 +116,16 @@ function porc_acc(){
         var total_est = Intl.NumberFormat("de-DE").format(total_es);
         $('#estimado_total_t_acc').val(total_est);
     }
+}
 
-    function control(){
-        var acc_cargar_acc = $('#cambiar').val();
+function control(){
+    var acc_cargar_acc = $('#cambiar').val();
 
-        if (acc_cargar_acc === '1') {
-            console.log(1);
-            $("#acc_acc").hide();
-            $("#proyecto_acc").show();
-        }else if (acc_cargar_acc === '2') {
-            console.log(2);
-            $("#proyecto_acc").hide();
-            $("#acc_acc").show();
-        }
+    if (acc_cargar_acc === '1') {
+        $("#acc_acc").hide();
+        $("#proyecto_acc").show();
+    }else if (acc_cargar_acc === '2') {
+        $("#proyecto_acc").hide();
+        $("#acc_acc").show();
     }
+}

@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="form-group mt-2 col-3">
-                        <label>Objeto Comercial</label><br>
+                        <label>Objeto de Contratación</label><br>
                         <input type="hidden" id="id_obj_comercial" name="id_obj_comercial" value="<?=$inf_1['id_obj_comercial']?>">
                         <input type="text" id="desc_objeto_contrata" name="desc_objeto_contrata" value="<?=$inf_1['desc_objeto_contrata']?>" class="form-control">
                     </div>

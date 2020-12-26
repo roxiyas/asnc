@@ -32,7 +32,7 @@
                             <thead style="background:#e4e7e8">
                                 <tr class="text-center">
                                     <th>Nombre Programación</th>
-                                    <th>Objeto Comercial</th>
+                                    <th>Objeto de Contratación</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -68,7 +68,7 @@
                             <thead style="background:#e4e7e8">
                                 <tr class="text-center">
                                     <th>Acción Centralizada</th>
-                                    <th>Objeto Comercial</th>
+                                    <th>Objeto de Contratación</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>

@@ -25,7 +25,7 @@
                             <input value="<?=$inf_1['nombre_proyecto']?>" type="text" class="form-control" disabled>
                         </div>
                         <div class="form-group mt-2  col-3">
-                            <label>Objeto Comercial</label>
+                            <label>Objeto de Contratación</label>
                             <input value="<?=$inf_1['desc_objeto_contrata']?>" type="text" class="form-control" disabled>
                         </div>
                         <hr style="border-top: 1px solid rgba(0, 0, 0, 0.17);">
