@@ -31,7 +31,7 @@
                                  </select>
                              </div>
                             <div class="form-group mt-3 col-3">
-                                <label>Objeto Comercial</label>
+                                <label>Objeto de Contratación</label>
                                 <select id="id_obj_comercial" name="id_obj_comercial" class="default-select2 form-control">
                                     <option value="<?=$inf_1_acc['id_obj_comercial']?>"><?=$inf_1_acc['desc_objeto_contrata']?></option>
                                     <?php foreach ($act_com as $data): ?>

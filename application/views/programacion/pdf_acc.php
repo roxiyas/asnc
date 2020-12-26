@@ -5,9 +5,19 @@
 			<div class="panel panel-inverse" data-sortable-id="form-validation-1">
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-12">
-                            <h4> <b>Nombre Órgano / Ente: <?=$des_unidad?></b></h4>
-                            <h4><b>RIF.: <?=$rif?> <br> Código ONAPRE: <?=$codigo_onapre?></b></h4>
+                        <div class="col-1"></div>
+                        <div class="col-10 mt-4">
+                            <div class="card card-outline-danger text-center bg-white">
+                                <div class="card-block">
+                                    <blockquote class="card-blockquote" style="margin-bottom: -19px;">
+                                        <p class="f-s-18 text-inverse f-w-600">Nombre Órgano / Ente: <?=$des_unidad?>.</p>
+                                        <p class="f-s-16">RIF.: <?=$rif?> <br>
+                                        Código ONAPRE: <?=$codigo_onapre?> <br>
+                                        Año: <b><?=$anio?></b></p>
+                                        <input type="hidden" id="id_programacion" name="id_programacion" value="<?=$id_programacion?>">
+                                    </blockquote>
+                                </div>
+                            </div>
                         </div>
                          <?php foreach($inf_1_acc as $inf_1):?><?php endforeach;?>
                         <div class="col-9 mt-2 form-group">
@@ -15,14 +25,16 @@
                             <input value="<?=$inf_1['desc_accion_centralizada']?>" type="text" class="form-control" disabled>
                         </div>
                         <div class="form-group mt-2  col-3">
-                            <label>Objeto Comercial</label>
+                            <label>Objeto de Contratación</label>
                             <input value="<?=$inf_1['desc_objeto_contrata']?>" type="text" class="form-control" disabled>
                         </div>
                         <hr style="border-top: 1px solid rgba(0, 0, 0, 0.17);">
                         <div class="table-responsive mt-3">
-                            <h5 class="text-center">Programación Anual.</h5>
+                            <div class="col-12 text-center">
+                                <h4 style="color:red;">Información Items Fuente Financiamiento (IFF)</h4>
+                            </div>
                             <table id="target_ff" class="table table-bordered table-hover">
-                                <thead style="background:#4caa9d;">
+                                <thead style="background:#e4e7e8;">
                                     <tr class="text-center">
                                         <th>Código Part. Presupuestaria</th>
                                         <th>Partida Presupuestaria</th>
@@ -46,9 +58,11 @@
                         </div>
                         <hr style="border-top: 1px solid rgba(0, 0, 0, 0.17);">
                         <div class="table-responsive mt-4">
-                            <h5 class="text-center">Items de la Programación.</h5>
+                            <div class="col-12 mt-2 text-center">
+                                <h4 style="color:red;">Información Items Productos (IP)</h4>
+                            </div>
                             <table id="target_req" class="table table-bordered table-hover">
-                                <thead style="background:#4caa9d;">
+                                <thead style="background:#e4e7e8;">
                                     <tr class="text-center">
                                         <th>Partida Pres.</th>
                                         <th>CCNU</th>
@@ -88,7 +102,7 @@
                         </div>
                     </div>
                     <div class="col-12 text-center mt-3">
-                        <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" onclick="location.href='<?=base_url()?>index.php/Programacion'" name="button">Volver</button>
+                        <a class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" href="javascript:history.back()"> Volver</a>
                     </div>
                 </div>
             </div>

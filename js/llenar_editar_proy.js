@@ -4,6 +4,9 @@ if ($('#id_programacion').val().length != " "){
     var id_p_programacion = separar['0'];
     var id_p_proyecto = separar['1'];
 
+    console.log(id_p_proyecto);
+    console.log(id_p_programacion);
+
     var base_url =window.location.origin+'/asnc/index.php/Programacion/ver_proy_editar';
     // var base_url = '/index.php/Programacion/ver_proy_editar';
     $.ajax({

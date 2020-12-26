@@ -20,24 +20,20 @@
                     </div>
 
                     <div class="col-12 text-center">
-                        <buttontype="button" class="btn btn-lg mt-2 mb-2" style="background: #8b0000d9; color: white;" data-toggle="modal" data-target="#agregar_programacion">
+                        <buttontype="button" class="btn btn-lg mt-2 mb-2 btn-default" data-toggle="modal" data-target="#agregar_programacion">
                             Agregar Programación
                         </button>
-
-                        <!-- <button onclick="location.href='<?php echo base_url()?>index.php/Programacion/nueva_prog'" type="button" class="btn btn-lg mt-2 mb-2" style="background: #8b0000d9; color: white;" name="button">
-                            Agregar Programación
-                        </button> -->
                     </div>
                     <div class="col-3">
 
                     </div>
                     <div class="col-6 text-center mt-3">
-                        <h3 class="text-center">Programaciones Registradas</h3>
-                        <table class="table table-hover">
-                            <thead style="background:#222222; color: white;">
+                        <h3 class="text-center">Años de Programaciones Registrados</h3>
+                        <table class="table table-bordered">
+                            <thead style="background:#e4e7e8">
                                 <tr class="text-center">
-                                    <th style=" color: #fff;">Año de la Programación</th>
-                                    <th style=" color: #fff;">Acciones</th>
+                                    <th>Año de la Programación</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,7 +43,11 @@
                                     <td class="center">
                                         <a href="<?php echo base_url();?>index.php/programacion/nueva_prog?id=<?php echo $lista['id_programacion'];?>"
                                             class="button">
-                                            <i class="fas fa-lg fa-fw fa-edit" style="color: green;"></i>
+                                            <i class="fas fa-lg fa-fw fa-edit"></i>
+                                        <a/>
+                                        <a href="<?php echo base_url();?>index.php/programacion/nueva_prog?id=<?php echo $lista['id_programacion'];?>"
+                                            class="button">
+                                            <i class="fas fa-lg fa-fw fa-upload" style="color: green;"></i>
                                         <a/>
                                     </td>
                                 </tr>

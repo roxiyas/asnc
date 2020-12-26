@@ -6,7 +6,7 @@
 				<span class="navbar-logo">
 					<i style="color:darkred" class="fas fa-briefcase"></i>
 				</span>
-				<b> Sistema Nacional de Contrataciones</b>
+				<b> Sistema Integrado SNC</b>
 			</a>
 
 		</div>

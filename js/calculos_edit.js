@@ -35,10 +35,10 @@ function porc(){
 function calculo(){
 
     var cantidad = 100;
-    var i = $('#I').val();
-    var ii = $('#II').val();
-    var iii = $('#III').val();
-    var iv = $('#IV').val();
+    var i = $('#i').val();
+    var ii = $('#ii').val();
+    var iii = $('#iii').val();
+    var iv = $('#iv').val();
 
     var cantidad_total = Number(i) + Number(ii) + Number(iii) + Number(iv)
 
@@ -183,70 +183,69 @@ function verif_h(){
 }
 
 function habilitar_trim() {
+    console.log('noooooo');
     var fecha_desde = $('#fecha_desde').val();
     var mes_d = fecha_desde.split("/")[1];
     var fecha_hasta = $('#fecha_hasta').val();
     var mes_h = fecha_hasta.split("/")[1];
 
+    console.log(mes_d);
+    console.log(mes_h);
+
     if (mes_d >= 01 && mes_h <= 03) {
-        $("#II").prop('disabled', false);
-        $("#II").prop('disabled', true);
-        $("#III").prop('disabled', true);
-        $("#IV").prop('disabled', true);
+        $("#i").prop('disabled', false);
+        $("#ii").prop('disabled', true);
+        $("#iii").prop('disabled', true);
+        $("#iv").prop('disabled', true);
     }else if (mes_d >= 01 && mes_h <= 06) {
-        $("#I").prop('disabled', false);
-        $("#II").prop('disabled', false);
-        $("#III").prop('disabled', true);
-        $("#IV").prop('disabled', true);
+        $("#i").prop('disabled', false);
+        $("#ii").prop('disabled', false);
+        $("#iii").prop('disabled', true);
+        $("#iv").prop('disabled', true);
     } else if (mes_d >= 01 && mes_h <= 09) {
-        $("#I").prop('disabled', false);
-        $("#II").prop('disabled', false);
-        $("#III").prop('disabled', false);
-        $("#IV").prop('disabled', true);
+        $("#i").prop('disabled', false);
+        $("#ii").prop('disabled', false);
+        $("#iii").prop('disabled', false);
+        $("#iv").prop('disabled', true);
     } else if (mes_d >= 01 && mes_h <= 12) {
-        $("#I").prop('disabled', false);
-        $("#II").prop('disabled', false);
-        $("#III").prop('disabled', false);
-        $("#IV").prop('disabled', false);
+        $("#i").prop('disabled', false);
+        $("#ii").prop('disabled', false);
+        $("#iii").prop('disabled', false);
+        $("#iv").prop('disabled', false);
     }
     if (mes_d >= 04 && mes_h <= 06) {
-        $("#I").prop('disabled', true);
-        $("#II").prop('disabled', false);
-        $("#III").prop('disabled', true);
-        $("#IV").prop('disabled', true);
+        $("#i").prop('disabled', true);
+        $("#ii").prop('disabled', false);
+        $("#iii").prop('disabled', true);
+        $("#iv").prop('disabled', true);
     }else if (mes_d >= 04 && mes_h <= 09) {
-        $("#I").prop('disabled', true);
-        $("#II").prop('disabled', false);
-        $("#III").prop('disabled', false);
-        $("#IV").prop('disabled', true);
+        $("#i").prop('disabled', true);
+        $("#ii").prop('disabled', false);
+        $("#iii").prop('disabled', false);
+        $("#iv").prop('disabled', true);
     }else if (mes_d >= 04 && mes_h <= 12) {
-        $("#I").prop('disabled', true);
-        $("#II").prop('disabled', false);
-        $("#III").prop('disabled', false);
-        $("#IV").prop('disabled', false);
+        $("#i").prop('disabled', true);
+        $("#ii").prop('disabled', false);
+        $("#iii").prop('disabled', false);
+        $("#iv").prop('disabled', false);
     }
 
     if (mes_d >= 06 && mes_h <= 09) {
-        $("#I").prop('disabled', true);
-        $("#II").prop('disabled', true);
-        $("#III").prop('disabled', false);
-        $("#IV").prop('disabled', true);
+        $("#i").prop('disabled', true);
+        $("#ii").prop('disabled', true);
+        $("#iii").prop('disabled', false);
+        $("#iv").prop('disabled', true);
     }else if (mes_d >= 06 && mes_h <= 12) {
-        $("#I").prop('disabled', true);
-        $("#II").prop('disabled', true);
-        $("#III").prop('disabled', false);
-        $("#IV").prop('disabled', false);
+        $("#i").prop('disabled', true);
+        $("#ii").prop('disabled', true);
+        $("#iii").prop('disabled', false);
+        $("#iv").prop('disabled', false);
     }
 
     if (mes_d >= 09 && mes_h <= 12) {
-        $("#I").prop('disabled', true);
-        $("#II").prop('disabled', true);
-        $("#III").prop('disabled', true);
-        $("#IV").prop('disabled', false);
-    }else {
-        $("#I").prop('disabled', true);
-        $("#II").prop('disabled', true);
-        $("#III").prop('disabled', true);
-        $("#IV").prop('disabled', true);
+        $("#i").prop('disabled', true);
+        $("#ii").prop('disabled', true);
+        $("#iii").prop('disabled', true);
+        $("#iv").prop('disabled', false);
     }
 }

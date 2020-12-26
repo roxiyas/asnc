@@ -34,6 +34,7 @@
                                                     Código ONAPRE: <?=$codigo_onapre?> <br>
                                                     Año: <b><?=$anio?></b></p>
                                                     <input type="hidden" id="id_programacion" name="id_programacion" value="<?=$id_programacion?>">
+                                                    <input type="hidden" name="fecha_est" id="fecha_est" value="<?=$anio?>">
                                                 </blockquote>
                                             </div>
                                         </div>
@@ -65,7 +66,7 @@
                                     </div>
 
                                     <div class="form-group mt-3 col-3">
-                                        <label>Objeto Comercial</label>
+                                        <label>Objeto de Contratación</label>
                                         <select id="id_obj_comercial" name="id_obj_comercial" class="default-select2 form-control">
                                             <option value="0">Seleccione</option>
                                             <?php foreach ($act_com as $data): ?>
@@ -73,8 +74,11 @@
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
+                                    <div class="col-12">
+                                        <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
+                                    </div>
                                     <div class="col-12 text-center">
-                                        <h5><b>Información Items Fuente Financiamiento (IFF)</b></h5>
+                                        <h4 style="color:red;">Información Items Fuente Financiamiento (IFF)</h4>
                                     </div>
                                     <div class="form-group col-12">
                                         <label>Partida Presupuestaria</label>
@@ -86,7 +90,6 @@
                                                 <?php endforeach; ?>
                                             </select>
                                     </div>
-                                    <hr style="border-top: 1px solid rgba(0, 0, 0, 0.17);">
                                     <div class="form-group col-6">
                                         <label>Estado</label>
                                         <select id="id_estado" name="id_estado" class="form-control estado" multiple="multiple" required>
@@ -115,14 +118,14 @@
                                     </div>
                                     <div class="col-5"></div>
                                     <div class="col-7 mt-4">
-                                        <button type="button" onclick="agregar_ff(this);" style="background-color:#4caa9d;color:white;" class="btn btn-lg btn-circle waves-effect waves-circle waves-float" id="ueba">
+                                        <button type="button" onclick="agregar_ff(this);" class="btn btn-lg btn-default" id="ueba">
                                             Agregar <b>IFF</b>
                                         </button>
                                     </div>
                                     <div class="table-responsive mt-3">
                                         <h5 class="text-center"><b style="color:red;">NOTA:</b> La tabla debe tener al menos un registro agregado, para proceder con la solicitud.</h5>
                                         <table id="target_ff" class="table table-bordered table-hover">
-                                            <thead style="background:#4caa9d;">
+                                            <thead style="background:#e4e7e8">
                                                 <tr class="text-center">
                                                     <th>Codigo Part. Presupuestaria</th>
                                                     <th>Partida Presupuestaria</th>
@@ -135,8 +138,11 @@
                                             <tbody></tbody>
                                         </table>
                                     </div>
+                                    <div class="col-12">
+                                        <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
+                                    </div>
                                     <div class="col-12 mt-2 text-center">
-                                        <h5><b>Información Items Productos (IP)</b></h5>
+                                        <h4 style="color:red;">Información Items Productos (IP)</h4>
                                     </div>
                                     <div class="form-group col-8">
                                         <label>CCNU <b style="color:red">*</b></label><br>
@@ -147,17 +153,27 @@
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
-                                    <div class="col-2 form-group">
+                                    <div class="form-group col-4">
+    									<label>Rango de Fecha</label>
+    									<!-- <div class="col-md-8"> -->
+    										<div class="input-group input-daterange">
+    											<input type="text" class="form-control" id="fecha_desde" onchange="verif_d();" onblur="habilitar_trim();" name="start" placeholder="Desde" />
+    											<span class="input-group-addon">-</span>
+    											<input type="text" class="form-control"  id="fecha_hasta" onchange="verif_h();" onblur="habilitar_trim();" name="end" placeholder="Hasta" />
+    										</div>
+    									<!-- </div> -->
+    								</div>
+                                    <!-- <div class="col-2 form-group">
                                         <label>Fecha Desde<b style="color:red">*</b></label>
-                                        <input id="fecha_desde" name="fecha_desde" type="date" class="form-control" required>
+                                        <input id="fecha_desde" name="fecha_desde" type="date" onblur="verif_d();" class="form-control">
                                     </div>
                                     <div class="col-2 form-group">
                                         <label>Fecha Hasta<b style="color:red">*</b></label>
-                                        <input id="fecha_hasta" name="fecha_hasta" type="date" class="form-control" required>
-                                    </div>
+                                        <input id="fecha_hasta" name="fecha_hasta" type="date" onblur="verif_h();" class="form-control">
+                                    </div> -->
                                     <div class="form-group col-6">
                                         <label>Especificación <b style="color:red">*</b></label>
-                                        <input id="especificacion" type="text" class="form-control" required>
+                                        <input id="especificacion" type="text" class="form-control">
                                     </div>
                                     <div class="form-group col-6">
                                         <label>Unidad de Medida <b style="color:red">*</b></label><br>
@@ -168,26 +184,32 @@
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
-                                    <div class="form-group col-2">
-                                        <label>I<b style="color:red">*</b></label>
-                                        <input id="I" name="I" type="text" onblur="calculo();" placeholder="0" class="form-control" onkeypress="return valideKey(event);">
+                                    <div class="card card-outline-danger">
+                                        <h5 class="mt-3 text-center"><b>Distribución Porcentual de la Ejecución Trimestral</b></h5>
+                                        <div class="row mt-2">
+                                            <div class="form-group col-2">
+                                                <label>I<b style="color:red">*</b></label>
+                                                <input id="I" name="I" type="text" onblur="calculo();" placeholder="0" class="form-control" onkeypress="return valideKey(event);" disabled>
+                                            </div>
+                                            <div class="form-group col-2">
+                                                <label>II<b style="color:red">*</b></label>
+                                                <input id="II" name="II" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
+                                            </div>
+                                            <div class="form-group col-2">
+                                                <label>III<b style="color:red">*</b></label>
+                                                <input id="III" name="III" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
+                                            </div>
+                                            <div class="form-group col-2">
+                                                <label>IV<b style="color:red">*</b></label>
+                                                <input id="IV" name="IV" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
+                                            </div>
+                                            <div class="form-group col-4">
+                                                <label>Cantd. Total Distribuir <b style="color:red">*</b></label>
+                                                <input id="cant_total_distribuir" value="100" onblur="calculo();" name="cant_total_distribuir" type="number" class="form-control" disabled>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group col-2">
-                                        <label>II<b style="color:red">*</b></label>
-                                        <input id="II" name="II" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);">
-                                    </div>
-                                    <div class="form-group col-2">
-                                        <label>III<b style="color:red">*</b></label>
-                                        <input id="III" name="III" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);">
-                                    </div>
-                                    <div class="form-group col-2">
-                                        <label>IV<b style="color:red">*</b></label>
-                                        <input id="IV" name="IV" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);">
-                                    </div>
-                                    <div class="form-group col-4">
-                                        <label>Cantd. Total Distribuir <b style="color:red">*</b></label>
-                                        <input id="cant_total_distribuir" value="100" onblur="calculo();" name="cant_total_distribuir" type="number" class="form-control" disabled>
-                                    </div>
+
 
                                     <div class="form-group col-4">
                                         <label>Precio Total <b style="color:red">*</b></label>
@@ -236,8 +258,11 @@
                                     <div class="col-12">
                                         <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                                     </div>
+                                    <div class="col-12">
+                                        <h5 class="text-center"><b style="color:red;">NOTA:</b> Debe llenar todos lo items para llenar la tabla.</h5>
+                                    </div>
                                     <div class="col-12 text-center">
-                                        <button type="button" onclick="agregar_ccnu(this);" style="background-color:#4caa9d;color:white;" class="btn btn-circle waves-effect btn-lg waves-circle waves-float">
+                                        <button type="button" onclick="agregar_ccnu(this);" class="btn btn-lg btn-default">
                                             Agregar <b>IP</b>
                                         </button>
                                     </div>
@@ -246,7 +271,7 @@
                                         <h5 class="text-center">Lista de Requerimiento</h5>
                                         <h5 class="text-center"><b style="color:red;">NOTA:</b> La tabla debe tener al menos un requerimiento agregado, para proceder con la solicitud.</h5>
                                         <table id="target_req" class="table table-bordered table-hover">
-                                            <thead style="background:#4caa9d;">
+                                            <thead style="background:#e4e7e8;">
                                                 <tr class="text-center">
                                                     <th>Partida Pres.</th>
                                                     <th>CCNU</th>
@@ -329,8 +354,11 @@
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
+                                    <div class="col-12">
+                                        <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
+                                    </div>
                                     <div class="col-12 text-center">
-                                        <h5><b>Información Items Fuente Financiamiento (IFF)</b></h5>
+                                        <h4 style="color:red;">Información Items Fuente Financiamiento (IFF)</h4>
                                     </div>
                                     <div class="form-group col-12">
                                         <label>Partida Presupuestaria</label><br>
@@ -371,14 +399,14 @@
                                     </div>
                                     <div class="col-5"></div>
                                     <div class="col-7 mt-4">
-                                        <button type="button" onclick="agregar_acc_ff(this);" style="background-color:#4caa9d;color:white;" class="btn btn-lg btn-circle waves-effect waves-circle waves-float" id="prueba2">
+                                        <button type="button" onclick="agregar_acc_ff(this);" class="btn btn-lg btn-default" id="prueba2">
                                             Agregar <b>IFF</b>
                                         </button>
                                     </div>
                                     <div class="table-responsive mt-3">
                                         <h5 class="text-center"><b style="color:red;">NOTA:</b> La tabla debe tener al menos un registro agregado, para proceder con la solicitud.</h5>
                                         <table id="target_acc_ff" class="table table-bordered table-hover">
-                                            <thead style="background:#4caa9d;">
+                                            <thead style="background:#e4e7e8;">
                                                 <tr class="text-center">
                                                     <th>Partida Presupuestaria</th>
                                                     <th>Estado</th>
@@ -390,7 +418,12 @@
                                             <tbody></tbody>
                                         </table>
                                     </div>
-
+                                    <div class="col-12">
+                                        <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
+                                    </div>
+                                    <div class="col-12 mt-2 text-center">
+                                        <h4 style="color:red;">Información Items Productos (IP)</h4>
+                                    </div>
                                     <div class="form-group col-6">
                                         <label>CCNU <b style="color:red">*</b></label><br>
                                         <select  style="width: 100%;" id="id_ccnu_acc" class="form-control default-select2">
@@ -414,35 +447,40 @@
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
+
+                                    <div class="card card-outline-danger">
+                                        <h5 class="mt-3 text-center"><b>Distribución Porcentual de la Ejecución Trimestral</b></h5>
+                                        <div class="row mt-2">
+                                            <div class="form-group col-2">
+                                                <label>Cantidad<b style="color:red">*</b></label>
+                                                <input id="cantidad_acc" name="cantidad_acc" onblur="calcular_bienes();" class="form-control" onkeypress="return valideKey(event);">
+                                            </div>
+                                            <div class="form-group col-2">
+                                                <label>I<b style="color:red">*</b></label>
+                                                <input id="I_acc" name="I_acc" onblur="calcular_bienes();"  value="0" class="form-control"  onkeypress="return valideKey(event);">
+                                            </div>
+                                            <div class="form-group col-2">
+                                                <label>II<b style="color:red">*</b></label>
+                                                <input id="II_acc" name="II_acc" onblur="calcular_bienes();" value="0" class="form-control" onkeypress="return valideKey(event);">
+                                            </div>
+                                            <div class="form-group col-2">
+                                                <label>III<b style="color:red">*</b></label>
+                                                <input id="III_acc" name="III_acc" onblur="calcular_bienes();" value="0" class="form-control"  onkeypress="return valideKey(event);">
+                                            </div>
+                                            <div class="form-group col-2">
+                                                <label>IV<b style="color:red">*</b></label>
+                                                <input id="IV_acc" name="IV_acc" onblur="calcular_bienes();" value="0" class="form-control" onkeypress="return valideKey(event);">
+                                            </div>
+                                            <div class="form-group col-2">
+                                                <label>Cantd. restante a Distribuir <b style="color:red">*</b></label>
+                                                <input id="cant_total_distribuir_acc" onkeyup="verif();" name="cant_total_distribuir_acc" class="form-control"  disabled>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group col-2">
-                                        <label>Cantidad<b style="color:red">*</b></label>
-                                        <input id="cantidad_acc" name="cantidad_acc" onblur="calcular_bienes();" class="form-control" onkeypress="return valideKey(event);">
-                                    </div>
-                                    <div class="form-group col-1">
-                                        <label>I<b style="color:red">*</b></label>
-                                        <input id="I_acc" name="I_acc" onblur="calcular_bienes();"  value="0" class="form-control" style="width: 140%;" onkeypress="return valideKey(event);">
-                                    </div>
-                                    <div class="form-group col-1">
-                                        <label>II<b style="color:red">*</b></label>
-                                        <input id="II_acc" name="II_acc" onblur="calcular_bienes();" value="0" class="form-control" style="width: 140%;" onkeypress="return valideKey(event);">
-                                    </div>
-                                    <div class="form-group col-1">
-                                        <label>III<b style="color:red">*</b></label>
-                                        <input id="III_acc" name="III_acc" onblur="calcular_bienes();" value="0" class="form-control" style="width: 140%;" onkeypress="return valideKey(event);">
-                                    </div>
-                                    <div class="form-group col-1">
-                                        <label>IV<b style="color:red">*</b></label>
-                                        <input id="IV_acc" name="IV_acc" onblur="calcular_bienes();" value="0" class="form-control" style="width: 140%;" onkeypress="return valideKey(event);">
-                                    </div>
-                                    <div class="form-group col-2">
-                                        <label>Cantd. Total Distribuir <b style="color:red">*</b></label>
-                                        <input id="cant_total_distribuir_acc" name="cant_total_distribuir_acc" class="form-control"  disabled>
-                                    </div>
-                                    <div class="form-group col-4">
                                         <label>Costo Unitario <b style="color:red">*</b></label>
-                                        <input id="costo_unitario_acc" name="costo_unitario_acc" onblur="calcular_bienes();" class="form-control" onkeypress="return valideKey(event);">
+                                        <input style="width: 115%;" id="costo_unitario_acc" name="costo_unitario_acc"  onblur="calcular_bienes();" class="form-control" onkeypress="return valideKey(event);">
                                     </div>
-                                    <div class="col-2"></div>
                                     <div class="form-group col-3">
                                         <label>Precio Total Estimado<b style="color:red">*</b></label>
                                         <input id="precio_total_acc" name="precio_total_acc" type="text" class="form-control" disabled>
@@ -491,9 +529,10 @@
                                     <div class="col-12">
                                         <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                                     </div>
+                                    <h5 class="text-center"><b style="color:red;">NOTA:</b> La tabla debe tener al menos un registro agregado, para proceder con la solicitud.</h5>
 
                                     <div class="col-12 text-center">
-                                        <button type="button" onclick="agregar_ccnu_acc(this);" style="background-color:#4caa9d;color:white;" class="btn btn-circle waves-effect btn-lg waves-circle waves-float">
+                                        <button type="button" onclick="agregar_ccnu_acc(this);" class="btn btn-lg btn-default">
                                             Agregar
                                         </button>
                                     </div>
@@ -502,7 +541,7 @@
                                         <h5 class="text-center">Lista de Requerimiento</h5>
                                         <h5 class="text-center"><b style="color:red;">NOTA:</b> La tabla debe tener al menos un requerimiento agregado, para proceder con la solicitud.</h5>
                                         <table id="target_req_acc" class="table table-bordered table-hover">
-                                            <thead style="background:#4caa9d;">
+                                            <thead style="background:#e4e7e8;">
                                                 <tr class="text-center">
                                                     <th>Partida Pres.</th>
                                                     <th>CCNU</th>

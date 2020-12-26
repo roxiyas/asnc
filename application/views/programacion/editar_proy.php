@@ -16,6 +16,7 @@
                                             Código ONAPRE: <?=$codigo_onapre?> <br>
                                             Año: <b><?=$anio?></b></p>
                                             <input type="hidden" id="id_programacion" name="id_programacion" value="<?=$id_programacion?>/<?=$id_p_proyecto?>">
+                                            <input type="hidden" name="fecha_est" id="fecha_est" value="<?=$anio?>">
                                         </blockquote>
                                     </div>
                                 </div>
@@ -26,7 +27,7 @@
                                 <input id="nombre_proyecto_a" name="nombre_proyecto_a" value="<?=$inf_1['nombre_proyecto']?>" type="text" class="form-control" >
                             </div>
                             <div class="form-group mt-2  col-3">
-                                <label>Objeto Comercial</label>
+                                <label>Objeto de Contratación</label>
                                 <select id="id_obj_comercial" name="id_obj_comercial" class="default-select2 form-control">
                                     <option value="<?=$inf_1['id_obj_comercial']?>"><?=$inf_1['desc_objeto_contrata']?></option>
                                     <?php foreach ($act_com as $data): ?>
@@ -34,7 +35,12 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-
+                            <div class="col-12">
+                                <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
+                            </div>
+                            <div class="col-12 text-center">
+                                <h4 style="color:red;">Información Items Fuente Financiamiento (IFF)</h4>
+                            </div>
                             <div class="form-group col-12">
                                 <label>Partida Presupuestaria</label>
                                     <input type="hidden" name="par_presupuestaria_ff" id="par_presupuestaria_ff">
@@ -74,7 +80,7 @@
                             </div>
                             <div class="col-5"></div>
                             <div class="col-7 mt-4">
-                                <button type="button" onclick="agregar_ff(this);" style="background-color:#4caa9d;color:white;" class="btn btn-circle waves-effect waves-circle waves-float">
+                                <button type="button" onclick="agregar_ff(this);" class="btn btn-lg btn-default">
                                     Agregar
                                 </button>
                             </div>
@@ -84,7 +90,7 @@
                                 <div class="table-responsive mt-3">
                                     <h5 class="text-center">Nota: si desea editar una fila, debe <b>Descartar</b> y volver <b>Agregar</b>.</h5>
                                     <table id="target_ff" class="table table-bordered table-hover">
-                                        <thead style="background:#4caa9d;">
+                                        <thead style="background:#e4e7e8;">
                                             <tr class="text-center">
                                                 <th>Código Part. Presupuestaria</th>
                                                 <th>Partida Presupuestaria</th>
@@ -99,7 +105,12 @@
                                     </table>
                                 </div>
                             </div>
-
+                            <div class="col-12">
+                                <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
+                            </div>
+                            <div class="col-12 mt-2 text-center">
+                                <h4 style="color:red;">Información Items Productos (IP)</h4>
+                            </div>
                             <div class="form-group col-8">
                                 <label>CCNU <b style="color:red">*</b></label><br>
                                 <select  id="id_ccnu" class="form-control default-select2">
@@ -109,14 +120,24 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="col-2 form-group">
+                            <div class="form-group col-4">
+                                <label>Rango de Fecha</label>
+                                <!-- <div class="col-md-8"> -->
+                                    <div class="input-group input-daterange">
+                                        <input type="text" class="form-control" id="fecha_desde" name="fecha_desde" onchange="verif_d();" onblur="habilitar_trim();" name="start" placeholder="Desde" />
+                                        <span class="input-group-addon">-</span>
+                                        <input type="text" class="form-control"  id="fecha_hasta" name="fecha_hasta" onchange="verif_h();" onblur="habilitar_trim();" name="end" placeholder="Hasta" />
+                                    </div>
+                                <!-- </div> -->
+                            </div>
+                            <!-- <div class="col-2 form-group">
                                 <label>Fecha Desde<b style="color:red">*</b></label>
                                 <input id="fecha_desde" name="fecha_desde" type="date" class="form-control">
                             </div>
                             <div class="col-2 form-group">
                                 <label>Fecha Hasta<b style="color:red">*</b></label>
                                 <input id="fecha_hasta" name="fecha_hasta" type="date" class="form-control">
-                            </div>
+                            </div> -->
                             <div class="form-group col-6">
                                 <label>Especificación <b style="color:red">*</b></label>
                                 <input id="especificacion" type="text" class="form-control">
@@ -132,19 +153,19 @@
                             </div>
                             <div class="form-group col-2">
                                 <label>I<b style="color:red">*</b></label>
-                                <input id="I" name="I" type="text" onblur="calculo();" placeholder="0" class="form-control" onkeypress="return valideKey(event);">
+                                <input id="i" name="I" type="text" onblur="calculo();" placeholder="0" class="form-control" onkeypress="return valideKey(event);" disabled>
                             </div>
                             <div class="form-group col-2">
                                 <label>II<b style="color:red">*</b></label>
-                                <input id="II" name="II" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);">
+                                <input id="ii" name="II" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
                             </div>
                             <div class="form-group col-2">
                                 <label>III<b style="color:red">*</b></label>
-                                <input id="III" name="III" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);">
+                                <input id="iii" name="III" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
                             </div>
                             <div class="form-group col-2">
                                 <label>IV<b style="color:red">*</b></label>
-                                <input id="IV" name="IV" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);">
+                                <input id="iv" name="IV" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
                             </div>
                             <div class="form-group col-4">
                                 <label>Cantd. Total Distribuir <b style="color:red">*</b></label>
@@ -242,7 +263,7 @@
     </div>
 </div>
 <script src="<?=base_url()?>/js/llenar_editar_proy.js"></script>
-<script src="<?=base_url()?>/js/calculos.js"></script>
+<script src="<?=base_url()?>/js/calculos_edit.js"></script>
 <script src="<?=base_url()?>/js/calculos2.js"></script>
 <script src="<?=base_url()?>/js/calculos3.js"></script>
 <script src="<?=base_url()?>/js/dependientes.js"></script>
