@@ -31,10 +31,13 @@
                             <div class="modal-body">
                                 <form action="" method="post" id="form">
                                     <div class="form-group">
-                                        <label for="">desc_fuente_financiamiento</label>
-                                        <input type="text" class="form-control" id="desc_fuente_financiamiento">
+                                        <label for="">Codigo de la Partida Presupuestaria</label>
+                                        <input type="text" class="form-control" id="codigopartida_presupuestaria">
                                     </div>
-                                   
+                                    <div class="form-group">
+                                        <label for="">Descripción Partida Presupuestaria</label>
+                                        <input type="text" class="form-control" id="desc_partida_presupuestaria">
+                                    </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -60,8 +63,12 @@
                                 <form action="" method="post" id="update_form">
                                     <input type="hidden" id="edit_modal_id">
                                     <div class="form-group">
+                                        <label for="">Codigo de la Partida Presupuestaria</label>
+                                        <input type="text" class="form-control" id="edit_codigopartida_presupuestaria">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="">Descripción</label>
-                                        <input type="text" class="form-control" id="edit_desc_fuente_financiamiento">
+                                        <input type="text" class="form-control" id="edit_desc_partida_presupuestaria">
                                     </div>
                                     
                                 </form>
@@ -77,13 +84,13 @@
     </div>
             <div class="row">
                     <div class="col-md-12 mt-3">
-                        <table class="table">
+                        <table class="table" id="data-table-default" class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Id</th>
+                                    <th>Codigo</th>
                                     <th>Descripción</th>
-                                    
-                                    <th>Action</th>
+                                    <th>Acción</th>
                                 </tr>
                             </thead>
                             <tbody id="tbody">
@@ -104,19 +111,21 @@
     $(document).on('click', '#add', function(e) {
         e.preventDefault();
       //  alert("test");
-       var desc_fuente_financiamiento = $("#desc_fuente_financiamiento").val();
+       var codigopartida_presupuestaria = $("#codigopartida_presupuestaria").val();
+       var desc_partida_presupuestaria = $("#desc_partida_presupuestaria").val();
        var id_usuario = 1; //esto debo arreglar
        var fecha = '12/15/2020'; //esto debo arreglar
-       if (desc_fuente_financiamiento == "" ) {
+       if (codigopartida_presupuestaria == "" || desc_partida_presupuestaria == "" ) {
             alert("debe ingresar un dato, REQUERIDO");
         } else {
      //  alert(name);
                         $.ajax({
-                            url: "<?=base_url()?>index.php/Fuentefinanc/save",
+                            url: "<?=base_url()?>index.php/Fuentefinanc/savepartidap",
                             type: "post",
                             dataType: "json",
                             data: {
-                                desc_fuente_financiamiento: desc_fuente_financiamiento,
+                                codigopartida_presupuestaria: codigopartida_presupuestaria,
+                                desc_partida_presupuestaria: desc_partida_presupuestaria,
                                 id_usuario: id_usuario,
                                 fecha: fecha
                             
@@ -175,7 +184,7 @@
 });
             function fetch() {
                                     $.ajax({
-                                        url: "<?=base_url()?>index.php/Fuentefinanc/fetch",
+                                        url: "<?=base_url()?>index.php/Fuentefinanc/fetchpartidap",
                                         type: "get",
                                         dataType: "json",
                                         success: function(data) {
@@ -184,10 +193,11 @@
                                             for (var key in data) {
                                                 tbody += "<tr>";
                                                 tbody += "<td>" + i++ + "</td>";
-                                                tbody += "<td>" + data[key]['desc_fuente_financiamiento'] + "</td>";
+                                                tbody += "<td>" + data[key]['codigopartida_presupuestaria'] + "</td>";
+                                                tbody += "<td>" + data[key]['desc_partida_presupuestaria'] + "</td>";
                                                 tbody += `<td>
-                                                                <a href="#" id="del" class="btn btn-sm btn-outline-danger" value="${data[key]['id_fuente_financiamiento']}"><i class="fas fa-trash-alt"></i></a>
-                                                                <a href="#" id="edit" class="btn btn-sm btn-outline-info" value="${data[key]['id_fuente_financiamiento']}"><i class="fas fa-edit"></i></a>
+                                                                <a href="#" id="del" class="btn btn-sm btn-outline-danger" value="${data[key]['id_partida_presupuestaria']}"><i class="fas fa-trash-alt"></i></a>
+                                                                <a href="#" id="edit" class="btn btn-sm btn-outline-info" value="${data[key]['id_partida_presupuestaria']}"><i class="fas fa-edit"></i></a>
                                                             </td>`;
                                                 tbody += "<tr>";
                                             }
@@ -227,7 +237,7 @@
                                     if (result.value) {
 
                                     $.ajax({
-                                        url: "<?php echo base_url(); ?>index.php/Fuentefinanc/delete",
+                                        url: "<?php echo base_url(); ?>index.php/Fuentefinanc/deletepartidap",
                                         type: "post",
                                         dataType: "json",
                                         data: {
@@ -269,7 +279,7 @@
         } 
         else {
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/Fuentefinanc/edit",
+                url: "<?php echo base_url(); ?>index.php/Fuentefinanc/editpartidap",
                 type: "post",
                 dataType: "json",
                 data: {
@@ -279,8 +289,9 @@
                     //console.log(data);
                     if (data.response === 'success') {
                         $('#editModal').modal('show');
-                        $("#edit_modal_id").val(data.post.id_fuente_financiamiento);
-                        $("#edit_desc_fuente_financiamiento").val(data.post.desc_fuente_financiamiento);
+                        $("#edit_modal_id").val(data.post.id_partida_presupuestaria);
+                        $("#edit_codigopartida_presupuestaria").val(data.post.codigopartida_presupuestaria);
+                        $("#edit_desc_partida_presupuestaria").val(data.post.desc_partida_presupuestaria);
                       } else {
                                 Command: toastr["error"](data.message)
 
@@ -309,18 +320,20 @@
     $(document).on("click", "#update", function(e) {
         e.preventDefault();
         var edit_id = $("#edit_modal_id").val();
-        var edit_desc_fuente_financiamiento = $("#edit_desc_fuente_financiamiento").val();
+        var edit_codigopartida_presupuestaria = $("#edit_codigopartida_presupuestaria").val();
+        var edit_desc_partida_presupuestaria = $("#edit_desc_partida_presupuestaria").val();
         //alert(edit_id);
-        if (edit_id == "" || edit_desc_fuente_financiamiento == "" ) {
+        if (edit_id == "" || edit_codigopartida_presupuestaria == "" || edit_desc_partida_presupuestaria == "" ) {
             alert("debe ingresar un dato, REQUERIDO");
         } else {
                 $.ajax({
-                    url: "<?php echo base_url(); ?>index.php/Fuentefinanc/update",
+                    url: "<?php echo base_url(); ?>index.php/Fuentefinanc/updatepartidap",
                 type: "post",
                 dataType: "json",
                 data: {
                     edit_id: edit_id,
-                    edit_desc_fuente_financiamiento: edit_desc_fuente_financiamiento,
+                    edit_codigopartida_presupuestaria: edit_codigopartida_presupuestaria,
+                    edit_desc_partida_presupuestaria: edit_desc_partida_presupuestaria
                    
                 },
                 success: function(data) {

@@ -7,7 +7,7 @@
 		<div class="col-lg-12">
 			<div class="panel panel-inverse" data-sortable-id="form-validation-1">
 				<div class="panel-heading">
-					<h4 class="panel-title">Nueva Fuente de Fianciamiento</h4>
+					<h4 class="panel-title">Nuevo CCNU</h4>
 				</div>
 				<div class="row">
              <div class="col-md-12 mt-2">
@@ -23,7 +23,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Crear Fuente de Financiamiento</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Crear CCNU</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -31,10 +31,13 @@
                             <div class="modal-body">
                                 <form action="" method="post" id="form">
                                     <div class="form-group">
-                                        <label for="">desc_fuente_financiamiento</label>
-                                        <input type="text" class="form-control" id="desc_fuente_financiamiento">
+                                        <label for="">Codigo del CCNU</label>
+                                        <input type="text" class="form-control" id="codigo_ccnu">
                                     </div>
-                                   
+                                    <div class="form-group">
+                                        <label for="">Descripción del CCNU</label>
+                                        <input type="text" class="form-control" id="desc_ccnu">
+                                    </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -60,8 +63,12 @@
                                 <form action="" method="post" id="update_form">
                                     <input type="hidden" id="edit_modal_id">
                                     <div class="form-group">
-                                        <label for="">Descripción</label>
-                                        <input type="text" class="form-control" id="edit_desc_fuente_financiamiento">
+                                        <label for="">Codigo CCNU</label>
+                                        <input type="text" class="form-control" id="edit_codigo_ccnu">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Descripción del CCNU</label>
+                                        <input type="text" class="form-control" id="edit_desc_ccnu">
                                     </div>
                                     
                                 </form>
@@ -77,13 +84,13 @@
     </div>
             <div class="row">
                     <div class="col-md-12 mt-3">
-                        <table class="table">
+                        <table class="table" id="data-table-default" class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Id</th>
+                                    <th>Codigo</th>
                                     <th>Descripción</th>
-                                    
-                                    <th>Action</th>
+                                    <th>Acción</th>
                                 </tr>
                             </thead>
                             <tbody id="tbody">
@@ -104,19 +111,21 @@
     $(document).on('click', '#add', function(e) {
         e.preventDefault();
       //  alert("test");
-       var desc_fuente_financiamiento = $("#desc_fuente_financiamiento").val();
+       var codigo_ccnu = $("#codigo_ccnu").val();
+       var desc_ccnu = $("#desc_ccnu").val();
        var id_usuario = 1; //esto debo arreglar
        var fecha = '12/15/2020'; //esto debo arreglar
-       if (desc_fuente_financiamiento == "" ) {
+       if (codigo_ccnu == "" || desc_ccnu == "" ) {
             alert("debe ingresar un dato, REQUERIDO");
         } else {
      //  alert(name);
                         $.ajax({
-                            url: "<?=base_url()?>index.php/Fuentefinanc/save",
+                            url: "<?=base_url()?>index.php/Fuentefinanc/saveccnu",
                             type: "post",
                             dataType: "json",
                             data: {
-                                desc_fuente_financiamiento: desc_fuente_financiamiento,
+                                codigo_ccnu: codigo_ccnu,
+                                desc_ccnu: desc_ccnu,
                                 id_usuario: id_usuario,
                                 fecha: fecha
                             
@@ -175,7 +184,7 @@
 });
             function fetch() {
                                     $.ajax({
-                                        url: "<?=base_url()?>index.php/Fuentefinanc/fetch",
+                                        url: "<?=base_url()?>index.php/Fuentefinanc/fetchccnu",
                                         type: "get",
                                         dataType: "json",
                                         success: function(data) {
@@ -184,10 +193,11 @@
                                             for (var key in data) {
                                                 tbody += "<tr>";
                                                 tbody += "<td>" + i++ + "</td>";
-                                                tbody += "<td>" + data[key]['desc_fuente_financiamiento'] + "</td>";
+                                                tbody += "<td>" + data[key]['codigo_ccnu'] + "</td>";
+                                                tbody += "<td>" + data[key]['desc_ccnu'] + "</td>";
                                                 tbody += `<td>
-                                                                <a href="#" id="del" class="btn btn-sm btn-outline-danger" value="${data[key]['id_fuente_financiamiento']}"><i class="fas fa-trash-alt"></i></a>
-                                                                <a href="#" id="edit" class="btn btn-sm btn-outline-info" value="${data[key]['id_fuente_financiamiento']}"><i class="fas fa-edit"></i></a>
+                                                                <a href="#" id="del" class="btn btn-sm btn-outline-danger" value="${data[key]['id_ccnu']}"><i class="fas fa-trash-alt"></i></a>
+                                                                <a href="#" id="edit" class="btn btn-sm btn-outline-info" value="${data[key]['id_ccnu']}"><i class="fas fa-edit"></i></a>
                                                             </td>`;
                                                 tbody += "<tr>";
                                             }
@@ -227,7 +237,7 @@
                                     if (result.value) {
 
                                     $.ajax({
-                                        url: "<?php echo base_url(); ?>index.php/Fuentefinanc/delete",
+                                        url: "<?php echo base_url(); ?>index.php/Fuentefinanc/deleteccnu",
                                         type: "post",
                                         dataType: "json",
                                         data: {
@@ -269,7 +279,7 @@
         } 
         else {
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/Fuentefinanc/edit",
+                url: "<?php echo base_url(); ?>index.php/Fuentefinanc/editccnu",
                 type: "post",
                 dataType: "json",
                 data: {
@@ -279,8 +289,9 @@
                     //console.log(data);
                     if (data.response === 'success') {
                         $('#editModal').modal('show');
-                        $("#edit_modal_id").val(data.post.id_fuente_financiamiento);
-                        $("#edit_desc_fuente_financiamiento").val(data.post.desc_fuente_financiamiento);
+                        $("#edit_modal_id").val(data.post.id_ccnu);
+                        $("#edit_codigo_ccnu").val(data.post.codigo_ccnu);
+                        $("#edit_desc_ccnu").val(data.post.desc_ccnu);
                       } else {
                                 Command: toastr["error"](data.message)
 
@@ -309,18 +320,20 @@
     $(document).on("click", "#update", function(e) {
         e.preventDefault();
         var edit_id = $("#edit_modal_id").val();
-        var edit_desc_fuente_financiamiento = $("#edit_desc_fuente_financiamiento").val();
+        var edit_codigo_ccnu = $("#edit_codigo_ccnu").val();
+        var edit_desc_ccnu = $("#edit_desc_ccnu").val();
         //alert(edit_id);
-        if (edit_id == "" || edit_desc_fuente_financiamiento == "" ) {
+        if (edit_id == "" || edit_codigo_ccnu == "" || edit_desc_ccnu == "" ) {
             alert("debe ingresar un dato, REQUERIDO");
         } else {
                 $.ajax({
-                    url: "<?php echo base_url(); ?>index.php/Fuentefinanc/update",
+                    url: "<?php echo base_url(); ?>index.php/Fuentefinanc/updateccnu",
                 type: "post",
                 dataType: "json",
                 data: {
                     edit_id: edit_id,
-                    edit_desc_fuente_financiamiento: edit_desc_fuente_financiamiento,
+                    edit_codigo_ccnu: edit_codigo_ccnu,
+                    edit_desc_ccnu: edit_desc_ccnu
                    
                 },
                 success: function(data) {

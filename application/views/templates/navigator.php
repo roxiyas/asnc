@@ -81,6 +81,31 @@
 									<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>Fuente de Financiamiento
 								</a>
 							</li>
+							<li>
+								<a href="<?=base_url()?>index.php/Fuentefinanc/alicuotaiva">
+									<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>Alicuota
+								</a>
+							</li>
+							<li>
+								<a href="<?=base_url()?>index.php/Fuentefinanc/partidap">
+									<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>Partida Presupuestaria
+								</a>
+							</li>
+							<li>
+								<a href="<?=base_url()?>index.php/Fuentefinanc/centra">
+									<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>Acción Centralizada
+								</a>
+							</li>
+							<li>
+								<a href="<?=base_url()?>index.php/Fuentefinanc/und">
+									<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>Unidad de Medida
+								</a>
+							</li>
+							<li>
+								<a href="<?=base_url()?>index.php/Fuentefinanc/ccnu">
+									<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>CCNU
+								</a>
+							</li>
 						</ul>
 					</li>
 				</li>

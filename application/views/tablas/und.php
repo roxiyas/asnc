@@ -7,7 +7,7 @@
 		<div class="col-lg-12">
 			<div class="panel panel-inverse" data-sortable-id="form-validation-1">
 				<div class="panel-heading">
-					<h4 class="panel-title">Nueva Fuente de Fianciamiento</h4>
+					<h4 class="panel-title">Nueva Unidad de Medida</h4>
 				</div>
 				<div class="row">
              <div class="col-md-12 mt-2">
@@ -23,7 +23,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Crear Fuente de Financiamiento</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Crear Unidad de Medida</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -31,8 +31,8 @@
                             <div class="modal-body">
                                 <form action="" method="post" id="form">
                                     <div class="form-group">
-                                        <label for="">desc_fuente_financiamiento</label>
-                                        <input type="text" class="form-control" id="desc_fuente_financiamiento">
+                                        <label for="">Descripción Unidad de medida</label>
+                                        <input type="text" class="form-control" id="desc_unidad_medida">
                                     </div>
                                    
                                 </form>
@@ -61,7 +61,7 @@
                                     <input type="hidden" id="edit_modal_id">
                                     <div class="form-group">
                                         <label for="">Descripción</label>
-                                        <input type="text" class="form-control" id="edit_desc_fuente_financiamiento">
+                                        <input type="text" class="form-control" id="edit_desc_unidad_medida">
                                     </div>
                                     
                                 </form>
@@ -104,19 +104,19 @@
     $(document).on('click', '#add', function(e) {
         e.preventDefault();
       //  alert("test");
-       var desc_fuente_financiamiento = $("#desc_fuente_financiamiento").val();
+       var desc_unidad_medida = $("#desc_unidad_medida").val();
        var id_usuario = 1; //esto debo arreglar
        var fecha = '12/15/2020'; //esto debo arreglar
-       if (desc_fuente_financiamiento == "" ) {
+       if (desc_unidad_medida == "" ) {
             alert("debe ingresar un dato, REQUERIDO");
         } else {
      //  alert(name);
                         $.ajax({
-                            url: "<?=base_url()?>index.php/Fuentefinanc/save",
+                            url: "<?=base_url()?>index.php/Fuentefinanc/saveund",
                             type: "post",
                             dataType: "json",
                             data: {
-                                desc_fuente_financiamiento: desc_fuente_financiamiento,
+                                desc_unidad_medida: desc_unidad_medida,
                                 id_usuario: id_usuario,
                                 fecha: fecha
                             
@@ -175,7 +175,7 @@
 });
             function fetch() {
                                     $.ajax({
-                                        url: "<?=base_url()?>index.php/Fuentefinanc/fetch",
+                                        url: "<?=base_url()?>index.php/Fuentefinanc/fetchund",
                                         type: "get",
                                         dataType: "json",
                                         success: function(data) {
@@ -184,10 +184,10 @@
                                             for (var key in data) {
                                                 tbody += "<tr>";
                                                 tbody += "<td>" + i++ + "</td>";
-                                                tbody += "<td>" + data[key]['desc_fuente_financiamiento'] + "</td>";
+                                                tbody += "<td>" + data[key]['desc_unidad_medida'] + "</td>";
                                                 tbody += `<td>
-                                                                <a href="#" id="del" class="btn btn-sm btn-outline-danger" value="${data[key]['id_fuente_financiamiento']}"><i class="fas fa-trash-alt"></i></a>
-                                                                <a href="#" id="edit" class="btn btn-sm btn-outline-info" value="${data[key]['id_fuente_financiamiento']}"><i class="fas fa-edit"></i></a>
+                                                                <a href="#" id="del" class="btn btn-sm btn-outline-danger" value="${data[key]['id_unidad_medida']}"><i class="fas fa-trash-alt"></i></a>
+                                                                <a href="#" id="edit" class="btn btn-sm btn-outline-info" value="${data[key]['id_unidad_medida']}"><i class="fas fa-edit"></i></a>
                                                             </td>`;
                                                 tbody += "<tr>";
                                             }
@@ -227,7 +227,7 @@
                                     if (result.value) {
 
                                     $.ajax({
-                                        url: "<?php echo base_url(); ?>index.php/Fuentefinanc/delete",
+                                        url: "<?php echo base_url(); ?>index.php/Fuentefinanc/deleteund",
                                         type: "post",
                                         dataType: "json",
                                         data: {
@@ -269,7 +269,7 @@
         } 
         else {
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/Fuentefinanc/edit",
+                url: "<?php echo base_url(); ?>index.php/Fuentefinanc/editund",
                 type: "post",
                 dataType: "json",
                 data: {
@@ -279,8 +279,8 @@
                     //console.log(data);
                     if (data.response === 'success') {
                         $('#editModal').modal('show');
-                        $("#edit_modal_id").val(data.post.id_fuente_financiamiento);
-                        $("#edit_desc_fuente_financiamiento").val(data.post.desc_fuente_financiamiento);
+                        $("#edit_modal_id").val(data.post.id_unidad_medida);
+                        $("#edit_desc_unidad_medida").val(data.post.desc_unidad_medida);
                       } else {
                                 Command: toastr["error"](data.message)
 
@@ -309,18 +309,18 @@
     $(document).on("click", "#update", function(e) {
         e.preventDefault();
         var edit_id = $("#edit_modal_id").val();
-        var edit_desc_fuente_financiamiento = $("#edit_desc_fuente_financiamiento").val();
+        var edit_desc_unidad_medida = $("#edit_desc_unidad_medida").val();
         //alert(edit_id);
-        if (edit_id == "" || edit_desc_fuente_financiamiento == "" ) {
+        if (edit_id == "" || edit_desc_unidad_medida == "" ) {
             alert("debe ingresar un dato, REQUERIDO");
         } else {
                 $.ajax({
-                    url: "<?php echo base_url(); ?>index.php/Fuentefinanc/update",
+                    url: "<?php echo base_url(); ?>index.php/Fuentefinanc/updateund",
                 type: "post",
                 dataType: "json",
                 data: {
                     edit_id: edit_id,
-                    edit_desc_fuente_financiamiento: edit_desc_fuente_financiamiento,
+                    edit_desc_unidad_medida: edit_desc_unidad_medida,
                    
                 },
                 success: function(data) {

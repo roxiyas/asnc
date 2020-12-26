@@ -7,7 +7,7 @@
 		<div class="col-lg-12">
 			<div class="panel panel-inverse" data-sortable-id="form-validation-1">
 				<div class="panel-heading">
-					<h4 class="panel-title">Nueva Fuente de Fianciamiento</h4>
+					<h4 class="panel-title">Nuevo Alicuota</h4>
 				</div>
 				<div class="row">
              <div class="col-md-12 mt-2">
@@ -23,7 +23,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Crear Fuente de Financiamiento</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Crear Alicuota</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -31,8 +31,12 @@
                             <div class="modal-body">
                                 <form action="" method="post" id="form">
                                     <div class="form-group">
-                                        <label for="">desc_fuente_financiamiento</label>
-                                        <input type="text" class="form-control" id="desc_fuente_financiamiento">
+                                        <label for="">desc_alicuota_iva</label>
+                                        <input type="text" class="form-control" id="desc_alicuota_iva" placeholder="Colocar la Expresión en Decimal es decir 0.12">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">desc_porcentaj</label>
+                                        <input type="text" class="form-control" id="desc_porcentaj" placeholder="Colocar la Expresión en Porcentaje es decir 12%">
                                     </div>
                                    
                                 </form>
@@ -60,10 +64,13 @@
                                 <form action="" method="post" id="update_form">
                                     <input type="hidden" id="edit_modal_id">
                                     <div class="form-group">
-                                        <label for="">Descripción</label>
-                                        <input type="text" class="form-control" id="edit_desc_fuente_financiamiento">
+                                        <label for="">desc_alicuota_iva</label>
+                                        <input type="text" class="form-control" id="edit_desc_alicuota_iva">
                                     </div>
-                                    
+                                    <div class="form-group">
+                                        <label for="">desc_porcentaj</label>
+                                        <input type="text" class="form-control" id="edit_desc_porcentaj">
+                                    </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -83,7 +90,7 @@
                                     <th>Id</th>
                                     <th>Descripción</th>
                                     
-                                    <th>Action</th>
+                                    <th>Acción</th>
                                 </tr>
                             </thead>
                             <tbody id="tbody">
@@ -104,23 +111,24 @@
     $(document).on('click', '#add', function(e) {
         e.preventDefault();
       //  alert("test");
-       var desc_fuente_financiamiento = $("#desc_fuente_financiamiento").val();
+       var desc_alicuota_iva = $("#desc_alicuota_iva").val();
+       var desc_porcentaj = $("#desc_porcentaj").val();
        var id_usuario = 1; //esto debo arreglar
        var fecha = '12/15/2020'; //esto debo arreglar
-       if (desc_fuente_financiamiento == "" ) {
+       if (desc_alicuota_iva == "" || desc_porcentaj == "") {
             alert("debe ingresar un dato, REQUERIDO");
         } else {
-     //  alert(name);
+      //alert(desc_alicuota_iva);
                         $.ajax({
-                            url: "<?=base_url()?>index.php/Fuentefinanc/save",
+                            url: "<?=base_url()?>index.php/Fuentefinanc/savealicuota",
                             type: "post",
                             dataType: "json",
                             data: {
-                                desc_fuente_financiamiento: desc_fuente_financiamiento,
+                                desc_alicuota_iva: desc_alicuota_iva,
+                                desc_porcentaj: desc_porcentaj,
                                 id_usuario: id_usuario,
                                 fecha: fecha
-                            
-                            },
+                             },
                             success: function(data) {
                                 fetch();
                                 if (data.response == "success") {
@@ -175,7 +183,7 @@
 });
             function fetch() {
                                     $.ajax({
-                                        url: "<?=base_url()?>index.php/Fuentefinanc/fetch",
+                                        url: "<?=base_url()?>index.php/Fuentefinanc/fetchalicuota",
                                         type: "get",
                                         dataType: "json",
                                         success: function(data) {
@@ -184,10 +192,11 @@
                                             for (var key in data) {
                                                 tbody += "<tr>";
                                                 tbody += "<td>" + i++ + "</td>";
-                                                tbody += "<td>" + data[key]['desc_fuente_financiamiento'] + "</td>";
+                                                tbody += "<td>" + data[key]['desc_alicuota_iva'] + "</td>";
+                                                tbody += "<td>" + data[key]['desc_porcentaj'] + "</td>";
                                                 tbody += `<td>
-                                                                <a href="#" id="del" class="btn btn-sm btn-outline-danger" value="${data[key]['id_fuente_financiamiento']}"><i class="fas fa-trash-alt"></i></a>
-                                                                <a href="#" id="edit" class="btn btn-sm btn-outline-info" value="${data[key]['id_fuente_financiamiento']}"><i class="fas fa-edit"></i></a>
+                                                                <a href="#" id="del" class="btn btn-sm btn-outline-danger" value="${data[key]['id_alicuota_iva']}"><i class="fas fa-trash-alt"></i></a>
+                                                                <a href="#" id="edit" class="btn btn-sm btn-outline-info" value="${data[key]['id_alicuota_iva']}"><i class="fas fa-edit"></i></a>
                                                             </td>`;
                                                 tbody += "<tr>";
                                             }
@@ -202,7 +211,7 @@
 
                        // alert("delet");
                             var del_id = $(this).attr("value");
-                           // alert(del_id);
+                          // alert(del_id);
                            if (del_id == "") {
                                 alert("Delete id required");
                          } else {                           
@@ -227,7 +236,7 @@
                                     if (result.value) {
 
                                     $.ajax({
-                                        url: "<?php echo base_url(); ?>index.php/Fuentefinanc/delete",
+                                        url: "<?php echo base_url(); ?>index.php/Fuentefinanc/deletealicuota",
                                         type: "post",
                                         dataType: "json",
                                         data: {
@@ -269,7 +278,7 @@
         } 
         else {
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/Fuentefinanc/edit",
+                url: "<?php echo base_url(); ?>index.php/Fuentefinanc/editalicuota",
                 type: "post",
                 dataType: "json",
                 data: {
@@ -278,9 +287,10 @@
                 success: function(data) {
                     //console.log(data);
                     if (data.response === 'success') {
-                        $('#editModal').modal('show');
-                        $("#edit_modal_id").val(data.post.id_fuente_financiamiento);
-                        $("#edit_desc_fuente_financiamiento").val(data.post.desc_fuente_financiamiento);
+                        $('#editModal').modal('show');  
+                        $("#edit_modal_id").val(data.post.id_alicuota_iva);
+                        $("#edit_desc_alicuota_iva").val(data.post.desc_alicuota_iva);
+                        $("#edit_desc_porcentaj").val(data.post.desc_porcentaj);
                       } else {
                                 Command: toastr["error"](data.message)
 
@@ -309,23 +319,25 @@
     $(document).on("click", "#update", function(e) {
         e.preventDefault();
         var edit_id = $("#edit_modal_id").val();
-        var edit_desc_fuente_financiamiento = $("#edit_desc_fuente_financiamiento").val();
-        //alert(edit_id);
-        if (edit_id == "" || edit_desc_fuente_financiamiento == "" ) {
-            alert("debe ingresar un dato, REQUERIDO");
+        var edit_desc_alicuota_iva = $("#edit_desc_alicuota_iva").val();
+        var edit_desc_porcentaj = $("#edit_desc_porcentaj").val();
+       // alert(edit_id);
+        if (edit_id == ""  ) {
+            //alert("debe ingresar un dato, REQUERIDO");
         } else {
                 $.ajax({
-                    url: "<?php echo base_url(); ?>index.php/Fuentefinanc/update",
+                    url: "<?php echo base_url(); ?>index.php/Fuentefinanc/updatealicuota",
                 type: "post",
                 dataType: "json",
                 data: {
                     edit_id: edit_id,
-                    edit_desc_fuente_financiamiento: edit_desc_fuente_financiamiento,
+                    edit_desc_alicuota_iva: edit_desc_alicuota_iva,
+                    edit_desc_porcentaj: edit_desc_porcentaj
                    
                 },
                 success: function(data) {
                     fetch();
-                   // console.log(data);
+                    console.log(data);
                    if (data.response === 'success') {
                         $('#editModal').modal('hide');
                         Command: toastr["success"](data.message)
