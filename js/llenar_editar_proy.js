@@ -4,9 +4,6 @@ if ($('#id_programacion').val().length != " "){
     var id_p_programacion = separar['0'];
     var id_p_proyecto = separar['1'];
 
-    console.log(id_p_proyecto);
-    console.log(id_p_programacion);
-
     var base_url =window.location.origin+'/asnc/index.php/Programacion/ver_proy_editar';
     // var base_url = '/index.php/Programacion/ver_proy_editar';
     $.ajax({
@@ -30,28 +27,46 @@ if ($('#id_programacion').val().length != " "){
                         <td>${value.desc_partida_presupuestaria}<input type="text" name="des_par_presupuestaria_ff[]" id="ins-type-${increment}" hidden value="${ value.desc_partida_presupuestaria}"></td>
                         <td>${value.id_estado}<input type="text" name="id_estado[]" id="ins-subtype-${increment}" hidden value="${value.id_estado} "></td>
                         <td>${value.desc_fuente_financiamiento}<input type="text" hidden name="fuente_financiamiento[]" id="ins-pres-${increment}" value="${value.id_fuente_financiamiento}"></td>
-                        <td>${value.porcentaje}<input type="text" hidden name="porcentaje[]" id="ins-pres-${increment}" value="${value.porcentaje}"></td>
+                        <td>${value.porcentaje}<input type="text" hidden name="porcentaje[]" id="ins-pres-${increment}" value="${value.porcentaje}">
+                        </td>
                     `;
 
-                    var cellremove_medBtn = createCell();
-                    cellremove_medBtn.appendChild(createremove_medBtn())
-                    newRow.appendChild(cellremove_medBtn);
+                    var cellremove_ffBtn = createCell();
+                    cellremove_ffBtn.appendChild(createremove_ffBtn())
+            		newRow.appendChild(cellremove_ffBtn);
+
+                    //
+                    // var cell_editar = createCell();
+                    // cell_editar.appendChild(editar())
+            		// newRow.appendChild(cell_editar);
 
                     document.querySelector('#target_ff tbody').appendChild(newRow);
 
-                    function remove_med() {
+                    function remove_ff() {
                 	       var row = this.parentNode.parentNode;
                            document.querySelector('#target_ff tbody')
                            .removeChild(row);
                     }
+                    //
+                    // function editar() {
+                	//        $('#myModal').modal('show'); // abrir
+                    // }
 
-                    function createremove_medBtn() {
-                        var btnremove_med = document.createElement('button');
-                        btnremove_med.className = 'btn btn-xs btn-danger';
-                        btnremove_med.onclick = remove_med;
-                        btnremove_med.innerText = 'Descartar';
-                        return btnremove_med;
+                    function createremove_ffBtn() {
+                        var btnremove_ff = document.createElement('button');
+                        btnremove_ff.className = 'btn btn-xs btn-danger';
+                        btnremove_ff.onclick = remove_ff;
+                        btnremove_ff.innerText = 'Descartar';
+                        return btnremove_ff;
                     }
+                    //
+                    // function editar() {
+                    //     var btn_editar = document.createElement('button');
+                    //     btn_editar.className = 'btn btn-xs btn-yellow';
+                    //     btn_editar.onclick = editar;
+                    //     btn_editar.innerText = 'Editar';
+                    //     return btn_editar;
+                    // }
                 });
             }
         }
@@ -100,6 +115,9 @@ if ($('#id_programacion').val().length != " "){
                         <td>${value.alicuota_iva}<input type="text" hidden name="id_alicuota_iva[]" id="ins-pres-${increment}" value="${value.alicuota_iva}"></td>
                         <td>${value.iva_estimado}<input type="text" hidden name="iva_estimado[]" id="ins-pres-${increment}" value="${value.iva_estimado}"></td>
                         <td>${value.monto_estimado}<input type="text" hidden name="monto_estimado[]" id="ins-pres-${increment}" value="${value.monto_estimado}"></td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-xs" data-toggle="modal" id="editarrrrr" onclick="editar_modal(${value.id_p_items});" data-target="#myModal"><i class="fas fa-lg fa-fw fa-edit"></i></button>
+                        </td>
                         `;
 
                         var cellremove_medBtn = createCell();
@@ -126,3 +144,28 @@ if ($('#id_programacion').val().length != " "){
             }
         })
     }
+
+
+function editar_modal(id){
+    var id_items_proy = id
+
+    var base_url =window.location.origin+'/asnc/index.php/Programacion/cons_items_proy';
+
+    $.ajax({
+        url:base_url,
+        method: 'post',
+        data: {id_items_proy: id_items_proy},
+        dataType: 'json',
+        success: function(response){
+            $('#id_items').val(id);
+            $('#id_partida').html(response['desc_partida_presupuestaria']);
+            $('#ccnu').val(response['desc_ccnu']);
+            $('#fecha_desde_e').val(response['fecha_desde']);
+            $('#fecha_hasta_e').val(response['fecha_hasta']);
+            $('#esp').val(response['especificacion']);
+
+            console.log(response);
+        }
+
+    })
+}

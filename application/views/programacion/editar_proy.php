@@ -73,14 +73,14 @@
                             </div>
                             <div class="form-group col-3">
                                 <label>Porcentaje<b style="color:red">*</b></label>
-                                    <input id="porcentaje" type="text" class="form-control">
+                                    <input id="porcentaje" type="text" class="form-control" onblur="porc();">
                             </div>
                             <div class="col-12">
                                 <h5 class="text-center"><b style="color:red;">NOTA:</b> Debe llenar todos lo items para llenar la tabla.</h5>
                             </div>
                             <div class="col-5"></div>
                             <div class="col-7 mt-4">
-                                <button type="button" onclick="agregar_ff(this);" class="btn btn-lg btn-default">
+                                <button type="button" onclick="agregar_ff(this);" class="btn btn-lg btn-default"  id="btn_agregar" name="btn_agregar">
                                     Agregar
                                 </button>
                             </div>
@@ -144,7 +144,7 @@
                             </div>
                             <div class="form-group col-6">
                                 <label>Unidad de Medida <b style="color:red">*</b></label><br>
-                                <select  id="id_unidad_medida" class="form-control default-select2">
+                                <select  id="id_unidad_medida" name="id_unidad_medida" class="form-control default-select2">
                                     <option value="">SELECCIONE</option>
                                     <?php foreach ($unid as $data): ?>
                                         <option value="<?=$data['id_unidad_medida']?>/<?=$data['desc_unidad_medida']?>"><?=$data['desc_unidad_medida']?></option>
@@ -153,19 +153,19 @@
                             </div>
                             <div class="form-group col-2">
                                 <label>I<b style="color:red">*</b></label>
-                                <input id="i" name="I" type="text" onblur="calculo();" placeholder="0" class="form-control" onkeypress="return valideKey(event);" disabled>
+                                <input id="i" name="i" type="text" onblur="calculo();" value="0" class="form-control" onkeypress="return valideKey(event);" disabled>
                             </div>
                             <div class="form-group col-2">
                                 <label>II<b style="color:red">*</b></label>
-                                <input id="ii" name="II" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
+                                <input id="ii" name="ii" type="text" onblur="calculo();" value="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
                             </div>
                             <div class="form-group col-2">
                                 <label>III<b style="color:red">*</b></label>
-                                <input id="iii" name="III" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
+                                <input id="iii" name="iii" type="text" onblur="calculo();" value="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
                             </div>
                             <div class="form-group col-2">
                                 <label>IV<b style="color:red">*</b></label>
-                                <input id="iv" name="IV" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
+                                <input id="iv" name="iv" type="text" onblur="calculo();" value="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
                             </div>
                             <div class="form-group col-4">
                                 <label>Cantd. Total Distribuir <b style="color:red">*</b></label>
@@ -220,7 +220,7 @@
                                 <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                             </div>
                             <div class="col-12 text-center">
-                                <button type="button" onclick="agregar_ccnu(this);" style="background-color:#4caa9d;color:white;" class="btn btn-circle waves-effect btn-lg waves-circle waves-float">
+                                <button type="button" onclick="agregar_ccnu(this);" class="btn btn-lg btn-default">
                                     Agregar
                                 </button>
                             </div>
@@ -229,7 +229,7 @@
                             <div class="table-responsive mt-4">
                                 <h5 class="text-center">Nota: si desea editar una fila, debe <b>Descartar</b> y volver <b>Agregar</b>.</h5>
                                 <table id="target_req" class="table table-bordered table-hover">
-                                    <thead style="background:#4caa9d;">
+                                    <thead style="background:#e4e7e8;">
                                         <tr class="text-center">
                                             <th>Partida Pres.</th>
                                             <th>CCNU</th>
@@ -246,15 +246,17 @@
                                             <th>Monto Iva Est.</th>
                                             <th>Monto Total Est.</th>
                                             <th>Acción</th>
+                                            <th>Acción</th>
                                         </tr>
                                     </thead>
-                                    <tbody></tbody>
+                                    <tbody>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
                         <!--////////////////////////////SEGUNDA PARTE DE LA CARGA -->
                         <div class="col-12 text-center mt-3">
-                            <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" name="button">Guardarrrr</button>
+                            <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" id="btn_editar" name="button">Guardarrrr</button>
                         </div>
                     </div>
                 </div>
@@ -262,12 +264,37 @@
         </div>
     </div>
 </div>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+          <input type="text" name="id_items" id="id_items" value="">
+            <h5 id="id_partida"></h5>
+            <input type="text" name="ccnu" id="ccnu">
+            <input type="date" name="fecha_desde_e" id="fecha_desde_e">
+            <input type="date" name="fecha_hasta_e" id="fecha_hasta_e">
+            <input type="text" name="esp" id="esp">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 <script src="<?=base_url()?>/js/llenar_editar_proy.js"></script>
 <script src="<?=base_url()?>/js/calculos_edit.js"></script>
 <script src="<?=base_url()?>/js/calculos2.js"></script>
 <script src="<?=base_url()?>/js/calculos3.js"></script>
 <script src="<?=base_url()?>/js/dependientes.js"></script>
-<script src="<?=base_url()?>/js/agregar_proyecto.js"></script>
+<script src="<?=base_url()?>/js/agregar_proyecto_edit.js"></script>
 <script src="<?=base_url()?>/js/agregar_proyecto_ff.js"></script>
 
 <script src="<?=base_url()?>/js/agregar_acc_centralizada_ff.js"></script>

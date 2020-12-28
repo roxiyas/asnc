@@ -13,8 +13,9 @@ function porc(){
         }, function(){
             swal("Deleted!", "Your imaginary file has been deleted.", "success");
         });
-        $('#ueba').attr("disabled", true);
-    }else if (porcentaje < 100) {
+        $('#btn_agregar').attr("disabled", true);
+        $("#btn_editar").prop('disabled', true);
+    }else if (porcentaje < 0) {
         swal({
             title: "¡ATENCION!",
             text: "El porcentaje no puede ser menor a 0.",
@@ -26,9 +27,12 @@ function porc(){
         }, function(){
             swal("Deleted!", "Your imaginary file has been deleted.", "success");
         });
-        $('#ueba').attr("disabled", true);
+        $('#btn_agregar').attr("disabled", true);
+        $("#btn_editar").prop('disabled', true);
+
     }else{
-        $('#ueba').attr("disabled", false);
+        $('#btn_agregar').prop("disabled", false);
+        $('#btn_editar').prop("disabled", false);
     }
 }
 
@@ -138,14 +142,16 @@ function verif_d(){
         $("#especificacion").prop('disabled', true);
         $("#id_unidad_medida").prop('disabled', true);
         $("#precio_total").prop('disabled', true);
-        $("#I").prop('disabled', true);
-        $("#II").prop('disabled', true);
-        $("#III").prop('disabled', true);
-        $("#IV").prop('disabled', true);
+        $("#i").prop('disabled', true);
+        $("#ii").prop('disabled', true);
+        $("#iii").prop('disabled', true);
+        $("#iv").prop('disabled', true);
+        $("#btn_editar").prop('disabled', true);
     }else {
         $("#especificacion").prop('disabled', false);
         $("#id_unidad_medida").prop('disabled', false);
         $("#precio_total").prop('disabled', false);
+        $("#btn_editar").prop('disabled', false);
     }
 }
 
@@ -182,15 +188,11 @@ function verif_h(){
     }
 }
 
-function habilitar_trim() {
-    console.log('noooooo');
+function habilitar_trim(){
     var fecha_desde = $('#fecha_desde').val();
     var mes_d = fecha_desde.split("/")[1];
     var fecha_hasta = $('#fecha_hasta').val();
     var mes_h = fecha_hasta.split("/")[1];
-
-    console.log(mes_d);
-    console.log(mes_h);
 
     if (mes_d >= 01 && mes_h <= 03) {
         $("#i").prop('disabled', false);

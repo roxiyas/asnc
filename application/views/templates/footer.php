@@ -1,6 +1,6 @@
 <!-- ================== BEGIN BASE JS ================== -->
 <!-- <script src="<?=base_url()?>Plantilla/admin/assets/plugins/jquery/jquery-3.3.1.min.js"></script> -->
-<script src="<?=base_url()?>Plantilla/admin/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+<!-- <script src="<?=base_url()?>Plantilla/admin/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script> -->
 <script src="<?=base_url()?>Plantilla/admin/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="<?=base_url()?>Plantilla/admin/assets/plugins/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 <!--[if lt IE 9]>
@@ -65,7 +65,7 @@
 		FormPlugins.init();
 	});
 </script>
-<script>
+<!-- <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -74,7 +74,7 @@
   ga('create', 'UA-53034621-1', 'auto');
   ga('send', 'pageview');
 
-</script>
+</script> -->
 </body>
 
 </html>

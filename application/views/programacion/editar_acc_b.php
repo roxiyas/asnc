@@ -241,7 +241,7 @@
 <script src="<?=base_url()?>/js/agregar_acc_centralizada.js"></script>
 <script src="<?=base_url()?>/js/agregar_acc_centralizada_ff.js"></script>
 
-<script src="<?=base_url()?>/js/calculos.js"></script>
+<!-- <script src="<?=base_url()?>/js/calculos.js"></script> -->
 <script src="<?=base_url()?>/js/calculos2.js"></script>
 <script src="<?=base_url()?>/js/calculos3.js"></script>
 <script type="text/javascript">

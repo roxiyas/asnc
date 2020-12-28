@@ -24,8 +24,7 @@
             return $query->row_array();
         }
 
-        // PROYECTO
-
+        // OBRA / SERVICIO
         public function consultar_proyectos($id_programacion){
             $this->db->select('pp.id_p_proyecto,
                                pp.nombre_proyecto,
@@ -344,10 +343,12 @@
                             'fecha_hasta'                => $p_items['fecha_hasta'][$i],
                             'especificacion'             => $p_items['especificacion'][$i],
                             'id_unidad_medida'           => $p_items['id_unidad_medida'][$i],
+                            'cantidad'                   => 0,
                             'i'                          => $p_items['i'][$i],
                             'ii'                         => $p_items['ii'][$i],
                             'iii'                        => $p_items['iii'][$i],
                             'iv'                         => $p_items['iv'][$i],
+                            'cant_total_distribuir'      => 0,
                             'costo_unitario'             => 0,
                             'precio_total'               => $p_items['precio_total'][$i],
                             'alicuota_iva'               => $p_items['id_alicuota_iva'][$i],
@@ -435,6 +436,39 @@
                     }
             }
             return true;
+        }
+
+        public function cons_items_proy($data){
+            $this->db->select('pi2.id_p_items,
+                        	   pi2.id_enlace,
+                               pi2.id_partidad_presupuestaria,
+                               pp.desc_partida_presupuestaria,
+                               pp.codigopartida_presupuestaria,
+                        	   pi2.id_ccnu,
+                        	   c2.desc_ccnu,
+                        	   pi2.fecha_desde,
+                        	   pi2.fecha_hasta,
+                        	   pi2.especificacion,
+                               pi2.id_unidad_medida,
+                        	   um.desc_unidad_medida,
+                               pi2.cantidad,
+                               pi2.costo_unitario,
+                        	   pi2.i,
+                        	   pi2.ii,
+                        	   pi2.iii,
+                        	   pi2.iv,
+                               pi2.cant_total_distribuir,
+                        	   pi2.precio_total,
+                        	   pi2.alicuota_iva,
+                               pi2.iva_estimado,
+                               pi2.monto_estimado');
+            $this->db->join('ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
+            $this->db->join('partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
+            $this->db->join('unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
+            $this->db->where('pi2.id_p_items', $data['id_items_proy']);
+            $this->db->where('pi2.id_p_acc', 0);
+            $query = $this->db->get('p_items pi2');
+            return $query->row_array();
         }
 
         // ACCION CENTRALIZADA
@@ -634,7 +668,6 @@
             return $query->result_array();
         }
 
-
         public function inf_2_acc($data){
             $this->db->select('pf.id_enlace,
                         	   pf.id_partidad_presupuestaria,
@@ -682,7 +715,6 @@
             $query = $this->db->get('p_items pi2');
             return $query->result_array();
         }
-
 
         public function inf_3_acc_b($data){
             $this->db->select('pi2.id_p_items,

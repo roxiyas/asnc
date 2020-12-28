@@ -14,7 +14,7 @@ function porc(){
             swal("Deleted!", "Your imaginary file has been deleted.", "success");
         });
         $('#ueba').attr("disabled", true);
-    }else if (porcentaje < 100) {
+    }else if (porcentaje < 0) {
         swal({
             title: "¡ATENCION!",
             text: "El porcentaje no puede ser menor a 0.",
@@ -138,10 +138,6 @@ function verif_d(){
         $("#especificacion").prop('disabled', true);
         $("#id_unidad_medida").prop('disabled', true);
         $("#precio_total").prop('disabled', true);
-        $("#I").prop('disabled', true);
-        $("#II").prop('disabled', true);
-        $("#III").prop('disabled', true);
-        $("#IV").prop('disabled', true);
     }else {
         $("#especificacion").prop('disabled', false);
         $("#id_unidad_medida").prop('disabled', false);
@@ -171,10 +167,6 @@ function verif_h(){
         $("#especificacion").prop('disabled', true);
         $("#id_unidad_medida").prop('disabled', true);
         $("#precio_total").prop('disabled', true);
-        $("#I").prop('disabled', true);
-        $("#II").prop('disabled', true);
-        $("#III").prop('disabled', true);
-        $("#IV").prop('disabled', true);
     }else{
         $("#especificacion").prop('disabled', false);
         $("#id_unidad_medida").prop('disabled', false);
@@ -189,7 +181,7 @@ function habilitar_trim() {
     var mes_h = fecha_hasta.split("/")[1];
 
     if (mes_d >= 01 && mes_h <= 03) {
-        $("#II").prop('disabled', false);
+        $("#I").prop('disabled', false);
         $("#II").prop('disabled', true);
         $("#III").prop('disabled', true);
         $("#IV").prop('disabled', true);
@@ -209,7 +201,8 @@ function habilitar_trim() {
         $("#III").prop('disabled', false);
         $("#IV").prop('disabled', false);
     }
-    if (mes_d >= 04 && mes_h <= 06) {
+
+    if (mes_d >= 04 && mes_h <= 06){
         $("#I").prop('disabled', true);
         $("#II").prop('disabled', false);
         $("#III").prop('disabled', true);
@@ -243,10 +236,5 @@ function habilitar_trim() {
         $("#II").prop('disabled', true);
         $("#III").prop('disabled', true);
         $("#IV").prop('disabled', false);
-    }else {
-        $("#I").prop('disabled', true);
-        $("#II").prop('disabled', true);
-        $("#III").prop('disabled', true);
-        $("#IV").prop('disabled', true);
     }
 }

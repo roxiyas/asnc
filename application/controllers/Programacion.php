@@ -40,7 +40,7 @@ class Programacion extends CI_Controller {
 
     }
 
-    // PROYECTO
+    // OBAR / SERVICIO
     public function nueva_prog(){
         if(!$this->session->userdata('session'))
 		redirect('login');
@@ -369,7 +369,14 @@ class Programacion extends CI_Controller {
 		redirect('Programacion/nueva_prog?id='.$id_programacion);
     }
 
-    // ACCIÓN CENTRALIZADA
+    PUBLIC function cons_items_proy(){
+        if(!$this->session->userdata('session'))
+        redirect('login');
+		$data = $this->input->post();
+		$data = $this->Programacion_model->cons_items_proy($data);
+		echo json_encode($data);
+    }
+    // BIEN
 
     public function save_programacion_acc(){
         if(!$this->session->userdata('session'))

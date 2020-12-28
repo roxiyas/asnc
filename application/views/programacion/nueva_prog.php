@@ -48,7 +48,7 @@
                                         <a/>
                                         <a href="<?php echo base_url();?>index.php/programacion/editar_proy?id=<?php echo $ver_proyecto['id_p_proyecto'];?>/<?php echo $ver_proyecto['id_obj_comercial'];?>/<?php echo $ver_proyecto['id_programacion'];?>"
                                             class="button">
-                                            <i class="fas fa-lg fa-fw  fa-edit"></i>
+                                            <i class="fas fa-lg fa-fw fa-edit"></i>
                                         <a />
 
                                         <a href="<?php echo base_url();?>index.php/cms/eliminar_presentacion?id=<?php echo $ver_proyecto['id_programacion'];?>"

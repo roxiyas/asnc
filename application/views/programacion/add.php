@@ -189,19 +189,19 @@
                                         <div class="row mt-2">
                                             <div class="form-group col-2">
                                                 <label>I<b style="color:red">*</b></label>
-                                                <input id="I" name="I" type="text" onblur="calculo();" placeholder="0" class="form-control" onkeypress="return valideKey(event);" disabled>
+                                                <input id="I" name="I" type="text" onblur="calculo();" value="0" class="form-control" onkeypress="return valideKey(event);" disabled>
                                             </div>
                                             <div class="form-group col-2">
                                                 <label>II<b style="color:red">*</b></label>
-                                                <input id="II" name="II" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
+                                                <input id="II" name="II" type="text" onblur="calculo();" value="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
                                             </div>
                                             <div class="form-group col-2">
                                                 <label>III<b style="color:red">*</b></label>
-                                                <input id="III" name="III" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
+                                                <input id="III" name="III" type="text" onblur="calculo();" value="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
                                             </div>
                                             <div class="form-group col-2">
                                                 <label>IV<b style="color:red">*</b></label>
-                                                <input id="IV" name="IV" type="text" onblur="calculo();" placeholder="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
+                                                <input id="IV" name="IV" type="text" onblur="calculo();" value="0" class="form-control"  onkeypress="return valideKey(event);" disabled>
                                             </div>
                                             <div class="form-group col-4">
                                                 <label>Cantd. Total Distribuir <b style="color:red">*</b></label>
@@ -209,7 +209,6 @@
                                             </div>
                                         </div>
                                     </div>
-
 
                                     <div class="form-group col-4">
                                         <label>Precio Total <b style="color:red">*</b></label>

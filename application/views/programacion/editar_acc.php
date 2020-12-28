@@ -247,7 +247,7 @@
     </div>
 </div>
 <script src="<?=base_url()?>/js/llenar_editar_acc.js"></script>
-<script src="<?=base_url()?>/js/calculos.js"></script>
+<!-- <script src="<?=base_url()?>/js/calculos.js"></script> -->
 <script src="<?=base_url()?>/js/calculos2.js"></script>
 <script src="<?=base_url()?>/js/calculos3.js"></script>
 <script src="<?=base_url()?>/js/dependientes.js"></script>
