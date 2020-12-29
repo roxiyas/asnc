@@ -5,9 +5,9 @@ class Tablas_model extends CI_Model
     public function get_entries()
     {
         $query = $this->db->get('fuente_financiamiento');
-        // if (count($query->result()) > 0) {
-        return $query->result();
-        // }
+           if (count($query->result()) > 0) {
+             return $query->result();
+         }
     }
 
     public function saves($data)
@@ -167,9 +167,9 @@ class Tablas_model extends CI_Model
      public function get_ccnu()
      {
          $query = $this->db->get('ccnu');
-         // if (count($query->result()) > 0) {
+          if (count($query->result()) > 0) {
          return $query->result();
-         // }
+          }
      }
 
  public function save_ccnu($data)

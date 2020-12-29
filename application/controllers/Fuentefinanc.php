@@ -38,14 +38,17 @@ class Fuentefinanc extends CI_Controller {
 											echo json_encode($data);
 		}
 
-        public function fetch()
-	{
-		if ($this->input->is_ajax_request()) {
-			$posts = $this->Tablas_model->get_entries();
-			echo json_encode($posts);
-		} else {
-			echo "'No direct script access allowed'";
-		}
+        public function fetch()	{
+					if ($this->input->is_ajax_request()) {
+						if ($posts = $this->Tablas_model->get_entries()){
+						$data = array('responce' => 'success', 'posts' => $posts);
+						} else {
+							$data= array ('responce' => 'error', 'menssage' =>'falied to fetch data');
+						}
+						echo json_encode($data);
+					} else{
+						echo "'No direct script access allowed'";
+					}
 	}
 
         public function delete()
@@ -526,9 +529,13 @@ class Fuentefinanc extends CI_Controller {
 		public function fetchccnu()
 		{
 			if ($this->input->is_ajax_request()) {
-				$posts = $this->Tablas_model->get_ccnu();
-				echo json_encode($posts);
-			} else {
+				if ($posts = $this->Tablas_model->get_ccnu()){
+				$data = array('responce' => 'success', 'posts' => $posts);
+				} else {
+					$data= array ('responce' => 'error', 'menssage' =>'falied to fetch data');
+				}
+				echo json_encode($data);
+			} else{
 				echo "'No direct script access allowed'";
 			}
 		}
