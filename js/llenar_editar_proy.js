@@ -157,15 +157,70 @@ function editar_modal(id){
         data: {id_items_proy: id_items_proy},
         dataType: 'json',
         success: function(response){
+            console.log(response);
+
             $('#id_items').val(id);
-            $('#id_partida').html(response['desc_partida_presupuestaria']);
+            $('#cod_partida_pre').val(response['codigopartida_presupuestaria']);
+            $('#partida_pre').val(response['desc_partida_presupuestaria']);
             $('#ccnu').val(response['desc_ccnu']);
             $('#fecha_desde_e').val(response['fecha_desde']);
             $('#fecha_hasta_e').val(response['fecha_hasta']);
             $('#esp').val(response['especificacion']);
+            $('#unid_med').val(response['desc_unidad_medida']);
 
-            console.log(response);
+            $('#primero').val(response['i']);
+            $('#segundo').val(response['ii']);
+            $('#tercero').val(response['iii']);
+            $('#cuarto').val(response['iv']);
+
+            $('#prec_t').val(response['precio_total']);
+            $('#iva_e').val(response['alicuota_iva']);
+            $('#monto_iva_e').val(response['iva_estimado']);
+            $('#monto_tot_est').val(response['monto_estimado']);
         }
-
     })
+}
+
+function guardar_tabla(){
+    var id_items_proy = $('#id_items').val();
+    var partida_pre = $('#partida_pre').val();
+    var cod_partida_pre = $('#cod_partida_pre').val();
+    var ccnu = $('#ccnu').val();
+    var fecha_desde_e = $('#fecha_desde_e').val();
+    var fecha_hasta_e = $('#fecha_hasta_e').val();
+    var esp = $('#esp').val();
+    var unid_med = $('#unid_med').val();
+    var primero = $('#primero').val();
+    var segundo = $('#segundo').val();
+    var tercero = $('#tercero').val();
+    var cuarto = $('#cuarto').val();
+    var prec_t = $('#prec_t').val();
+    var iva_e = $('#iva_e').val();
+    var monto_iva_e = $('#monto_iva_e').val();
+    var monto_tot_est = $('#monto_tot_est').val();
+
+    var newRow = document.createElement('tr');
+    var increment = increment +1;
+    newRow.className='myTr';
+    newRow.innerHTML = `
+    <td>${cod_partida_pre}<input type="text" name="par_presupuestaria[]" id="ins-type-${increment}" hidden value="${cod_partida_pre}"></td>
+
+    <td>${ccnu}<input type="text" name="id_ccnu[]" id="ins-type-${increment}" hidden value="${ccnu}"></td>
+    <td>${fecha_desde_e}<input type="text" name="fecha_desde[]" id="ins-type-${increment}" hidden value="${fecha_desde_e}"></td>
+    <td>${fecha_hasta_e}<input type="text" name="fecha_hasta[]" id="ins-type-${increment}" hidden value="${fecha_hasta_e}"></td>
+
+    <td>${esp}<input type="text" name="especificacion[]" id="ins-subtype-${increment}" hidden value="${esp}"></td>
+    <td>${unid_med}<input type="text" name="id_unidad_medida[]" id="ins-subtype-${increment}" hidden value="${unid_med}"></td>
+
+    <td>${primero}<input type="text" hidden name="i[]" id="ins-pres-${increment}" value="${primero}"></td>
+    <td>${segundo}<input type="text" hidden name="ii[]" id="ins-pres-${increment}" value="${segundo}"></td>
+    <td>${tercero}<input type="text" hidden name="iii[]" id="ins-pres-${increment}" value="${tercero}"></td>
+    <td>${cuarto}<input type="text" hidden name="iv[]" id="ins-pres-${increment}" value="${cuarto}"></td>
+
+    <td>${prec_t}<input type="text" hidden name="precio_total[]" id="ins-pres-${increment}" value="${prec_t}"></td>
+    <td>${iva_e}<input type="text" hidden name="id_alicuota_iva[]" id="ins-pres-${increment}" value="${iva_e}"></td>
+    <td>${monto_iva_e}<input type="text" hidden name="iva_estimado[]" id="ins-pres-${increment}" value="${monto_iva_e}"></td>
+    <td>${monto_tot_est}<input type="text" hidden name="monto_estimado[]" id="ins-pres-${increment}" value="${monto_tot_est}"></td>
+    `;
+    document.querySelector('#target_req tbody').appendChild(newRow);
 }

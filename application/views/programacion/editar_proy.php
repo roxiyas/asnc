@@ -266,29 +266,86 @@
 </div>
 
 <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                        <input type="hidden" class="form-control" name="id_items" id="id_items">
+                    <div class="form-group col-4">
+                        <label>Cod. Partida Presupuestaria</label>
+                        <input id="cod_partida_pre" class="form-control" name="cod_partida_pre" class="form-control">
+                    </div>
+                    <div class="form-group col-8">
+                        <label>Partida Presupuestaria</label>
+                        <input id="partida_pre" class="form-control" name="partida_pre" class="form-control">
+                    </div>
+                    <div class="form-group col-6">
+                        <label>CCNU</label>
+                        <input type="text" class="form-control" name="ccnu" id="ccnu">
+                    </div>
+                    <div class="form-group col-3">
+                        <label>Fecha desde</label>
+                        <input type="date" class="form-control" name="fecha_desde_e" id="fecha_desde_e">
+                    </div>
+                    <div class="form-group col-3">
+                        <label>Fecha hasta</label>
+                        <input type="date" class="form-control" name="fecha_hasta_e" id="fecha_hasta_e">
+                    </div>
+                    <div class="form-group col-9">
+                        <label>Especificación</label>
+                        <input type="text" class="form-control" name="esp" id="esp">
+                    </div>
+                    <div class="form-group col-3">
+                        <label>Unidad de Medida</label>
+                        <input type="text" class="form-control" name="unid_med" id="unid_med">
+                    </div>
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-          <input type="text" name="id_items" id="id_items" value="">
-            <h5 id="id_partida"></h5>
-            <input type="text" name="ccnu" id="ccnu">
-            <input type="date" name="fecha_desde_e" id="fecha_desde_e">
-            <input type="date" name="fecha_hasta_e" id="fecha_hasta_e">
-            <input type="text" name="esp" id="esp">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+                    <div class="form-group col-3">
+                        <label>I Trimestre</label>
+                        <input type="text" class="form-control" name="primero" id="primero">
+                    </div>
+                    <div class="form-group col-3">
+                        <label>II Trimestre</label>
+                        <input type="text" class="form-control" name="segundo" id="segundo">
+                    </div>
+                    <div class="form-group col-3">
+                        <label>III Trimestre</label>
+                        <input type="text" class="form-control" name="tercero" id="tercero">
+                    </div>
+                    <div class="form-group col-3">
+                        <label>IV Trimestre</label>
+                        <input type="text" class="form-control" name="cuarto" id="cuarto">
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label>Precio Total</label>
+                        <input type="text" class="form-control" name="prec_t" id="prec_t">
+                    </div>
+                    <div class="form-group col-3">
+                        <label>Alicuota IVA est.</label>
+                        <input type="text" class="form-control" name="iva_e" id="iva_e">
+                    </div>
+                    <div class="form-group col-3">
+                        <label>IVA Estimado</label>
+                        <input type="text" class="form-control" name="monto_iva_e" id="monto_iva_e">
+                    </div>
+                    <div class="form-group col-3">
+                        <label>Monto Total Estimado</label>
+                        <input type="text" class="form-control" name="monto_tot_est" id="monto_tot_est">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="guardar_tabla();" data-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-
-  </div>
 </div>
+
 <script src="<?=base_url()?>/js/llenar_editar_proy.js"></script>
 <script src="<?=base_url()?>/js/calculos_edit.js"></script>
 <script src="<?=base_url()?>/js/calculos2.js"></script>
