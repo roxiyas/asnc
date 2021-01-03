@@ -160,7 +160,7 @@ class Tablas_model extends CI_Model
     }  
     public function update_und($data)
     {
-        return $this->db->update('unidad_medida', $data, array('id_unidad_medida' => $data['id_accion_centralizada']));
+        return $this->db->update('unidad_medida', $data, array('id_unidad_medida' => $data['id_unidad_medida']));
     } 
      //______________________________________________________________________________________________________________________________________________________________
 
