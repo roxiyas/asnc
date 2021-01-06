@@ -97,6 +97,7 @@ if ($('#id_programacion').val().length != " "){
                         var increment = increment +1;
                         newRow.className='myTr';
                         newRow.innerHTML = `
+                        <td>${value.id_p_items}<input type="text" name="id_p_items[]" id="ins-type-${increment}" hidden value="${value.id_p_items}"></td>
                         <td>${value.codigopartida_presupuestaria}<input type="text" name="par_presupuestaria[]" id="ins-type-${increment}" hidden value="${value.id_partidad_presupuestaria}"></td>
 
                         <td>${value.desc_ccnu}<input type="text" name="id_ccnu[]" id="ins-type-${increment}" hidden value="${value.id_ccnu}"></td>
@@ -145,10 +146,11 @@ if ($('#id_programacion').val().length != " "){
         })
     }
 
+var fila ; //para capturar el id de la fila
 
 function editar_modal(id){
-    var id_items_proy = id
 
+    var id_items_proy = id
     var base_url =window.location.origin+'/asnc/index.php/Programacion/cons_items_proy';
 
     $.ajax({
@@ -157,8 +159,6 @@ function editar_modal(id){
         data: {id_items_proy: id_items_proy},
         dataType: 'json',
         success: function(response){
-            console.log(response);
-
             $('#id_items').val(id);
             $('#cod_partida_pre').val(response['codigopartida_presupuestaria']);
             $('#partida_pre').val(response['desc_partida_presupuestaria']);
@@ -182,6 +182,7 @@ function editar_modal(id){
 }
 
 function guardar_tabla(){
+
     var id_items_proy = $('#id_items').val();
     var partida_pre = $('#partida_pre').val();
     var cod_partida_pre = $('#cod_partida_pre').val();
@@ -203,6 +204,7 @@ function guardar_tabla(){
     var increment = increment +1;
     newRow.className='myTr';
     newRow.innerHTML = `
+    <td>${id_items_proy}<input type="text" name="id_items_proy[]" id="ins-type-${increment}" hidden value="${id_items_proy}"></td>
     <td>${cod_partida_pre}<input type="text" name="par_presupuestaria[]" id="ins-type-${increment}" hidden value="${cod_partida_pre}"></td>
 
     <td>${ccnu}<input type="text" name="id_ccnu[]" id="ins-type-${increment}" hidden value="${ccnu}"></td>
@@ -221,6 +223,9 @@ function guardar_tabla(){
     <td>${iva_e}<input type="text" hidden name="id_alicuota_iva[]" id="ins-pres-${increment}" value="${iva_e}"></td>
     <td>${monto_iva_e}<input type="text" hidden name="iva_estimado[]" id="ins-pres-${increment}" value="${monto_iva_e}"></td>
     <td>${monto_tot_est}<input type="text" hidden name="monto_estimado[]" id="ins-pres-${increment}" value="${monto_tot_est}"></td>
+    <td>
+        <button type="button" class="btn btn-info btn-xs" data-toggle="modal" id="editarrrrr" onclick="editar_modal(${id_items_proy});" data-target="#myModal"><i class="fas fa-lg fa-fw fa-edit"></i></button>
+    </td>
     `;
     document.querySelector('#target_req tbody').appendChild(newRow);
 }

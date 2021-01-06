@@ -231,6 +231,7 @@
                                 <table id="target_req" class="table table-bordered table-hover">
                                     <thead style="background:#e4e7e8;">
                                         <tr class="text-center">
+                                            <th>ID</th>
                                             <th>Partida Pres.</th>
                                             <th>CCNU</th>
                                             <th>Fecha Desde</th>
@@ -256,7 +257,7 @@
                         </div>
                         <!--////////////////////////////SEGUNDA PARTE DE LA CARGA -->
                         <div class="col-12 text-center mt-3">
-                            <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" id="btn_editar" name="button">Guardarrrr</button>
+                            <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" id="btn_guardar" name="button">Guardar</button>
                         </div>
                     </div>
                 </div>
@@ -348,9 +349,11 @@
 
 <script src="<?=base_url()?>/js/llenar_editar_proy.js"></script>
 <script src="<?=base_url()?>/js/calculos_edit.js"></script>
+
 <script src="<?=base_url()?>/js/calculos2.js"></script>
 <script src="<?=base_url()?>/js/calculos3.js"></script>
 <script src="<?=base_url()?>/js/dependientes.js"></script>
+
 <script src="<?=base_url()?>/js/agregar_proyecto_edit.js"></script>
 <script src="<?=base_url()?>/js/agregar_proyecto_ff.js"></script>
 
