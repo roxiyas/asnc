@@ -27,7 +27,7 @@ function agregar_ccnu(button) {
 
 function remove_proy() {
 	var row = this.parentNode.parentNode;
-    document.querySelector('#target_req tbody').removeChild(row);
+  document.querySelector('#target_req tbody').removeChild(row);
 
 	$("#id_unidad_medida").val($("#id_unidad_medida").data("default-value"));
 	$("#id_alicuota_iva").val($("#id_alicuota_iva").data("default-value"));

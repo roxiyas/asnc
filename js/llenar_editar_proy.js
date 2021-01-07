@@ -183,49 +183,108 @@ function editar_modal(id){
 
 function guardar_tabla(){
 
-    var id_items_proy = $('#id_items').val();
-    var partida_pre = $('#partida_pre').val();
-    var cod_partida_pre = $('#cod_partida_pre').val();
-    var ccnu = $('#ccnu').val();
-    var fecha_desde_e = $('#fecha_desde_e').val();
-    var fecha_hasta_e = $('#fecha_hasta_e').val();
-    var esp = $('#esp').val();
-    var unid_med = $('#unid_med').val();
-    var primero = $('#primero').val();
-    var segundo = $('#segundo').val();
-    var tercero = $('#tercero').val();
-    var cuarto = $('#cuarto').val();
-    var prec_t = $('#prec_t').val();
-    var iva_e = $('#iva_e').val();
-    var monto_iva_e = $('#monto_iva_e').val();
-    var monto_tot_est = $('#monto_tot_est').val();
+    // var id_items_proy = $('#id_items').val();
+    // var partida_pre = $('#partida_pre').val();
+    // var cod_partida_pre = $('#cod_partida_pre').val();
+    // var ccnu = $('#ccnu').val();
+    // var fecha_desde_e = $('#fecha_desde_e').val();
+    // var fecha_hasta_e = $('#fecha_hasta_e').val();
+    // var esp = $('#esp').val();
+    // var unid_med = $('#unid_med').val();
+    // var primero = $('#primero').val();
+    // var segundo = $('#segundo').val();
+    // var tercero = $('#tercero').val();
+    // var cuarto = $('#cuarto').val();
+    // var prec_t = $('#prec_t').val();
+    // var iva_e = $('#iva_e').val();
+    // var monto_iva_e = $('#monto_iva_e').val();
+    // var monto_tot_est = $('#monto_tot_est').val();
 
-    var newRow = document.createElement('tr');
-    var increment = increment +1;
-    newRow.className='myTr';
-    newRow.innerHTML = `
-    <td>${id_items_proy}<input type="text" name="id_items_proy[]" id="ins-type-${increment}" hidden value="${id_items_proy}"></td>
-    <td>${cod_partida_pre}<input type="text" name="par_presupuestaria[]" id="ins-type-${increment}" hidden value="${cod_partida_pre}"></td>
+    event.preventDefault();
 
-    <td>${ccnu}<input type="text" name="id_ccnu[]" id="ins-type-${increment}" hidden value="${ccnu}"></td>
-    <td>${fecha_desde_e}<input type="text" name="fecha_desde[]" id="ins-type-${increment}" hidden value="${fecha_desde_e}"></td>
-    <td>${fecha_hasta_e}<input type="text" name="fecha_hasta[]" id="ins-type-${increment}" hidden value="${fecha_hasta_e}"></td>
+        swal.fire({
+            title: '¿Seguro que desea guardar el registro? Se editara en la Base de Datos',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: '¡Si, guardar!'
+        }).then((result) => {
+            if (result.value == true) {
+                var id_items_proy = $('#id_items').val();
+                var partida_pre = $('#partida_pre').val();
+                var cod_partida_pre = $('#cod_partida_pre').val();
+                var ccnu = $('#ccnu').val();
+                var fecha_desde_e = $('#fecha_desde_e').val();
+                var fecha_hasta_e = $('#fecha_hasta_e').val();
+                var esp = $('#esp').val();
+                var unid_med = $('#unid_med').val();
+                var primero = $('#primero').val();
+                var segundo = $('#segundo').val();
+                var tercero = $('#tercero').val();
+                var cuarto = $('#cuarto').val();
+                var prec_t = $('#prec_t').val();
+                var iva_e = $('#iva_e').val();
+                var monto_iva_e = $('#monto_iva_e').val();
+                var monto_tot_est = $('#monto_tot_est').val();
 
-    <td>${esp}<input type="text" name="especificacion[]" id="ins-subtype-${increment}" hidden value="${esp}"></td>
-    <td>${unid_med}<input type="text" name="id_unidad_medida[]" id="ins-subtype-${increment}" hidden value="${unid_med}"></td>
+                var base_url =window.location.origin+'/asnc/index.php/Programacion/editar_fila_ip';
 
-    <td>${primero}<input type="text" hidden name="i[]" id="ins-pres-${increment}" value="${primero}"></td>
-    <td>${segundo}<input type="text" hidden name="ii[]" id="ins-pres-${increment}" value="${segundo}"></td>
-    <td>${tercero}<input type="text" hidden name="iii[]" id="ins-pres-${increment}" value="${tercero}"></td>
-    <td>${cuarto}<input type="text" hidden name="iv[]" id="ins-pres-${increment}" value="${cuarto}"></td>
+                $.ajax({
+                    url:base_url,
+                    method: 'post',
+                    data: {id_items_proy: id_items_proy,
+                           partida_pre: partida_pre,
+                           cod_partida_pre: cod_partida_pre,
+                           ccnu: ccnu,
+                           fecha_desde_e: fecha_desde_e,
+                           fecha_hasta_e: fecha_hasta_e,
+                           esp: esp,
+                           unid_med: unid_med,
+                           primero: primero,
+                           segundo: segundo,
+                           tercero: tercero,
+                           cuarto: cuarto,
+                           prec_t: prec_t,
+                           iva_e : iva_e,
+                           monto_iva_e: monto_iva_e,
+                           monto_tot_est: monto_tot_est
+                    },
+                    dataType: 'json',
+                      success: function(response){
+                        console.log(response);
+                      }
+                  })
+              }
+        });
 
-    <td>${prec_t}<input type="text" hidden name="precio_total[]" id="ins-pres-${increment}" value="${prec_t}"></td>
-    <td>${iva_e}<input type="text" hidden name="id_alicuota_iva[]" id="ins-pres-${increment}" value="${iva_e}"></td>
-    <td>${monto_iva_e}<input type="text" hidden name="iva_estimado[]" id="ins-pres-${increment}" value="${monto_iva_e}"></td>
-    <td>${monto_tot_est}<input type="text" hidden name="monto_estimado[]" id="ins-pres-${increment}" value="${monto_tot_est}"></td>
-    <td>
-        <button type="button" class="btn btn-info btn-xs" data-toggle="modal" id="editarrrrr" onclick="editar_modal(${id_items_proy});" data-target="#myModal"><i class="fas fa-lg fa-fw fa-edit"></i></button>
-    </td>
-    `;
-    document.querySelector('#target_req tbody').appendChild(newRow);
+    // var newRow = document.createElement('tr');
+    // var increment = increment +1;
+    // newRow.className='myTr';
+    // newRow.innerHTML = `
+    // <td>${id_items_proy}<input type="text" name="id_items_proy[]" id="ins-type-${increment}" hidden value="${id_items_proy}"></td>
+    // <td>${cod_partida_pre}<input type="text" name="par_presupuestaria[]" id="ins-type-${increment}" hidden value="${cod_partida_pre}"></td>
+    //
+    // <td>${ccnu}<input type="text" name="id_ccnu[]" id="ins-type-${increment}" hidden value="${ccnu}"></td>
+    // <td>${fecha_desde_e}<input type="text" name="fecha_desde[]" id="ins-type-${increment}" hidden value="${fecha_desde_e}"></td>
+    // <td>${fecha_hasta_e}<input type="text" name="fecha_hasta[]" id="ins-type-${increment}" hidden value="${fecha_hasta_e}"></td>
+    //
+    // <td>${esp}<input type="text" name="especificacion[]" id="ins-subtype-${increment}" hidden value="${esp}"></td>
+    // <td>${unid_med}<input type="text" name="id_unidad_medida[]" id="ins-subtype-${increment}" hidden value="${unid_med}"></td>
+    //
+    // <td>${primero}<input type="text" hidden name="i[]" id="ins-pres-${increment}" value="${primero}"></td>
+    // <td>${segundo}<input type="text" hidden name="ii[]" id="ins-pres-${increment}" value="${segundo}"></td>
+    // <td>${tercero}<input type="text" hidden name="iii[]" id="ins-pres-${increment}" value="${tercero}"></td>
+    // <td>${cuarto}<input type="text" hidden name="iv[]" id="ins-pres-${increment}" value="${cuarto}"></td>
+    //
+    // <td>${prec_t}<input type="text" hidden name="precio_total[]" id="ins-pres-${increment}" value="${prec_t}"></td>
+    // <td>${iva_e}<input type="text" hidden name="id_alicuota_iva[]" id="ins-pres-${increment}" value="${iva_e}"></td>
+    // <td>${monto_iva_e}<input type="text" hidden name="iva_estimado[]" id="ins-pres-${increment}" value="${monto_iva_e}"></td>
+    // <td>${monto_tot_est}<input type="text" hidden name="monto_estimado[]" id="ins-pres-${increment}" value="${monto_tot_est}"></td>
+    // <td>
+    //     <button type="button" class="btn btn-info btn-xs" data-toggle="modal" id="editarrrrr" onclick="editar_modal(${id_items_proy});" data-target="#myModal"><i class="fas fa-lg fa-fw fa-edit"></i></button>
+    // </td>
+    // `;
+    // document.querySelector('#target_req tbody').appendChild(newRow);
 }
