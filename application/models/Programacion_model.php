@@ -58,6 +58,7 @@
 
         public function consulta_cnnu(){
             $this->db->select('*');
+            $this->db->limit(10);
             $query = $this->db->get('ccnu');
             return $result = $query->result_array();
         }
@@ -471,6 +472,34 @@
             return $query->row_array();
         }
 
+        public function llenar_uni_med_mod(){
+          $this->db->select('*');
+          $query = $this->db->get('unidad_medida pi2');
+          return $query->result_array();
+        }
+
+        public function editar_fila_ip($data){
+            $this->db->where('id_p_items', $data['id_items_proy']);
+
+            $data1 = array(
+                'id_partidad_presupuestaria' => $data['partida_pre'],
+                'id_ccnu'                    => $data['ccnu'],
+                'fecha_desde'                => $data['fecha_desde_e'],
+                'fecha_hasta'                => $data['fecha_hasta_e'],
+                'especificacion'             => $data['esp'],
+                'id_unidad_medida'           => $data['unid_med'],
+                'i'                          => $data['primero'],
+                'ii'                         => $data['segundo'],
+                'iii'                        => $data['tercero'],
+                'iv'                         => $data['cuarto'],
+                'precio_total'               => $data['prec_t'],
+                'alicuota_iva'               => $data['ali_iva_e'],
+                'iva_estimado'               => $data['monto_iva_e'],
+                'monto_estimado'             => $data['monto_tot_est'],
+            );
+            $update = $this->db->update('p_items', $data1);
+            print_r($update);die;
+        }
         // ACCION CENTRALIZADA
 
         public function consultar_acc_centralizada($id_programacion){
@@ -868,4 +897,6 @@
             }
             return true;
         }
+
+
     }

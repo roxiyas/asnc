@@ -179,15 +179,15 @@ class Programacion extends CI_Controller {
         if(!$this->session->userdata('session'))
         redirect('login');
 
-        $data['unidad'] = $this->session->userdata('id_unidad');
-        $data['des_unidad'] = $this->session->userdata('unidad');
-        $data['rif'] = $this->session->userdata('rif');
-        $data['codigo_onapre'] = $this->session->userdata('codigo_onapre');
+        $data['unidad']          = $this->session->userdata('id_unidad');
+        $data['des_unidad']      = $this->session->userdata('unidad');
+        $data['rif']             = $this->session->userdata('rif');
+        $data['codigo_onapre']   = $this->session->userdata('codigo_onapre');
 
-        $parametros         = $this->input->get('id');
-        $separar        = explode("/", $parametros);
-        $data['id_p_proyecto']  = $separar['0'];
-        $id_obj_comercial = $separar['1'];
+        $parametros              = $this->input->get('id');
+        $separar                 = explode("/", $parametros);
+        $data['id_p_proyecto']   = $separar['0'];
+        $id_obj_comercial        = $separar['1'];
         $data['id_programacion'] = $separar['2'];
 
         $data['programacion_anio'] = $this->Programacion_model->consultar_prog_anio($data['id_programacion'], $data['unidad']);
@@ -647,8 +647,15 @@ class Programacion extends CI_Controller {
   		if(!$this->session->userdata('session'))redirect('login');
 
   		$data = $this->input->post();
-      print_r($data);die;
-  		// $data =	$this->Configuracion_model->listar_municipio($data);
-  		// echo json_encode($data);
+  		$data =	$this->Programacion_model->editar_fila_ip($data);
+  		echo json_encode($data);
+  	}
+
+    public function llenar_uni_med_mod(){
+  		if(!$this->session->userdata('session'))redirect('login');
+
+  		$data = $this->input->post();
+  		$data =	$this->Programacion_model->llenar_uni_med_mod($data);
+  		echo json_encode($data);
   	}
 }

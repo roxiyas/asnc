@@ -274,26 +274,30 @@
             </div>
             <div class="modal-body">
                 <div class="row">
+                  <input type="hidden" name="fecha_esti" id="fecha_esti" value="<?=$anio?>">
                         <input type="hidden" class="form-control" name="id_items" id="id_items">
                     <div class="form-group col-4">
                         <label>Cod. Partida Presupuestaria</label>
-                        <input id="cod_partida_pre" class="form-control" name="cod_partida_pre" class="form-control">
+                        <input type="hidden" name="id_part_pres" id="id_part_pres">
+                        <input id="cod_partida_pre" class="form-control" name="cod_partida_pre" class="form-control" disabled>
                     </div>
                     <div class="form-group col-8">
                         <label>Partida Presupuestaria</label>
-                        <input id="partida_pre" class="form-control" name="partida_pre" class="form-control">
+                        <input id="partida_pre" class="form-control" name="partida_pre" class="form-control" disabled>
                     </div>
+
                     <div class="form-group col-6">
                         <label>CCNU</label>
                         <input type="text" class="form-control" name="ccnu" id="ccnu">
+                        <input type="hidden" name="id_ccnu_mod" id="id_ccnu_mod">
                     </div>
                     <div class="form-group col-3">
                         <label>Fecha desde</label>
-                        <input type="date" class="form-control" name="fecha_desde_e" id="fecha_desde_e">
+                        <input type="date" class="form-control" name="fecha_desde_e" id="fecha_desde_e" onchange="verif_d_mod();" onblur="habilitar_trim_mod();">
                     </div>
                     <div class="form-group col-3">
                         <label>Fecha hasta</label>
-                        <input type="date" class="form-control" name="fecha_hasta_e" id="fecha_hasta_e">
+                        <input type="date" class="form-control" name="fecha_hasta_e" id="fecha_hasta_e" onchange="verif_h_mod();" onblur="habilitar_trim_mod();">
                     </div>
                     <div class="form-group col-9">
                         <label>Especificación</label>
@@ -302,6 +306,14 @@
                     <div class="form-group col-3">
                         <label>Unidad de Medida</label>
                         <input type="text" class="form-control" name="unid_med" id="unid_med">
+                        <input type="hidden" name="id_unid_med" id="id_unid_med">
+                    </div>
+                    <div class="form-group col-3">
+                        <label> Cambiar Unid. Medida</label>
+
+                        <select class="form-control" name="camb_unid_medi" id="camb_unid_medi">
+                          <option value="0">Seleccione</option>
+                        </select>
                     </div>
 
                     <div class="form-group col-3">
@@ -327,7 +339,7 @@
                     </div>
                     <div class="form-group col-3">
                         <label>Alicuota IVA est.</label>
-                        <input type="text" class="form-control" name="iva_e" id="iva_e">
+                        <input type="text" class="form-control" name="ali_iva_e" id="ali_iva_e">
                     </div>
                     <div class="form-group col-3">
                         <label>IVA Estimado</label>
