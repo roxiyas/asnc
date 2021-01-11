@@ -294,8 +294,12 @@
                                     </div>
                                 </div>
                                 <!--////////////////////////////SEGUNDA PARTE DE LA CARGA -->
-                                <div class="col-12 text-center mt-3">
+                                <!-- <div class="col-12 text-center mt-3">
                                     <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" name="button">Guardar</button>
+                                </div> -->
+
+                                <div class="col-12 text-center mt-3">
+                                    <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" onclick="guardar_proy();" type="button" name="button">Guardar</button>
                                 </div>
                             </form>
                         </div>
@@ -580,13 +584,16 @@
 <?php } ?>
 <script src="<?=base_url()?>/js/calculos.js"></script>
 <script src="<?=base_url()?>/js/calculos2.js"></script>
-<script src="<?=base_url()?>/js/calculos3.js"></script>
+<script src="<?=base_url()?>/js/calculos_bienes.js"></script>
+
 <script src="<?=base_url()?>/js/dependientes.js"></script>
 <script src="<?=base_url()?>/js/agregar_proyecto.js"></script>
 <script src="<?=base_url()?>/js/agregar_proyecto_ff.js"></script>
 
 <script src="<?=base_url()?>/js/agregar_acc_centralizada_ff.js"></script>
 <script src="<?=base_url()?>/js/agregar_acc_centralizada.js"></script>
+
+<script src="<?=base_url()?>/js/guardar.js"></script>
 <script type="text/javascript">
 function valideKey(evt){
    var code = (evt.which) ? evt.which : evt.keyCode;

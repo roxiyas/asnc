@@ -472,33 +472,70 @@
             return $query->row_array();
         }
 
-        public function llenar_uni_med_mod(){
-          $this->db->select('*');
-          $query = $this->db->get('unidad_medida pi2');
-          return $query->result_array();
+        public function llenar_uni_med_mod($data){
+            $this->db->select('*');
+            $this->db->where('pi2.id_unidad_medida !=', $data['id_unid_med']);
+            $query = $this->db->get('unidad_medida pi2');
+            return $query->result_array();
+        }
+
+        public function llenar_alic_iva_mod(){
+            $this->db->select('*');
+            $query = $this->db->get('alicuota_iva');
+            return $query->result_array();
+        }
+
+        public function llenar_selc_ccnu_m($data){
+            $this->db->select('*');
+            $this->db->like('desc_ccnu', $data['ccnu_b_m']);
+            $query = $this->db->get('ccnu');
+            return $query->result_array();
         }
 
         public function editar_fila_ip($data){
+
             $this->db->where('id_p_items', $data['id_items_proy']);
+
+            $ccnu_s = $data['sel_ccnu'];
+
+            if ($ccnu_s == 0) {
+                $id_ccnu = $data['ccnu'];
+            }else {
+                $id_ccnu = $data['sel_ccnu'];
+            }
+
+            $unid_m_s = $data['sel_camb_unid_medi'];
+            if ($unid_m_s == 0) {
+                $id_unidad_medida = $data['unid_med'];
+            }else {
+                $id_unidad_medida = $data['sel_camb_unid_medi'];
+            }
+
+            $id_ali_iva = $data['sel_id_alic_iva'];
+            if ($id_ali_iva == 0) {
+                $alicuota_iva = $data['ali_iva_e'];
+            }else {
+                $alicuota_iva = $data['sel_id_alic_iva'];
+            }
 
             $data1 = array(
                 'id_partidad_presupuestaria' => $data['partida_pre'],
-                'id_ccnu'                    => $data['ccnu'],
+                'id_ccnu'                    => $id_ccnu,
                 'fecha_desde'                => $data['fecha_desde_e'],
                 'fecha_hasta'                => $data['fecha_hasta_e'],
                 'especificacion'             => $data['esp'],
-                'id_unidad_medida'           => $data['unid_med'],
+                'id_unidad_medida'           => $id_unidad_medida,
                 'i'                          => $data['primero'],
                 'ii'                         => $data['segundo'],
                 'iii'                        => $data['tercero'],
                 'iv'                         => $data['cuarto'],
                 'precio_total'               => $data['prec_t'],
-                'alicuota_iva'               => $data['ali_iva_e'],
+                'alicuota_iva'               => $alicuota_iva,
                 'iva_estimado'               => $data['monto_iva_e'],
                 'monto_estimado'             => $data['monto_tot_est'],
             );
             $update = $this->db->update('p_items', $data1);
-            print_r($update);die;
+            return true;
         }
         // ACCION CENTRALIZADA
 
@@ -527,6 +564,22 @@
             $this->db->select('*');
             $query = $this->db->get('accion_centralizada');
             return $result = $query->result_array();
+        }
+
+        public function eliminar_proy($data){
+            $this->db->where('id_p_proyecto', $data['id_items_proy']);
+            $query = $this->db->delete('p_proyecto');
+
+            if ($query) {
+                $this->db->where('id_enlace', $data['id_items_proy']);
+                $this->db->where('id_p_acc', 0);
+                $query = $this->db->delete('p_items');
+
+                $this->db->where('id_enlace', $data['id_items_proy']);
+                $this->db->where('id_p_acc', 0);
+                $query = $this->db->delete('p_ffinanciamiento');
+            }
+           return true;
         }
 
         // BIENES
@@ -801,11 +854,13 @@
                             'fecha_hasta'                => $p_items['fecha_hasta'][$i],
                             'especificacion'             => $p_items['especificacion'][$i],
                             'id_unidad_medida'           => $p_items['id_unidad_medida'][$i],
+                            'cantidad'                   => 0,
                             'i'                          => $p_items['i'][$i],
                             'ii'                         => $p_items['ii'][$i],
                             'iii'                        => $p_items['iii'][$i],
                             'iv'                         => $p_items['iv'][$i],
                             'costo_unitario'             => 0,
+                            'cant_total_distribuir'      => 0,
                             'precio_total'               => $p_items['precio_total'][$i],
                             'alicuota_iva'               => $p_items['id_alicuota_iva'][$i],
                             'iva_estimado'               => $p_items['iva_estimado'][$i],
@@ -898,5 +953,101 @@
             return true;
         }
 
+        //FUNTION PARA EDITAR LA INFORMACION DESDE EL MODAL BIENES
+        public function editar_fila_ip_b($data){
 
-    }
+            $this->db->where('id_p_items', $data['id_items_proy']);
+
+            $ccnu_s = $data['sel_ccnu'];
+
+            if ($ccnu_s == 0) {
+                $id_ccnu = $data['ccnu'];
+            }else {
+                $id_ccnu = $data['sel_ccnu'];
+            }
+
+            $unid_m_s = $data['sel_camb_unid_medi'];
+            if ($unid_m_s == 0) {
+                $id_unidad_medida = $data['unid_med'];
+            }else {
+                $id_unidad_medida = $data['sel_camb_unid_medi'];
+            }
+
+            $id_ali_iva = $data['sel_id_alic_iva'];
+            if ($id_ali_iva == 0) {
+                $alicuota_iva = $data['ali_iva_e'];
+            }else {
+                $alicuota_iva = $data['sel_id_alic_iva'];
+            }
+
+            $data1 = array(
+                'id_partidad_presupuestaria' => $data['partida_pre'],
+                'id_ccnu'                    => $id_ccnu,
+                'especificacion'             => $data['esp'],
+                'id_unidad_medida'           => $id_unidad_medida,
+                'cantidad'                   => $data['cantidad'],
+                'i'                          => $data['primero'],
+                'ii'                         => $data['segundo'],
+                'iii'                        => $data['tercero'],
+                'iv'                         => $data['cuarto'],
+                'cant_total_distribuir'      => $data['cantidad_distribuir'],
+                'costo_unitario'             => $data['cost_uni'],
+                'precio_total'               => $data['prec_t'],
+                'alicuota_iva'               => $alicuota_iva,
+                'iva_estimado'               => $data['monto_iva_e'],
+                'monto_estimado'             => $data['monto_tot_est'],
+            );
+            $update = $this->db->update('p_items', $data1);
+            return true;
+        }
+
+        public function cons_items_acc_b($data){
+            $this->db->select('pi2.id_p_items,
+                        	   pi2.id_enlace,
+                               pi2.id_partidad_presupuestaria,
+                               pp.desc_partida_presupuestaria,
+                               pp.codigopartida_presupuestaria,
+                        	   pi2.id_ccnu,
+                        	   c2.desc_ccnu,
+                        	   pi2.fecha_desde,
+                        	   pi2.fecha_hasta,
+                        	   pi2.especificacion,
+                               pi2.id_unidad_medida,
+                        	   um.desc_unidad_medida,
+                               pi2.cantidad,
+                               pi2.costo_unitario,
+                        	   pi2.i,
+                        	   pi2.ii,
+                        	   pi2.iii,
+                        	   pi2.iv,
+                               pi2.cant_total_distribuir,
+                        	   pi2.precio_total,
+                        	   pi2.alicuota_iva,
+                               pi2.iva_estimado,
+                               pi2.monto_estimado');
+            $this->db->join('ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
+            $this->db->join('partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
+            $this->db->join('unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
+            $this->db->where('pi2.id_p_items', $data['id_items_proy']);
+            $this->db->where('pi2.id_p_acc', 1);
+            $query = $this->db->get('p_items pi2');
+            return $query->row_array();
+        }
+
+        public function eliminar_acc($data){
+            $this->db->where('id_p_acc_centralizada', $data['id_items_acc']);
+            $query = $this->db->delete('p_acc_centralizada');
+
+            if ($query) {
+                $this->db->where('id_enlace', $data['id_items_acc']);
+                $this->db->where('id_p_acc', 1);
+                $query = $this->db->delete('p_items');
+
+                $this->db->where('id_enlace', $data['id_items_acc']);
+                $this->db->where('id_p_acc', 1);
+                $query = $this->db->delete('p_ffinanciamiento');
+            }
+           return true;
+        }
+
+}

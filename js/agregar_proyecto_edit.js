@@ -82,12 +82,16 @@ function agregar_ccnuToCartTable(cells){
    	var ica_est  = $("#iva_estimado").val();
    	var mo_est  = $("#monto_estimado").val();
 	if (ccnu == 0 || esp == 0 || pp == 0){
+		console.log(ccnu);
+		console.log(esp);
+		console.log(pp);
 		console.log('No paso');
 	}else{
 		var newRow = document.createElement('tr');
 		var increment = increment +1;
 		newRow.className='myTr';
 		newRow.innerHTML = `
+		<td></td>
 		<td>${pp3}<input type="text" name="par_presupuestaria[]" id="ins-type-${increment}" hidden value="${pp1}"></td>
 
 		<td>${ccnu2}<input type="text" name="id_ccnu[]" id="ins-type-${increment}" hidden value="${ccnu1}"></td>
@@ -106,6 +110,7 @@ function agregar_ccnuToCartTable(cells){
 		<td>${al_iva1}<input type="text" hidden name="id_alicuota_iva[]" id="ins-pres-${increment}" value="${al_iva1}"></td>
 		<td>${ica_est}<input type="text" hidden name="iva_estimado[]" id="ins-pres-${increment}" value="${ica_est}"></td>
 		<td>${mo_est}<input type="text" hidden name="monto_estimado[]" id="ins-pres-${increment}" value="${mo_est}"></td>
+		<td></td>
 		`;
 
 		var cellremove_proyBtn = createCell();

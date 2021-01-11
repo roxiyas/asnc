@@ -52,7 +52,7 @@
 	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" />
 	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/bootstrap-eonasdan-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/bootstrap-colorpalette/css/bootstrap-colorpalette.css" rel="stylesheet" />
-	
+
 	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.css" rel="stylesheet" />
 	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-fontawesome.css" rel="stylesheet" />
 	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-glyphicons.css" rel="stylesheet" />

@@ -1,6 +1,5 @@
  <!-- Bootstrap CSS -->
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
- <!-- Toastr -->
+ <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <div class="sidebar-bg"></div>
 <div id="content" class="content">
@@ -26,7 +25,7 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
-                                    </div> 
+                                    </div>
                                     <div class="modal-body">
                                         <form action="" method="post" id="form">
                                             <div class="form-group">
@@ -64,12 +63,12 @@
                                         <div class="form-group">
                                             <label for="">INGRESE LA CANTIDAD EXPRESADA EN DECIMALES</label>
                                             <input type="text" class="form-control" id="edit_codigopartida_presupuestaria" >
-                                        </div> 
+                                        </div>
                                         <div class="form-group">
                                             <label for="">INGRESE LA CANTIDAD EXPRESADA EN PORCENTAJE</label>
                                             <input type="text" class="form-control" id="edit_desc_partida_presupuestaria">
                                         </div>
-                                        
+
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -80,34 +79,36 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 mt-4">
-                    <div class="table-responsive">
-                        <table class="table" id="records">
-                            <thead>
-                                <tr>
-                                    <th>Número de fila</th>
-                                    <th>Codigo</th>
-                                    <th>Descripción</th>
-                                    <th>Acción</th>
-                                </tr>
-                            </thead>
-                        </table>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-md-10 mt-4">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover" id="records">
+                                <thead>
+                                    <tr>
+                                        <th>Número de fila</th>
+                                        <th>Codigo</th>
+                                        <th>Descripción</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
  <!-- Toastr -->
  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
      <!-- Font Awesome -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/js/all.min.js"></script>
-               
+     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/js/all.min.js"></script> -->
+
                 <!-- Add Records -->
                 <script>
                     $(document).on("click", "#add", function(e) {
                         e.preventDefault();
-                        
+
                         var desc_partida_presupuestaria = $("#desc_partida_presupuestaria").val();
                         var codigopartida_presupuestaria = $("#codigopartida_presupuestaria").val();
                         var id_usuario = 1; //esto debo arreglar
@@ -116,7 +117,7 @@
                         if (desc_partida_presupuestaria == "" || codigopartida_presupuestaria == "") {
                             alert("Both field is required");
                         } else {
-                            $.ajax({ 
+                            $.ajax({
                                 url: "<?php echo base_url(); ?>index.php/Fuentefinanc/savepartidap",
                                 type: "post",
                                 dataType: "json",
@@ -125,7 +126,7 @@
                                     desc_partida_presupuestaria: desc_partida_presupuestaria,
                                     id_usuario: id_usuario,
                                     fecha: fecha
-                                }, 
+                                },
                                 success: function(data) {
                                     if (data.responce == "success") {
                                         $('#records').DataTable().destroy();
@@ -146,7 +147,7 @@
                     });
 
                     // Fetch Records
-                    
+
                     function fetch() {
                         $.ajax({
                             url: "<?php echo base_url(); ?>index.php/Fuentefinanc/fetchpartidap",
@@ -170,7 +171,7 @@
                                                     return a = i++;
                                                 }
                                             },
-                                            { 
+                                            {
                                                 "data": "codigopartida_presupuestaria"
                                             },
                                             {
@@ -179,7 +180,7 @@
                                             {
                                                 "render": function(data, type, row, meta) {
                                                     var a = `
-                                                   
+
                                     <a href="#" value="${row.id_partida_presupuestaria}" id="edit" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
                             `;
                                                     return a;
@@ -280,7 +281,7 @@
                             dataType: "json",
                             data: {
                                 edit_id: edit_id
-                            },   
+                            },
                             success: function(data) {
                                 if (data.responce == "success") {
                                     $('#edit_modal').modal('show');
@@ -299,7 +300,7 @@
 
                     $(document).on("click", "#update", function(e) {
                         e.preventDefault();
-                        
+
                         var edit_record_id = $("#edit_record_id").val();
                         var edit_codigopartida_presupuestaria = $("#edit_codigopartida_presupuestaria").val();
                         var edit_desc_partida_presupuestaria = $("#edit_desc_partida_presupuestaria").val();

@@ -109,7 +109,7 @@
                     </div>
                     <!--////////////////////////////SEGUNDA PARTE DE LA CARGA -->
                     <div class="col-12 text-center mt-3">
-                        <a class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" href="javascript:history.back()"> Volver</a>
+                        <a class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-grey" href="javascript:history.back()"> Volver</a>
                     </div>
                 </div>
             </div>

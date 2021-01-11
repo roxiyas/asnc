@@ -50,9 +50,7 @@
                                             class="button">
                                             <i class="fas fa-lg fa-fw fa-edit"></i>
                                         <a />
-
-                                        <a href="<?php echo base_url();?>index.php/cms/eliminar_presentacion?id=<?php echo $ver_proyecto['id_programacion'];?>"
-                                            class="button"><i class="fas fa-lg fa-fw  fa-trash-alt" style="color:red"></i><a />
+                                        <a onclick="eliminar_proy(<?php echo $ver_proyecto['id_p_proyecto'];?>);" class="button"><i class="fas fa-lg fa-fw  fa-trash-alt" style="color:red"></i><a/>
                                     </td>
                                 </tr>
                                 <?php endforeach;?>
@@ -86,7 +84,7 @@
                                             class="button">
                                             <i class="fas fa-lg fa-fw  fa-edit"></i>
                                         <a />
-                                        <a class="button"><i class="fas fa-lg fa-fw fa-trash-alt" style="color:red"></i><a />
+                                        <a onclick="eliminar_acc(<?php echo $ver_acc_centralizad['id_p_acc_centralizada'];?>);" class="button"><i class="fas fa-lg fa-fw  fa-trash-alt" style="color:red"></i><a />
                                     </td>
                                 </tr>
                                 <?php endforeach;?>
@@ -98,6 +96,7 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
 function valideKey(evt){
    var code = (evt.which) ? evt.which : evt.keyCode;
@@ -113,3 +112,4 @@ function valideKey(evt){
 <?php if ($this->session->flashdata('sa-success2')) { ?>
     <div hidden id="sa-success2"> <?= $this->session->flashdata('sa-success2') ?> </div>
 <?php } ?>
+<script src="<?=base_url()?>/js/eliminar.js"></script>

@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<!-- Toastr -->
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <div class="sidebar-bg"></div>
 <div id="content" class="content">
@@ -10,13 +9,11 @@
                     <h4 class="panel-title">Nueva Fuente de Fianciamiento</h4>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 mt-2">
-                        <!-- Button trigger modal -->
+                    <div class="col-md-12 mt-2 mb-2">
                         <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
                             Nuevo
                         </button>
 
-                        <!-- Modal insert -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -29,7 +26,7 @@
                                     <div class="modal-body">
                                         <form action="" method="post" id="form">
                                             <div class="form-group">
-                                                <label for="">desc_fuente_financiamiento</label>
+                                                <label for="">Descripcion Fuente Financiamiento</label>
                                                 <input type="text" class="form-control" id="desc_fuente_financiamiento">
                                             </div>
 
@@ -71,24 +68,23 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 mt-4">
-                    <div class="table-responsive">
-                        <table class="table" id="records">
-                            <thead>
-                                <tr>
-                                    <th>Número de fila</th>
-                                    <th>Descripción</th>
-                                    <th>Acción</th>
-                                </tr>
-                            </thead>
-                        </table>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-md-10 mt-4">
+                        <div class="table-responsive">
+                            <table id="records" class="table table-bordered table-hover">
+                                <thead style="background:#e4e7e8">
+                                    <tr>
+                                        <th>Número de fila</th>
+                                        <th>Descripción</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -96,9 +92,9 @@
         <!-- Toastr -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <!-- Font Awesome -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/js/all.min.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/js/all.min.js"></script> -->
 
-        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
         <script>
@@ -107,7 +103,7 @@
                 //  alert("test");
                 var desc_fuente_financiamiento = $("#desc_fuente_financiamiento").val();
                 var id_usuario = 1; //esto debo arreglar
-                var fecha = '12/15/2020';
+                // var fecha = '12-15-2020';
                 if (desc_fuente_financiamiento == "") {
                     alert("debe ingresar un dato, REQUERIDO");
                 } else {
@@ -118,8 +114,7 @@
                         dataType: "json",
                         data: {
                             desc_fuente_financiamiento: desc_fuente_financiamiento,
-                            id_usuario: id_usuario,
-                            fecha: fecha
+                            id_usuario: id_usuario
                         },
                         success: function(data) {
                             if (data.responce == "success") {

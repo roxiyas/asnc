@@ -96,16 +96,16 @@ class Programacion extends CI_Controller {
 
     public function save_programacion(){
         if(!$this->session->userdata('session'))redirect('login');
-
+       
         $acc_cargar = $this->input->POST('acc_cargar');
 
         $p_proyecto = array(
             'id_programacion'        => $this->input->POST('id_programacion'),
-			      'nombre_proyecto'        => $this->input->POST('nombre_proyecto'),
+			   'nombre_proyecto'        => $this->input->POST('nombre_proyecto'),
             'id_obj_comercial'       => $this->input->post('id_obj_comercial'),
             'id_usuario' 		     => $this->session->userdata('id_user'),
             'estatus'                => 1
-	         );
+	    );
 
         $p_acc_centralizada = array(
             'id_programacion'        => $this->input->POST('id_programacion'),
@@ -117,10 +117,10 @@ class Programacion extends CI_Controller {
 
         $p_items = array(
             'id_par_presupuestaria'  => $this->input->post('par_presupuestaria'),
-			         'id_ccnu' 		         => $this->input->post('id_ccnu'),
+			'id_ccnu' 		         => $this->input->post('id_ccnu'),
             'fecha_desde'   	     => $this->input->POST('fecha_desde'),
             'fecha_hasta'   	     => $this->input->POST('fecha_hasta'),
-			         'especificacion' 		 => $this->input->post('especificacion'),
+			'especificacion' 		 => $this->input->post('especificacion'),
             'id_unidad_medida' 		 => $this->input->post('id_unidad_medida'),
             'i' 		             => $this->input->post('i'),
             'ii' 		             => $this->input->post('ii'),
@@ -130,7 +130,7 @@ class Programacion extends CI_Controller {
             'id_alicuota_iva' 		 => $this->input->post('id_alicuota_iva'),
             'iva_estimado' 		     => $this->input->post('iva_estimado'),
             'monto_estimado' 		 => $this->input->post('monto_estimado'),
-		        );
+		);
 
         $p_ffinanciamiento = array(
             'id_estado'   		        => $this->input->post('id_estado'),
@@ -362,12 +362,50 @@ class Programacion extends CI_Controller {
 		        redirect('Programacion/nueva_prog?id='.$id_programacion);
     }
 
-    PUBLIC function cons_items_proy(){
+    //LLENADO PARA EL MODAL DE PROYECTO / OBRAS
+    public function cons_items_proy(){
         if(!$this->session->userdata('session'))
         redirect('login');
 		      $data = $this->input->post();
 		        $data = $this->Programacion_model->cons_items_proy($data);
 		          echo json_encode($data);
+    }
+
+    public function editar_fila_ip(){
+  		if(!$this->session->userdata('session'))redirect('login');
+  		$data = $this->input->post();
+  		$data =	$this->Programacion_model->editar_fila_ip($data);
+  		echo json_encode($data);
+  	}
+
+    public function llenar_uni_med_mod(){
+  		if(!$this->session->userdata('session'))redirect('login');
+
+  		$data = $this->input->post();
+  		$data =	$this->Programacion_model->llenar_uni_med_mod($data);
+  		echo json_encode($data);
+  	}
+
+    public function llenar_alic_iva_mod(){
+  		if(!$this->session->userdata('session'))redirect('login');
+
+  		$data = $this->input->post();
+  		$data =	$this->Programacion_model->llenar_alic_iva_mod($data);
+  		echo json_encode($data);
+  	}
+
+    public function llenar_selc_ccnu_m(){
+  		if(!$this->session->userdata('session'))redirect('login');
+  		$data = $this->input->post();
+  		$data =	$this->Programacion_model->llenar_selc_ccnu_m($data);
+  		echo json_encode($data);
+  	}
+
+    public function eliminar_proy(){
+        if(!$this->session->userdata('session'))redirect('login');
+        $data = $this->input->post();
+        $data =	$this->Programacion_model->eliminar_proy($data);
+        echo json_encode($data);
     }
     // BIEN
 
@@ -522,9 +560,9 @@ class Programacion extends CI_Controller {
     public function ver_acc_editar(){
         if(!$this->session->userdata('session'))
         redirect('login');
-		      $data = $this->input->post();
-		        $data = $this->Programacion_model->inf_2_acc($data);
-		          echo json_encode($data);
+		$data = $this->input->post();
+		$data = $this->Programacion_model->inf_2_acc($data);
+		 echo json_encode($data);
     }
 
     public function ver_acc_editar_items(){
@@ -538,9 +576,9 @@ class Programacion extends CI_Controller {
     public function ver_acc_editar_items_b(){
         if(!$this->session->userdata('session'))
         redirect('login');
-		      $data = $this->input->post();
-		        $data = $this->Programacion_model->inf_3_acc_b($data);
-		          echo json_encode($data);
+		$data = $this->input->post();
+		$data = $this->Programacion_model->inf_3_acc_b($data);
+		echo json_encode($data);
     }
 
     public function editar_programacion_acc(){
@@ -643,19 +681,34 @@ class Programacion extends CI_Controller {
 		      redirect('Programacion/nueva_prog?id='.$id_programacion);
     }
 
-    public function editar_fila_ip(){
-  		if(!$this->session->userdata('session'))redirect('login');
+    //LLENADO PARA EL MODAL DE PROYECTO / BIENES
+    public function cons_items_proy_b(){
+        if(!$this->session->userdata('session'))
+        redirect('login');
+        $data = $this->input->post();
+        $data = $this->Programacion_model->cons_items_proy($data);
+        echo json_encode($data);
+    }
 
+    public function editar_fila_ip_b(){
+  		if(!$this->session->userdata('session'))redirect('login');
   		$data = $this->input->post();
-  		$data =	$this->Programacion_model->editar_fila_ip($data);
+  		$data =	$this->Programacion_model->editar_fila_ip_b($data);
   		echo json_encode($data);
   	}
 
-    public function llenar_uni_med_mod(){
-  		if(!$this->session->userdata('session'))redirect('login');
+    public function cons_items_acc_b(){
+        if(!$this->session->userdata('session'))
+        redirect('login');
+        $data = $this->input->post();
+        $data = $this->Programacion_model->cons_items_acc_b($data);
+        echo json_encode($data);
+    }
 
-  		$data = $this->input->post();
-  		$data =	$this->Programacion_model->llenar_uni_med_mod($data);
-  		echo json_encode($data);
-  	}
+    public function eliminar_acc(){
+        if(!$this->session->userdata('session'))redirect('login');
+        $data = $this->input->post();
+        $data =	$this->Programacion_model->eliminar_acc($data);
+        echo json_encode($data);
+    }
 }
