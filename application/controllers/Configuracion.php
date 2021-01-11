@@ -29,7 +29,8 @@ class Configuracion extends CI_Controller {
 
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
-        $this->load->view('configuracion/organismo.php', $data);
+		$this->load->view('configuracion/organismo.php', $data);
+		//$this->load->view('user/reg_cuentadante.php', $data);
         $this->load->view('templates/footer.php');
 	}
 
