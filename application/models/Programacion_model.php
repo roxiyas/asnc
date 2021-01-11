@@ -472,6 +472,13 @@
             return $query->row_array();
         }
 
+        public function llenar_par_pre_mod($data){
+            $this->db->select('*');
+            $this->db->where('codigopartida_presupuestaria !=', $data['cod_partida_pre']);
+            $query = $this->db->get('partida_presupuestaria');
+            return $query->result_array();
+        }
+
         public function llenar_uni_med_mod($data){
             $this->db->select('*');
             $this->db->where('pi2.id_unidad_medida !=', $data['id_unid_med']);
@@ -496,8 +503,14 @@
 
             $this->db->where('id_p_items', $data['id_items_proy']);
 
-            $ccnu_s = $data['sel_ccnu'];
+            $pp_s = $data['selc_part_pres'];
+            if ($pp_s == 0) {
+                $id_partidad_presupuestaria = $data['partida_pre'];
+            }else {
+                $id_partidad_presupuestaria = $data['selc_part_pres'];
+            }
 
+            $ccnu_s = $data['sel_ccnu'];
             if ($ccnu_s == 0) {
                 $id_ccnu = $data['ccnu'];
             }else {
@@ -519,7 +532,7 @@
             }
 
             $data1 = array(
-                'id_partidad_presupuestaria' => $data['partida_pre'],
+                'id_partidad_presupuestaria' => $id_partidad_presupuestaria,
                 'id_ccnu'                    => $id_ccnu,
                 'fecha_desde'                => $data['fecha_desde_e'],
                 'fecha_hasta'                => $data['fecha_hasta_e'],
@@ -958,8 +971,14 @@
 
             $this->db->where('id_p_items', $data['id_items_proy']);
 
-            $ccnu_s = $data['sel_ccnu'];
+            $pp_s = $data['selc_part_pres'];
+            if ($pp_s == 0) {
+                $id_partidad_presupuestaria = $data['partida_pre'];
+            }else {
+                $id_partidad_presupuestaria = $data['selc_part_pres'];
+            }
 
+            $ccnu_s = $data['sel_ccnu'];
             if ($ccnu_s == 0) {
                 $id_ccnu = $data['ccnu'];
             }else {

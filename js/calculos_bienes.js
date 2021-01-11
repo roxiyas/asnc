@@ -1,4 +1,4 @@
-function buscar_ccnnu(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
+function buscar_ccnnu_b(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
     var ccnu_b = $('#ccnu_b').val();
 
     var base_url =window.location.origin+'/asnc/index.php/Programacion/llenar_selc_ccnu_m';

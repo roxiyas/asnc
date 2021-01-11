@@ -293,7 +293,12 @@
                         <label>Partida Presupuestaria</label>
                         <input class="form-control" name="partida_pre_b" id="partida_pre_b" class="form-control" disabled>
                     </div>
-
+                    <div class="form-group col-12">
+                        <label> Cambiar Partida Presupuestaria <i title="Si requiere cambiar la Partida Presupuestaria, debe seleccionarlo en el siguiente campo" class="fas fa-question-circle"></i></label>
+                        <select class="form-control" name="selc_part_pres_b" id="selc_part_pres_b">
+                            <option value="0">Seleccione</option>
+                        </select>
+                    </div>
                     <div class="form-group col-6">
                         <label>CCNU</label>
                         <input type="text" class="form-control" name="ccnu_mod_b" id="ccnu_mod_b" disabled>
@@ -374,7 +379,7 @@
                             </div>
                             <div class="col-7">
                                 <select title="Para cambiar la Alicuota de IVA debe seleccionarlo en este campo." class="form-control" name="sel_id_alic_iva_b" id="sel_id_alic_iva_b"  onchange="calcular_mod_bienes();">
-                                    <option value="0">Seleccione</option>
+                                    <option value="s">Seleccione</option>
                                 </select>
                             </div>
                         </div>

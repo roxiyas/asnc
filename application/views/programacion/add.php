@@ -103,7 +103,6 @@
                                         <label>Fuente de Financiamiento</label>
                                         <select id="fuente_financiamiento" name="fuente_financiamiento" class="form-control ff">
                                             <option value="0" selected="selected">Seleccione</option>
-                                            <!-- <option selected="selected" value="0">Seleccione</option> -->
                                             <?php foreach ($fuente as $data): ?>
                                                 <option value="<?=$data['id_fuente_financiamiento']?>/<?=$data['desc_fuente_financiamiento']?>"><?=$data['desc_fuente_financiamiento']?></option>
                                             <?php endforeach; ?>
@@ -118,7 +117,7 @@
                                     </div>
                                     <div class="col-5"></div>
                                     <div class="col-7 mt-4">
-                                        <button type="button" onclick="agregar_ff(this);" class="btn btn-lg btn-default" id="ueba">
+                                        <button type="button" onclick="agregar_ff(this);verificar();" class="btn btn-lg btn-default" id="ueba">
                                             Agregar <b>IFF</b>
                                         </button>
                                     </div>
@@ -145,13 +144,13 @@
                                         <h4 style="color:red;">Información Items Productos (IP)</h4>
                                     </div>
                                     <div class="form-group col-12">
-                                        <label> CCNU <i title="Si quiere cambiar el CCNU, debe seleccionarlo en este campo" class="fas fa-question-circle"></i></label>
+                                        <label>CCNU <i title="Si quiere cambiar el CCNU, debe seleccionarlo en este campo" class="fas fa-question-circle"></i></label>
                                         <div class="row">
                                             <div class="col-4">
-                                                <input title="Debe ingresar una palabra para realizar la busqueda" type="text" class="form-control" name="ccnu_b" id="ccnu_b" onblur="buscar_ccnnu();">
+                                                <input title="Debe ingresar una palabra para realizar la busqueda" type="text" class="form-control" name="ccnu" id="ccnu" onblur="buscar_ccnnu();">
                                             </div>
                                             <div class="col-8">
-                                                <select title="Depende de la palabra ingresada en el campo anterior, se listaran las opciones." class="form-control" name="id_ccnu" id="id_ccnu">
+                                                <select  name="id_ccnu" id="id_ccnu" title="Depende de la palabra ingresada en el campo anterior, se listaran las opciones." class="form-control">
                                                     <option value="0">Seleccione</option>
                                                 </select>
                                             </div>
@@ -422,16 +421,19 @@
                                         <h4 style="color:red;">Información Items Productos (IP)</h4>
                                     </div>
 
-                                    <div class="form-group col-6">
-                                        <label>CCNU <b style="color:red">*</b></label><br>
-                                        <select  style="width: 100%;" id="id_ccnu_acc" class="form-control default-select2">
-                                            <option value="0">SELECCIONE</option>
-                                            <?php foreach ($ccnu as $data): ?>
-                                                <option value="<?=$data['codigo_ccnu']?>/<?=$data['desc_ccnu']?>"><?=$data['desc_ccnu']?></option>
-                                            <?php endforeach; ?>
-                                        </select>
+                                    <div class="form-group col-12">
+                                        <label>CCNU <i title="Si quiere cambiar el CCNU, debe seleccionarlo en este campo" class="fas fa-question-circle"></i></label>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input title="Debe ingresar una palabra para realizar la busqueda" type="text" class="form-control" name="ccnu_b" id="ccnu_b" onblur="buscar_ccnnu_b();">
+                                            </div>
+                                            <div class="col-8">
+                                                <select  name="id_ccnu_acc" id="id_ccnu_acc" title="Depende de la palabra ingresada en el campo anterior, se listaran las opciones." class="form-control">
+                                                    <option value="0">Seleccione</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-6"></div>
                                     <div class="form-group col-6">
                                         <label>Especificación <b style="color:red">*</b></label>
                                         <input id="especificacion_acc" type="text" class="form-control" required>

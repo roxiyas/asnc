@@ -116,15 +116,6 @@
                             <div class="col-12 mt-2 text-center">
                                 <h4 style="color:red;">Información Items Productos (IP)</h4>
                             </div>
-                            <!-- <div class="form-group col-8">
-                                <label>CCNU <b style="color:red">*</b></label><br>
-                                <select  id="id_ccnu" class="form-control default-select2">
-                                    <option value="0">SELECCIONE</option>
-                                    <?php foreach ($ccnu as $data): ?>
-                                        <option value="<?=$data['codigo_ccnu']?>/<?=$data['desc_ccnu']?>"><?=$data['desc_ccnu']?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div> -->
                             <div class="form-group col-12">
                                 <label>CCNU <i title="Si quiere cambiar el CCNU, debe seleccionarlo en este campo" class="fas fa-question-circle"></i></label>
                                 <div class="row">
@@ -300,7 +291,12 @@
                         <label>Partida Presupuestaria</label>
                         <input id="partida_pre" class="form-control" name="partida_pre" class="form-control" disabled>
                     </div>
-
+                    <div class="form-group col-12">
+                        <label> Cambiar Partida Presupuestaria <i title="Si requiere cambiar la Partida Presupuestaria, debe seleccionarlo en el siguiente campo" class="fas fa-question-circle"></i></label>
+                        <select class="form-control" name="selc_part_pres" id="selc_part_pres">
+                            <option value="0">Seleccione</option>
+                        </select>
+                    </div>
                     <div class="form-group col-6">
                         <label>CCNU</label>
                         <input type="text" class="form-control" name="ccnu" id="ccnu" disabled>
@@ -381,7 +377,7 @@
                             </div>
                             <div class="col-7">
                                 <select title="Para cambiar la Alicuota de IVA debe seleccionarlo en este campo." class="form-control" name="sel_id_alic_iva" id="sel_id_alic_iva"  onchange="calculo_mod();">
-                                    <option value="0">Selec</option>
+                                    <option value="s">Selec</option>
                                 </select>
                             </div>
                         </div>

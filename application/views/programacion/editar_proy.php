@@ -113,7 +113,7 @@
                             </div>
 
                             <div class="form-group col-12">
-                                <label>CCNU <i title="Si quiere cambiar el CCNU, debe seleccionarlo en este campo" class="fas fa-question-circle"></i></label>
+                                <label>CCNU <i title="Si requiere cambiar el CCNU, debe seleccionarlo en este campo" class="fas fa-question-circle"></i></label>
                                 <div class="row">
                                     <div class="col-4">
                                         <input title="Debe ingresar una palabra para realizar la busqueda" type="text" class="form-control" name="ccnu_b" id="ccnu_b" onblur="buscar_ccnnu();">
@@ -125,33 +125,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="form-group col-8">
-                                <label>CCNU <b style="color:red">*</b></label><br>
-                                <select  id="id_ccnu" class="form-control default-select2">
-                                    <option value="0">SELECCIONE</option>
-                                    <?php foreach ($ccnu as $data): ?>
-                                        <option value="<?=$data['codigo_ccnu']?>/<?=$data['desc_ccnu']?>"><?=$data['desc_ccnu']?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div> -->
                             <div class="form-group col-4">
                                 <label>Rango de Fecha</label>
-                                <!-- <div class="col-md-8"> -->
                                     <div class="input-group input-daterange">
                                         <input type="text" class="form-control" id="fecha_desde" name="fecha_desde" onchange="verif_d();" onblur="habilitar_trim();" name="start" placeholder="Desde" />
                                         <span class="input-group-addon">-</span>
                                         <input type="text" class="form-control"  id="fecha_hasta" name="fecha_hasta" onchange="verif_h();" onblur="habilitar_trim();" name="end" placeholder="Hasta" />
                                     </div>
-                                <!-- </div> -->
                             </div>
-                            <!-- <div class="col-2 form-group">
-                                <label>Fecha Desde<b style="color:red">*</b></label>
-                                <input id="fecha_desde" name="fecha_desde" type="date" class="form-control">
-                            </div>
-                            <div class="col-2 form-group">
-                                <label>Fecha Hasta<b style="color:red">*</b></label>
-                                <input id="fecha_hasta" name="fecha_hasta" type="date" class="form-control">
-                            </div> -->
                             <div class="form-group col-6">
                                 <label>Especificación <b style="color:red">*</b></label>
                                 <input id="especificacion" type="text" class="form-control">
@@ -305,7 +286,12 @@
                         <label>Partida Presupuestaria</label>
                         <input id="partida_pre" class="form-control" name="partida_pre" class="form-control" disabled>
                     </div>
-
+                    <div class="form-group col-12">
+                        <label> Cambiar Partida Presupuestaria <i title="Si requiere cambiar la Partida Presupuestaria, debe seleccionarlo en el siguiente campo" class="fas fa-question-circle"></i></label>
+                        <select class="form-control" name="selc_part_pres" id="selc_part_pres">
+                            <option value="0">Seleccione</option>
+                        </select>
+                    </div>
                     <div class="form-group col-6">
                         <label>CCNU</label>
                         <input type="text" class="form-control" name="ccnu" id="ccnu" disabled>
@@ -320,7 +306,7 @@
                         <input type="date" class="form-control" name="fecha_hasta_e" id="fecha_hasta_e" onchange="verif_h_mod();" onblur="habilitar_trim_mod();">
                     </div>
                     <div class="form-group col-12">
-                        <label>Cambiar CCNU <i title="Si quiere cambiar el CCNU, debe seleccionarlo en este campo" class="fas fa-question-circle"></i></label>
+                        <label>Cambiar CCNU <i title="Si requiere cambiar el CCNU, debe seleccionarlo en el siguiente campo" class="fas fa-question-circle"></i></label>
                         <div class="row">
                             <div class="col-4">
                                 <input title="Debe ingresar una palabra para realizar la busqueda" type="text" class="form-control" name="ccnu_b_m" id="ccnu_b_m" onblur="buscar_ccnnu_m();">
@@ -342,7 +328,7 @@
                         <input type="hidden" name="id_unid_med" id="id_unid_med">
                     </div>
                     <div class="form-group col-3">
-                        <label> Cambiar Unid. Medida <i title="Si quiere cambiar la Unidad de Medida, debe seleccionarla en este campo" class="fas fa-question-circle"></i></label>
+                        <label> Cambiar Unid. Medida <i title="Si requiere cambiar la Unidad de Medida, debe seleccionarla en este campo" class="fas fa-question-circle"></i></label>
                         <select class="form-control" name="camb_unid_medi" id="camb_unid_medi">
                           <option value="0">Seleccione</option>
                         </select>
@@ -386,7 +372,7 @@
                             </div>
                             <div class="col-7">
                                 <select title="Para cambiar la Alicuota de IVA debe seleccionarlo en este campo." class="form-control" name="sel_id_alic_iva" id="sel_id_alic_iva"  onchange="calculo_mod();">
-                                    <option value="0">Selec</option>
+                                    <option value="s">Selec</option>
                                 </select>
                             </div>
                         </div>

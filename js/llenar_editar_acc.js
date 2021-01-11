@@ -56,81 +56,82 @@ if ($('#id_programacion').val().length != " "){//FUNCION EN DONDE SE CARGA LA TA
 }
 
 if ($('#id_programacion').val().length != " "){//FUNCION EN DONDE SE CARGA LA TABLA DE IP
-        var id_programacion = $('#id_programacion').val();
-        var separar   = id_programacion.split("/");
-        var id_p_programacion = separar['0'];
-        var id_p_acc_centralizada = separar['1'];
+    var id_programacion = $('#id_programacion').val();
+    var separar   = id_programacion.split("/");
+    var id_p_programacion = separar['0'];
+    var id_p_acc_centralizada = separar['1'];
 
-        var base_url =window.location.origin+'/asnc/index.php/Programacion/ver_acc_editar_items';
-        // var base_url = '/index.php/Programacion/ver_proy_editar';
-        $.ajax({
-           url:base_url,
-           method: 'post',
-           data: {id_p_acc_centralizada: id_p_acc_centralizada},
-           dataType: 'json',
+    var base_url =window.location.origin+'/asnc/index.php/Programacion/ver_acc_editar_items';
+    // var base_url = '/index.php/Programacion/ver_proy_editar';
+    $.ajax({
+       url:base_url,
+       method: 'post',
+       data: {id_p_acc_centralizada: id_p_acc_centralizada},
+       dataType: 'json',
 
-            success: function(data){
-                $("#target_req tbody").html('');
-                if(data != null && $.isArray(data)){
-                    $.each(data, function(index, value){
+        success: function(data){
+            $("#target_req tbody").html('');
+            if(data != null && $.isArray(data)){
+                $.each(data, function(index, value){
 
-                        var newRow = document.createElement('tr');
+                    var newRow = document.createElement('tr');
 
-                        var increment = increment +1;
-                        newRow.className='myTr';
-                        newRow.innerHTML = `
-                        <td>${value.id_p_items}<input type="text" name="id_p_items[]" id="ins-type-${increment}" hidden value="${value.id_p_items}"></td>
-                        <td>${value.codigopartida_presupuestaria}<input type="text" name="par_presupuestaria[]" id="ins-type-${increment}" hidden value="${value.id_partidad_presupuestaria}"></td>
+                    var increment = increment +1;
+                    newRow.className='myTr';
+                    newRow.innerHTML = `
+                    <td>${value.id_p_items}<input type="text" name="id_p_items[]" id="ins-type-${increment}" hidden value="${value.id_p_items}"></td>
+                    <td>${value.codigopartida_presupuestaria}<input type="text" name="par_presupuestaria[]" id="ins-type-${increment}" hidden value="${value.id_partidad_presupuestaria}"></td>
 
-                        <td>${value.desc_ccnu}<input type="text" name="id_ccnu[]" id="ins-type-${increment}" hidden value="${value.id_ccnu}"></td>
-                        <td>${value.fecha_desde}<input type="text" name="fecha_desde[]" id="ins-type-${increment}" hidden value="${value.fecha_desde}"></td>
-                        <td>${value.fecha_hasta}<input type="text" name="fecha_hasta[]" id="ins-type-${increment}" hidden value="${value.fecha_hasta}"></td>
+                    <td>${value.desc_ccnu}<input type="text" name="id_ccnu[]" id="ins-type-${increment}" hidden value="${value.id_ccnu}"></td>
+                    <td>${value.fecha_desde}<input type="text" name="fecha_desde[]" id="ins-type-${increment}" hidden value="${value.fecha_desde}"></td>
+                    <td>${value.fecha_hasta}<input type="text" name="fecha_hasta[]" id="ins-type-${increment}" hidden value="${value.fecha_hasta}"></td>
 
-                        <td>${value.especificacion}<input type="text" name="especificacion[]" id="ins-subtype-${increment}" hidden value="${value.especificacion}"></td>
-                        <td>${value.desc_unidad_medida}<input type="text" name="id_unidad_medida[]" id="ins-subtype-${increment}" hidden value="${value.id_unidad_medida}"></td>
+                    <td>${value.especificacion}<input type="text" name="especificacion[]" id="ins-subtype-${increment}" hidden value="${value.especificacion}"></td>
+                    <td>${value.desc_unidad_medida}<input type="text" name="id_unidad_medida[]" id="ins-subtype-${increment}" hidden value="${value.id_unidad_medida}"></td>
 
-                        <td>${value.i}<input type="text" hidden name="i[]" id="ins-pres-${increment}" value="${value.i}"></td>
-                        <td>${value.ii}<input type="text" hidden name="ii[]" id="ins-pres-${increment}" value="${value.ii}"></td>
-                        <td>${value.iii}<input type="text" hidden name="iii[]" id="ins-pres-${increment}" value="${value.iii}"></td>
-                        <td>${value.iv}<input type="text" hidden name="iv[]" id="ins-pres-${increment}" value="${value.iv}"></td>
+                    <td>${value.i}<input type="text" hidden name="i[]" id="ins-pres-${increment}" value="${value.i}"></td>
+                    <td>${value.ii}<input type="text" hidden name="ii[]" id="ins-pres-${increment}" value="${value.ii}"></td>
+                    <td>${value.iii}<input type="text" hidden name="iii[]" id="ins-pres-${increment}" value="${value.iii}"></td>
+                    <td>${value.iv}<input type="text" hidden name="iv[]" id="ins-pres-${increment}" value="${value.iv}"></td>
 
-                        <td>${value.precio_total}<input type="text" hidden name="precio_total[]" id="ins-pres-${increment}" value="${value.precio_total}"></td>
-                        <td>${value.alicuota_iva}<input type="text" hidden name="id_alicuota_iva[]" id="ins-pres-${increment}" value="${value.alicuota_iva}"></td>
-                        <td>${value.iva_estimado}<input type="text" hidden name="iva_estimado[]" id="ins-pres-${increment}" value="${value.iva_estimado}"></td>
-                        <td>${value.monto_estimado}<input type="text" hidden name="monto_estimado[]" id="ins-pres-${increment}" value="${value.monto_estimado}"></td>
-                        <td>
-                            <button type="button" class="btn btn-info btn-xs" data-toggle="modal" id="editar" onclick="editar_modal_acc(${value.id_p_items});" data-target="#myModal_acc"><i class="fas fa-lg fa-fw fa-edit"></i></button>
-                        </td>
-                        `;
+                    <td>${value.precio_total}<input type="text" hidden name="precio_total[]" id="ins-pres-${increment}" value="${value.precio_total}"></td>
+                    <td>${value.alicuota_iva}<input type="text" hidden name="id_alicuota_iva[]" id="ins-pres-${increment}" value="${value.alicuota_iva}"></td>
+                    <td>${value.iva_estimado}<input type="text" hidden name="iva_estimado[]" id="ins-pres-${increment}" value="${value.iva_estimado}"></td>
+                    <td>${value.monto_estimado}<input type="text" hidden name="monto_estimado[]" id="ins-pres-${increment}" value="${value.monto_estimado}"></td>
+                    <td>
+                        <button type="button" class="btn btn-info btn-xs" data-toggle="modal" id="editar" onclick="editar_modal_acc(${value.id_p_items});" data-target="#myModal_acc"><i class="fas fa-lg fa-fw fa-edit"></i></button>
+                    </td>
+                    `;
 
-                        var cellremove_medBtn = createCell();
-                        cellremove_medBtn.appendChild(createremove_medBtn())
-                        newRow.appendChild(cellremove_medBtn);
+                    var cellremove_medBtn = createCell();
+                    cellremove_medBtn.appendChild(createremove_medBtn())
+                    newRow.appendChild(cellremove_medBtn);
 
-                        document.querySelector('#target_req tbody').appendChild(newRow);
+                    document.querySelector('#target_req tbody').appendChild(newRow);
 
-                        function remove_med() {
-                    	       var row = this.parentNode.parentNode;
-                               document.querySelector('#target_req tbody')
-                               .removeChild(row);
-                        }
+                    function remove_med() {
+                	       var row = this.parentNode.parentNode;
+                           document.querySelector('#target_req tbody')
+                           .removeChild(row);
+                    }
 
-                        function createremove_medBtn() {
-                            var btnremove_med = document.createElement('button');
-                            btnremove_med.className = 'btn btn-xs btn-danger';
-                            btnremove_med.onclick = remove_med;
-                            btnremove_med.innerText = 'Descartar';
-                            return btnremove_med;
-                        }
-                    });
-                }
+                    function createremove_medBtn() {
+                        var btnremove_med = document.createElement('button');
+                        btnremove_med.className = 'btn btn-xs btn-danger';
+                        btnremove_med.onclick = remove_med;
+                        btnremove_med.innerText = 'Descartar';
+                        return btnremove_med;
+                    }
+                });
             }
-        })
-    }
+        }
+    })
+}
 
 function editar_modal_acc(id){
     var id_items_proy = id
     var base_url =window.location.origin+'/asnc/index.php/Programacion/cons_items_acc_b';
+    var base_url1 =window.location.origin+'/asnc/index.php/Programacion/llenar_par_pre_mod';
     var base_url2 =window.location.origin+'/asnc/index.php/Programacion/llenar_uni_med_mod';
     var base_url3 =window.location.origin+'/asnc/index.php/Programacion/llenar_alic_iva_mod';
 
@@ -267,9 +268,24 @@ function editar_modal_acc(id){
                 $("#cuarto").prop('disabled', false);
             }
 
+            //FUNCIO PARA LLENAR EL SELECT DE PARTIDA PRESUPUESTARIA PARA CAMBIAR
+            var cod_partida_pre = response['codigopartida_presupuestaria'];
+            $.ajax({
+                url:base_url1,
+                method: 'post',
+                data: {cod_partida_pre: cod_partida_pre},
+                dataType: 'json',
+                success: function(data){
+                    console.log(data);
+                    $('#selc_part_pres').find('option').not(':first').remove();
+                    $.each(data, function(index, response){
+                        $('#selc_part_pres').append('<option value="'+response['id_partida_presupuestaria']+'">'+response['desc_partida_presupuestaria']+'</option>');
+                    });
+                }
+            })
+
             //FUNCIO PARA LLENAR EL SELECT DE UNIDAD DE MEDIDA PARA CAMBIAR
             var id_unid_med = response['id_unidad_medida'];
-
             $.ajax({
                 url:base_url2,
                 method: 'post',
@@ -291,7 +307,6 @@ function editar_modal_acc(id){
                 data: {id_unid_med: id_unid_med},
                 dataType: 'json',
                 success: function(data){
-                    console.log(data);
                     $.each(data, function(index, response){
                         $('#sel_id_alic_iva').append('<option value="'+response['desc_alicuota_iva']+'">'+response['desc_porcentaj']+'</option>');
                     });
@@ -303,8 +318,6 @@ function editar_modal_acc(id){
 
 function buscar_ccnnu_m(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
     var ccnu_b_m = $('#ccnu_b_m').val();
-
-    console.log(ccnu_b_m);
     var base_url =window.location.origin+'/asnc/index.php/Programacion/llenar_selc_ccnu_m';
     $.ajax({
         url:base_url,
@@ -364,7 +377,7 @@ function calculo_mod(){
             var id_alicuota_iva = $('#ali_iva_e').val();
             var sel_id_alicuota_iva = $('#sel_id_alic_iva').val();
 
-            if (sel_id_alicuota_iva == 0) {
+            if (sel_id_alicuota_iva == 's') {
                 var id_al_iva = id_alicuota_iva
             }else {
                 var id_al_iva = sel_id_alicuota_iva
@@ -552,7 +565,10 @@ function guardar_tabla(){
     }).then((result) => {
         if (result.value == true) {
             var id_items_proy = $('#id_items').val();
+
             var partida_pre = $('#id_part_pres').val();
+            var selc_part_pres = $('#selc_part_pres').val();
+
             var ccnu = $('#id_ccnu_mod').val();
             var sel_ccnu = $('#sel_ccnu_b_m').val();
 
@@ -583,6 +599,7 @@ function guardar_tabla(){
                 data:{
                     id_items_proy: id_items_proy,
                     partida_pre: partida_pre,
+                    selc_part_pres:selc_part_pres,
                     ccnu: ccnu,
                     sel_ccnu: sel_ccnu,
                     fecha_desde_e: fecha_desde_e,

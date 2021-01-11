@@ -82,7 +82,7 @@ if ($('#id_programacion').val().length != " "){//FUNCION EN DONDE SE CARGA LA TA
                     var increment = increment +1;
                     newRow.className='myTr';
                     newRow.innerHTML = `
-                    
+
                     <td>${value.id_p_items}<input type="text" name="id_p_items[]" id="ins-type-${increment}" hidden value="${value.id_p_items}"></td>
                     <td>${value.codigopartida_presupuestaria}<input type="text" name="par_presupuestaria_acc[]" id="ins-type-${increment}" hidden value="${value.id_partidad_presupuestaria}"></td>
 
@@ -140,6 +140,7 @@ function editar_modal_b(id){
     var id_items_proy = id
 
     var base_url =window.location.origin+'/asnc/index.php/Programacion/cons_items_proy_b';
+    var base_url1 =window.location.origin+'/asnc/index.php/Programacion/llenar_par_pre_mod';
     var base_url2 =window.location.origin+'/asnc/index.php/Programacion/llenar_uni_med_mod';
     var base_url3 =window.location.origin+'/asnc/index.php/Programacion/llenar_alic_iva_mod';
 
@@ -209,11 +210,25 @@ function editar_modal_b(id){
             var total_estim = parseFloat(total_est).toFixed(2);
             var estimado_total_t  = Intl.NumberFormat("de-DE").format(total_estim);
             $('#estimado_total_t_mod').val(estimado_total_t);
-            console.log(response);
+
+            //FUNCIO PARA LLENAR EL SELECT DE PARTIDA PRESUPUESTARIA PARA CAMBIAR
+            var cod_partida_pre = response['codigopartida_presupuestaria'];
+
+            $.ajax({
+                url:base_url1,
+                method: 'post',
+                data: {cod_partida_pre: cod_partida_pre},
+                dataType: 'json',
+                success: function(data){
+                    $('#selc_part_pres_b').find('option').not(':first').remove();
+                    $.each(data, function(index, response){
+                        $('#selc_part_pres_b').append('<option value="'+response['id_partida_presupuestaria']+'">'+response['desc_partida_presupuestaria']+'</option>');
+                    });
+                }
+            })
 
             //FUNCIO PARA LLENAR EL SELECT DE UNIDAD DE MEDIDA PARA CAMBIAR
             var id_unid_med = response['id_unidad_medida'];
-
             $.ajax({
                 url:base_url2,
                 method: 'post',
@@ -228,7 +243,6 @@ function editar_modal_b(id){
 
             //FUNCIO PARA LLENAR EL SELECT DE ALICUOTA IVA
             var id_alic_iva = response['alicuota_iva'];
-
             $.ajax({
                 url:base_url3,
                 method: 'post',
@@ -313,7 +327,7 @@ function calcular_mod_bienes(){
 
         var sel_id_alic_iva_b = $('#sel_id_alic_iva_b').val();
 
-        if (sel_id_alic_iva_b == 0) {
+        if (sel_id_alic_iva_b == 's') {
             var id_al_iva = id_alicuota_iva
         }else {
             var id_al_iva = sel_id_alic_iva_b
@@ -382,7 +396,10 @@ function guardar_tabla_b(){
     }).then((result) => {
         if (result.value == true) {
             var id_items_proy = $('#id_items_b').val();
+
             var partida_pre = $('#id_part_pres_b').val();
+            var selc_part_pres = $('#selc_part_pres_b').val();
+
             var ccnu = $('#id_ccnu_mod_b').val();
             var sel_ccnu = $('#sel_ccnu_b_m_b').val();
 
@@ -415,9 +432,9 @@ function guardar_tabla_b(){
                 data:{
                     id_items_proy: id_items_proy,
                     partida_pre: partida_pre,
+                    selc_part_pres: selc_part_pres,
                     ccnu: ccnu,
                     sel_ccnu: sel_ccnu,
-
                     esp: esp,
                     unid_med: unid_med,
                     sel_camb_unid_medi: sel_camb_unid_medi,

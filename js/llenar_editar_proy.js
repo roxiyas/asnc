@@ -35,11 +35,6 @@ if ($('#id_programacion').val().length != " "){//FUNCION EN DONDE SE CARGA LA TA
                     cellremove_ffBtn.appendChild(createremove_ffBtn())
             		newRow.appendChild(cellremove_ffBtn);
 
-                    //
-                    // var cell_editar = createCell();
-                    // cell_editar.appendChild(editar())
-            		// newRow.appendChild(cell_editar);
-
                     document.querySelector('#target_ff tbody').appendChild(newRow);
 
                     function remove_ff() {
@@ -47,10 +42,6 @@ if ($('#id_programacion').val().length != " "){//FUNCION EN DONDE SE CARGA LA TA
                            document.querySelector('#target_ff tbody')
                            .removeChild(row);
                     }
-                    //
-                    // function editar() {
-                	//        $('#myModal').modal('show'); // abrir
-                    // }
 
                     function createremove_ffBtn() {
                         var btnremove_ff = document.createElement('button');
@@ -59,14 +50,6 @@ if ($('#id_programacion').val().length != " "){//FUNCION EN DONDE SE CARGA LA TA
                         btnremove_ff.innerText = 'Descartar';
                         return btnremove_ff;
                     }
-                    //
-                    // function editar() {
-                    //     var btn_editar = document.createElement('button');
-                    //     btn_editar.className = 'btn btn-xs btn-yellow';
-                    //     btn_editar.onclick = editar;
-                    //     btn_editar.innerText = 'Editar';
-                    //     return btn_editar;
-                    // }
                 });
             }
         }
@@ -149,6 +132,7 @@ if ($('#id_programacion').val().length != " "){//FUNCION EN DONDE SE CARGA LA TA
 function editar_modal(id){
     var id_items_proy = id
     var base_url =window.location.origin+'/asnc/index.php/Programacion/cons_items_proy';
+    var base_url1 =window.location.origin+'/asnc/index.php/Programacion/llenar_par_pre_mod';
     var base_url2 =window.location.origin+'/asnc/index.php/Programacion/llenar_uni_med_mod';
     var base_url3 =window.location.origin+'/asnc/index.php/Programacion/llenar_alic_iva_mod';
 
@@ -221,6 +205,22 @@ function editar_modal(id){
             var total_estim = parseFloat(total_est).toFixed(2);
             var estimado_total_t  = Intl.NumberFormat("de-DE").format(total_estim);
             $('#estimado_total_t_mod').val(estimado_total_t);
+
+            //FUNCIO PARA LLENAR EL SELECT DE PARTIDA PRESUPUESTARIA PARA CAMBIAR
+            var cod_partida_pre = response['codigopartida_presupuestaria'];
+            $.ajax({
+                url:base_url1,
+                method: 'post',
+                data: {cod_partida_pre: cod_partida_pre},
+                dataType: 'json',
+                success: function(data){
+                    console.log(data);
+                    $('#selc_part_pres').find('option').not(':first').remove();
+                    $.each(data, function(index, response){
+                        $('#selc_part_pres').append('<option value="'+response['id_partida_presupuestaria']+'">'+response['desc_partida_presupuestaria']+'</option>');
+                    });
+                }
+            })
 
             //FUNCION PARA LA VALIDACION DE LAS FECHAS Y TRIMESTRES AL INGRESAR AL MODAL
             var f_desde = response['fecha_desde'];
@@ -295,6 +295,7 @@ function editar_modal(id){
                 data: {id_unid_med: id_unid_med},
                 dataType: 'json',
                 success: function(data){
+                    $('#camb_unid_medi').find('option').not(':first').remove();
                     $.each(data, function(index, response){
                         $('#camb_unid_medi').append('<option value="'+response['id_unidad_medida']+'">'+response['desc_unidad_medida']+'</option>');
                     });
@@ -310,7 +311,7 @@ function editar_modal(id){
                 data: {id_unid_med: id_unid_med},
                 dataType: 'json',
                 success: function(data){
-                    console.log(data);
+                    $('#sel_id_alic_iva').find('option').not(':first').remove();
                     $.each(data, function(index, response){
                         $('#sel_id_alic_iva').append('<option value="'+response['desc_alicuota_iva']+'">'+response['desc_porcentaj']+'</option>');
                     });
@@ -383,7 +384,7 @@ function calculo_mod(){
             var id_alicuota_iva = $('#ali_iva_e').val();
             var sel_id_alicuota_iva = $('#sel_id_alic_iva').val();
 
-            if (sel_id_alicuota_iva == 0) {
+            if (sel_id_alicuota_iva == 's') {
                 var id_al_iva = id_alicuota_iva
             }else {
                 var id_al_iva = sel_id_alicuota_iva
@@ -446,7 +447,10 @@ function guardar_tabla(){
     }).then((result) => {
         if (result.value == true) {
             var id_items_proy = $('#id_items').val();
+
             var partida_pre = $('#id_part_pres').val();
+            var selc_part_pres = $('#selc_part_pres').val();
+
             var ccnu = $('#id_ccnu_mod').val();
             var sel_ccnu = $('#sel_ccnu_b_m').val();
 
@@ -477,6 +481,7 @@ function guardar_tabla(){
                 data:{
                     id_items_proy: id_items_proy,
                     partida_pre: partida_pre,
+                    selc_part_pres: selc_part_pres,
                     ccnu: ccnu,
                     sel_ccnu: sel_ccnu,
                     fecha_desde_e: fecha_desde_e,

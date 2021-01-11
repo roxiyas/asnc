@@ -96,12 +96,11 @@ class Programacion extends CI_Controller {
 
     public function save_programacion(){
         if(!$this->session->userdata('session'))redirect('login');
-       
+        
         $acc_cargar = $this->input->POST('acc_cargar');
-
         $p_proyecto = array(
             'id_programacion'        => $this->input->POST('id_programacion'),
-			   'nombre_proyecto'        => $this->input->POST('nombre_proyecto'),
+			'nombre_proyecto'        => $this->input->POST('nombre_proyecto'),
             'id_obj_comercial'       => $this->input->post('id_obj_comercial'),
             'id_usuario' 		     => $this->session->userdata('id_user'),
             'estatus'                => 1
@@ -138,7 +137,6 @@ class Programacion extends CI_Controller {
             'id_fuente_financiamiento'  => $this->input->post('fuente_financiamiento'),
             'porcentaje' 	            => $this->input->post('porcentaje'),
         );
-
 
         $data = $this->Programacion_model->save_programacion($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento);
 
@@ -375,6 +373,14 @@ class Programacion extends CI_Controller {
   		if(!$this->session->userdata('session'))redirect('login');
   		$data = $this->input->post();
   		$data =	$this->Programacion_model->editar_fila_ip($data);
+  		echo json_encode($data);
+  	}
+
+    public function llenar_par_pre_mod(){
+  		if(!$this->session->userdata('session'))redirect('login');
+
+  		$data = $this->input->post();
+  		$data =	$this->Programacion_model->llenar_par_pre_mod($data);
   		echo json_encode($data);
   	}
 
