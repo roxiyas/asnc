@@ -36,6 +36,31 @@ function porc(){
     }
 }
 
+function cant_total(){
+
+    var cant_total = $('#cant_total_distribuir').val();
+
+    if (cant_total != '0') {
+        swal({
+            title: "¡ATENCION!",
+            text: "La cantidad a Distribuir debe quedar en 0, para continuar.",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonColor: "#00897b",
+            confirmButtonText: "CONTINUAR",
+            closeOnConfirm: false
+        }, function(){
+            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        });
+
+        $("#precio_total").prop('disabled', true);
+        $("#id_alicuota_iva").prop('disabled', true);
+    }else {
+        $("#precio_total").prop('disabled', false);
+        $("#id_alicuota_iva").prop('disabled', false);
+    }
+}
+
 function calculo(){
 
     var cantidad = 100;

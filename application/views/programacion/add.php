@@ -144,38 +144,32 @@
                                     <div class="col-12 mt-2 text-center">
                                         <h4 style="color:red;">Información Items Productos (IP)</h4>
                                     </div>
-                                    <div class="form-group col-8">
-                                        <label>CCNU <b style="color:red">*</b></label><br>
-                                        <select  id="id_ccnu" class="form-control default-select2">
-                                            <option value="0">SELECCIONE</option>
-                                            <?php foreach ($ccnu as $data): ?>
-                                                <option value="<?=$data['codigo_ccnu']?>/<?=$data['desc_ccnu']?>"><?=$data['desc_ccnu']?></option>
-                                            <?php endforeach; ?>
-                                        </select>
+                                    <div class="form-group col-12">
+                                        <label> CCNU <i title="Si quiere cambiar el CCNU, debe seleccionarlo en este campo" class="fas fa-question-circle"></i></label>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input title="Debe ingresar una palabra para realizar la busqueda" type="text" class="form-control" name="ccnu_b" id="ccnu_b" onblur="buscar_ccnnu();">
+                                            </div>
+                                            <div class="col-8">
+                                                <select title="Depende de la palabra ingresada en el campo anterior, se listaran las opciones." class="form-control" name="id_ccnu" id="id_ccnu">
+                                                    <option value="0">Seleccione</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-group col-4">
     									<label>Rango de Fecha</label>
-    									<!-- <div class="col-md-8"> -->
     										<div class="input-group input-daterange">
     											<input type="text" class="form-control" id="fecha_desde" onchange="verif_d();" onblur="habilitar_trim();" name="start" placeholder="Desde" />
     											<span class="input-group-addon">-</span>
     											<input type="text" class="form-control"  id="fecha_hasta" onchange="verif_h();" onblur="habilitar_trim();" name="end" placeholder="Hasta" />
     										</div>
-    									<!-- </div> -->
     								</div>
-                                    <!-- <div class="col-2 form-group">
-                                        <label>Fecha Desde<b style="color:red">*</b></label>
-                                        <input id="fecha_desde" name="fecha_desde" type="date" onblur="verif_d();" class="form-control">
-                                    </div>
-                                    <div class="col-2 form-group">
-                                        <label>Fecha Hasta<b style="color:red">*</b></label>
-                                        <input id="fecha_hasta" name="fecha_hasta" type="date" onblur="verif_h();" class="form-control">
-                                    </div> -->
                                     <div class="form-group col-6">
                                         <label>Especificación <b style="color:red">*</b></label>
                                         <input id="especificacion" type="text" class="form-control">
                                     </div>
-                                    <div class="form-group col-6">
+                                    <div class="form-group col-2">
                                         <label>Unidad de Medida <b style="color:red">*</b></label><br>
                                         <select  id="id_unidad_medida" name="id_unidad_medida" class="form-control">
                                             <option value="">SELECCIONE</option>
@@ -212,7 +206,7 @@
 
                                     <div class="form-group col-4">
                                         <label>Precio Total <b style="color:red">*</b></label>
-                                        <input id="precio_total"  name="precio_total" type="text" onblur="calculo();" class="form-control">
+                                        <input id="precio_total"  name="precio_total" type="text" onclick="cant_total();" onblur="calculo();" class="form-control">
                                     </div>
                                     <div class="form-group col-2">
                                         <label>Alícuota IVA Estimado<b style="color:red">*</b></label><br>
@@ -427,6 +421,7 @@
                                     <div class="col-12 mt-2 text-center">
                                         <h4 style="color:red;">Información Items Productos (IP)</h4>
                                     </div>
+
                                     <div class="form-group col-6">
                                         <label>CCNU <b style="color:red">*</b></label><br>
                                         <select  style="width: 100%;" id="id_ccnu_acc" class="form-control default-select2">

@@ -32,6 +32,31 @@ function porc(){
     }
 }
 
+function cant_total(){
+
+    var cant_total = $('#cant_total_distribuir').val();
+
+    if (cant_total != '0') {
+        swal({
+            title: "¡ATENCION!",
+            text: "La cantidad a Distribuir debe quedar en 0, para continuar.",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonColor: "#00897b",
+            confirmButtonText: "CONTINUAR",
+            closeOnConfirm: false
+        }, function(){
+            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        });
+
+        $("#precio_total").prop('disabled', true);
+        $("#id_alicuota_iva").prop('disabled', true);
+    }else {
+        $("#precio_total").prop('disabled', false);
+        $("#id_alicuota_iva").prop('disabled', false);
+    }
+}
+
 function calculo(){
 
     var cantidad = 100;
@@ -41,6 +66,9 @@ function calculo(){
     var iv = $('#IV').val();
 
     var cantidad_total = Number(i) + Number(ii) + Number(iii) + Number(iv)
+
+    var can_x_distr =   cantidad - i - ii - iii - iv
+    $('#cant_total_distribuir').val(can_x_distr);
 
     if (cantidad_total > 100) {
         swal({
@@ -57,7 +85,7 @@ function calculo(){
 
         $("#precio_total").prop('disabled', true);
         $("#id_alicuota_iva").prop('disabled', true);
-    }else {
+    }else{
         $("#precio_total").prop('disabled', false);
         $("#id_alicuota_iva").prop('disabled', false);
         //Calculo Cantidad x DIstribuir
@@ -237,4 +265,23 @@ function habilitar_trim() {
         $("#III").prop('disabled', true);
         $("#IV").prop('disabled', false);
     }
+}
+
+function buscar_ccnnu(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
+    var ccnu_b = $('#ccnu_b').val();
+
+    var base_url =window.location.origin+'/asnc/index.php/Programacion/llenar_selc_ccnu_m';
+    $.ajax({
+        url:base_url,
+        method: 'post',
+        data: {ccnu_b_m: ccnu_b},
+        dataType: 'json',
+        success: function(data){
+            console.log(data);
+            $('#id_ccnu').find('option').not(':first').remove();
+            $.each(data, function(index, response){
+                $('#id_ccnu').append('<option value="'+response['codigo_ccnu']+'/'+response['desc_ccnu']+'">'+response['desc_ccnu']+'</option>');
+            });
+        }
+    })
 }

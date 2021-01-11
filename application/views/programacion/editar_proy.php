@@ -156,7 +156,7 @@
                                 <label>Especificación <b style="color:red">*</b></label>
                                 <input id="especificacion" type="text" class="form-control">
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-2">
                                 <label>Unidad de Medida <b style="color:red">*</b></label><br>
                                 <select  id="id_unidad_medida" name="id_unidad_medida" class="form-control default-select2">
                                     <option value="">SELECCIONE</option>
@@ -193,7 +193,7 @@
 
                             <div class="form-group col-4">
                                 <label>Precio Total <b style="color:red">*</b></label>
-                                <input id="precio_total"  name="precio_total" type="text" onblur="calculo();" class="form-control">
+                                <input id="precio_total" name="precio_total" type="text" onclick="cant_total();" onblur="calculo();" class="form-control">
                             </div>
                             <div class="form-group col-2">
                                 <label>Alícuota IVA Estimado<b style="color:red">*</b></label><br>
