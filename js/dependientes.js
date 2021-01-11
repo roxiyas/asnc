@@ -2,7 +2,6 @@ $(document).ready(function(){
 
     $('#id_estado').change(function(){
         var id_estado = $(this).val();
-
         var base_url = window.location.origin+'/asnc/index.php/configuracion/listar_municipio';
 
         $.ajax({
@@ -12,6 +11,7 @@ $(document).ready(function(){
             dataType:'json',
 
             success: function(response){
+                console.log(response);
 
                 $('#id_municipio').find('option').not(':first').remove();
                 $('#id_parroquia').find('option').not(':first').remove();
@@ -32,7 +32,7 @@ $(document).ready(function(){
             dataType:'json',
 
             success: function(response){
-
+console.log(response);
                 $('#id_parroquia').find('option').not(':first').remove();
 
                 $.each(response, function(index, data){

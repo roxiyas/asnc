@@ -4,8 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Configuracion extends CI_Controller {
 
 	public function listar_municipio(){
-		if(!$this->session->userdata('session'))
-		redirect('login');
+		// if(!$this->session->userdata('session'))
+		// redirect('login');
 
 		$data = $this->input->post();
 		$data =	$this->Configuracion_model->listar_municipio($data);
@@ -13,10 +13,12 @@ class Configuracion extends CI_Controller {
 	}
 
 	public function listar_parroquia(){
-		if(!$this->session->userdata('session'))
-		redirect('login');
+		// if(!$this->session->userdata('session'))
+		// redirect('login');
 		$data = $this->input->post();
+
 		$data =	$this->Configuracion_model->listar_parroquia($data);
+
 		echo json_encode($data);
 	}
 	// ÓRGANO
@@ -60,7 +62,6 @@ class Configuracion extends CI_Controller {
 			'fecha_gaceta'		=> $this->input->post("fecha_gaceta"),
 			'usuario' 			=> $this->session->userdata('id_user')
 		);
-		//print_r($data);die;
 		$data = $this->Configuracion_model->save_organismo($data);
 		$this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
 		redirect('configuracion/organismo');

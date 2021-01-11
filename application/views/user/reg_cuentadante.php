@@ -154,7 +154,7 @@
                                                 <div class="row">
                                                     <div class="form-group col-4">
                                                         <label>Órgano Perteneciente</label><br>
-                                                        <select id="id_organoads" name="id_organoads" class="default-select2 form-control">
+                                                        <select id="id_organoads" name="id_organoads" class="form-control">
                                                             <?php foreach ($organo as $data) : ?>
                                                                 <option>Seleccione</option>
                                                                 <option value="0">Órgano Padre</option>
@@ -186,14 +186,15 @@
                                                     <div class="col-4">
                                                         <label>Rif del Órgano</label>
                                                         <div class="row">
-                                                            <div class="col-3">
-                                                                <select id="tipo_rif" name="tipo_rif" class="default-select2 form-control">
+                                                            <div class="col-4">
+                                                                <select id="tipo_rif" name="tipo_rif" class="form-control">
+                                                                    <option value="0">Sel</option>
                                                                     <?php foreach ($tipo_rif as $data) : ?>
                                                                         <option value="<?= $data['id_rif'] ?>"><?= $data['desc_rif'] ?></option>
                                                                     <?php endforeach; ?>
                                                                 </select>
                                                             </div>
-                                                            <div class="form-group col-9">
+                                                            <div class="form-group col-8">
                                                                 <input type="number" name="rif" class="form-control <?php echo form_error('rif') ? 'is-invalid' : ''; ?>" placeholder="Código" value="<?php echo set_value('rif'); ?>">
                                                                 <div class="invalid-feedback">
                                                                     <?php echo form_error('rif'); ?>
@@ -203,7 +204,7 @@
                                                     </div>
                                                     <div class="col-4 form-group">
                                                         <label>Clasificación</label>
-                                                        <select id="id_clasificacion" name="id_clasificacion" class="default-select2 form-control">
+                                                        <select id="id_clasificacion" name="id_clasificacion" class="form-control">
                                                             <option>Ejemplo</option>
                                                             <option value="1">Prueba</option>
                                                         </select>
@@ -259,7 +260,7 @@
                                                             <div class="row">
                                                                 <div class="form-group col-4">
                                                                     <label>Estado</label>
-                                                                    <select id="id_estado" name="id_estado" class="default-select2 form-control">
+                                                                    <select id="id_estado" name="id_estado" class="form-control">
                                                                         <option>Seleccione</option>
                                                                         <?php foreach ($estados as $data) : ?>
                                                                             <option value="<?= $data['id_estado'] ?>"><?= $data['descripcion'] ?></option>
@@ -268,16 +269,16 @@
                                                                 </div>
                                                                 <div class="form-group col-4">
                                                                     <label>Municipio</label>
-                                                                    <select id="id_municipio" name="id_municipio" class="default-select2 form-control">
+                                                                    <select id="id_municipio" name="id_municipio" class="form-control">
                                                                         <option>Seleccione</option>
-                                                                        <option value="1">Libertador</option>
+                                                                        <!-- <option value="1">Libertador</option> -->
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group col-4">
                                                                     <label>Parroquia</label>
-                                                                    <select id="id_parroquia" name="id_parroquia" class="default-select2 form-control">
+                                                                    <select id="id_parroquia" name="id_parroquia" class="form-control">
                                                                         <option>Seleccione</option>
-                                                                        <option value="1">Catia</option>
+                                                                        <!-- <option value="1">Catia</option> -->
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group col-12">
@@ -319,8 +320,8 @@
                     </div>
                 </div>
             </div>
-           <!--  modal de entes-->
-            <?php if ($this->session->flashdata('sa-success2')) { ?>
-                <div hidden id="sa-success2"> <?= $this->session->flashdata('sa-success2') ?> </div>
-            <?php } ?>
-            <script src="<?= base_url() ?>/js/dependientes.js"></script>
+<!--  modal de entes-->
+<?php if ($this->session->flashdata('sa-success2')) { ?>
+    <div hidden id="sa-success2"> <?= $this->session->flashdata('sa-success2') ?> </div>
+<?php } ?>
+<script src="<?= base_url() ?>/js/dependientes.js"></script>

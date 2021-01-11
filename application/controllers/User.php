@@ -73,22 +73,13 @@ class User extends CI_Controller {
 		$data['organo']= $this->User_model->consultar_organos();
 		$data['entes']= $this->User_model->consultar_entes();
 
+		$data['organismos'] = $this->Configuracion_model->consulta_organismo();
+		$data['tipo_rif'] 	= $this->Configuracion_model->consulta_tipo_rif();
+		$data['estados'] 	= $this->Configuracion_model->consulta_estados();
+
 		// $this->load->view('templates/header.php');
         // $this->load->view('templates/navigator.php');
 		$this->load->view('user/reg_cuentadante.php', $data);
         $this->load->view('templates/footer.php');
 	}
-
-	// public function listar_entes(){
-	// 	$data = $this->input->post();
-	// 	$data =	$this->User_model->consultar_entes($data);
-	// 	echo json_encode($data);
-	// }
-	//
-	// public function listar_entesads(){
-	// 	$data = $this->input->post();
-	// 	$data =	$this->User_model->consultar_entesads($data);
-	// 	echo json_encode($data);
-	// }
-
 }
