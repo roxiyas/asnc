@@ -104,7 +104,7 @@
                 //  alert("test");
                 var desc_unidad_medida = $("#desc_unidad_medida").val();
                 var id_usuario = 1; //esto debo arreglar
-                var fecha = '12/15/2020';
+                //var fecha = '12/15/2020';
                 if (desc_unidad_medida == "") {
                     alert("debe ingresar un dato, REQUERIDO");
                 } else {
@@ -115,8 +115,7 @@
                         dataType: "json",
                         data: {
                             desc_unidad_medida: desc_unidad_medida,
-                            id_usuario: id_usuario,
-                            fecha: fecha
+                            id_usuario: id_usuario
                         },
                         success: function(data) {
                             if (data.responce == "success") {

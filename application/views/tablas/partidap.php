@@ -112,7 +112,7 @@
                         var desc_partida_presupuestaria = $("#desc_partida_presupuestaria").val();
                         var codigopartida_presupuestaria = $("#codigopartida_presupuestaria").val();
                         var id_usuario = 1; //esto debo arreglar
-                        var fecha = '12/15/2020'; //esto debo arreglar
+                        //var fecha = '12/15/2020'; //esto debo arreglar
                         //alert(desc_partida_presupuestaria + '' + codigopartida_presupuestaria);
                         if (desc_partida_presupuestaria == "" || codigopartida_presupuestaria == "") {
                             alert("Both field is required");
@@ -124,8 +124,7 @@
                                 data: {
                                     codigopartida_presupuestaria: codigopartida_presupuestaria,
                                     desc_partida_presupuestaria: desc_partida_presupuestaria,
-                                    id_usuario: id_usuario,
-                                    fecha: fecha
+                                    id_usuario: id_usuario
                                 },
                                 success: function(data) {
                                     if (data.responce == "success") {

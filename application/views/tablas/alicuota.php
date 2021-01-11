@@ -111,7 +111,7 @@
                         var desc_alicuota_iva = $("#desc_alicuota_iva").val();
                         var desc_porcentaj = $("#desc_porcentaj").val();
                         var id_usuario = 1; //esto debo arreglar
-                        var fecha = '12/15/2020'; //esto debo arreglar
+                        //var fecha = '12/15/2020'; //esto debo arreglar
                         //alert(desc_alicuota_iva + '' + desc_porcentaj);
                         if (desc_alicuota_iva == "" || desc_porcentaj == "") {
                             alert("Both field is required");
@@ -123,8 +123,7 @@
                                 data: {
                                     desc_alicuota_iva: desc_alicuota_iva,
                                     desc_porcentaj: desc_porcentaj,
-                                    id_usuario: id_usuario,
-                                    fecha: fecha
+                                    id_usuario: id_usuario
                                 },
                                 success: function(data) {
                                     if (data.responce == "success") {

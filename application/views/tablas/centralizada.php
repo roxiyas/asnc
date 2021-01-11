@@ -103,7 +103,7 @@
                 //  alert("test");
                 var desc_accion_centralizada = $("#desc_accion_centralizada").val();
                 var id_usuario = 1; //esto debo arreglar
-                var fecha = '12/15/2020';
+                //var fecha = '12/15/2020';
                 if (desc_accion_centralizada == "") {
                     alert("debe ingresar un dato, REQUERIDO");
                 } else {
@@ -114,8 +114,7 @@
                         dataType: "json",
                         data: {
                             desc_accion_centralizada: desc_accion_centralizada,
-                            id_usuario: id_usuario,
-                            fecha: fecha
+                            id_usuario: id_usuario
                         },
                         success: function(data) {
                             if (data.responce == "success") {

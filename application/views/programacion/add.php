@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="form-group col-6">
                                         <label>Estado</label>
-                                        <select id="id_estado" name="id_estado" class="form-control estado" multiple="multiple" required>
+                                        <select id="id_estado" name="id_estado" class="form-control estado" multiple="multiple">
                                             <option value="0">Seleccione</option>
                                             <?php foreach ($estados as $data): ?>
                                                 <option value="<?=$data['descripcion']?>"><?=$data['descripcion']?></option>
@@ -111,7 +111,7 @@
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Porcentaje<b style="color:red">*</b></label>
-                                            <input id="porcentaje" onblur="porc();" id="porcentaje" type="text" class="form-control" required>
+                                            <input id="porcentaje" onblur="porc();" id="porcentaje" type="text" class="form-control">
                                     </div>
                                     <div class="col-12">
                                         <h5 class="text-center"><b style="color:red;">NOTA:</b> Debe llenar todos lo items para llenar la tabla.</h5>
@@ -294,13 +294,13 @@
                                     </div>
                                 </div>
                                 <!--////////////////////////////SEGUNDA PARTE DE LA CARGA -->
-                                <!-- <div class="col-12 text-center mt-3">
-                                    <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" name="button">Guardar</button>
-                                </div> -->
-
                                 <div class="col-12 text-center mt-3">
-                                    <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" onclick="guardar_proy();" type="button" name="button">Guardar</button>
+                                    <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" name="button">Guardar</button>
                                 </div>
+
+                                <!-- <div class="col-12 text-center mt-3">
+                                    <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" onclick="guardar_proy();" type="button" name="button">Guardar</button>
+                                </div> -->
                             </form>
                         </div>
 
@@ -376,7 +376,7 @@
                                     <hr style="border-top: 1px solid rgba(0, 0, 0, 0.17);">
                                     <div class="form-group col-6">
                                         <label>Estado</label><br>
-                                        <select style="width: 100%;" id="id_estado_acc" name="id_estado_acc" class="default-select2 form-control" multiple="multiple" required>
+                                        <select style="width: 100%;" id="id_estado_acc" name="id_estado_acc" class="default-select2 form-control" multiple="multiple">
                                             <option value="0">Seleccione</option>
                                             <?php foreach ($estados as $data): ?>
                                                 <option value="<?=$data['descripcion']?>"><?=$data['descripcion']?></option>
