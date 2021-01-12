@@ -63,7 +63,7 @@ if ($('#id_programacion').val().length != " "){//FUNCION EN DONDE SE CARGA LA TA
     var id_p_proyecto = separar['1'];
 
     var base_url =window.location.origin+'/asnc/index.php/Programacion/ver_proy_editar_items';
-    // var base_url = '/index.php/Programacion/ver_proy_editar';
+    // var base_url = '/index.php/Programacion/ver_proy_editar_items';
     $.ajax({
        url:base_url,
        method: 'post',
@@ -135,6 +135,11 @@ function editar_modal(id){
     var base_url1 =window.location.origin+'/asnc/index.php/Programacion/llenar_par_pre_mod';
     var base_url2 =window.location.origin+'/asnc/index.php/Programacion/llenar_uni_med_mod';
     var base_url3 =window.location.origin+'/asnc/index.php/Programacion/llenar_alic_iva_mod';
+
+    // var base_url = '/index.php/Programacion/cons_items_proy';
+    // var base_url1 = '/index.php/Programacion/llenar_par_pre_mod';
+    // var base_url2 = '/index.php/Programacion/llenar_uni_med_mod';
+    // var base_url3 = '/index.php/Programacion/llenar_alic_iva_mod';
 
     $.ajax({
         url:base_url,
@@ -326,6 +331,7 @@ function buscar_ccnnu_m(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
 
     console.log(ccnu_b_m);
     var base_url =window.location.origin+'/asnc/index.php/Programacion/llenar_selc_ccnu_m';
+    // var base_url = '/index.php/Programacion/llenar_selc_ccnu_m';
     $.ajax({
         url:base_url,
         method: 'post',
@@ -474,6 +480,7 @@ function guardar_tabla(){
             var monto_tot_est = $('#monto_tot_est').val();
 
             var base_url =window.location.origin+'/asnc/index.php/Programacion/editar_fila_ip';
+            // var base_url = '/index.php/Programacion/editar_fila_ip';
 
             $.ajax({
                 url:base_url,

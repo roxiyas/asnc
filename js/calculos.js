@@ -1,3 +1,24 @@
+
+function buscar_ccnnu(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
+    var ccnu_b = $('#ccnu').val();
+
+    var base_url =window.location.origin+'/asnc/index.php/Programacion/llenar_selc_ccnu_m';
+    // var base_url = '/index.php/Programacion/llenar_selc_ccnu_m';
+    $.ajax({
+        url:base_url,
+        method: 'post',
+        data: {ccnu_b_m: ccnu_b},
+        dataType: 'json',
+        success: function(data){
+            console.log(data);
+            $('#id_ccnu').find('option').not(':first').remove();
+            $.each(data, function(index, response){
+                $('#id_ccnu').append('<option value="'+response['codigo_ccnu']+'/'+response['desc_ccnu']+'">'+response['desc_ccnu']+'</option>');
+            });
+        }
+    })
+}
+
 function porc(){
     var porcentaje = $('#porcentaje').val();
 
@@ -265,23 +286,4 @@ function habilitar_trim() {
         $("#III").prop('disabled', true);
         $("#IV").prop('disabled', false);
     }
-}
-
-function buscar_ccnnu(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
-    var ccnu_b = $('#ccnu').val();
-
-    var base_url =window.location.origin+'/asnc/index.php/Programacion/llenar_selc_ccnu_m';
-    $.ajax({
-        url:base_url,
-        method: 'post',
-        data: {ccnu_b_m: ccnu_b},
-        dataType: 'json',
-        success: function(data){
-            console.log(data);
-            $('#id_ccnu').find('option').not(':first').remove();
-            $.each(data, function(index, response){
-                $('#id_ccnu').append('<option value="'+response['codigo_ccnu']+'/'+response['desc_ccnu']+'">'+response['desc_ccnu']+'</option>');
-            });
-        }
-    })
 }

@@ -3,6 +3,7 @@ $(document).ready(function(){
     $('#id_estado').change(function(){
         var id_estado = $(this).val();
         var base_url = window.location.origin+'/asnc/index.php/configuracion/listar_municipio';
+        // var base_url = '/index.php/Programacion/listar_municipio';
 
         $.ajax({
             url: base_url,
@@ -25,6 +26,7 @@ $(document).ready(function(){
     $('#id_municipio').change(function(){
         var id_municipio = $(this).val();
         var base_url = window.location.origin+'/asnc/index.php/configuracion/listar_parroquia';
+        // var base_url = '/index.php/Programacion/listar_parroquia';
         $.ajax({
             url: base_url,
             method:'post',

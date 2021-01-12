@@ -22,6 +22,20 @@
         swal("Good job!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed.", "success")
     });
 
+    $('#sa-error').each(function(){
+        swal({
+            title: "¡Ocurrio un error inesperado, Por favor intente de nuevo!",
+            text: "",
+            type: "error",
+            showCancelButton: false,
+            confirmButtonColor: "#00897b",
+            confirmButtonText: "CONTINUAR",
+            closeOnConfirm: false
+        }, function(){
+            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        });
+    });
+
     //Warning Message
         $('#sa-warning').each(function(){
         swal({

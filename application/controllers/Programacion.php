@@ -32,9 +32,13 @@ class Programacion extends CI_Controller {
         );
 
         $data = $this->Programacion_model->agg_programacion($data);
-
-        $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
-		redirect('programacion/index');
+        if ($data) {
+            $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
+    		redirect('programacion/index');
+        }else{
+		   $this->session->set_flashdata('sa-error', 'error');
+		   redirect ('programacion/index');
+	    }
     }
 
     // OBAR / SERVICIO
@@ -94,9 +98,29 @@ class Programacion extends CI_Controller {
         $this->load->view('templates/footer.php');
     }
 
+    public function pdf_compl(){
+        if(!$this->session->userdata('session'))redirect('login');
+
+        $data['unidad'] = $this->session->userdata('id_unidad');
+        $data['des_unidad'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+        $data['codigo_onapre'] = $this->session->userdata('codigo_onapre');
+
+        $data['id_programacion'] = $this->input->get('id');
+        $data['programacion_anio'] = $this->Programacion_model->consultar_prog_anio($data['id_programacion'], $data['unidad']);
+        $data['anio'] = $data['programacion_anio']['anio'];
+
+        $data['proyectos'] = $this->Programacion_model->consultar_proyectos_compl($data['id_programacion']);
+
+        $this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+        $this->load->view('programacion/pdf_compl.php', $data);
+        $this->load->view('templates/footer.php');
+    }
+
     public function save_programacion(){
         if(!$this->session->userdata('session'))redirect('login');
-        
+
         $acc_cargar = $this->input->POST('acc_cargar');
         $p_proyecto = array(
             'id_programacion'        => $this->input->POST('id_programacion'),
@@ -140,10 +164,15 @@ class Programacion extends CI_Controller {
 
         $data = $this->Programacion_model->save_programacion($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento);
 
-        $id_programacion  = $this->input->POST('id_programacion');
+        if ($data) {
+            $id_programacion  = $this->input->POST('id_programacion');
+            $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
+    		redirect('Programacion/nueva_prog?id='.$id_programacion);
+        }else{
+		   $this->session->set_flashdata('sa-error', 'error');
+		   redirect ('Programacion/nueva_prog?id='.$id_programacion);
+	    }
 
-        $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
-		redirect('Programacion/nueva_prog?id='.$id_programacion);
     }
 
     public function ver_programacion_proy(){
@@ -239,25 +268,25 @@ class Programacion extends CI_Controller {
 
     public function ver_proy_editar(){
         if(!$this->session->userdata('session'))redirect('login');
-		      $data = $this->input->post();
-		        $data = $this->Programacion_model->inf_2_edit($data);
-		          echo json_encode($data);
+		$data = $this->input->post();
+		$data = $this->Programacion_model->inf_2_edit($data);
+	    echo json_encode($data);
     }
 
     public function ver_proy_editar_items(){
         if(!$this->session->userdata('session'))
         redirect('login');
-		      $data = $this->input->post();
-		        $data = $this->Programacion_model->inf_3_edit($data);
-		          echo json_encode($data);
+		$data = $this->input->post();
+		$data = $this->Programacion_model->inf_3_edit($data);
+		echo json_encode($data);
     }
 
     public function ver_proy_editar_items_b(){
         if(!$this->session->userdata('session'))
         redirect('login');
-		      $data = $this->input->post();
-		        $data = $this->Programacion_model->inf_3_b($data);
-		          echo json_encode($data);
+		$data = $this->input->post();
+		$data = $this->Programacion_model->inf_3_b($data);
+		echo json_encode($data);
     }
 
     public function editar_programacion_proy(){
@@ -304,11 +333,13 @@ class Programacion extends CI_Controller {
 
         $data = $this->Programacion_model->editar_programacion_proy($id_p_proyecto, $id_programacion, $p_proyecto,$p_items,$p_ffinanciamiento);
 
-        // $id_programacion  = $this->input->POST('id_programacion');
-
-        $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
-
-		      redirect('Programacion/nueva_prog?id='.$id_programacion);
+        if ($data) {
+            $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
+            redirect('Programacion/nueva_prog?id='.$id_programacion);
+        }else{
+		   $this->session->set_flashdata('sa-error', 'error');
+		   redirect('Programacion/nueva_prog?id='.$id_programacion);
+	    }
     }
 
     public function editar_programacion_proy_b(){
@@ -353,20 +384,23 @@ class Programacion extends CI_Controller {
             'porcentaje' 	            => $this->input->post('porcentaje_acc'),
           );
 
-          $data = $this->Programacion_model->editar_programacion_proy_b($id_p_proyecto, $id_programacion, $p_proyecto,$p_items,$p_ffinanciamiento);
-
-          $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
-
-		        redirect('Programacion/nueva_prog?id='.$id_programacion);
+        $data = $this->Programacion_model->editar_programacion_proy_b($id_p_proyecto, $id_programacion, $p_proyecto,$p_items,$p_ffinanciamiento);
+        if ($data) {
+            $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
+            redirect('Programacion/nueva_prog?id='.$id_programacion);
+        }else{
+  		    $this->session->set_flashdata('sa-error', 'error');
+  		   redirect('Programacion/nueva_prog?id='.$id_programacion);
+  	    }
     }
 
     //LLENADO PARA EL MODAL DE PROYECTO / OBRAS
     public function cons_items_proy(){
         if(!$this->session->userdata('session'))
         redirect('login');
-		      $data = $this->input->post();
-		        $data = $this->Programacion_model->cons_items_proy($data);
-		          echo json_encode($data);
+		$data = $this->input->post();
+		$data = $this->Programacion_model->cons_items_proy($data);
+		echo json_encode($data);
     }
 
     public function editar_fila_ip(){
@@ -378,7 +412,6 @@ class Programacion extends CI_Controller {
 
     public function llenar_par_pre_mod(){
   		if(!$this->session->userdata('session'))redirect('login');
-
   		$data = $this->input->post();
   		$data =	$this->Programacion_model->llenar_par_pre_mod($data);
   		echo json_encode($data);
@@ -386,7 +419,6 @@ class Programacion extends CI_Controller {
 
     public function llenar_uni_med_mod(){
   		if(!$this->session->userdata('session'))redirect('login');
-
   		$data = $this->input->post();
   		$data =	$this->Programacion_model->llenar_uni_med_mod($data);
   		echo json_encode($data);
@@ -394,7 +426,6 @@ class Programacion extends CI_Controller {
 
     public function llenar_alic_iva_mod(){
   		if(!$this->session->userdata('session'))redirect('login');
-
   		$data = $this->input->post();
   		$data =	$this->Programacion_model->llenar_alic_iva_mod($data);
   		echo json_encode($data);
@@ -466,10 +497,14 @@ class Programacion extends CI_Controller {
 
         $data = $this->Programacion_model->save_programacion_acc($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento);
 
-        $id_programacion = $this->input->POST('id_programacion_acc');
-
-        $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
-  		redirect('programacion/?id='.$id_programacion);
+        if ($data) {
+            $id_programacion = $this->input->POST('id_programacion_acc');
+            $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
+      		redirect('programacion/?id='.$id_programacion);
+        }else{
+  		    $this->session->set_flashdata('sa-error', 'error');
+  		    redirect('programacion/?id='.$id_programacion);
+  	    }
     }
 
     public function ver_programacion_acc(){
@@ -630,10 +665,14 @@ class Programacion extends CI_Controller {
         );
 
         $data = $this->Programacion_model->editar_programacion_acc($id_p_acc_centralizada, $id_programacion, $p_acc_centralizada,$p_items,$p_ffinanciamiento);
+        if ($data) {
+            $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
+    		redirect('Programacion/nueva_prog?id='.$id_programacion);
+        }else{
+            $this->session->set_flashdata('sa-error', 'error');
+            redirect('Programacion/nueva_prog?id='.$id_programacion);
+        }
 
-        $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
-
-		      redirect('Programacion/nueva_prog?id='.$id_programacion);
     }
 
     public function editar_programacion_acc_b(){
@@ -681,10 +720,13 @@ class Programacion extends CI_Controller {
         );
 
         $data = $this->Programacion_model->editar_programacion_acc_b($id_p_acc_centralizada, $id_programacion, $p_acc_centralizada,$p_items,$p_ffinanciamiento);
-
-        $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
-
-		      redirect('Programacion/nueva_prog?id='.$id_programacion);
+        if ($data) {
+            $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
+            redirect('Programacion/nueva_prog?id='.$id_programacion);
+        }else{
+            $this->session->set_flashdata('sa-error', 'error');
+            redirect('Programacion/nueva_prog?id='.$id_programacion);
+        }
     }
 
     //LLENADO PARA EL MODAL DE PROYECTO / BIENES
