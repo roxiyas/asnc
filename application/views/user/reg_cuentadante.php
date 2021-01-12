@@ -150,7 +150,7 @@
                                             <h4 class="panel-title">Registro de Órganos</h4>
                                         </div>
                                         <div class="panel-body">
-                                            <form action="<?= base_url() ?>index.php/configuracion/save_organismo" method="POST" class="form-horizontal">
+                                            <form action="<?= base_url() ?>index.php/User/save_organismo" method="POST" class="form-horizontal">
                                                 <div class="row">
                                                     <div class="form-group col-4">
                                                         <label>Órgano Perteneciente</label><br>
