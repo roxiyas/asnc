@@ -109,7 +109,7 @@ if ($('#id_programacion').val().length != " "){//FUNCION EN DONDE SE CARGA LA TA
 
                     document.querySelector('#target_req tbody').appendChild(newRow);
 
-                    function remove_med() {
+                    function remove_med(){
                 	       var row = this.parentNode.parentNode;
                            document.querySelector('#target_req tbody')
                            .removeChild(row);
