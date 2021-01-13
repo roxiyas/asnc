@@ -66,6 +66,7 @@
 	<!-- ================== END BASE JS ================== -->
 
 	<script src="<?=base_url()?>Plantilla/admin/assets/plugins/jquery/jquery-3.3.1.min.js"></script>
+	<script src="<?=base_url()?>Plantilla/admin/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 
 </head>
 <body>
