@@ -492,10 +492,8 @@ function habilitar_trim_mod(){
 
   var f_desde = $('#fecha_desde_e').val();
   var mes_d = f_desde.split("-")[1];
-  console.log(mes_d);
   var f_hasta = $('#fecha_hasta_e').val();
   var mes_h = f_hasta.split("-")[1];
-  console.log(mes_h);
 
     if (mes_d >= 01 && mes_h <= 03) {
         $("#primero").prop('disabled', false);

@@ -1,4 +1,4 @@
-<html lang="en">
+<!-- <html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -22,7 +22,7 @@
     <link href="<?= base_url() ?>Plantilla/admin/assets/css/apple/theme/default.css" rel="stylesheet" id="theme" />
     <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/pace/pace.min.js"></script>
     <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/jquery/jquery-3.3.1.min.js"></script>
-</head>
+</head> -->
 
 <body class="pace-top bg-white">
     <div id="page-loader" class="fade show"><span class="spinner"></span></div>

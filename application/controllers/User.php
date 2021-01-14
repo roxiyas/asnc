@@ -77,14 +77,14 @@ class User extends CI_Controller {
 		$data['tipo_rif'] 	= $this->Configuracion_model->consulta_tipo_rif();
 		$data['estados'] 	= $this->Configuracion_model->consulta_estados();
 
-		// $this->load->view('templates/header.php');
+		$this->load->view('templates/header.php');
         // $this->load->view('templates/navigator.php');
-		$this->load->view('User/reg_cuentadante.php', $data);
+		$this->load->view('user/reg_cuentadante.php', $data);
         $this->load->view('templates/footer.php');
 	}
 	// guardar organismo externo
 	public function save_organismo(){
-		
+
 		$data = array(
 			'id_organoads'		=> $this->input->post("id_organoads"),
 			'desc_organo'		=> $this->input->post("organo"),
@@ -110,5 +110,5 @@ class User extends CI_Controller {
 		$data = $this->Configuracion_model->save_organismo($data);
 		$this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
 		redirect('user/cuentadante');
-	} 
+	}
 }
