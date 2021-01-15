@@ -19,8 +19,8 @@
             </div>
         </div>
 		<div class="col-lg-12" style="display: none" id="items">
-            <form action="<?=base_url()?>index.php/User/save" class="form-horizontal" data-parsley-validate="true" name="demo-form" method="POST">
-    			<div class="panel panel-inverse" data-sortable-id="form-validation-1">
+            <form class="form-horizontal" id="resgistrar_eva" data-parsley-validate="true" method="POST" enctype="multipart/form-data">
+    			<div class="panel panel-inverse">
     				<div class="panel-heading">
     					<h4 class="panel-title"><b>Datos del Contratista Adjudicado</b></h4>
     				</div>
@@ -71,43 +71,46 @@
                                 <label>Rif del Contratante</label>
                                 <input class="form-control"  type="text" name="rif_cont_n" id="rif_cont_n" placeholder="Rif">
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-9">
                                 <label>Nombre completo</label>
-                                <input type="text" name="nombre_n" class="form-control" placeholder="Nombre completo">
+                                <input type="text" name="nombre_n" id="nombre_n" class="form-control" placeholder="Nombre completo">
                             </div>
                             <div class="form-group col-3">
                                 <label>Estado</label>
                                 <select class="form-control" name="id_estado_n" id="id_estado_n" onclick="llenar_municipio();">
                                     <option value="0">Seleccine</option>
                                     <?php foreach ($estados as $data): ?>
-                                        <option value="<?=$data['id_estado']?>"><?=$data['descripcion']?></option>
+                                        <option value="<?=$data['id']?>"><?=$data['descedo']?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="form-group col-3">
                                 <label>Municipio</label>
-                                <select class="form-control" name="id_municipio_n" id="id_municipio_n" >
+                                <select class="form-control" name="id_municipio_n" id="id_municipio_n" onclick="llenar_parroquia();">
+                                    <option value="0">Seleccine</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-3">
+                                <label>Parroquia</label>
+                                <select class="form-control" name="id_parroquia_n" id="id_parroquia_n" >
                                     <option value="0">Seleccine</option>
                                 </select>
                             </div>
                             <div class="form-group col-3">
                                 <label>Ciudad</label>
-                                <input type="text" name="ciudad_n" id="ciudad" class="form-control"  placeholder="Ciudad">
+                                <input type="text" name="ciudad_n" id="ciudad_n" class="form-control"  placeholder="Ciudad">
                             </div>
                             <div class="form-group col-3">
-                                <label>Representante Legal</label>
-                                <input type="text" name="rep_legal_n" id="rep_legal" class="form-control"  placeholder="Representante Legal">
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Cédula del Representante Legal</label>
-                                <input type="text" name="ced_rep_legal_n" id="ced_rep_legal" class="form-control"  placeholder="Cédula del Representante Legal">
+                                <label>Persona de Contacto</label>
+                                <input type="text" name="persona_cont_n" id="persona_cont_n" class="form-control"  placeholder="Persona de Contacto">
                             </div>
                             <div class="form-group col-6">
                                 <label>Télefono de Contacto</label>
-                                <input type="text" name="tel_cont_n" id="tel_cont" class="form-control"  placeholder="Télefono de Contacto">
+                                <input type="text" name="tel_cont_n" id="tel_cont_n" class="form-control"  placeholder="Télefono de Contacto">
                             </div>
                         </div>
 				    </div>
+                    <input type="text" name="exitte" id="exitte">
     				<div class="panel-heading">
     					<h4 class="panel-title"><b>Modalidad de la Contratación</b></h4>
     				</div>
@@ -133,7 +136,7 @@
                                     <div class="input-group input-daterange">
                                         <input type="text" class="form-control" id="fecha_desde" name="start" placeholder="Desde" />
                                         <span class="input-group-addon">-</span>
-                                        <input type="text" class="form-control"  id="fecha_hasta"name="end" placeholder="Hasta" />
+                                        <input type="text" class="form-control"  id="fecha_hasta" name="end" placeholder="Hasta" />
                                     </div>
                             </div>
                         </div>
@@ -153,23 +156,26 @@
                             </div>
                             <div class="form-group col-4">
                                 <label>Estado donde se ejecuto el Contrato</label>
-                                <select class="form-control" name="id_estado" id="id_estado">
+                                <select class="form-control" name="id_estado_dc" id="id_estado_dc">
                                     <option value="0">Seleccione</option>
+                                    <?php foreach ($estados as $data): ?>
+                                        <option value="<?=$data['id']?>"><?=$data['descedo']?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="form-group col-2">
                                 <label>Objeto de la Contratación</label>
 								<div class="col-md-12">
 									<div class="checkbox checkbox-css">
-										<input type="checkbox" id="cssCheckbox1" onclick="evaluar();"/>
+										<input type="checkbox" id="cssCheckbox1" name="cssCheckbox1" onclick="evaluar();"/>
 										<label for="cssCheckbox1">Bienes</label>
 									</div>
 									<div class="checkbox checkbox-css">
-										<input type="checkbox" id="cssCheckbox2" onclick="evaluar();"/>
+										<input type="checkbox" id="cssCheckbox2" name="cssCheckbox2" onclick="evaluar();"/>
 										<label for="cssCheckbox2">Servicios</label>
 									</div>
 									<div class="checkbox checkbox-css">
-										<input type="checkbox" id="cssCheckbox3" onclick="evaluar();"/>
+										<input type="checkbox" id="cssCheckbox3" name="cssCheckbox3" onclick="evaluar();"/>
 										<label for="cssCheckbox3">Obras</label>
 									</div>
 								</div>
@@ -183,22 +189,22 @@
                                 <input class="form-control"  type="text" name="monto" id="monto" onkeypress="return valideKey(event);">
                             </div>
                             <div class="form-group col-2">
-                                <label>Objeto de la Contratación</label>
+                                <label>Moneda</label>
 								<div class="col-md-12">
 									<div class="checkbox checkbox-css">
-										<input type="checkbox" id="cssCheckbox4"/>
+										<input type="checkbox" id="cssCheckbox4" name="cssCheckbox4"/>
 										<label for="cssCheckbox4">$</label>
 									</div>
 									<div class="checkbox checkbox-css">
-										<input type="checkbox" id="cssCheckbox5"/>
+										<input type="checkbox" id="cssCheckbox5" name="cssCheckbox5"/>
 										<label for="cssCheckbox5">Euros</label>
 									</div>
 									<div class="checkbox checkbox-css">
-										<input type="checkbox" id="cssCheckbox6"/>
+										<input type="checkbox" id="cssCheckbox6" name="cssCheckbox6"/>
 										<label for="cssCheckbox6">Petros</label>
 									</div>
                                     <div class="checkbox checkbox-css">
-										<input type="checkbox" id="cssCheckbox7"/>
+										<input type="checkbox" id="cssCheckbox7" name="cssCheckbox7"/>
 										<label for="cssCheckbox7">Bolivares</label>
 									</div>
 								</div>
@@ -271,8 +277,8 @@
                                 <input class="form-control" type="text" name="total_claf" id="total_claf">
                             </div>
                             <div class="col-3" class="form-control">
-                                <label>Clasificación:</label>
-                                <input class="form-control" type="text" name="clasificacion" id="clasificacion">
+                                <label>Calificacion:</label>
+                                <input class="form-control" type="text" name="calificacion" id="calificacion">
                             </div>
                         </div>
                     </div>
@@ -290,7 +296,7 @@
                             </div>
                             <div class="form-group col-4">
                                 <label>Fecha de la Notificación</label>
-								<input type="text" class="form-control" id="datepicker-default" placeholder="Seleccionar Fecha" />
+								<input type="text" class="form-control" id="datepicker-default" name="fec_notificacion" placeholder="Seleccionar Fecha" />
                             </div>
                             <div class="form-group col-4">
                                 <label>Medio de envio de la Notificación</label>
@@ -303,16 +309,16 @@
                             </div>
                             <div class="form-group col-6">
                                 <label>Nro. de Oficio / Fax / Correo Electronico / Otro</label>
-								<input type="text" class="form-control" id="datepicker-default" placeholder="Seleccionar Fecha" />
+								<input type="text" class="form-control" id="nro_oc_os" name="nro_oc_os" placeholder="Nro. de Oficio / Fax / Correo Electronico / Otro" />
                             </div>
                             <div class="form-group col-6">
                                 <label>Acuse de Recibido <b style="color:red">*</b></label>
-                                <input type="file" name="fileImagen" class="form-control">
+                                <input type="file" name="fileImagen" id="fileImagen" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="form-group col 12 text-center">
-                        <button type="button" onclick="registrar();" class="btn btn-primary mb-3">Registrar Evaluación</button>
+                        <button type="submit" onclick="registrar();" class="btn btn-primary mb-3">Registrar Evaluación</button>
                     </div>
                 </div>
             </form>

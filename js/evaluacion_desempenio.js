@@ -28,9 +28,13 @@ function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
                     $("#no_existe").show();
                     $("#existe").hide();
 
+                    $('#exitte').val(0);
+
                 }else{
                     $("#existe").show();
                     $("#no_existe").hide();
+
+                    $('#exitte').val(1);
 
                     $('#rif_cont').val(data['rifced']);
                     $('#nombre').val(data['nombre']);
@@ -85,7 +89,8 @@ function valideKey(evt){
 
 function llenar_municipio(){
     var id_estado_n = $('#id_estado_n').val();
-    var base_url = window.location.origin+'/asnc/index.php/configuracion/listar_municipio';
+    console.log(id_estado_n);
+    var base_url = window.location.origin+'/asnc/index.php/evaluacion_desempenio/listar_municipio';
     // var base_url = '/index.php/Programacion/listar_municipio';
 
     $.ajax({
@@ -97,7 +102,29 @@ function llenar_municipio(){
         success: function(response){
             $('#id_municipio_n').find('option').not(':first').remove();
             $.each(response, function(index, data){
-                $('#id_municipio_n').append('<option value="'+data['id_municipio']+'">'+data['descripcion']+'</option>');
+                $('#id_municipio_n').append('<option value="'+data['id']+'">'+data['descmun']+'</option>');
+            });
+        }
+    });
+}
+
+function llenar_parroquia(){
+    var id_municipio_n = $('#id_estado_n').val();
+    console.log(id_municipio_n);
+    var base_url = window.location.origin+'/asnc/index.php/evaluacion_desempenio/listar_parroquia';
+    // var base_url = '/index.php/Programacion/listar_municipio';
+
+    $.ajax({
+        url: base_url,
+        method:'post',
+        data: {id_municipio: id_municipio_n},
+        dataType:'json',
+
+        success: function(response){
+            console.log(response);
+            $('#id_parroquia_n').find('option').not(':first').remove();
+            $.each(response, function(index, data){
+                $('#id_parroquia_n').append('<option value="'+data['id']+'">'+data['descparro']+'</option>');
             });
         }
     });
@@ -172,33 +199,33 @@ function evaluar(){
             $('#total_claf').val(total);
 
             if (total >= 18 && total<=20) {
-                var clasificacion = 'EXCELENTE'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'EXCELENTE'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 15 && total<=17) {
-                var clasificacion = 'MUY BUENO'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'MUY BUENO'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 12 && total<=14) {
-                var clasificacion = 'BUENO'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'BUENO'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 10 && total<=11) {
-                var clasificacion = 'REGULAR'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'REGULAR'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 2 && total<=9) {
-                var clasificacion = 'DEFICIENTE'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'DEFICIENTE'
+                $('#calificacion').val(calificacion);
             }
 
             if (total == 0) {
-                var clasificacion = 'SIN CALIFICACIÓN'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'SIN CALIFICACIÓN'
+                $('#calificacion').val(calificacion);
             }
         }
 
@@ -224,33 +251,33 @@ function evaluar(){
             $('#total_claf').val(total);
 
             if (total >= 18 && total<=20) {
-                var clasificacion = 'EXCELENTE'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'EXCELENTE'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 15 && total<=17) {
-                var clasificacion = 'MUY BUENO'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'MUY BUENO'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 12 && total<=14) {
-                var clasificacion = 'BUENO'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'BUENO'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 10 && total<=11) {
-                var clasificacion = 'REGULAR'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'REGULAR'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 2 && total<=9) {
-                var clasificacion = 'DEFICIENTE'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'DEFICIENTE'
+                $('#calificacion').val(calificacion);
             }
 
             if (total == 0) {
-                var clasificacion = 'SIN CALIFICACIÓN'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'SIN CALIFICACIÓN'
+                $('#calificacion').val(calificacion);
             }
         }
 
@@ -276,33 +303,33 @@ function evaluar(){
             $('#total_claf').val(total);
 
             if (total >= 18 && total<=20) {
-                var clasificacion = 'EXCELENTE'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'EXCELENTE'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 15 && total<=17) {
-                var clasificacion = 'MUY BUENO'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'MUY BUENO'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 12 && total<=14) {
-                var clasificacion = 'BUENO'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'BUENO'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 10 && total<=11) {
-                var clasificacion = 'REGULAR'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'REGULAR'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 2 && total<=9) {
-                var clasificacion = 'DEFICIENTE'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'DEFICIENTE'
+                $('#calificacion').val(calificacion);
             }
 
             if (total == 0) {
-                var clasificacion = 'SIN CALIFICACIÓN'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'SIN CALIFICACIÓN'
+                $('#calificacion').val(calificacion);
             }
         }
 
@@ -328,33 +355,33 @@ function evaluar(){
             $('#total_claf').val(total);
 
             if (total >= 18 && total<=20) {
-                var clasificacion = 'EXCELENTE'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'EXCELENTE'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 15 && total<=17) {
-                var clasificacion = 'MUY BUENO'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'MUY BUENO'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 12 && total<=14) {
-                var clasificacion = 'BUENO'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'BUENO'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 10 && total<=11) {
-                var clasificacion = 'REGULAR'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'REGULAR'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 2 && total<=9) {
-                var clasificacion = 'DEFICIENTE'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'DEFICIENTE'
+                $('#calificacion').val(calificacion);
             }
 
             if (total == 0) {
-                var clasificacion = 'SIN CALIFICACIÓN'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'SIN CALIFICACIÓN'
+                $('#calificacion').val(calificacion);
             }
         }
 
@@ -380,33 +407,33 @@ function evaluar(){
             $('#total_claf').val(total);
 
             if (total >= 18 && total<=20) {
-                var clasificacion = 'EXCELENTE'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'EXCELENTE'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 15 && total<=17) {
-                var clasificacion = 'MUY BUENO'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'MUY BUENO'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 12 && total<=14) {
-                var clasificacion = 'BUENO'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'BUENO'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 10 && total<=11) {
-                var clasificacion = 'REGULAR'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'REGULAR'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 2 && total<=9) {
-                var clasificacion = 'DEFICIENTE'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'DEFICIENTE'
+                $('#calificacion').val(calificacion);
             }
 
             if (total == 0) {
-                var clasificacion = 'SIN CALIFICACIÓN'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'SIN CALIFICACIÓN'
+                $('#calificacion').val(calificacion);
             }
         }
 
@@ -432,42 +459,42 @@ function evaluar(){
             $('#total_claf').val(total);
 
             if (total >= 18 && total<=20) {
-                var clasificacion = 'EXCELENTE'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'EXCELENTE'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 15 && total<=17) {
-                var clasificacion = 'MUY BUENO'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'MUY BUENO'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 12 && total<=14) {
-                var clasificacion = 'BUENO'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'BUENO'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 10 && total<=11) {
-                var clasificacion = 'REGULAR'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'REGULAR'
+                $('#calificacion').val(calificacion);
             }
 
             if (total >= 2 && total<=9) {
-                var clasificacion = 'DEFICIENTE'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'DEFICIENTE'
+                $('#calificacion').val(calificacion);
             }
 
             if (total == 0) {
-                var clasificacion = 'SIN CALIFICACIÓN'
-                $('#clasificacion').val(clasificacion);
+                var calificacion = 'SIN CALIFICACIÓN'
+                $('#calificacion').val(calificacion);
             }
         }
     }
 }
 
 function registrar(){
-    var clasificacion = $('#clasificacion').val();
+    var calificacion = $('#calificacion').val();
 
-    if (clasificacion == 'REGULAR' || clasificacion == 'DEFICIENTE' || clasificacion == 'SIN CALIFICACIÓN'){
+    if (calificacion == 'REGULAR' || calificacion == 'DEFICIENTE' || calificacion == 'SIN CALIFICACIÓN'){
         event.preventDefault();
         swal.fire({
             title: 'ALERTA',
@@ -480,29 +507,37 @@ function registrar(){
             confirmButtonText: '¡Si, guardar!'
         }).then((result) => {
             if (result.value == true) {
-                var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
-                // var base_url = '/index.php/evaluacion_desempenio/registrar';
-                $.ajax({
-                    url:base_url,
-                    method: 'post',
-                    dataType: 'json',
-                    success: function(response){
-                        if(response == 1) {
-                            swal.fire({
-                                title: 'Modificacion Exitosa',
-                                type: 'success',
-                                showCancelButton: false,
-                                confirmButtonColor: '#3085d6',
-                                confirmButtonText: 'Ok'
-                            }).then((result) => {
-                                if (result.value == true) {
-                                    location.reload();
-                                }
-                            });
+                    event.preventDefault();
+                    var datos = new FormData($("#resgistrar_eva")[0]);
+                    console.log(datos);
+
+                    var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
+                    // var base_url = '/index.php/evaluacion_desempenio/registrar';
+                    $.ajax({
+                        url:base_url,
+                        method: 'POST',
+                        data: datos,
+                        contentType: false,
+                        processData: false,
+                        success: function(response){
+                            console.log(response);
+                            if(response == 1) {
+                                swal.fire({
+                                    title: 'Registro Exitoso',
+                                    type: 'success',
+                                    showCancelButton: false,
+                                    confirmButtonColor: '#3085d6',
+                                    confirmButtonText: 'Ok'
+                                }).then((result) => {
+                                    if (result.value == true) {
+                                        location.reload();
+                                    }
+                                });
+                            }
                         }
-                    }
-                })
-            }
+                    })
+                }
+
         });
     }else {
         event.preventDefault();
@@ -517,16 +552,24 @@ function registrar(){
             confirmButtonText: '¡Si, guardar!'
         }).then((result) => {
             if (result.value == true) {
+
+                event.preventDefault();
+                var datos = new FormData($("#resgistrar_eva")[0]);
+                console.log(datos);
+
                 var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
                 // var base_url = '/index.php/evaluacion_desempenio/registrar';
                 $.ajax({
                     url:base_url,
-                    method: 'post',
-                    dataType: 'json',
+                    method: 'POST',
+                    data: datos,
+                    contentType: false,
+                    processData: false,
                     success: function(response){
+                        console.log(response);
                         if(response == 1) {
                             swal.fire({
-                                title: 'Modificacion Exitosa',
+                                title: 'Registro Exitoso',
                                 type: 'success',
                                 showCancelButton: false,
                                 confirmButtonColor: '#3085d6',

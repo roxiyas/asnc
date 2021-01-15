@@ -8,6 +8,30 @@
            $this->db_b = $this->load->database('bd_contrata_2', true);
        }
 
+       public function consulta_estados(){
+           $this->db_b->select('*');
+           $query = $this->db_b->get('estados');
+            return $response = $query->result_array();
+       }
+
+        public function listar_municipio($data){
+            $response = array();
+            $this->db_b->select('*');
+            $this->db_b->where('estado_id', $data['id_estado']);
+            $query = $this->db_b->get('municipios');
+            $response = $query->result_array();
+            return $response;
+        }
+
+        public function listar_parroquia($data){
+            $response = array();
+            $this->db_b->select('*');
+            $this->db_b->where('estado_id', $data['id_municipio']);
+            $query = $this->db_b->get('parroquias');
+            $response = $query->result_array();
+            return $response;
+        }
+
         public function llenar_contratista($data){
             $this->db_b->select('c.user_id,
                             	   c.edocontratista_id,
@@ -47,6 +71,18 @@
             $this->db_b->where('id_modalidad', $data['id_modalidad']);
             $query = $this->db_b->get('sub_modalidad');
             return $result = $query->result_array();
+        }
+
+        public function registrar($exitte,$data,$data_ev){
+            $existe = $exitte;
+
+            $quers =$this->db_b->insert('evaluacion_desempenio', $data_ev);
+            if ($existe == 0){
+                $quers1 = $this->db_b->insert('contratistas',$data); //colo nombre de la tabla
+                return true;
+            }
+
+            return $quers;
         }
     }
 ?>
