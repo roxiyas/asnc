@@ -44,7 +44,7 @@
                             <div class="form-group col-12">
                                 <label>Partida Presupuestaria</label>
                                     <input type="hidden" name="par_presupuestaria_ff" id="par_presupuestaria_ff">
-                                    <select id="par_presupuestaria" name="par_presupuestaria" onblur="evaluar();" class="default-select2 form-control">
+                                    <select id="par_presupuestaria" name="par_presupuestaria" class="default-select2 form-control">
                                         <option value="0">Seleccione</option>
                                         <?php foreach ($part_pres as $data): ?>
                                             <option value="<?=$data['id_partida_presupuestaria']?>/<?=$data['desc_partida_presupuestaria']?>/<?=$data['codigopartida_presupuestaria']?>"><?=$data['codigopartida_presupuestaria']?>/<?=$data['desc_partida_presupuestaria']?></option>
@@ -258,7 +258,7 @@
                         <!--////////////////////////////SEGUNDA PARTE DE LA CARGA -->
                         <div class="col-12 text-center mt-3">
                             <a class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-grey" href="javascript:history.back()"> Volver</a>
-                            <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" id="btn_guardar" name="button">Guardar</button>
+                            <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" id="btn_guardar" name="button" >Guardar</button>
                         </div>
                     </div>
                 </div>
@@ -411,7 +411,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" onclick="guardar_tabla();" data-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-success" onclick="guardar_tabla();" data-dismiss="modal" disabled>Guardar</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>

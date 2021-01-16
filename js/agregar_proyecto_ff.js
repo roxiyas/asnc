@@ -3,9 +3,6 @@ function agregar_ff(button) {
 	var row = button.parentNode.parentNode;
   	var cells = row.querySelectorAll('td:not(:last-of-type)');
   	agregar_ffToCartTable(cells);
-
-	var par = $("#porcentaje").val('0');
-	$("#fuente_financiamiento").val($("#fuente_financiamiento").data("default-value"));
 }
 
 function remove_ff() {
@@ -28,9 +25,17 @@ function agregar_ffToCartTable(cells){
    	var ff2 = ff.split("/")[1];
 
 	var pc = $("#porcentaje").val();
+	console.log(pc);
 
-	if (pp1 == 0 || estad == 0 || ff1 == 0){
-		console.log('No paso');
+	if (pp1 == 0 || ff1 == 0 || pc == ''){
+		if (pp1== 0) {
+			document.getElementById("par_presupuestaria").focus();
+		}else if (ff1== '0') {
+			document.getElementById("fuente_financiamiento").focus();
+		}
+		else if (pc == '') {
+			document.getElementById("porcentaje").focus();
+		}
 	}else{
 		var newRow = document.createElement('tr');
 		var increment = increment +1;
@@ -50,6 +55,10 @@ function agregar_ffToCartTable(cells){
 		cellremove_ffBtn.appendChild(createremove_ffBtn())
 		newRow.appendChild(cellremove_ffBtn);
 		document.querySelector('#target_ff tbody').appendChild(newRow);
+
+		var par = $("#porcentaje").val('');
+		$("#fuente_financiamiento").val($("#fuente_financiamiento").data("default-value"));
+
 	}
 }
 

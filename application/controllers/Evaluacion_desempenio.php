@@ -53,8 +53,6 @@ class Evaluacion_desempenio extends CI_Controller {
 		if(!$this->session->userdata('session'))redirect('login');
 		//$data = $this->input->post();
 
-
-
 		$rif_cont = $this->input->POST('rif_cont');
 		$rif_cont_n = $this->input->POST('rif_cont_n');
 

@@ -3,15 +3,12 @@ function agregar_acc_ff(button) {
 	var row = button.parentNode.parentNode;
   	var cells = row.querySelectorAll('td:not(:last-of-type)');
   	agregar_acc_ffToCartTable(cells);
-
-	var par = $("#porcentaje_acc").val('0');
-	$("#fuente_financiamiento_acc").val($("#fuente_financiamiento_acc").data("default-value"));
 }
 
 function remove_ff_acc() {
 	var row = this.parentNode.parentNode;
     document.querySelector('#target_acc_ff tbody').removeChild(row);
-	var par = $("#porcentaje_acc").val('0');
+	var par = $("#porcentaje_acc").val('');
 	$("#fuente_financiamiento_acc").val($("#fuente_financiamiento_acc").data("default-value"));
 }
 
@@ -29,8 +26,15 @@ function agregar_acc_ffToCartTable(cells){
 
 	var pc = $("#porcentaje_acc").val();
 
-	if (pp1 == 0 || estad == 0 || ff1 == 0){
-		console.log('No paso');
+	if (pp1 == 0 || ff1 == 0 || pc == ''){
+		if (pp1== 0) {
+			document.getElementById("fuente_financiamiento_acc").focus();
+		}else if (ff1== '0') {
+			document.getElementById("id_estado_acc").focus();
+		}
+		else if (pc == '') {
+			document.getElementById("fuente_financiamiento_acc").focus();
+		}
 	}else{
 		var newRow = document.createElement('tr');
 		var increment = increment +1;
@@ -49,6 +53,10 @@ function agregar_acc_ffToCartTable(cells){
 		cellremove_ff_accBtn.appendChild(createremove_ff_accBtn())
 		newRow.appendChild(cellremove_ff_accBtn);
 		document.querySelector('#target_acc_ff tbody').appendChild(newRow);
+
+
+		var par = $("#porcentaje_acc").val('0');
+		$("#fuente_financiamiento_acc").val($("#fuente_financiamiento_acc").data("default-value"));
 	}
 }
 

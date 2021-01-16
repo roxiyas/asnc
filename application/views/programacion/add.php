@@ -83,7 +83,7 @@
                                     <div class="form-group col-12">
                                         <label>Partida Presupuestaria</label>
                                             <input type="hidden" name="par_presupuestaria_ff" id="par_presupuestaria_ff">
-                                            <select id="par_presupuestaria" required name="par_presupuestaria" onblur="evaluar();" class="default-select2 form-control">
+                                            <select id="par_presupuestaria" required name="par_presupuestaria" class="default-select2 form-control">
                                                 <option value="0">Seleccione</option>
                                                 <?php foreach ($part_pres as $data): ?>
                                                     <option value="<?=$data['id_partida_presupuestaria']?>/<?=$data['desc_partida_presupuestaria']?>/<?=$data['codigopartida_presupuestaria']?>"><?=$data['codigopartida_presupuestaria']?>/<?=$data['desc_partida_presupuestaria']?></option>
@@ -117,7 +117,7 @@
                                     </div>
                                     <div class="col-5"></div>
                                     <div class="col-7 mt-4">
-                                        <button type="button" onclick="agregar_ff(this);verificar();" class="btn btn-lg btn-default" id="ueba">
+                                        <button type="button" onclick="agregar_ff(this);" class="btn btn-lg btn-default" id="ueba">
                                             Agregar <b>IFF</b>
                                         </button>
                                     </div>
@@ -288,7 +288,7 @@
                                 </div>
                                 <!--////////////////////////////SEGUNDA PARTE DE LA CARGA -->
                                 <div class="col-12 text-center mt-3">
-                                    <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" name="button">Guardar</button>
+                                    <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" name="button" id="btn_guar_1" disabled>Guardar</button>
                                 </div>
 
                                 <!-- <div class="col-12 text-center mt-3">
@@ -566,7 +566,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12 text-center mt-3">
-                                    <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" name="button">Guardar</button>
+                                    <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" id="btn_guar_2" name="button" disabled>Guardar</button>
                                 </div>
                             </form>
                         </div>

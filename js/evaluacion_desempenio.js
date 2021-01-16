@@ -492,97 +492,345 @@ function evaluar(){
 }
 
 function registrar(){
-    var calificacion = $('#calificacion').val();
+    var exitte  = $("#exitte").val();
 
-    if (calificacion == 'REGULAR' || calificacion == 'DEFICIENTE' || calificacion == 'SIN CALIFICACIÓN'){
-        event.preventDefault();
-        swal.fire({
-            title: 'ALERTA',
-            text: 'Con base al resultado de la evaluación de desempeño, deberá remitir al Servicio Nacional de Contrataciones, el expediente administrativo contentivo de la decisión del contratante con respecto a los supuestos generadores de sanción, así como el deposito correspondiente a la multa por trecientas (300) UCAU, a beneficio del Servicio Nacional de Contrataciones de conformidad a lo establecido en los artículos 167 y 168 del Decreto con Rango, Valor y Fuerza de Ley de Contrataciones Públicas.                                                 ¿Esta Seguro de Registrar?',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'Cancelar',
-            confirmButtonText: '¡Si, guardar!'
-        }).then((result) => {
-            if (result.value == true) {
-                    event.preventDefault();
-                    var datos = new FormData($("#resgistrar_eva")[0]);
-                    console.log(datos);
+    var rif_cont_n  = $("#rif_cont_n").val();
+    var nombre_n  = $("#nombre_n").val();
+    var id_estado_n  = $("#id_estado_n").val();
+    var id_municipio_n  = $("#id_municipio_n").val();
+    var id_parroquia_n  = $("#id_parroquia_n").val();
+    var ciudad_n  = $("#ciudad_n").val();
+    var persona_cont_n  = $("#persona_cont_n").val();
+    var tel_cont_n  = $("#tel_cont_n").val();
+    var id_modalidad  = $("#id_modalidad").val();
+    var id_sub_modalidad  = $("#id_sub_modalidad").val();
+    var fecha_desde  = $("#fecha_desde").val();
+    var fecha_hasta  = $("#fecha_hasta").val();
+    var nro_procedimiento  = $("#nro_procedimiento").val();
+    var nro_cont_oc_os  = $("#nro_cont_oc_os").val();
+    var id_estado_dc  = $("#id_estado_dc").val();
+    var cssCheckbox1  = $("#cssCheckbox1").val();
+    var cssCheckbox2  = $("#cssCheckbox2").val();
+    var cssCheckbox3  = $("#cssCheckbox3").val();
+    var desc_contratacion  = $("#desc_contratacion").val();
+    var monto  = $("#monto").val();
+    var cssCheckbox4  = $("#cssCheckbox4").val();
+    var cssCheckbox5  = $("#cssCheckbox5").val();
+    var cssCheckbox6  = $("#cssCheckbox6").val();
+    var cssCheckbox7  = $("#cssCheckbox7").val();
+    var total_claf  = $("#total_claf").val();
+    var calificacion  = $("#calificacion").val();
+    var datepicker = $("#datepicker-default").val();
+    var medio  = $("#medio").val();
+    var nro_oc_os  = $("#nro_oc_os").val();
+    var fileImagen  = $("#fileImagen").val();
 
-                    var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
-                    // var base_url = '/index.php/evaluacion_desempenio/registrar';
-                    $.ajax({
-                        url:base_url,
-                        method: 'POST',
-                        data: datos,
-                        contentType: false,
-                        processData: false,
-                        success: function(response){
-                            console.log(response);
-                            if(response == 1) {
-                                swal.fire({
-                                    title: 'Registro Exitoso',
-                                    type: 'success',
-                                    showCancelButton: false,
-                                    confirmButtonColor: '#3085d6',
-                                    confirmButtonText: 'Ok'
-                                }).then((result) => {
-                                    if (result.value == true) {
-                                        location.reload();
-                                    }
-                                });
-                            }
-                        }
-                    })
-                }
+    if (exitte == '0'){
+        if (rif_cont_n == '') {
+            document.getElementById("rif_cont_n").focus();
 
-        });
-    }else {
-        event.preventDefault();
-        swal.fire({
-            title: '¿Registrar?',
-            text: '¿Esta seguro de Registrar la Evaluación de Desempeño?',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'Cancelar',
-            confirmButtonText: '¡Si, guardar!'
-        }).then((result) => {
-            if (result.value == true) {
+        }else if (nombre_n == '') {
+            document.getElementById("nombre_n").focus();
+        }
+        else if (id_estado_n == '0') {
+            document.getElementById("id_estado_n").focus();
+        }
+        else if (id_municipio_n == '0') {
+            document.getElementById("id_municipio_n").focus();
+        }
+        else if (id_parroquia_n == '0') {
+            document.getElementById("id_parroquia_n").focus();
+        }
+        else if (ciudad_n == '0') {
+            document.getElementById("ciudad_n").focus();
+        }
+        else if (persona_cont_n == '') {
+            document.getElementById("persona_cont_n").focus();
+        }
+        else if (tel_cont_n == '') {
+            document.getElementById("tel_cont_n").focus();
+        }
+        else if (id_modalidad == '0') {
+            document.getElementById("id_modalidad").focus();
+        }
+        else if (id_sub_modalidad == '0') {
+            document.getElementById("id_sub_modalidad").focus();
+        }
+        else if (fecha_desde == '') {
+            document.getElementById("fecha_desde").focus();
+        }
+        else if (fecha_hasta == '') {
+            document.getElementById("fecha_hasta").focus();
+        }
+        else if (nro_procedimiento == '') {
+            document.getElementById("nro_procedimiento").focus();
+        }
+        else if (nro_cont_oc_os == '') {
+            document.getElementById("nro_cont_oc_os").focus();
+        }
+        else if (id_estado_dc == '0') {
+            document.getElementById("id_estado_dc").focus();
+        }
+        else if (desc_contratacion == '') {
+            document.getElementById("desc_contratacion").focus();
+        }
+        else if (monto == '') {
+            document.getElementById("monto").focus();
+        }
+        else if (total_claf == '') {
+            document.getElementById("total_claf").focus();
+        }
+        else if (calificacion == '') {
+            document.getElementById("calificacion").focus();
+        }
+        else if (datepicker == '') {
+            document.getElementById("datepicker-default").focus();
+        }
+        else if (medio == '0') {
+            document.getElementById("medio").focus();
+        }
+        else if (nro_oc_os == '') {
+            document.getElementById("nro_oc_os").focus();
+        }
+        else if (fileImagen == '') {
+            document.getElementById("fileImagen").focus();
+        }
 
+        else{
+            var calificacion = $('#calificacion').val();
+            if (calificacion == 'REGULAR' || calificacion == 'DEFICIENTE' || calificacion == 'SIN CALIFICACIÓN'){
                 event.preventDefault();
-                var datos = new FormData($("#resgistrar_eva")[0]);
-                console.log(datos);
+                swal.fire({
+                    title: 'ALERTA',
+                    text: 'Con base al resultado de la evaluación de desempeño, deberá remitir al Servicio Nacional de Contrataciones, el expediente administrativo contentivo de la decisión del contratante con respecto a los supuestos generadores de sanción, así como el deposito correspondiente a la multa por trecientas (300) UCAU, a beneficio del Servicio Nacional de Contrataciones de conformidad a lo establecido en los artículos 167 y 168 del Decreto con Rango, Valor y Fuerza de Ley de Contrataciones Públicas.                                                 ¿Esta Seguro de Registrar?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: '¡Si, guardar!'
+                }).then((result) => {
+                    if (result.value == true) {
+                            event.preventDefault();
+                            var datos = new FormData($("#resgistrar_eva")[0]);
+                            console.log(datos);
 
-                var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
-                // var base_url = '/index.php/evaluacion_desempenio/registrar';
-                $.ajax({
-                    url:base_url,
-                    method: 'POST',
-                    data: datos,
-                    contentType: false,
-                    processData: false,
-                    success: function(response){
-                        console.log(response);
-                        if(response == 1) {
-                            swal.fire({
-                                title: 'Registro Exitoso',
-                                type: 'success',
-                                showCancelButton: false,
-                                confirmButtonColor: '#3085d6',
-                                confirmButtonText: 'Ok'
-                            }).then((result) => {
-                                if (result.value == true) {
-                                    location.reload();
+                            var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
+                            // var base_url = '/index.php/evaluacion_desempenio/registrar';
+                            $.ajax({
+                                url:base_url,
+                                method: 'POST',
+                                data: datos,
+                                contentType: false,
+                                processData: false,
+                                success: function(response){
+                                    console.log(response);
+                                    if(response == 1) {
+                                        swal.fire({
+                                            title: 'Registro Exitoso',
+                                            type: 'success',
+                                            showCancelButton: false,
+                                            confirmButtonColor: '#3085d6',
+                                            confirmButtonText: 'Ok'
+                                        }).then((result) => {
+                                            if (result.value == true) {
+                                                location.reload();
+                                            }
+                                        });
+                                    }
                                 }
-                            });
+                            })
                         }
+
+                });
+            }else {
+                event.preventDefault();
+                swal.fire({
+                    title: '¿Registrar?',
+                    text: '¿Esta seguro de Registrar la Evaluación de Desempeño?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: '¡Si, guardar!'
+                }).then((result) => {
+                    if (result.value == true) {
+
+                        event.preventDefault();
+                        var datos = new FormData($("#resgistrar_eva")[0]);
+                        console.log(datos);
+
+                        var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
+                        // var base_url = '/index.php/evaluacion_desempenio/registrar';
+                        $.ajax({
+                            url:base_url,
+                            method: 'POST',
+                            data: datos,
+                            contentType: false,
+                            processData: false,
+                            success: function(response){
+                                console.log(response);
+                                if(response == 1) {
+                                    swal.fire({
+                                        title: 'Registro Exitoso',
+                                        type: 'success',
+                                        showCancelButton: false,
+                                        confirmButtonColor: '#3085d6',
+                                        confirmButtonText: 'Ok'
+                                    }).then((result) => {
+                                        if (result.value == true) {
+                                            location.reload();
+                                        }
+                                    });
+                                }
+                            }
+                        })
                     }
-                })
+                });
             }
-        });
+        }
+
+    }else if (exitte == '1'){
+        if (id_modalidad == '0') {
+            document.getElementById("id_modalidad").focus();
+        }
+        else if (id_sub_modalidad == '0') {
+            document.getElementById("id_sub_modalidad").focus();
+        }
+        else if (fecha_desde == '') {
+            document.getElementById("fecha_desde").focus();
+        }
+        else if (fecha_hasta == '') {
+            document.getElementById("fecha_hasta").focus();
+        }
+        else if (nro_procedimiento == '') {
+            document.getElementById("nro_procedimiento").focus();
+        }
+        else if (nro_cont_oc_os == '') {
+            document.getElementById("nro_cont_oc_os").focus();
+        }
+        else if (id_estado_dc == '0') {
+            document.getElementById("id_estado_dc").focus();
+        }
+        else if (desc_contratacion == '') {
+            document.getElementById("desc_contratacion").focus();
+        }
+        else if (monto == '') {
+            document.getElementById("monto").focus();
+        }
+        else if (total_claf == '') {
+            document.getElementById("total_claf").focus();
+        }
+        else if (calificacion == '') {
+            document.getElementById("calificacion").focus();
+        }
+        else if (datepicker == '') {
+            document.getElementById("datepicker-default").focus();
+        }
+        else if (medio == '0') {
+            document.getElementById("medio").focus();
+        }
+        else if (nro_oc_os == '') {
+            document.getElementById("nro_oc_os").focus();
+        }
+        else if (fileImagen == '') {
+            document.getElementById("fileImagen").focus();
+        }
+
+        else{
+            var calificacion = $('#calificacion').val();
+            if (calificacion == 'REGULAR' || calificacion == 'DEFICIENTE' || calificacion == 'SIN CALIFICACIÓN'){
+                event.preventDefault();
+                swal.fire({
+                    title: 'ALERTA',
+                    text: 'Con base al resultado de la evaluación de desempeño, deberá remitir al Servicio Nacional de Contrataciones, el expediente administrativo contentivo de la decisión del contratante con respecto a los supuestos generadores de sanción, así como el deposito correspondiente a la multa por trecientas (300) UCAU, a beneficio del Servicio Nacional de Contrataciones de conformidad a lo establecido en los artículos 167 y 168 del Decreto con Rango, Valor y Fuerza de Ley de Contrataciones Públicas.                                                 ¿Esta Seguro de Registrar?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: '¡Si, guardar!'
+                }).then((result) => {
+                    if (result.value == true) {
+                            event.preventDefault();
+                            var datos = new FormData($("#resgistrar_eva")[0]);
+                            console.log(datos);
+
+                            var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
+                            // var base_url = '/index.php/evaluacion_desempenio/registrar';
+                            $.ajax({
+                                url:base_url,
+                                method: 'POST',
+                                data: datos,
+                                contentType: false,
+                                processData: false,
+                                success: function(response){
+                                    console.log(response);
+                                    if(response == 1) {
+                                        swal.fire({
+                                            title: 'Registro Exitoso',
+                                            type: 'success',
+                                            showCancelButton: false,
+                                            confirmButtonColor: '#3085d6',
+                                            confirmButtonText: 'Ok'
+                                        }).then((result) => {
+                                            if (result.value == true) {
+                                                location.reload();
+                                            }
+                                        });
+                                    }
+                                }
+                            })
+                        }
+
+                });
+            }else {
+                event.preventDefault();
+                swal.fire({
+                    title: '¿Registrar?',
+                    text: '¿Esta seguro de Registrar la Evaluación de Desempeño?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: '¡Si, guardar!'
+                }).then((result) => {
+                    if (result.value == true) {
+
+                        event.preventDefault();
+                        var datos = new FormData($("#resgistrar_eva")[0]);
+                        console.log(datos);
+
+                        var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
+                        // var base_url = '/index.php/evaluacion_desempenio/registrar';
+                        $.ajax({
+                            url:base_url,
+                            method: 'POST',
+                            data: datos,
+                            contentType: false,
+                            processData: false,
+                            success: function(response){
+                                console.log(response);
+                                if(response == 1) {
+                                    swal.fire({
+                                        title: 'Registro Exitoso',
+                                        type: 'success',
+                                        showCancelButton: false,
+                                        confirmButtonColor: '#3085d6',
+                                        confirmButtonText: 'Ok'
+                                    }).then((result) => {
+                                        if (result.value == true) {
+                                            location.reload();
+                                        }
+                                    });
+                                }
+                            }
+                        })
+                    }
+                });
+            }
+        }
     }
 }

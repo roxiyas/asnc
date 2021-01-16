@@ -4,25 +4,6 @@ function agregar_ccnu_acc_edit(button) {
   	var cells = row.querySelectorAll('td:not(:last-of-type)');
   	agregar_ccnu_accToCartTable(cells);
 
-	$("#id_unidad_medida_acc").val($("#id_unidad_medida_acc").data("default-value"));
-	$("#id_alicuota_iva_acc").val($("#id_alicuota_iva_acc").data("default-value"));
-
-	$("#especificacion_acc").val('');
-	$("#cantidad_acc").val('0');
-	$("#precio_total_acc").val('0');
-	$("#costo_unitario_acc").val('0');
-	$('#I_acc').val('0');
-	$('#II_acc').val('0');
-	$('#III_acc').val('0');
-	$('#IV_acc').val('0');
-	$("#cant_total_distribuir_acc").val('0');
-	$("#iva_estimado_acc").val('0');
-	$("#monto_estimado_acc").val('0');
-	$("#estimado_i_acc").val('0');
-	$("#estimado_ii_acc").val('0');
-	$("#estimado_iii_acc").val('0');
-	$("#estimado_iV_acc").val('0');
-	$("#estimado_total_t_acc").val('0');
 }
 
 function remove_proy_acc() {
@@ -32,21 +13,20 @@ function remove_proy_acc() {
 	$("#id_alicuota_iva_acc").val($("#id_alicuota_iva_acc").data("default-value"));
 
 	$("#especificacion_acc").val('');
-	$("#cantidad_acc").val('0');
-	$("#precio_total_acc").val('0');
-	$("#costo_unitario_acc").val('0');
+	$("#cantidad_acc").val('');
+	$("#precio_total_acc").val('');
+	$("#costo_unitario_acc").val('');
 	$('#I_acc').val('0');
 	$('#II_acc').val('0');
 	$('#III_acc').val('0');
 	$('#IV_acc').val('0');
-	$("#cant_total_distribuir_acc").val('0');
-	$("#iva_estimado_acc").val('0');
-	$("#monto_estimado_acc").val('0');
-	$("#estimado_i_acc").val('0');
-	$("#estimado_ii_acc").val('0');
-	$("#estimado_iii_acc").val('0');
-	$("#estimado_iV_acc").val('0');
-	$("#estimado_total_t_acc").val('0');
+	$("#cant_total_distribuir_acc").val('');
+	$("#iva_estimado_acc").val('');
+	$("#estimado_i_acc").val('');
+	$("#estimado_ii_acc").val('');
+	$("#estimado_iii_acc").val('');
+	$("#estimado_iV_acc").val('');
+	$("#estimado_total_t_acc").val('');
 }
 
 function agregar_ccnu_accToCartTable(cells){
@@ -81,8 +61,29 @@ function agregar_ccnu_accToCartTable(cells){
    	var al_iva2 = al_iva.split("/")[1];
    	var ica_est  = $("#iva_estimado_acc").val();
    	var mo_est  = $("#monto_estimado_acc").val();
-	if (ccnu == 0 || esp == 0 || pp == 0){
-		console.log('No paso');
+	if (pp == 0 || ccnu1 == '0' || esp == ''  || id_unid == '0' || can == '' || cos == '' || al_iva == '0'){
+
+		if (pp== 0) {
+			document.getElementById("par_presupuestaria_acc").focus();
+		}
+		else if (ccnu1 == 0) {
+			document.getElementById("id_ccnu_acc").focus();
+		}
+		else if (esp == '') {
+			document.getElementById("especificacion_acc").focus();
+		}
+		else if (id_unid == '0') {
+			document.getElementById("id_unidad_medida_acc").focus();
+		}
+		else if (cos == '') {
+			document.getElementById("costo_unitario_acc").focus();
+		}
+		else if (can == '') {
+			document.getElementById("cantidad_acc").focus();
+		}
+		else if (al_iva == '0') {
+			document.getElementById("id_alicuota_iva_acc").focus();
+		}
 	}else{
 		var newRow = document.createElement('tr');
 		var increment = increment +1;

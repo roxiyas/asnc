@@ -28,23 +28,23 @@
                         <div class="row">
                             <div class="form-group col-3">
                                 <label>Rif del Contratista</label>
-                                <input class="form-control"  type="text" name="rif_cont" id="rif_cont" disabled>
+                                <input class="form-control"  type="text" name="rif_cont" id="rif_cont" readonly>
                             </div>
                             <div class="form-group col-6">
                                 <label>Denominación o Razón Social</label>
-                                <input type="text" name="nombre" id="nombre" class="form-control" disabled>
+                                <input type="text" name="nombre" id="nombre" class="form-control" readonly>
                             </div>
                             <div class="form-group col-3">
                                 <label>Estado</label>
-                                <input type="text" name="estado" id="estado" class="form-control" disabled>
+                                <input type="text" name="estado" id="estado" class="form-control" readonly>
                             </div>
                             <div class="form-group col-3">
                                 <label>Municipio</label>
-                                <input type="text" name="municipio" id="municipio" class="form-control" disabled>
+                                <input type="text" name="municipio" id="municipio" class="form-control" readonly>
                             </div>
                             <div class="form-group col-3">
                                 <label>Ciudad</label>
-                                <input type="text" name="ciudad" id="ciudad" class="form-control" disabled>
+                                <input type="text" name="ciudad" id="ciudad" class="form-control" readonly>
                             </div>
                             <div class="col-6"></div>
                             <div class="col-3">
@@ -98,7 +98,12 @@
                             </div>
                             <div class="form-group col-3">
                                 <label>Ciudad</label>
-                                <input type="text" name="ciudad_n" id="ciudad_n" class="form-control"  placeholder="Ciudad">
+                                <!-- <input type="text" name="ciudad_n" id="ciudad_n" class="form-control"  placeholder="Ciudad"> -->
+                                <select class="selected form-control" name="ciudad_n" id="ciudad_n">
+                                    <option value="0">Seleccione</option>
+                                    <option value="1">Caracas</option>
+                                    <option value="2">Miranda</option>
+                                </select>
                             </div>
                             <div class="form-group col-3">
                                 <label>Persona de Contacto</label>
@@ -110,7 +115,7 @@
                             </div>
                         </div>
 				    </div>
-                    <input type="text" name="exitte" id="exitte">
+                    <input type="hidden" name="exitte" id="exitte">
     				<div class="panel-heading">
     					<h4 class="panel-title"><b>Modalidad de la Contratación</b></h4>
     				</div>
@@ -119,7 +124,7 @@
                             <div class="form-group col-3">
                                 <label>Modalidad de la Contratación</label>
                                 <select class="form-control" name="id_modalidad" id="id_modalidad" onclick="llenar_sub_mod();">
-                                    <option value="0">Seleccine</option>
+                                    <option value="0">Seleccione</option>
                                     <?php foreach ($modalidades as $data): ?>
                                         <option value="<?=$data['id']?>"><?=$data['descripcion']?></option>
                                     <?php endforeach; ?>
@@ -128,7 +133,7 @@
                             <div class="form-group col-3">
                                 <label>Sub-Modalidad de la Contratación</label>
                                 <select class="form-control" name="id_sub_modalidad" id="id_sub_modalidad">
-                                    <option value="0">Seleccine</option>
+                                    <option value="0">Seleccione</option>
                                 </select>
                             </div>
                             <div class="form-group col-4">
@@ -274,11 +279,11 @@
                             <div class="col-7"></div>
                             <div class="col-2" class="form-control">
                                 <label>Total:</label>
-                                <input class="form-control" type="text" name="total_claf" id="total_claf">
+                                <input class="form-control" type="text" name="total_claf" id="total_claf" readonly>
                             </div>
                             <div class="col-3" class="form-control">
                                 <label>Calificacion:</label>
-                                <input class="form-control" type="text" name="calificacion" id="calificacion">
+                                <input class="form-control" type="text" name="calificacion" id="calificacion" readonly>
                             </div>
                         </div>
                     </div>
@@ -301,10 +306,11 @@
                             <div class="form-group col-4">
                                 <label>Medio de envio de la Notificación</label>
                                 <select class="selected form-control" name="medio" id="medio">
-                                    <option value="0">FAX</option>
-                                    <option value="1">Télefono</option>
-                                    <option value="2">Correo Electronico</option>
-                                    <option value="3">No Aplica</option>
+                                    <option value="0">Seleccione</option>
+                                    <option value="1">FAX</option>
+                                    <option value="2">Télefono</option>
+                                    <option value="3">Correo Electronico</option>
+                                    <option value="4">No Aplica</option>
                                 </select>
                             </div>
                             <div class="form-group col-6">
@@ -318,7 +324,7 @@
                         </div>
                     </div>
                     <div class="form-group col 12 text-center">
-                        <button type="submit" onclick="registrar();" class="btn btn-primary mb-3">Registrar Evaluación</button>
+                        <button type="button" onclick="registrar();" class="btn btn-primary mb-3">Registrar Evaluación</button>
                     </div>
                 </div>
             </form>
