@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Evaluacion_desempenio extends CI_Controller {
 
 	public function index(){
-
+		if(!$this->session->userdata('session'))redirect('login');
 		$data['estados'] 	= $this->Evaluacion_desempenio_model->consulta_estados();
 		$data['modalidades'] 	= $this->Evaluacion_desempenio_model->consulta_modalidades();
 
@@ -14,7 +14,9 @@ class Evaluacion_desempenio extends CI_Controller {
         $this->load->view('templates/footer.php');
 	}
 
+	//Registro de Evaluacion Desempenio
 	public function listar_municipio(){
+
 		if(!$this->session->userdata('session'))redirect('login');
 		$data = $this->input->post();
 		$data =	$this->Evaluacion_desempenio_model->listar_municipio($data);
@@ -28,6 +30,7 @@ class Evaluacion_desempenio extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	//Consulta si existe el contrastis
 	public function llenar_contratista(){
 		if(!$this->session->userdata('session'))redirect('login');
 		$data = $this->input->post();
@@ -51,7 +54,8 @@ class Evaluacion_desempenio extends CI_Controller {
 
 	public function registrar(){
 		if(!$this->session->userdata('session'))redirect('login');
-		//$data = $this->input->post();
+
+		//los datos se traen de la vista Evaluación Desempeño medianto el js(AJAX)
 
 		$rif_cont = $this->input->POST('rif_cont');
 		$rif_cont_n = $this->input->POST('rif_cont_n');
@@ -141,5 +145,28 @@ class Evaluacion_desempenio extends CI_Controller {
 
 		print_r($data);die;
 		echo json_encode($data);
+	}
+
+	//Para consultar las evaluaciones que tiene el usuarios registradas
+	public function reporte(){
+		if(!$this->session->userdata('session'))redirect('login');
+
+		$usuario = $this->session->userdata('id_user');
+		$data['reportes'] 	= $this->Evaluacion_desempenio_model->consulta_eval($usuario);
+
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('evaluacion_desempenio/reporte.php', $data);
+        $this->load->view('templates/footer.php');
+	}
+
+	public function ver_evaluacion(){
+		$id_evaluacion = $this->input->get('id');
+		$data['eval_ind'] 	= $this->Evaluacion_desempenio_model->consulta_eval_ind($id_evaluacion);
+		//print_r($data['eval_ind']);die;
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('evaluacion_desempenio/pdf_eval.php', $data);
+        $this->load->view('templates/footer.php');
 	}
 }
