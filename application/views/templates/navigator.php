@@ -142,7 +142,7 @@
 									</li>
 									<li>
 										<a href="<?=base_url()?>index.php/Fuentefinanc/ccnu">
-											-
+											- CCNU
 										</a>
 									</li>
 								</ul>
@@ -159,6 +159,26 @@
 											<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>- Registros
 										</a>
 									</li>
+								</ul>
+							</li>
+							<li class="has-sub">
+								<a href="javascript:;">
+									<b class="caret"></b>
+									<i class="fas fa-user" style="background:darkred;"></i>
+									<span>Cuenta-dante</span>
+								</a>
+								<ul class="sub-menu">
+									<li>
+										<a href="<?=base_url()?>index.php/User/cuentadante">
+											<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>- Registros usuario cuenta-date
+										</a>
+									</li>
+									<li>
+										<a href="<?=base_url()?>index.php/user/cuentadante">
+											<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>- Registros funcionario
+										</a>
+									</li>
+									
 								</ul>
 							</li>
 						<?php endif; ?>
