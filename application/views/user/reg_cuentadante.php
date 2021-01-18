@@ -135,7 +135,7 @@
                             <div class="row">
                                 <div class="form-group col-6">
                                     <label>Nombre Completo </label>
-                                    <input class="form-control" type="text" name="unidad_1" id="unidad_1" readonly>
+                                    <input class="form-control" type="hidden" name="unidad_1" id="unidad_1" readonly>
                                     <input type="text" name="nombrefun" class="form-control <?php echo form_error('nombrefun') ? 'is-invalid' : ''; ?>" placeholder="Nombre completo" onKeyUp="mayus(this);" value="<?php echo set_value('nombrefun'); ?>">
                                     <div class="invalid-feedback">
                                         <?php echo form_error('nombrefun'); ?>
