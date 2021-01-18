@@ -84,17 +84,51 @@ class User_model extends CI_Model
 
     public function llenarm($data)
     {
+        //print_r($data['rif_b']);die;
         $this->db->select('o.id_organo,
-                           o.cod_onapre,
                            o.codigo,
-                           concat(tr.desc_rif, \'-\' ,o.rif) as rif,
+                           o.rif,
+                           o.desc_organo,
+                           o.cod_onapre,
                            o.siglas,
-                           o.direccion_fiscal,
-                           o.desc_organo');
-        $this->db->join('tipo_rif tr', 'tr.id_rif = o.tipo_rif');
-        $this->db->where('o.rif', $data['rif_b']);
-        $query = $this->db->get('organos o');
-        return $result = $query->row_array();
+                           o.direccion_fiscal');
+        $this->db->where('o.rif',$data['rif_b']);
+        $this->db->from('organos o');
+        $result = $this->db->get();
+
+        if($result->num_rows() != 1){
+            $this->db->select('e.id_organo,
+                               e.id_entes,
+                               e.codigo,
+                        	   e.rif,
+                        	   e.desc_entes as desc_organo,
+                        	   e.cod_onapre,
+                        	   e.siglas,
+                        	   e.direccion_fiscal');
+            $this->db->where('e.rif',$data['rif_b']);
+            $this->db->from('entes e');
+            $result = $this->db->get();
+
+            if ($result->num_rows() != 1) {
+                $this->db->select('ea.id_entes,
+                                   ea.id_entes_ads,
+                                   ea.codigo,
+                                   ea.rif,
+                                   ea.desc_entes_ads as desc_organo,
+                                   ea.cod_onapre,
+                                   ea.siglas,
+                                   ea.direccion_fiscal');
+                $this->db->where('ea.rif',$data['rif_b']);
+                $this->db->from('entes_ads ea');
+                $result = $this->db->get();
+                return $result->row_array();
+            }else {
+                return $result->row_array();
+            }
+        }else{
+            return $result->row_array();
+        }
+        //return $result = $query->row_array();
     }
 
 
@@ -103,7 +137,7 @@ class User_model extends CI_Model
     {
 
         $this->db->insert("usuarios", $data1);
-       
+
 
 
 //se se supone que la funcion  insert_id(); me guarda el id del ultimo registo
