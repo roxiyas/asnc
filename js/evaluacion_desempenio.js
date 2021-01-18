@@ -41,12 +41,14 @@ function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
                     $('#estado').val(data['descedo']);
                     $('#municipio').val(data['descmun']);
                     $('#ciudad').val(data['ciudade_id']);
+                    $('#persona_cont').val(data['percontacto']);
+                    $('#tel_cont').val(data['telf1']);
 
-                    var user_id = data['user_id'];
+                    var procactual = data['procactual'];
                     $.ajax({
                         url:base_url2,
                         method: 'post',
-                        data: {user_id: user_id},
+                        data: {procactual: procactual},
                         dataType: 'json',
                         success: function(data){
                             console.log(data);
@@ -177,316 +179,50 @@ function evaluar(){
         $('#responsabilidad').attr("disabled", false);
         $('#conocimiento').attr("disabled", false);
         $('#oportunidad').attr("disabled", false);
-        if(bienes && servicios){
-            var rif_b = $('#rif_b').val();
 
-            var calidad = $('#calidad').val();
-            var responsabilidad = $('#responsabilidad').val();
-            var conocimiento = $('#conocimiento').val();
-            var oportunidad = $('#oportunidad').val();
+        var rif_b = $('#rif_b').val();
 
-            var calidad_p = 6
-            var responsabilidad_p = 6
-            var conocimiento_p = 2
-            var oportunidad_p = 6
+        var calidad = $('#calidad').val();
+        var responsabilidad = $('#responsabilidad').val();
+        var conocimiento = $('#conocimiento').val();
+        var oportunidad = $('#oportunidad').val();
 
-            var calidad_t = calidad * calidad_p
-            var responsabilidad_t = responsabilidad * responsabilidad_p
-            var conocimiento_t = conocimiento * conocimiento_p
-            var oportunidad_t = oportunidad * oportunidad_p
-            var total = calidad_t + responsabilidad_t + conocimiento_t + oportunidad_t
+        var calidad_p = 25
+        var responsabilidad_p = 25
+        var conocimiento_p = 25
+        var oportunidad_p = 25
 
-            $('#total_claf').val(total);
+        var calidad_t = calidad * calidad_p
+        var responsabilidad_t = responsabilidad * responsabilidad_p
+        var conocimiento_t = conocimiento * conocimiento_p
+        var oportunidad_t = oportunidad * oportunidad_p
+        var total = calidad_t + responsabilidad_t + conocimiento_t + oportunidad_t
 
-            if (total >= 18 && total<=20) {
-                var calificacion = 'EXCELENTE'
-                $('#calificacion').val(calificacion);
-            }
+        $('#total_claf').val(total);
 
-            if (total >= 15 && total<=17) {
-                var calificacion = 'MUY BUENO'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 12 && total<=14) {
-                var calificacion = 'BUENO'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 10 && total<=11) {
-                var calificacion = 'REGULAR'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 2 && total<=9) {
-                var calificacion = 'DEFICIENTE'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total == 0) {
-                var calificacion = 'SIN CALIFICACIÓN'
-                $('#calificacion').val(calificacion);
-            }
+        if (total == 100) {
+            var calificacion = 'EXCELENTE'
+            $('#calificacion').val(calificacion);
         }
 
-        if(bienes && obras){
-            var rif_b = $('#rif_b').val();
-
-            var calidad = $('#calidad').val();
-            var responsabilidad = $('#responsabilidad').val();
-            var conocimiento = $('#conocimiento').val();
-            var oportunidad = $('#oportunidad').val();
-
-            var calidad_p = 5
-            var responsabilidad_p = 5
-            var conocimiento_p = 5
-            var oportunidad_p = 5
-
-            var calidad_t = calidad * calidad_p
-            var responsabilidad_t = responsabilidad * responsabilidad_p
-            var conocimiento_t = conocimiento * conocimiento_p
-            var oportunidad_t = oportunidad * oportunidad_p
-            var total = calidad_t + responsabilidad_t + conocimiento_t + oportunidad_t
-
-            $('#total_claf').val(total);
-
-            if (total >= 18 && total<=20) {
-                var calificacion = 'EXCELENTE'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 15 && total<=17) {
-                var calificacion = 'MUY BUENO'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 12 && total<=14) {
-                var calificacion = 'BUENO'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 10 && total<=11) {
-                var calificacion = 'REGULAR'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 2 && total<=9) {
-                var calificacion = 'DEFICIENTE'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total == 0) {
-                var calificacion = 'SIN CALIFICACIÓN'
-                $('#calificacion').val(calificacion);
-            }
+        if (total == 75) {
+            var calificacion = 'BUENO'
+            $('#calificacion').val(calificacion);
         }
 
-        if(servicios && obras){
-            var rif_b = $('#rif_b').val();
-
-            var calidad = $('#calidad').val();
-            var responsabilidad = $('#responsabilidad').val();
-            var conocimiento = $('#conocimiento').val();
-            var oportunidad = $('#oportunidad').val();
-
-            var calidad_p = 5
-            var responsabilidad_p = 5
-            var conocimiento_p = 5
-            var oportunidad_p = 5
-
-            var calidad_t = calidad * calidad_p
-            var responsabilidad_t = responsabilidad * responsabilidad_p
-            var conocimiento_t = conocimiento * conocimiento_p
-            var oportunidad_t = oportunidad * oportunidad_p
-            var total = calidad_t + responsabilidad_t + conocimiento_t + oportunidad_t
-
-            $('#total_claf').val(total);
-
-            if (total >= 18 && total<=20) {
-                var calificacion = 'EXCELENTE'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 15 && total<=17) {
-                var calificacion = 'MUY BUENO'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 12 && total<=14) {
-                var calificacion = 'BUENO'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 10 && total<=11) {
-                var calificacion = 'REGULAR'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 2 && total<=9) {
-                var calificacion = 'DEFICIENTE'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total == 0) {
-                var calificacion = 'SIN CALIFICACIÓN'
-                $('#calificacion').val(calificacion);
-            }
+        if (total == 50) {
+            var calificacion = 'REGULAR'
+            $('#calificacion').val(calificacion);
         }
 
-        if(bienes){
-            var rif_b = $('#rif_b').val();
-
-            var calidad = $('#calidad').val();
-            var responsabilidad = $('#responsabilidad').val();
-            var conocimiento = $('#conocimiento').val();
-            var oportunidad = $('#oportunidad').val();
-
-            var calidad_p = 6
-            var responsabilidad_p = 6
-            var conocimiento_p = 2
-            var oportunidad_p = 6
-
-            var calidad_t = calidad * calidad_p
-            var responsabilidad_t = responsabilidad * responsabilidad_p
-            var conocimiento_t = conocimiento * conocimiento_p
-            var oportunidad_t = oportunidad * oportunidad_p
-            var total = calidad_t + responsabilidad_t + conocimiento_t + oportunidad_t
-
-            $('#total_claf').val(total);
-
-            if (total >= 18 && total<=20) {
-                var calificacion = 'EXCELENTE'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 15 && total<=17) {
-                var calificacion = 'MUY BUENO'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 12 && total<=14) {
-                var calificacion = 'BUENO'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 10 && total<=11) {
-                var calificacion = 'REGULAR'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 2 && total<=9) {
-                var calificacion = 'DEFICIENTE'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total == 0) {
-                var calificacion = 'SIN CALIFICACIÓN'
-                $('#calificacion').val(calificacion);
-            }
+        if (total == 25) {
+            var calificacion = 'DEFICIENTE'
+            $('#calificacion').val(calificacion);
         }
 
-        if(servicios){
-            var rif_b = $('#rif_b').val();
-
-            var calidad = $('#calidad').val();
-            var responsabilidad = $('#responsabilidad').val();
-            var conocimiento = $('#conocimiento').val();
-            var oportunidad = $('#oportunidad').val();
-
-            var calidad_p = 5
-            var responsabilidad_p = 6
-            var conocimiento_p = 5
-            var oportunidad_p = 4
-
-            var calidad_t = calidad * calidad_p
-            var responsabilidad_t = responsabilidad * responsabilidad_p
-            var conocimiento_t = conocimiento * conocimiento_p
-            var oportunidad_t = oportunidad * oportunidad_p
-            var total = calidad_t + responsabilidad_t + conocimiento_t + oportunidad_t
-
-            $('#total_claf').val(total);
-
-            if (total >= 18 && total<=20) {
-                var calificacion = 'EXCELENTE'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 15 && total<=17) {
-                var calificacion = 'MUY BUENO'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 12 && total<=14) {
-                var calificacion = 'BUENO'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 10 && total<=11) {
-                var calificacion = 'REGULAR'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 2 && total<=9) {
-                var calificacion = 'DEFICIENTE'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total == 0) {
-                var calificacion = 'SIN CALIFICACIÓN'
-                $('#calificacion').val(calificacion);
-            }
-        }
-
-        if(obras){
-            var rif_b = $('#rif_b').val();
-
-            var calidad = $('#calidad').val();
-            var responsabilidad = $('#responsabilidad').val();
-            var conocimiento = $('#conocimiento').val();
-            var oportunidad = $('#oportunidad').val();
-
-            var calidad_p = 5
-            var responsabilidad_p = 5
-            var conocimiento_p = 5
-            var oportunidad_p = 5
-
-            var calidad_t = calidad * calidad_p
-            var responsabilidad_t = responsabilidad * responsabilidad_p
-            var conocimiento_t = conocimiento * conocimiento_p
-            var oportunidad_t = oportunidad * oportunidad_p
-            var total = calidad_t + responsabilidad_t + conocimiento_t + oportunidad_t
-
-            $('#total_claf').val(total);
-
-            if (total >= 18 && total<=20) {
-                var calificacion = 'EXCELENTE'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 15 && total<=17) {
-                var calificacion = 'MUY BUENO'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 12 && total<=14) {
-                var calificacion = 'BUENO'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 10 && total<=11) {
-                var calificacion = 'REGULAR'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total >= 2 && total<=9) {
-                var calificacion = 'DEFICIENTE'
-                $('#calificacion').val(calificacion);
-            }
-
-            if (total == 0) {
-                var calificacion = 'SIN CALIFICACIÓN'
-                $('#calificacion').val(calificacion);
-            }
+        if (total == 0) {
+            var calificacion = 'SIN CALIFICACIÓN'
+            $('#calificacion').val(calificacion);
         }
     }
 }

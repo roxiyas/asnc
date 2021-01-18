@@ -498,13 +498,13 @@ class Programacion extends CI_Controller {
         $data = $this->Programacion_model->save_programacion_acc($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento);
 
         if ($data) {
-            $id_programacion = $this->input->POST('id_programacion_acc');
+            $id_programacion  = $this->input->POST('id_programacion');
             $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
-      		redirect('programacion/?id='.$id_programacion);
+    		redirect('Programacion/nueva_prog?id='.$id_programacion);
         }else{
-  		    $this->session->set_flashdata('sa-error', 'error');
-  		    redirect('programacion/?id='.$id_programacion);
-  	    }
+		   $this->session->set_flashdata('sa-error', 'error');
+		   redirect ('Programacion/nueva_prog?id='.$id_programacion);
+	    }
     }
 
     public function ver_programacion_acc(){

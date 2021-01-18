@@ -137,7 +137,7 @@ function agregar_ccnu_accToCartTable(cells){
 		$("#estimado_iV_acc").val('');
 		$("#estimado_total_t_acc").val('');
 
-		$("#btn_guar_1").prop('disabled', false);
+		$("#btn_guar_2").prop('disabled', false);
 	}
 }
 

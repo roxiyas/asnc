@@ -80,11 +80,11 @@
                                     <td><?=$ver_acc_centralizad['desc_accion_centralizada']?> </td>
                                     <td><?=$ver_acc_centralizad['desc_objeto_contrata']?> </td>
                                     <td class="center">
-                                        <a href="<?php echo base_url();?>index.php/programacion/ver_programacion_acc?id=<?php echo $ver_acc_centralizad['id_p_acc_centralizada'];?>/<?php echo $ver_proyecto['id_programacion'];?>"
+                                        <a href="<?php echo base_url();?>index.php/programacion/ver_programacion_acc?id=<?php echo $ver_acc_centralizad['id_p_acc_centralizada'];?>/<?php echo $ver_acc_centralizad['id_programacion'];?>"
                                             class="button">
                                             <i class="fas fa-lg fa-fw fa-eye" style="color: green;"></i>
                                         <a/>
-                                        <a href="<?php echo base_url();?>index.php/programacion/editar_acc?id=<?php echo $ver_acc_centralizad['id_p_acc_centralizada'];?>/<?php echo $ver_acc_centralizad['id_obj_comercial'];?>/<?php echo $ver_proyecto['id_programacion'];?>"
+                                        <a href="<?php echo base_url();?>index.php/programacion/editar_acc?id=<?php echo $ver_acc_centralizad['id_p_acc_centralizada'];?>/<?php echo $ver_acc_centralizad['id_obj_comercial'];?>/<?php echo $ver_acc_centralizad['id_programacion'];?>"
                                             class="button">
                                             <i class="fas fa-lg fa-fw  fa-edit"></i>
                                         <a />

@@ -47,6 +47,15 @@
                                 <input type="text" name="ciudad" id="ciudad" class="form-control" readonly>
                             </div>
                             <div class="col-6"></div>
+                            <div class="form-group col-6">
+                                <label>Persona de Contacto</label>
+                                <input type="text" name="persona_cont" id="persona_cont" class="form-control"  placeholder="Persona de Contacto" readonly>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Télefono de Contacto</label>
+                                <input type="text" name="tel_cont" id="tel_cont" class="form-control"  placeholder="Télefono de Contacto" readonly>
+                            </div>
+
                             <div class="col-3">
 
                             </div>
@@ -98,7 +107,6 @@
                             </div>
                             <div class="form-group col-3">
                                 <label>Ciudad</label>
-                                <!-- <input type="text" name="ciudad_n" id="ciudad_n" class="form-control"  placeholder="Ciudad"> -->
                                 <select class="selected form-control" name="ciudad_n" id="ciudad_n">
                                     <option value="0">Seleccione</option>
                                     <option value="1">Caracas</option>
@@ -121,19 +129,13 @@
     				</div>
     				<div class="panel-body">
                         <div class="row">
-                            <div class="form-group col-3">
+                            <div class="form-group col-7">
                                 <label>Modalidad de la Contratación</label>
                                 <select class="form-control" name="id_modalidad" id="id_modalidad" onclick="llenar_sub_mod();">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($modalidades as $data): ?>
                                         <option value="<?=$data['id']?>"><?=$data['descripcion']?></option>
                                     <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Sub-Modalidad de la Contratación</label>
-                                <select class="form-control" name="id_sub_modalidad" id="id_sub_modalidad">
-                                    <option value="0">Seleccione</option>
                                 </select>
                             </div>
                             <div class="form-group col-4">
@@ -143,6 +145,12 @@
                                         <span class="input-group-addon">-</span>
                                         <input type="text" class="form-control"  id="fecha_hasta" name="end" placeholder="Hasta" />
                                     </div>
+                            </div>
+                            <div class="form-group col-12">
+                                <label>Sub-Modalidad de la Contratación</label>
+                                <select class="form-control" name="id_sub_modalidad" id="id_sub_modalidad">
+                                    <option value="0">Seleccione</option>
+                                </select>
                             </div>
                         </div>
                     </div>

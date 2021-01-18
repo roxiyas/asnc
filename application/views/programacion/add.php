@@ -378,7 +378,7 @@
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Fuente de Financiamiento</label>
-                                        <select style="width: 100%;" id="fuente_financiamiento_acc" name="fuente_financiamiento_acc" class="form-control" required>
+                                        <select style="width: 100%;" id="fuente_financiamiento_acc" name="fuente_financiamiento_acc" class="form-control">
                                             <option value="0">Seleccione</option>
                                             <?php foreach ($fuente as $data): ?>
                                                 <option value="<?=$data['id_fuente_financiamiento']?>/<?=$data['desc_fuente_financiamiento']?>"><?=$data['desc_fuente_financiamiento']?></option>
@@ -387,7 +387,7 @@
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Porcentaje<b style="color:red">*</b></label>
-                                        <input id="porcentaje_acc" name="porcentaje_acc" onblur="porc_acc();" type="text" class="form-control" required>
+                                        <input id="porcentaje_acc" name="porcentaje_acc" onblur="porc_acc();" type="text" class="form-control">
                                     </div>
 
                                     <div class="col-12">
@@ -404,6 +404,7 @@
                                         <table id="target_acc_ff" class="table table-bordered table-hover">
                                             <thead style="background:#e4e7e8;">
                                                 <tr class="text-center">
+                                                    <th>Codigo Part. Presupuestaria</th>
                                                     <th>Partida Presupuestaria</th>
                                                     <th>Estado</th>
                                                     <th>Fuente de Financiamiento</th>
@@ -436,7 +437,7 @@
                                     </div>
                                     <div class="form-group col-6">
                                         <label>Especificación <b style="color:red">*</b></label>
-                                        <input id="especificacion_acc" type="text" class="form-control" required>
+                                        <input id="especificacion_acc" type="text" class="form-control">
                                     </div>
                                     <div class="form-group col-6">
                                         <label>Unidad de Medida <b style="color:red">*</b></label><br>

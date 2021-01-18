@@ -34,14 +34,15 @@
 
         public function llenar_contratista($data){
             $this->db_b->select('c.user_id,
-                            	   c.edocontratista_id,
-                            	   c.rifced,
-                            	   c.nombre,
-                            	   c.dirfiscal,
-                            	   c.estado_id,
-                            	   c.municipio_id,
-                            	   m.descmun,
-                            	   e.descedo');
+                        	     c.edocontratista_id,
+                        	     c.rifced,
+                        	     c.nombre,
+                        	     c.dirfiscal,
+                        	     e.descedo,
+                        	     m.descmun,
+                        	     c.percontacto,
+                        	     c.telf1,
+                                 c.procactual');
             $this->db_b->join('estados e', 'e.id = c.estado_id');
             $this->db_b->join('municipios m', 'm.id = c.municipio_id');
             $this->db_b->where('c.rifced',$data['rif_b']);
@@ -54,8 +55,8 @@
                         	   cedrif,
                                concat(nomacc, \'\' ,apeacc) as repr,
                         	   cargo ');
-            $this->db_b->where('proceso_id', $data['user_id']);
-            $this->db_b->like('cargo', 'representante');
+            $this->db_b->where('proceso_id', $data['procactual']);
+            //$this->db_b->like('cargo', 'representante');
             $query = $this->db_b->get('accionistas');
             return $result = $query->result_array();
         }
