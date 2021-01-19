@@ -61,8 +61,8 @@
                         <div class="form-group col-5">
                             <h4>Edo. donde se ejecuto el Contrato: <b><?=$eval_ind['estado_contrato']?></b></h4>
                         </div>
-                        <div class="form-group col-3">
-                            <h4>Objeto de la Contratación</h4>
+                        <div class="form-group col-2">
+                            <h4 style="width: 100%;">Obj. de la Contratación</h4>
                         </div>
                         <div class="form-group col-3">
                             <div class="col-md-12">
