@@ -40,7 +40,7 @@
                             	   e.cod_onapre,
                             	   e.siglas,
                             	   e.direccion_fiscal');
-                $this->db->where('e.rif',$data['rif_b']);
+                $this->db->where('e.codigo',$id_unidad);
                 $this->db->from('entes e');
                 $result = $this->db->get();
 
@@ -53,7 +53,7 @@
                                        ea.cod_onapre,
                                        ea.siglas,
                                        ea.direccion_fiscal');
-                    $this->db->where('ea.rif',$data['rif_b']);
+                    $this->db->where('ea.codigo',$id_unidad);
                     $this->db->from('entes_ads ea');
                     $result = $this->db->get();
                     return $result->row_array();
