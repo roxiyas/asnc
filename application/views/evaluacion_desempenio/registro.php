@@ -341,14 +341,6 @@
 </div>
 <script src="<?=base_url()?>/js/evaluacion_desempenio.js"></script>
 <script type="text/javascript">
-    // $(document).ready( function () {
-    //     $(".UpperCase").on("keypress", function () {
-    //         $input=$(this);
-    //             setTimeout(function () {
-    //             $input.val($input.val().toUpperCase());
-    //         },50);
-    //     })
-    // })
 
     function may(e){
          e.value = e.value.toUpperCase();

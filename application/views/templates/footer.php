@@ -5,6 +5,7 @@
 <script src="<?=base_url()?>Plantilla/admin/assets/plugins/js-cookie/js.cookie.js"></script>
 <!-- <script src="<?=base_url()?>Plantilla/admin/assets/js/theme/default.min.js"></script> -->
 <script src="<?=base_url()?>Plantilla/admin/assets/js/theme/material.min.js"></script>
+<script src="<?=base_url()?>Plantilla/admin/assets/js/theme/apple.min.js"></script>
 <script src="<?=base_url()?>Plantilla/admin/assets/js/apps.min.js"></script>
 <!-- ================== END BASE JS ================== -->
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->

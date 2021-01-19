@@ -61,50 +61,66 @@
                         <div class="form-group col-5">
                             <h4>Edo. donde se ejecuto el Contrato: <b><?=$eval_ind['estado_contrato']?></b></h4>
                         </div>
-                        <div class="form-group col-2">
-                            <label>Objeto de la Contratación</label>
-							<div class="col-md-12">
-								<div class="checkbox checkbox-css">
-									<input type="checkbox" id="cssCheckbox1" name="cssCheckbox1" onclick="evaluar();"/>
-									<label for="cssCheckbox1">Bienes</label>
-								</div>
-								<div class="checkbox checkbox-css">
-									<input type="checkbox" id="cssCheckbox2" name="cssCheckbox2" onclick="evaluar();"/>
-									<label for="cssCheckbox2">Servicios</label>
-								</div>
-								<div class="checkbox checkbox-css">
-									<input type="checkbox" id="cssCheckbox3" name="cssCheckbox3" onclick="evaluar();"/>
-									<label for="cssCheckbox3">Obras</label>
-								</div>
+                        <div class="form-group col-3">
+                            <h4>Objeto de la Contratación</h4>
+                        </div>
+                        <div class="form-group col-3">
+                            <div class="col-md-12">
+                                <?php if ($eval_ind['bienes'] != null): ?>
+                                    <div style="padding-right: 7px;">
+                                        <input type="checkbox" value="bienes" name="bienes" id="cssCheckbox1" checked disabled/>
+                                        <label for="cssCheckbox1">Bienes</label>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($eval_ind['servicios'] != null): ?>
+                                    <div style="padding-right: 7px;">
+                                        <input type="checkbox" value="servicios" name="servicios" id="cssCheckbox1" checked disabled/>
+                                        <label for="cssCheckbox1">Servicios</label>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($eval_ind['obras'] != null): ?>
+                                    <div style="padding-right: 7px;">
+                                        <input type="checkbox" value="obras" name="obras" id="cssCheckbox1" checked disabled/>
+                                        <label for="cssCheckbox1">Obras</label>
+                                    </div>
+                                <?php endif; ?>
 							</div>
                         </div>
                         <div class="form-group col-5">
-                            <label>Descripción de la Contratación</label>
-                            <textarea class="form-control" name="desc_contratacion" id="desc_contratacion" rows="3" cols="70"></textarea>
+                            <h4>Descripción de la Contratación: <b><?=$eval_ind['descr_contrato']?></b></h4>
                         </div>
-                        <div class="form-group col-3">
-                            <label>Monto</label>
-                            <input class="form-control"  type="text" name="monto" id="monto" onkeypress="return valideKey(event);">
+                        <div class="form-group col-4">
+                            <h4>Monto: <b><?=$eval_ind['monto']?></b></h4>
                         </div>
-                        <div class="form-group col-2">
-                            <label>Moneda</label>
-							<div class="col-md-12">
-								<div class="checkbox checkbox-css">
-									<input type="checkbox" id="cssCheckbox4" name="cssCheckbox4"/>
-									<label for="cssCheckbox4">$</label>
-								</div>
-								<div class="checkbox checkbox-css">
-									<input type="checkbox" id="cssCheckbox5" name="cssCheckbox5"/>
-									<label for="cssCheckbox5">Euros</label>
-								</div>
-								<div class="checkbox checkbox-css">
-									<input type="checkbox" id="cssCheckbox6" name="cssCheckbox6"/>
-									<label for="cssCheckbox6">Petros</label>
-								</div>
-                                <div class="checkbox checkbox-css">
-									<input type="checkbox" id="cssCheckbox7" name="cssCheckbox7"/>
-									<label for="cssCheckbox7">Bolivares</label>
-								</div>
+                        <div class="form-group col-1">
+                            <h4>Moneda</h4>
+                        </div>
+                        <div class="">
+                            <div class="col-md-12 col-2">
+                                <?php if ($eval_ind['dolar'] != null): ?>
+                                    <div style="padding-right: 7px;">
+                                        <input type="checkbox" value="dolar" name="dolar" id="cssCheckbox1" checked disabled/>
+                                        <label for="cssCheckbox1">dolar</label>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($eval_ind['euro'] != null): ?>
+                                    <div style="padding-right: 7px;">
+                                        <input type="checkbox" value="bienes" name="euro" id="cssCheckbox1" checked disabled/>
+                                        <label for="cssCheckbox1">Euro</label>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($eval_ind['petros'] != null): ?>
+                                    <div style="padding-right: 7px;">
+                                        <input type="checkbox" value="petros" name="petros" id="cssCheckbox1" checked disabled/>
+                                        <label for="cssCheckbox1">Petros</label>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($eval_ind['bolivares'] != null): ?>
+                                    <div style="padding-right: 7px;">
+                                        <input type="checkbox" value="bolivares" name="bolivares" id="cssCheckbox1" checked disabled/>
+                                        <label for="cssCheckbox1">Bolivares</label>
+                                    </div>
+                                <?php endif; ?>
 							</div>
                         </div>
                     </div>
@@ -114,69 +130,14 @@
 				</div>
 				<div class="panel-body">
                     <div class="row">
-                        <table class="table table-bordered">
-                            <thead>
-								<tr>
-									<th>Criterio</th>
-									<th>Descripción</th>
-									<th>Clasificación</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Calidad</td>
-									<td>Mide el cumplimiento de los parámetros técnicos y de calidad exigidos: disposición del personal capacitado/calificado, disponibilidad oportuna y confiable de equipos, instrumentos e infraestructura adecuados, procura (compra, manejo y almacenaje), respuesta eficiente a reclamos técnicos/calidad, organización e implantación de mejoras</td>
-									<td>
-                                        <select class="selected form-control" name="calidad" id="calidad" onclick="evaluar();">
-                                            <option value="">Sel</option>
-                                            <option value="1">Si</option>
-                                            <option value="0">No</option>
-                                        </select>
-                                    </td>
-								</tr>
-								<tr>
-									<td>Responsabilidad</td>
-									<td>Cumplimiento de leyes, decretos y clausulas relativos al contrato, respuestas a demandas o reclamos de proveedores/subcontratistas, cumplimiento y respuesta de requisitos como solvencia laboral, administración de vacaciones, reclamos laborales, paros, demñas obligraciones legales y contractuales</td>
-									<td>
-                                        <select class="selected form-control" name="responsabilidad" id="responsabilidad" onclick="evaluar();">
-                                            <option value="">Sel</option>
-                                            <option value="1">Si</option>
-                                            <option value="0">No</option>
-                                        </select>
-                                    </td>
-								</tr>
-								<tr>
-                                    <td>Conocimiento del trabajo</td>
-									<td>Cumplimiento de practicas de trabajo seguro, programas de inspección SHA, herramientas y equipos, condiciones del area de trabajo adecuadas, adiestramiento y motivación al personal, SHA de contratistas, respuesta y control de emergencias entre otras, aplicacion de las normativas técnicas.</td>
-                                    <td>
-                                        <select class="selected form-control" name="conocimiento" id="conocimiento" onclick="evaluar();">
-                                            <option value="">Sel</option>
-                                            <option value="1">Si</option>
-                                            <option value="0">No</option>
-                                        </select>
-                                    </td>
-								</tr>
-                                <tr>
-									<td>Opotunidad (Plazos Establecidos)</td>
-									<td>Corresponde al periodo establecido en el contrato para la ejecución de la obra, prestación del servicio o suministro de bienes.</td>
-                                    <td>
-                                        <select class="selected form-control" name="oportunidad" id="oportunidad" onclick="evaluar();">
-                                            <option value="">Sel</option>
-                                            <option value="1">Si</option>
-                                            <option value="0">No</option>
-                                        </select>
-                                    </td>
-								</tr>
-							</tbody>
-                        </table>
                         <div class="col-7"></div>
                         <div class="col-2" class="form-control">
-                            <label>Total:</label>
-                            <input class="form-control" type="text" name="total_claf" id="total_claf" readonly>
+                            <h4>Total: <b><?=$eval_ind['total_calif']?></b></h4>
+                            <!-- <input class="form-control" type="text" name="total_claf" id="total_claf" readonly> -->
                         </div>
                         <div class="col-3" class="form-control">
-                            <label>Calificacion:</label>
-                            <input class="form-control" type="text" name="calificacion" id="calificacion" readonly>
+                            <h4 >Calificacion: <b><?=$eval_ind['calificacion']?></b></h4    >
+                            <!-- <input class="form-control" type="text" name="calificacion" id="calificacion" readonly> -->
                         </div>
                     </div>
                 </div>
@@ -186,33 +147,33 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="form-group col-4">
-                            <label>¿Fue notificado al contratista?</label>
-                            <select class="form-control" name="notf_cont" id="notf_cont">
+                            <h4>¿Fue notificado al contratista?: <b><?=$eval_ind['notf_cont']?></b></h4>
+                            <!-- <select class="form-control" name="notf_cont" id="notf_cont">
                                 <option value="0">Sí, fué notificado al contratista</option>
                                 <option value="0">No, no fué notificado al contratista</option>
-                            </select>
+                            </select> -->
                         </div>
                         <div class="form-group col-4">
-                            <label>Fecha de la Notificación</label>
-							<input type="text" class="form-control" id="datepicker-default" name="fec_notificacion" placeholder="Seleccionar Fecha" />
+                            <h4>Fecha de la Notificación: <b><?=$eval_ind['fecha_not']?></b></h4>
+							<!-- <input type="text" class="form-control" id="datepicker-default" name="fec_notificacion" placeholder="Seleccionar Fecha" /> -->
                         </div>
                         <div class="form-group col-4">
-                            <label>Medio de envio de la Notificación</label>
-                            <select class="selected form-control" name="medio" id="medio">
+                            <h4>Medio de envio de la Notificación: <b><?=$eval_ind['medio']?></b></h4>
+                            <!-- <select class="selected form-control" name="medio" id="medio">
                                 <option value="0">Seleccione</option>
                                 <option value="1">FAX</option>
                                 <option value="2">Télefono</option>
                                 <option value="3">Correo Electronico</option>
                                 <option value="4">No Aplica</option>
-                            </select>
+                            </select> -->
                         </div>
                         <div class="form-group col-6">
-                            <label>Nro. de Oficio / Fax / Correo Electronico / Otro</label>
-							<input type="text" class="form-control" id="nro_oc_os" name="nro_oc_os" placeholder="Nro. de Oficio / Fax / Correo Electronico / Otro" />
+                            <h4>Nro. de Oficio / Fax / Correo Electronico / Otro: <b><?=$eval_ind['nro_oc_os']?></b></h4>
+							<!-- <input type="text" class="form-control" id="nro_oc_os" name="nro_oc_os" placeholder="Nro. de Oficio / Fax / Correo Electronico / Otro" /> -->
                         </div>
                         <div class="form-group col-6">
-                            <label>Acuse de Recibido <b style="color:red">*</b></label>
-                            <input type="file" name="fileImagen" id="fileImagen" class="form-control">
+                            <h4>Acuse de Recibido <b style="color:red">*</b></h4>
+                            <!-- <input type="file" name="fileImagen" id="fileImagen" class="form-control"> -->
                         </div>
                     </div>
                 </div>
