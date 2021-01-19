@@ -31,31 +31,36 @@
 			$this->db->from('organos o');
 			$result = $this->db->get();
 
-			if($result->num_rows() != 1){
+            if($result->num_rows() != 1){
                 $this->db->select('e.id_organo,
+                                   e.id_entes,
                                    e.codigo,
-                                   e.cod_onapre,
-                                   concat(tr.desc_rif, \' - \' ,e.rif) as rif,
-                                   e.desc_organo');
-                $this->db->join('tipo_rif tr', 'tr.id_rif = e.tipo_rif');
-    			$this->db->where('e.codigo',$id_unidad);
-    			$this->db->from('entes e');
-    			$result = $this->db->get();
+                            	   e.rif,
+                            	   e.desc_entes as desc_organo,
+                            	   e.cod_onapre,
+                            	   e.siglas,
+                            	   e.direccion_fiscal');
+                $this->db->where('e.rif',$data['rif_b']);
+                $this->db->from('entes e');
+                $result = $this->db->get();
+
                 if ($result->num_rows() != 1) {
-                    $this->db->select('ea.id_organo,
+                    $this->db->select('ea.id_entes,
+                                       ea.id_entes_ads,
                                        ea.codigo,
+                                       ea.rif,
+                                       ea.desc_entes_ads as desc_organo,
                                        ea.cod_onapre,
-                                       concat(tr.desc_rif, \' - \' ,ea.rif) as rif,
-                                       ea.desc_organo');
-                    $this->db->join('tipo_rif tr', 'tr.id_rif = ea.tipo_rif');
-        			$this->db->where('ea.codigo',$id_unidad);
-        			$this->db->from('entes_ads ea');
-        			$result = $this->db->get();
-    				return $result->row_array();
+                                       ea.siglas,
+                                       ea.direccion_fiscal');
+                    $this->db->where('ea.rif',$data['rif_b']);
+                    $this->db->from('entes_ads ea');
+                    $result = $this->db->get();
+                    return $result->row_array();
                 }else {
                     return $result->row_array();
                 }
-			}else{
+            }else{
 				return $result->row_array();
 			}
         }

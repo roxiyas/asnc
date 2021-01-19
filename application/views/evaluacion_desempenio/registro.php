@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-4">
                             <label>Rif del Contratista a Evaluar</label>
-                            <input class="form-control" type="text" name="rif_b" id="rif_b" placeholder="J123456789">
+                            <input class="form-control" type="text" name="rif_b" id="rif_b" onkeypress="may(this);" placeholder="J123456789">
                         </div>
                         <div class="col- mt-4">
                             <button type="button" class="btn btn-default" onclick="consultar_rif();" name="button"> <i class="fas fa-search"></i> </button>
@@ -340,3 +340,17 @@
     </div>
 </div>
 <script src="<?=base_url()?>/js/evaluacion_desempenio.js"></script>
+<script type="text/javascript">
+    // $(document).ready( function () {
+    //     $(".UpperCase").on("keypress", function () {
+    //         $input=$(this);
+    //             setTimeout(function () {
+    //             $input.val($input.val().toUpperCase());
+    //         },50);
+    //     })
+    // })
+
+    function may(e){
+         e.value = e.value.toUpperCase();
+    }
+</script>
