@@ -78,10 +78,10 @@
             $existe = $exitte;
 
             $quers =$this->db_b->insert('evaluacion_desempenio', $data_ev);
-            if ($existe == 0){
-                $quers1 = $this->db_b->insert('contratistas',$data); //colo nombre de la tabla
-                return true;
-            }
+                if ($existe == 0){
+                    $quers1 = $this->db_b->insert('contratistas_nr',$data);
+                    return true;
+                }
 
             return $quers;
         }

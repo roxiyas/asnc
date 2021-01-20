@@ -51,7 +51,6 @@ function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
                         data: {procactual: procactual},
                         dataType: 'json',
                         success: function(data){
-                            console.log(data);
                             $.each(data, function(index, response){
                                $('#tabla_rep tbody').append('<tr><td>' + response['cedrif'] + '</td><td>' + response['repr'] + '</td><td>' + response['cargo'] + '</td></tr>');
                             });
@@ -91,7 +90,6 @@ function valideKey(evt){
 
 function llenar_municipio(){
     var id_estado_n = $('#id_estado_n').val();
-    console.log(id_estado_n);
     var base_url = window.location.origin+'/asnc/index.php/evaluacion_desempenio/listar_municipio';
     // var base_url = '/index.php/Programacion/listar_municipio';
 
@@ -112,7 +110,6 @@ function llenar_municipio(){
 
 function llenar_parroquia(){
     var id_municipio_n = $('#id_estado_n').val();
-    console.log(id_municipio_n);
     var base_url = window.location.origin+'/asnc/index.php/evaluacion_desempenio/listar_parroquia';
     // var base_url = '/index.php/Programacion/listar_municipio';
 
@@ -123,7 +120,6 @@ function llenar_parroquia(){
         dataType:'json',
 
         success: function(response){
-            console.log(response);
             $('#id_parroquia_n').find('option').not(':first').remove();
             $.each(response, function(index, data){
                 $('#id_parroquia_n').append('<option value="'+data['id']+'">'+data['descparro']+'</option>');
@@ -144,7 +140,6 @@ function llenar_sub_mod(){
         dataType:'json',
 
         success: function(response){
-            console.log(response);
             $('#id_sub_modalidad').find('option').not(':first').remove();
             $.each(response, function(index, data){
                 $('#id_sub_modalidad').append('<option value="'+data['id']+'">'+data['descripcion']+'</option>');
@@ -349,8 +344,6 @@ function registrar(){
                     if (result.value == true) {
                             event.preventDefault();
                             var datos = new FormData($("#resgistrar_eva")[0]);
-                            console.log(datos);
-
                             var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
                             // var base_url = '/index.php/evaluacion_desempenio/registrar';
                             $.ajax({
@@ -360,8 +353,7 @@ function registrar(){
                                 contentType: false,
                                 processData: false,
                                 success: function(response){
-                                    console.log(response);
-                                    if(response == 1) {
+                                    if(response == 'true') {
                                         swal.fire({
                                             title: 'Registro Exitoso',
                                             type: 'success',
@@ -395,8 +387,6 @@ function registrar(){
 
                         event.preventDefault();
                         var datos = new FormData($("#resgistrar_eva")[0]);
-                        console.log(datos);
-
                         var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
                         // var base_url = '/index.php/evaluacion_desempenio/registrar';
                         $.ajax({
@@ -406,8 +396,7 @@ function registrar(){
                             contentType: false,
                             processData: false,
                             success: function(response){
-                                console.log(response);
-                                if(response == 1) {
+                                if(response == 'true') {
                                     swal.fire({
                                         title: 'Registro Exitoso',
                                         type: 'success',
@@ -491,8 +480,6 @@ function registrar(){
                     if (result.value == true) {
                             event.preventDefault();
                             var datos = new FormData($("#resgistrar_eva")[0]);
-                            console.log(datos);
-
                             var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
                             // var base_url = '/index.php/evaluacion_desempenio/registrar';
                             $.ajax({
@@ -502,8 +489,7 @@ function registrar(){
                                 contentType: false,
                                 processData: false,
                                 success: function(response){
-                                    console.log(response);
-                                    if(response == 1) {
+                                    if(response == 'true') {
                                         swal.fire({
                                             title: 'Registro Exitoso',
                                             type: 'success',
@@ -537,8 +523,6 @@ function registrar(){
 
                         event.preventDefault();
                         var datos = new FormData($("#resgistrar_eva")[0]);
-                        console.log(datos);
-
                         var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
                         // var base_url = '/index.php/evaluacion_desempenio/registrar';
                         $.ajax({
@@ -548,8 +532,7 @@ function registrar(){
                             contentType: false,
                             processData: false,
                             success: function(response){
-                                console.log(response);
-                                if(response == 1) {
+                                if(response == 'true') {
                                     swal.fire({
                                         title: 'Registro Exitoso',
                                         type: 'success',
