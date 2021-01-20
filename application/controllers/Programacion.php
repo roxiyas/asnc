@@ -453,7 +453,7 @@ class Programacion extends CI_Controller {
 
         $p_proyecto = array(
             'id_programacion'        => $this->input->POST('id_programacion_acc'),
-			         'nombre_proyecto'        => $this->input->POST('nombre_proyecto_acc'),
+			'nombre_proyecto'        => $this->input->POST('nombre_proyecto_acc'),
             'id_obj_comercial'       => $this->input->post('id_obj_comercial_acc'),
             'id_usuario' 		     => $this->session->userdata('id_user'),
             'estatus'                => 1
@@ -498,7 +498,7 @@ class Programacion extends CI_Controller {
         $data = $this->Programacion_model->save_programacion_acc($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento);
 
         if ($data) {
-            $id_programacion  = $this->input->POST('id_programacion');
+            $id_programacion  = $this->input->POST('id_programacion_acc');
             $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
     		redirect('Programacion/nueva_prog?id='.$id_programacion);
         }else{

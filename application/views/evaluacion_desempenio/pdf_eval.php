@@ -4,7 +4,7 @@
 		<div class="col-lg-12">
             <div class="panel panel-inverse">
                 <div class="panel-heading">
-                    <h4 class="panel-title"><b>Datos del Contratista Adjudicado</b></h4>
+                    <h5 class="panel-title"><b>Datos del Contratista Adjudicado</b></h5>
                 </div>
 			    <div class="panel-body">
                     <div class="row">

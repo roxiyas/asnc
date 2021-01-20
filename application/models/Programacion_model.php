@@ -112,10 +112,8 @@
             if ($acc_cargar == '1') {
 
                 $quers =$this->db->insert('p_proyecto',$p_proyecto);
-                print_r($quers);die;
                 if ($quers) {
                     $id = $this->db->insert_id();
-                    print_r($id);die;
                         $cant_proy = $p_items['id_ccnu'];
                         $count_prog = count($cant_proy);
                         for ($i=0; $i < $count_prog; $i++) {
@@ -629,7 +627,6 @@
 
         // BIENES
         public function save_programacion_acc($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento){
-
             if ($acc_cargar == '1') {
                 $quers =$this->db->insert('p_proyecto',$p_proyecto);
 
