@@ -110,12 +110,18 @@ class Programacion extends CI_Controller {
         $data['programacion_anio'] = $this->Programacion_model->consultar_prog_anio($data['id_programacion'], $data['unidad']);
         $data['anio'] = $data['programacion_anio']['anio'];
 
-        $data['proyectos'] = $this->Programacion_model->consultar_proyectos_compl($data['id_programacion']);
-
         $this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
         $this->load->view('programacion/pdf_compl.php', $data);
         $this->load->view('templates/footer.php');
+    }
+
+    public function llenar_ff_pp(){
+        if(!$this->session->userdata('session'))
+        redirect('login');
+		$data = $this->input->post();
+		$data = $this->Programacion_model->llenar_ff($data);
+		echo json_encode($data);
     }
 
     public function save_programacion(){
@@ -444,8 +450,8 @@ class Programacion extends CI_Controller {
         $data =	$this->Programacion_model->eliminar_proy($data);
         echo json_encode($data);
     }
-    // BIEN
 
+    // BIEN
     public function save_programacion_acc(){
         if(!$this->session->userdata('session'))  redirect('login');
 

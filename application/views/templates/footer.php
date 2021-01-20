@@ -1,13 +1,18 @@
 
 
 <script src="<?=base_url()?>Plantilla/admin/assets/plugins/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-<script src="<?=base_url()?>Plantilla/admin/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="<?=base_url()?>Plantilla/admin/assets/plugins/js-cookie/js.cookie.js"></script>
-<!-- <script src="<?=base_url()?>Plantilla/admin/assets/js/theme/default.min.js"></script> -->
 <script src="<?=base_url()?>Plantilla/admin/assets/js/theme/material.min.js"></script>
+
+<!-- ==================PARA checkbox y otros ================== -->
+<script src="<?=base_url()?>Plantilla/admin/assets/plugins/js-cookie/js.cookie.js"></script>
+<script src="<?=base_url()?>Plantilla/admin/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="<?=base_url()?>Plantilla/admin/assets/js/theme/apple.min.js"></script>
 <script src="<?=base_url()?>Plantilla/admin/assets/js/apps.min.js"></script>
-<!-- ================== END BASE JS ================== -->
+
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+	<script src="<?=base_url()?>Plantilla/admin/assets/plugins/isotope/jquery.isotope.min.js"></script>
+  	<script src="<?=base_url()?>Plantilla/admin/assets/plugins/lightbox/js/lightbox.min.js"></script>
+	<script src="<?=base_url()?>Plantilla/admin/assets/js/demo/gallery.demo.min.js"></script>
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 <script src="<?=base_url()?>Plantilla/admin/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 <script src="<?=base_url()?>Plantilla/admin/assets/plugins/ionRangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
@@ -56,6 +61,8 @@
 		TableManageDefault.init();
 		TableManageAutofill.init();
 		FormPlugins.init();
+		Gallery.init();
+		Highlight.init();
 	});
 </script>
 <!-- <script>

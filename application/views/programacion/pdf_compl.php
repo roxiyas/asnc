@@ -85,6 +85,20 @@
 <script type="text/javascript">
 if ($('#id_proyecto').val().length != " "){//FUNCION EN DONDE SE CARGA LA TABLA DE IP
     var id_proyecto = $('#id_proyecto').val();
-    console.log(id_proyecto);
+    var base_url =window.location.origin+'/asnc/index.php/Programacion/llenar_ff_pp';
+    $.ajax({
+        url:base_url,
+        method: 'post',
+        data: {id_proyecto: id_proyecto},
+        dataType: 'json',
+        success: function(data){
+            console.log(data);
+            $.each(data, function(index, response){
+                console.log(data);
+               $('#target_ff tbody').append('<tr><td>' + response['id_partidad_presupuestaria'] + '</td><td>' + response['id_estado'] + '</td><td>' + response['id_fuente_financiamiento'] + '</td><td>' + response['porcentaje'] +'</td></tr>');
+            });
+        }
+
+    });
 }
 </script>

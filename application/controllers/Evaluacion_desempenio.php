@@ -132,6 +132,10 @@ class Evaluacion_desempenio extends CI_Controller {
 						 'euro' => $this->input->POST('cssCheckbox2'),
 						 'petros' => $this->input->POST('cssCheckbox3'),
 						 'bolivares' => $this->input->POST('cssCheckbox3'),
+						 'calidad' => $this->input->POST('calidad'),
+						 'responsabilidad' => $this->input->POST('responsabilidad'),
+						 'conocimiento' => $this->input->POST('conocimiento'),
+						 'oportunidad' => $this->input->POST('oportunidad'),
 						 'total_calif' => $this->input->POST('total_claf'),
 						 'calificacion' => $this->input->POST('calificacion'),
 						 'notf_cont' => $this->input->POST('notf_cont'),
@@ -142,8 +146,6 @@ class Evaluacion_desempenio extends CI_Controller {
 						 'id_usuario' 	=> $this->session->userdata('id_user')
 					);
 		$data =	$this->Evaluacion_desempenio_model->registrar($exitte,$data,$data_ev);
-
-		print_r($data);die;
 		echo json_encode($data);
 	}
 
@@ -163,7 +165,6 @@ class Evaluacion_desempenio extends CI_Controller {
 	public function ver_evaluacion(){
 		$id_evaluacion = $this->input->get('id');
 		$data['eval_ind'] 	= $this->Evaluacion_desempenio_model->consulta_eval_ind($id_evaluacion);
-		//print_r($data['eval_ind']);die;
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
 		$this->load->view('evaluacion_desempenio/pdf_eval.php', $data);

@@ -23,6 +23,9 @@
 	<link href="<?=base_url()?>Plantilla/admin/assets/css/apple/style-responsive.min.css" rel="stylesheet" />
 	<link href="<?=base_url()?>Plantilla/admin/assets/css/apple/theme/default.css" rel="stylesheet" id="theme" />
 
+	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/isotope/isotope.css" rel="stylesheet" />
+  	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/lightbox/css/lightbox.css" rel="stylesheet" />
+
 	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/jquery-jvectormap/jquery-jvectormap.css" rel="stylesheet" />
 	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
 	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />

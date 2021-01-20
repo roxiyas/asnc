@@ -38,34 +38,49 @@
         }
 
         public function consultar_proyectos_compl($id_programacion){
+            // $this->db->select('pp.id_p_proyecto,
+            //                    pp.nombre_proyecto,
+            //             	   pp.id_obj_comercial,
+            //             	   pi2.id_partidad_presupuestaria,
+            //             	   pi2.id_ccnu,
+            //             	   pi2.fecha_desde,
+            //             	   pi2.fecha_hasta,
+            //             	   pi2.especificacion,
+            //             	   pi2.id_unidad_medida,
+            //             	   pi2.cantidad,
+            //             	   pi2.i,
+            //             	   pi2.ii,
+            //             	   pi2.iii,
+            //             	   pi2.iv,
+            //             	   pi2.cant_total_distribuir,
+            //             	   pi2.costo_unitario,
+            //             	   pi2.precio_total,
+            //             	   pi2.alicuota_iva,
+            //             	   pi2.iva_estimado,
+            //             	   pi2.monto_estimado,
+            //             	   pf.id_partidad_presupuestaria pp_ff,
+            //             	   pf.id_estado est_ff,
+            //             	   pf.id_fuente_financiamiento ff_ff,
+            //             	   pf.porcentaje ');
+            // $this->db->join('p_items pi2', 'pi2.id_enlace = pp.id_p_proyecto');
+            // $this->db->join('p_ffinanciamiento pf', 'pf.id_enlace = pp.id_p_proyecto');
+            // $this->db->where('pp.id_programacion', $id_programacion);
+            // $query = $this->db->get('p_proyecto pp');
+            // return $query->result_array();
+
             $this->db->select('pp.id_p_proyecto,
-                               pp.nombre_proyecto,
-                        	   pp.id_obj_comercial,
-                        	   pi2.id_partidad_presupuestaria,
-                        	   pi2.id_ccnu,
-                        	   pi2.fecha_desde,
-                        	   pi2.fecha_hasta,
-                        	   pi2.especificacion,
-                        	   pi2.id_unidad_medida,
-                        	   pi2.cantidad,
-                        	   pi2.i,
-                        	   pi2.ii,
-                        	   pi2.iii,
-                        	   pi2.iv,
-                        	   pi2.cant_total_distribuir,
-                        	   pi2.costo_unitario,
-                        	   pi2.precio_total,
-                        	   pi2.alicuota_iva,
-                        	   pi2.iva_estimado,
-                        	   pi2.monto_estimado,
-                        	   pf.id_partidad_presupuestaria pp_ff,
-                        	   pf.id_estado est_ff,
-                        	   pf.id_fuente_financiamiento ff_ff,
-                        	   pf.porcentaje ');
-            $this->db->join('p_items pi2', 'pi2.id_enlace = pp.id_p_proyecto');
-            $this->db->join('p_ffinanciamiento pf', 'pf.id_enlace = pp.id_p_proyecto');
-            $this->db->where('pp.id_programacion', $id_programacion);
-            $query = $this->db->get('p_proyecto pp');
+                        	   pp.nombre_proyecto,
+                        	   pp.id_obj_comercial');
+            $this->db->join('p_proyecto pp', 'pp.id_programacion = p.id_programacion');
+            $this->db->where('p.id_programacion', $id_programacion);
+            $query = $this->db->get('programacion p');
+            return $query->result_array();
+        }
+
+        public function llenar_ff($data){
+            $this->db->select('*');
+            $this->db->where('id_enlace', $data['id_proyecto']);
+            $query = $this->db->get('p_items');
             return $query->result_array();
         }
 
@@ -1097,5 +1112,4 @@
             }
            return true;
         }
-
 }
