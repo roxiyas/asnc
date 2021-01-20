@@ -27,28 +27,17 @@
                         </div>
                         <div class="col-3 mt-2 form-group">
                             <label>Objeto Comercial <b style="color:red">*</b></label>
-                            <input value="<?=$proyecto['id_obj_comercial']?>" type="text" class="form-control" disabled>
+                            <input value="<?=$proyecto['desc_objeto_contrata']?>" type="text" class="form-control" disabled>
                         </div>
                         <div class="col-12 text-center">
                             <h4 style="color:red;">Información Items Fuente Financiamiento (IFF)</h4>
                         </div>
-                        <table id="target_ff" class="table table-bordered table-hover">
-                            <thead style="background:#e4e7e8;">
-                                <tr class="text-center">
-                                    <th>Código Part. Presupuestaria</th>
-                                    <th>Partida Presupuestaria</th>
-                                    <th>Estado</th>
-                                    <th>Fuente de Financiamiento</th>
-                                    <th>%</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
+
                         <div class="col-12 mt-2 text-center">
                             <h4 style="color:red;">Información Items Productos (IP)</h4>
                         </div>
-                        <table id="target_req" class="table table-bordered table-hover">
+
+                        <table id="target_ff" class="table table-bordered table-hover">
                             <thead style="background:#e4e7e8;">
                                 <tr class="text-center">
                                     <th>Partida Pres.</th>
@@ -56,24 +45,50 @@
                                     <th>Esp.</th>
                                     <th>Unid. Medida</th>
                                     <th>I</th>
-                                    <th>II</th>
-                                    <th>III</th>
-                                    <th>IV</th>
-                                    <th>Costo Unitario</th>
-                                    <th>Precio Total Est.</th>
-                                    <th>IVA Estimado</th>
-                                    <th>Monto Iva Est.</th>
-                                    <th>Monto Total Est.</th>
                                 </tr>
-                            </thead>
-                            <tbody>
+                                <?php foreach($pp_ff as $pp_ff_2):?>
+                                    <?php if ($proyecto['id_p_proyecto'] == $pp_ff_2['id_enlace']): ?>
+                                    </thead>
+                                            <td style="font-size:100%"><?=$pp_ff_2['id_p_items']?></td>
+                                            <td style="font-size:100%"><?=$pp_ff_2['id_enlace']?></td>
+                                            <td style="font-size:100%"><?=$pp_ff_2['id_p_acc']?></td>
+                                            <td style="font-size:100%"><?=$pp_ff_2['id_p_acc']?></td>
+                                            <td style="font-size:100%"><?=$pp_ff_2['id_p_acc']?></td>
+                                    <tbody>
+                                        <?php endif; ?>
+                                <?php endforeach;?>
                             </tbody>
                         </table>
                         <div class="col-12">
                             <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                         </div>
-                        <?php endforeach;?>
+
+                    <?php endforeach;?>
+
                     </div>
+
+                    <!-- <?php foreach($pp_ff as $pp_ff_2):?>
+                       <table id="target_ff" class="table table-bordered table-hover">
+                           <thead style="background:#e4e7e8;">
+                               <tr class="text-center">
+                                   <th>Código Part. Presupuestaria</th>
+                                   <th>Partida Presupuestaria</th>
+                                   <th>Estado</th>
+                                   <th>Fuente de Financiamiento</th>
+                                   <th>%</th>
+                               </tr>
+                           </thead>
+                           <tr class="odd gradeX" style="text-align:center">
+                                   <td style="font-size:100%"><?=$pp_ff_2['id_p_items']?></td>
+                                   <td style="font-size:100%"><?=$pp_ff_2['id_enlace']?></td>
+                                   <td style="font-size:100%"><?=$pp_ff_2['id_p_acc']?></td>
+                                   <td style="font-size:100%"><?=$pp_ff_2['id_p_acc']?></td>
+                                   <td style="font-size:100%"><?=$pp_ff_2['id_p_acc']?></td>
+                           </tr>
+                           <tbody>
+                           </tbody>
+                       </table>
+                   <?php endforeach;?> -->
                     <div class="col-12 text-center mt-3">
                         <a class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" href="javascript:history.back()"> Volver</a>
                     </div>
@@ -82,7 +97,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 if ($('#id_proyecto').val().length != " "){//FUNCION EN DONDE SE CARGA LA TABLA DE IP
     var id_proyecto = $('#id_proyecto').val();
     var base_url =window.location.origin+'/asnc/index.php/Programacion/llenar_ff_pp';
@@ -95,10 +110,10 @@ if ($('#id_proyecto').val().length != " "){//FUNCION EN DONDE SE CARGA LA TABLA 
             console.log(data);
             $.each(data, function(index, response){
                 console.log(data);
-               $('#target_ff tbody').append('<tr><td>' + response['id_partidad_presupuestaria'] + '</td><td>' + response['id_estado'] + '</td><td>' + response['id_fuente_financiamiento'] + '</td><td>' + response['porcentaje'] +'</td></tr>');
+               $('#target_ff tbody').append('<tr><td>' + response['id_enlace'] + '</td><td>' + response['id_p_acc'] + '</td><td>' + response['id_partidad_presupuestaria'] + '</td><td>' + response['id_ccnu'] +'</td></tr>');
             });
         }
 
     });
 }
-</script>
+</script> -->
