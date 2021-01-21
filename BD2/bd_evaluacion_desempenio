@@ -1,0 +1,37 @@
+-- Drop table
+
+-- DROP TABLE public.evaluacion_desempenio;
+
+CREATE TABLE public.evaluacion_desempenio (
+	id serial NOT NULL,
+	rif_contrat varchar NOT NULL,
+	id_modalidad int4 NOT NULL,
+	id_sub_modalidad int4 NOT NULL,
+	fec_inicio_cont date NOT NULL,
+	fec_fin_cont date NOT NULL,
+	nro_procedimiento varchar NOT NULL,
+	nro_contrato varchar NOT NULL,
+	id_estado_contrato int4 NOT NULL,
+	descr_contrato varchar NOT NULL,
+	bienes varchar NULL,
+	servicios varchar NULL,
+	obras varchar NULL,
+	monto varchar NOT NULL,
+	dolar varchar NULL,
+	euro varchar NULL,
+	petros varchar NULL,
+	bolivares varchar NULL,
+	calidad varchar NOT NULL,
+	responsabilidad varchar NOT NULL,
+	conocimiento varchar NOT NULL,
+	oportunidad varchar NOT NULL,
+	total_calif varchar NOT NULL,
+	calificacion varchar NOT NULL,
+	notf_cont varchar NOT NULL,
+	fecha_not varchar NOT NULL,
+	medio varchar NOT NULL,
+	nro_oc_os varchar NOT NULL,
+	fileimagen varchar NOT NULL,
+	id_usuario varchar NOT NULL,
+	fecha_reg_eval date NULL DEFAULT now()
+);
