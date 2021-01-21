@@ -20,6 +20,7 @@
 				</a>
 				<div class="dropdown-menu dropdown-menu-right">
 					<a href="<?=base_url()?>index.php/login/logout" class="dropdown-item">Cerrar Sesión</a>
+					<a href="<?=base_url()?>index.php/login/v_camb_clave" class="dropdown-item">Cambio de Contraseña</a>
 				</div>
 			</li>
 		</ul>
@@ -64,13 +65,13 @@
 										- Programación Anual
 									</a>
 								</li>
-								<li><a>- Reprogramación</a></li>
+								<!-- <li><a>- Reprogramación</a></li> -->
 							</ul>
 						</li>
 						<li class="has-sub">
 							<a href="javascript:;">
 								<b class="caret"></b>
-								<i class="ion-ios-briefcase" style="background:darkred;"></i>
+								<i class="ion-md-today" style="background:darkred;"></i>
 								<span>Evaluación de</span>
 								<span class="ml-5">Desempeño</span>
 							</a>
@@ -81,7 +82,7 @@
 								<li>
 									<a href="<?=base_url()?>index.php/evaluacion_desempenio/reporte">- Reporte</a>
 								</li>
-								<li><a>- Consulta</a></li>
+								<!-- <li><a>- Consulta</a></li> -->
 							</ul>
 						</li>
 					<?php endif; ?>

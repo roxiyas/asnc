@@ -88,62 +88,66 @@
 
         public function consulta_eval($usuario){
             $this->db_b->select('ed.id,
-                        	     ed.rif_contrat,
-                        	     c.nombre,
-                        	     ed.calificacion
+                            	 ed.rif_contrat,
+                            	 concat(cn.nombre,\'\',c.nombre ) as nombre,
+                                 ed.calificacion
                                ');
-            $this->db_b->join('contratistas c', 'c.rifced = ed.rif_contrat');
+            $this->db_b->join('contratistas c', 'c.rifced = ed.rif_contrat', 'left');
+            $this->db_b->join('contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
             $this->db_b->where('ed.id_usuario', $usuario);
             $query = $this->db_b->get('evaluacion_desempenio ed');
             return $response = $query->result_array();
         }
 
+        //Se consulta la Evaluación de desempeño. Tomando en cuenta que hay dos tablas de consultas de los contratistas (Solicitado de esa forma).
         public function consulta_eval_ind($id_evaluacion){
             $this->db_b->select('ed.id,
-                        	   ed.rif_contrat,
-                        	   c.nombre as nom_comer,
-                        	   e2.descedo as est_contratista,
-                        	   m.descmun as mun_contratista,
-                        	   c.ciudade_id,
-                        	   c.percontacto per_cont,
-                        	   c.telf1 tef_cont,
-                        	   m2.descripcion as modalidad,
-                        	   sm.descripcion as sub_modalidad,
-                        	   ed.fec_inicio_cont,
-                        	   ed.fec_fin_cont,
-                        	   ed.nro_procedimiento,
-                        	   ed.nro_contrato,
-                        	   e.descedo as estado_contrato,
-                        	   ed.descr_contrato,
-                        	   ed.bienes,
-                        	   ed.servicios,
-                        	   ed.obras,
-                        	   ed.monto,
-                        	   ed.dolar,
-                        	   ed.euro,
-                        	   ed.petros,
-                        	   ed.bolivares,
-                               ed.calidad,
-                               ed.responsabilidad,
-                               ed.conocimiento,
-                               ed.oportunidad,
-                        	   ed.total_calif,
-                        	   ed.calificacion,
-                        	   ed.notf_cont,
-                        	   ed.fecha_not,
-                        	   ed.medio,
-                        	   ed.nro_oc_os,
-                        	   ed.fileimagen ');
-            $this->db_b->join('contratistas c', 'c.rifced = ed.rif_contrat');
+                                 ed.rif_contrat,
+                                 concat(cn.nombre,\'\',c.nombre) as nom_comer,
+                                 concat(e2.descedo,\'\', e3.descedo) as est_contratista,
+                                 concat(m.descmun,\'\', m2.descmun) as mun_contratista,
+                                 concat(c.ciudade_id,\'\', cn.ciudade_id) as ciudade_id,
+                                 concat(c.percontacto,\'\', cn.percontacto) as per_cont,
+                                 concat(c.telf1,\'\', cn.telf1) as tef_cont,
+                                 m3.descripcion as modalidad,
+                                 sm.descripcion as sub_modalidad,
+                                 ed.fec_inicio_cont,
+                            	 ed.fec_fin_cont,
+                            	 ed.nro_procedimiento,
+                            	 ed.nro_contrato,
+                            	 e.descedo as estado_contrato,
+                            	 ed.descr_contrato,
+                            	 ed.bienes,
+                            	 ed.servicios,
+                            	 ed.obras,
+                            	 ed.monto,
+                            	 ed.dolar,
+                            	 ed.euro,
+                            	 ed.petros,
+                            	 ed.bolivares,
+                            	 ed.calidad,
+                            	 ed.responsabilidad,
+                            	 ed.conocimiento,
+                            	 ed.oportunidad,
+                            	 ed.total_calif,
+                            	 ed.calificacion,
+                            	 ed.notf_cont,
+                            	 ed.fecha_not,
+                            	 ed.medio,
+                            	 ed.nro_oc_os,
+                            	 ed.fileimagen');
+            $this->db_b->join('contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
+            $this->db_b->join('contratistas c', 'c.rifced = ed.rif_contrat', 'left');
             $this->db_b->join('estados e', 'e.id = ed.id_estado_contrato');
-            $this->db_b->join('estados e2', 'e2.id = c.estado_id');
-            $this->db_b->join('municipios m', 'm.id = c.municipio_id');
-            $this->db_b->join('modalidad m2', 'm2.id = ed.id_modalidad');
+            $this->db_b->join('estados e2', 'e2.id = c.estado_id', 'left');
+            $this->db_b->join('estados e3', 'e3.id = cn.estado_id', 'left');
+            $this->db_b->join('municipios m', 'm.id = c.municipio_id', 'left');
+            $this->db_b->join('municipios m2', 'm2.id = cn.municipio_id', 'left');
+            $this->db_b->join('modalidad m3', 'm3.id = ed.id_modalidad');
             $this->db_b->join('sub_modalidad sm', 'sm.id = ed.id_sub_modalidad');
             $this->db_b->where('ed.id', $id_evaluacion);
-            $query = $this->db_b->get('evaluacion_desempenio ed ');
+            $query = $this->db_b->get('evaluacion_desempenio ed');
             return $response = $query->row_array();
-
         }
     }
 ?>

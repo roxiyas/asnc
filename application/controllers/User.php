@@ -58,6 +58,7 @@ class User extends CI_Controller
 				"fecha" => date("Y-m-d"),
 				"intentos" => 1,
 				"unidad" => $id_unidad
+				"fecha_update" => date("Y-m-d"),
 			);
 
 			$this->User_model->save($data);

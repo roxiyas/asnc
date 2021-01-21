@@ -20,7 +20,6 @@
         }
 
         public function consultar_organo($id_unidad){
-
             $this->db->select('o.id_organo,
                                o.codigo,
                                o.cod_onapre,
@@ -64,6 +63,12 @@
 				return $result->row_array();
 			}
         }
+
+        public function cambiar_clave($id_usuario, $data){
+           $this->db->where('id', $id_usuario);
+           $update = $this->db->update('usuarios', $data);
+           return $update;
+       }
     }
 
 
