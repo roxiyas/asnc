@@ -5,12 +5,12 @@
            parent::__construct();
            // Este metodo conecta a nuestra segunda conexión
            // y asigna a nuestra propiedad $this->db_b; los recursos de la misma.
-           $this->db_b = $this->load->database('bd_contrata_2', true);
+           $this->db_b = $this->load->database('SNCenlinea', true);
        }
 
        public function consulta_estados(){
            $this->db_b->select('*');
-           $query = $this->db_b->get('estados');
+           $query = $this->db_b->get('public.estados');
             return $response = $query->result_array();
        }
 
@@ -18,7 +18,7 @@
             $response = array();
             $this->db_b->select('*');
             $this->db_b->where('estado_id', $data['id_estado']);
-            $query = $this->db_b->get('municipios');
+            $query = $this->db_b->get('public.municipios');
             $response = $query->result_array();
             return $response;
         }
@@ -27,7 +27,7 @@
             $response = array();
             $this->db_b->select('*');
             $this->db_b->where('estado_id', $data['id_municipio']);
-            $query = $this->db_b->get('parroquias');
+            $query = $this->db_b->get('public.parroquias');
             $response = $query->result_array();
             return $response;
         }
@@ -46,7 +46,7 @@
             $this->db_b->join('estados e', 'e.id = c.estado_id');
             $this->db_b->join('municipios m', 'm.id = c.municipio_id');
             $this->db_b->where('c.rifced',$data['rif_b']);
-            $query = $this->db_b->get('contratistas c');
+            $query = $this->db_b->get('public.contratistas c');
             return $result = $query->row_array();
         }
 
@@ -57,29 +57,29 @@
                         	   cargo ');
             $this->db_b->where('proceso_id', $data['procactual']);
             //$this->db_b->like('cargo', 'representante');
-            $query = $this->db_b->get('accionistas');
+            $query = $this->db_b->get('public.accionistas');
             return $result = $query->result_array();
         }
 
         public function consulta_modalidades(){
             $this->db_b->select('*');
-            $query = $this->db_b->get('modalidad');
+            $query = $this->db_b->get('evaluacion_desempenio.modalidad');
             return $result = $query->result_array();
         }
 
         public function llenar_sub_modalidad($data){
             $this->db_b->select('*');
             $this->db_b->where('id_modalidad', $data['id_modalidad']);
-            $query = $this->db_b->get('sub_modalidad');
+            $query = $this->db_b->get('evaluacion_desempenio.sub_modalidad');
             return $result = $query->result_array();
         }
 
         public function registrar($exitte,$data,$data_ev){
             $existe = $exitte;
 
-            $quers =$this->db_b->insert('evaluacion_desempenio', $data_ev);
+            $quers =$this->db_b->insert('evaluacion_desempenio.evaluacion', $data_ev);
                 if ($existe == 0){
-                    $quers1 = $this->db_b->insert('contratistas_nr',$data);
+                    $quers1 = $this->db_b->insert('evaluacion_desempenio.contratistas_nr',$data);
                     return true;
                 }
 
@@ -92,10 +92,10 @@
                             	 concat(cn.nombre,\'\',c.nombre ) as nombre,
                                  ed.calificacion
                                ');
-            $this->db_b->join('contratistas c', 'c.rifced = ed.rif_contrat', 'left');
-            $this->db_b->join('contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
+            $this->db_b->join('public.contratistas c', 'c.rifced = ed.rif_contrat', 'left');
+            $this->db_b->join('evaluacion_desempenio.contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
             $this->db_b->where('ed.id_usuario', $usuario);
-            $query = $this->db_b->get('evaluacion_desempenio ed');
+            $query = $this->db_b->get('evaluacion_desempenio.evaluacion ed');
             return $response = $query->result_array();
         }
 
@@ -136,17 +136,17 @@
                             	 ed.medio,
                             	 ed.nro_oc_os,
                             	 ed.fileimagen');
-            $this->db_b->join('contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
-            $this->db_b->join('contratistas c', 'c.rifced = ed.rif_contrat', 'left');
-            $this->db_b->join('estados e', 'e.id = ed.id_estado_contrato');
-            $this->db_b->join('estados e2', 'e2.id = c.estado_id', 'left');
-            $this->db_b->join('estados e3', 'e3.id = cn.estado_id', 'left');
-            $this->db_b->join('municipios m', 'm.id = c.municipio_id', 'left');
-            $this->db_b->join('municipios m2', 'm2.id = cn.municipio_id', 'left');
-            $this->db_b->join('modalidad m3', 'm3.id = ed.id_modalidad');
-            $this->db_b->join('sub_modalidad sm', 'sm.id = ed.id_sub_modalidad');
+            $this->db_b->join('evaluacion_desempenio.contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
+            $this->db_b->join('public.contratistas c', 'c.rifced = ed.rif_contrat', 'left');
+            $this->db_b->join('public.estados e', 'e.id = ed.id_estado_contrato');
+            $this->db_b->join('public.estados e2', 'e2.id = c.estado_id', 'left');
+            $this->db_b->join('public.estados e3', 'e3.id = cn.estado_id', 'left');
+            $this->db_b->join('public.municipios m', 'm.id = c.municipio_id', 'left');
+            $this->db_b->join('public.municipios m2', 'm2.id = cn.municipio_id', 'left');
+            $this->db_b->join('evaluacion_desempenio.modalidad m3', 'm3.id = ed.id_modalidad');
+            $this->db_b->join('evaluacion_desempenio.sub_modalidad sm', 'sm.id = ed.id_sub_modalidad');
             $this->db_b->where('ed.id', $id_evaluacion);
-            $query = $this->db_b->get('evaluacion_desempenio ed');
+            $query = $this->db_b->get('evaluacion_desempenio.evaluacion ed');
             return $response = $query->row_array();
         }
     }
