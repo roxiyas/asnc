@@ -23,6 +23,15 @@
             return $response;
         }
 
+        public function listar_ciudades($data){
+            $response = array();
+            $this->db->select('*');
+            $this->db->where('estado_id', $data['id_estado']);
+            $query = $this->db->get('evaluacion_desempenio.ciudades');
+            $response = $query->result_array();
+            return $response;
+        }
+
         public function listar_parroquia($data){
             $response = array();
             $this->db->select('*');

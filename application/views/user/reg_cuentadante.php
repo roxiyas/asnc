@@ -348,16 +348,16 @@
                                                         <div class="row">
                                                             <div class="form-group col-4">
                                                                 <label>Estado</label>
-                                                                <select id="id_estado" name="id_estado" class="form-control">
+                                                                <select id="id_estado" name="id_estado" class="form-control" onclick="llenar_municipio();listar_ciudades();">
                                                                     <option>Seleccione</option>
                                                                     <?php foreach ($estados as $data) : ?>
-                                                                        <option value="<?= $data['id_estado'] ?>"><?= $data['descripcion'] ?></option>
+                                                                        <option value="<?= $data['id'] ?>"><?= $data['descedo'] ?></option>
                                                                     <?php endforeach; ?>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group col-4">
                                                                 <label>Municipio</label>
-                                                                <select id="id_municipio" name="id_municipio" class="form-control">
+                                                                <select id="id_municipio" name="id_municipio" class="form-control"  onclick="llenar_parroquia();">
                                                                     <option>Seleccione</option>
                                                                     <!-- <option value="1">Libertador</option> -->
                                                                 </select>

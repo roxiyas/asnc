@@ -131,6 +131,26 @@ function llenar_parroquia(){
     });
 }
 
+function listar_ciudades(){
+    var id_estado_n = $('#id_estado_n').val();
+    var base_url = window.location.origin+'/asnc/index.php/evaluacion_desempenio/listar_ciudades';
+    // var base_url = '/index.php/evaluacion_desempenio/listar_parroquia';
+
+    $.ajax({
+        url: base_url,
+        method:'post',
+        data: {id_estado: id_estado_n},
+        dataType:'json',
+        success: function(response){
+            console.log(response);
+            $('#ciudad_n').find('option').not(':first').remove();
+            $.each(response, function(index, data){
+                $('#ciudad_n').append('<option value="'+data['id']+'">'+data['descciu']+'</option>');
+            });
+        }
+    });
+}
+
 function llenar_sub_mod(){
     var id_modalidad = $('#id_modalidad').val();
     var base_url = window.location.origin+'/asnc/index.php/evaluacion_desempenio/llenar_sub_modalidad';

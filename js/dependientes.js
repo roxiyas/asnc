@@ -17,13 +17,13 @@ $(document).ready(function(){
                 $('#id_municipio').find('option').not(':first').remove();
                 $('#id_parroquia').find('option').not(':first').remove();
                 $.each(response, function(index, data){
-                    $('#id_municipio').append('<option value="'+data['id_municipio']+'">'+data['descripcion']+'</option>');
+                    $('#id_municipio').append('<option value="'+data['id']+'">'+data['descmun']+'</option>');
                 });
             }
         });
     });
 
-    $('#id_municipio').change(function(){
+    $('#id_estado').change(function(){
         var id_municipio = $(this).val();
         var base_url = window.location.origin+'/asnc/index.php/configuracion/listar_parroquia';
         // var base_url = '/index.php/Programacion/listar_parroquia';
@@ -34,11 +34,11 @@ $(document).ready(function(){
             dataType:'json',
 
             success: function(response){
-console.log(response);
+                console.log(response);
                 $('#id_parroquia').find('option').not(':first').remove();
 
                 $.each(response, function(index, data){
-                    $('#id_parroquia').append('<option value="'+data['id_parroquia']+'">'+data['descripcion']+'</option>');
+                    $('#id_parroquia').append('<option value="'+data['id']+'">'+data['descparro']+'</option>');
                 });
             }
         });

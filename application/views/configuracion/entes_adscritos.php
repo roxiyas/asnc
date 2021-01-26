@@ -119,7 +119,7 @@
                                         <select id="id_estado" name="id_estado" class="default-select2 form-control">
                                             <option>Seleccione</option>
                                             <?php foreach ($estados as $data): ?>
-                                                <option value="<?=$data['id_estado']?>"><?=$data['descripcion']?></option>
+                                                <option value="<?=$data['id']?>"><?=$data['descedo']?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>

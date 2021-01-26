@@ -95,7 +95,7 @@
                                         <select id="id_estado" name="id_estado" class="form-control estado" multiple="multiple">
                                             <option value="0">Seleccione</option>
                                             <?php foreach ($estados as $data): ?>
-                                                <option value="<?=$data['descripcion']?>"><?=$data['descripcion']?></option>
+                                                <option value="<?=$data['descedo']?>"><?=$data['descedo']?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -372,7 +372,7 @@
                                         <select style="width: 100%;" id="id_estado_acc" name="id_estado_acc" class="default-select2 form-control" multiple="multiple">
                                             <option value="0">Seleccione</option>
                                             <?php foreach ($estados as $data): ?>
-                                                <option value="<?=$data['descripcion']?>"><?=$data['descripcion']?></option>
+                                                <option value="<?=$data['descedo']?>"><?=$data['descedo']?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>

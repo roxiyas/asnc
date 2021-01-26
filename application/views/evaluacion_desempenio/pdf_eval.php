@@ -12,7 +12,7 @@
 			    <div class="panel-body">
                     <div class="row">
                         <div class="form-group col-2">
-                            <h5><b>Rif del Contratante:</b></h5>
+                            <h5><b>Rif del Contratista:</b></h5>
                             <h5><?=$eval_ind['rif_contrat']?></h5>
                         </div>
                         <div class="form-group col-4">

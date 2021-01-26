@@ -5,7 +5,7 @@ class Evaluacion_desempenio extends CI_Controller {
 
 	public function index(){
 		if(!$this->session->userdata('session'))redirect('login');
-		$data['estados'] 	= $this->Evaluacion_desempenio_model->consulta_estados();
+		$data['estados'] 	= $this->Configuracion_model->consulta_estados();
 		$data['modalidades'] 	= $this->Evaluacion_desempenio_model->consulta_modalidades();
 
         $this->load->view('templates/header.php');
@@ -19,14 +19,21 @@ class Evaluacion_desempenio extends CI_Controller {
 
 		if(!$this->session->userdata('session'))redirect('login');
 		$data = $this->input->post();
-		$data =	$this->Evaluacion_desempenio_model->listar_municipio($data);
+		$data =	$this->Configuracion_model->listar_municipio($data);
 		echo json_encode($data);
 	}
 
 	public function listar_parroquia(){
 		if(!$this->session->userdata('session'))redirect('login');
 		$data = $this->input->post();
-		$data =	$this->Evaluacion_desempenio_model->listar_parroquia($data);
+		$data =	$this->Configuracion_model->listar_parroquia($data);
+		echo json_encode($data);
+	}
+
+	public function listar_ciudades(){
+		if(!$this->session->userdata('session'))redirect('login');
+		$data = $this->input->post();
+		$data =	$this->Configuracion_model->listar_ciudades($data);
 		echo json_encode($data);
 	}
 

@@ -77,7 +77,7 @@
                     <div class="panel-body" id="no_existe">
                         <div class="row">
                             <div class="form-group col-3">
-                                <label>Rif del Contratante</label>
+                                <label>Rif del Contratista</label>
                                 <input class="form-control"  type="text" name="rif_cont_n" id="rif_cont_n" placeholder="Rif">
                             </div>
                             <div class="form-group col-9">
@@ -86,7 +86,7 @@
                             </div>
                             <div class="form-group col-3">
                                 <label>Estado</label>
-                                <select class="form-control" name="id_estado_n" id="id_estado_n" onclick="llenar_municipio();">
+                                <select class="form-control" name="id_estado_n" id="id_estado_n" onclick="llenar_municipio();listar_ciudades();">
                                     <option value="0">Seleccine</option>
                                     <?php foreach ($estados as $data): ?>
                                         <option value="<?=$data['id']?>"><?=$data['descedo']?></option>
@@ -108,12 +108,10 @@
                             <div class="form-group col-3">
                                 <label>Ciudad</label>
                                 <select class="selected form-control" name="ciudad_n" id="ciudad_n">
-                                    <option value="0">Seleccione</option>
-                                    <option value="1">Caracas</option>
-                                    <option value="2">Miranda</option>
+                                    <option value="0">Seleccine</option>
                                 </select>
                             </div>
-                            <div class="form-group col-3">
+                            <div class="form-group col-6">
                                 <label>Persona de Contacto</label>
                                 <input type="text" name="persona_cont_n" id="persona_cont_n" class="form-control"  placeholder="Persona de Contacto">
                             </div>
@@ -138,19 +136,19 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="form-group col-4">
+                            <div class="form-group col-12">
+                                <label>Sub-Modalidad de la Contratación</label>
+                                <select class="form-control" name="id_sub_modalidad" id="id_sub_modalidad">
+                                    <option value="0">Seleccione</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-6">
                                 <label>Rango de Fecha - Inicio a Culminacion del Contrato</label>
                                     <div class="input-group input-daterange">
                                         <input type="text" class="form-control" id="fecha_desde" name="start" placeholder="Desde" />
                                         <span class="input-group-addon">-</span>
                                         <input type="text" class="form-control"  id="fecha_hasta" name="end" placeholder="Hasta" />
                                     </div>
-                            </div>
-                            <div class="form-group col-12">
-                                <label>Sub-Modalidad de la Contratación</label>
-                                <select class="form-control" name="id_sub_modalidad" id="id_sub_modalidad">
-                                    <option value="0">Seleccione</option>
-                                </select>
                             </div>
                         </div>
                     </div>
