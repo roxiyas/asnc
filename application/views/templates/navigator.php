@@ -82,7 +82,7 @@
 								<li>
 									<a href="<?=base_url()?>index.php/evaluacion_desempenio/reporte">- Reporte</a>
 								</li>
-								<!-- <li><a>- Consulta</a></li> -->
+								<li><a href="<?=base_url()?>index.php/evaluacion_desempenio/consulta">- Consulta</a></li>
 							</ul>
 						</li>
 					<?php endif; ?>
@@ -146,7 +146,7 @@
 								</li>
 								<li>
 									<a href="<?=base_url()?>index.php/Fuentefinanc/ccnu">
-										-
+										- CCNU
 									</a>
 								</li>
 							</ul>

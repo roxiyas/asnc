@@ -24,6 +24,7 @@ function camb_clave(){
                 event.preventDefault();
                 var datos = new FormData($("#camb_clave")[0]);
                 var base_url =window.location.origin+'/asnc/index.php/Login/cambiar_clave';
+                var base_url2 =window.location.origin+'/asnc/index.php/Login/logout';
                 // var base_url = '/index.php/Login/cambiar_clave';
                 $.ajax({
                     url:base_url,
@@ -40,9 +41,7 @@ function camb_clave(){
                                 confirmButtonColor: '#3085d6',
                                 confirmButtonText: 'Ok'
                             }).then((result) => {
-                                if (result.value == true) {
-                                    location.reload();
-                                }
+                                window.location.href = base_url2;
                             });
                         }else {
                             swal.fire({

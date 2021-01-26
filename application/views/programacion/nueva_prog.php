@@ -24,9 +24,9 @@
                             Agregar Información de Obra / Servicio / Bien
                         </button>
                         <br>
-                        <button onclick="location.href='<?php echo base_url()?>index.php/Programacion/pdf_compl?id=<?php echo $id_programacion;?>'" type="button" class="btn btn-lg mt-2 mb-2 btn-default"  name="button">
+                        <!-- <button onclick="location.href='<?php echo base_url()?>index.php/Programacion/pdf_compl?id=<?php echo $id_programacion;?>'" type="button" class="btn btn-lg mt-2 mb-2 btn-default"  name="button">
                             Ver PDF con Información Completa
-                        </button>
+                        </button> -->
                     </div>
 
                     <div class="col-1"></div>

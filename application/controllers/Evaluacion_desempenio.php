@@ -170,4 +170,12 @@ class Evaluacion_desempenio extends CI_Controller {
 		$this->load->view('evaluacion_desempenio/pdf_eval.php', $data);
         $this->load->view('templates/footer.php');
 	}
+
+	//Para La Consulta de Gráficos
+	public function consulta(){
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('evaluacion_desempenio/consulta.php');
+        $this->load->view('templates/footer_g.php');
+	}
 }

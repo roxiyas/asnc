@@ -4,8 +4,8 @@
 <script src="<?=base_url()?>Plantilla/admin/assets/js/theme/material.min.js"></script>
 
 <!-- ==================PARA checkbox y otros ================== -->
-<script src="<?=base_url()?>Plantilla/admin/assets/plugins/js-cookie/js.cookie.js"></script>
 <script src="<?=base_url()?>Plantilla/admin/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="<?=base_url()?>Plantilla/admin/assets/plugins/js-cookie/js.cookie.js"></script>
 <script src="<?=base_url()?>Plantilla/admin/assets/js/theme/apple.min.js"></script>
 <script src="<?=base_url()?>Plantilla/admin/assets/js/apps.min.js"></script>
 
@@ -63,6 +63,7 @@
 		FormPlugins.init();
 		Gallery.init();
 		Highlight.init();
+
 	});
 </script>
 <!-- <script>

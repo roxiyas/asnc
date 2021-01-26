@@ -5,7 +5,7 @@
 
             $this->db->select('*');
 			$this->db->where('nombre',$usuario);
-			$this->db->from('usuarios');
+			$this->db->from('seguridad.usuarios');
 			$result = $this->db->get();
 
 			if($result->num_rows() == 1){
@@ -66,7 +66,7 @@
 
         public function cambiar_clave($id_usuario, $data){
            $this->db->where('id', $id_usuario);
-           $update = $this->db->update('usuarios', $data);
+           $update = $this->db->update('seguridad.usuarios', $data);
            return $update;
        }
     }

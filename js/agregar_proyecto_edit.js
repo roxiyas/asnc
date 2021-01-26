@@ -127,6 +127,7 @@ function agregar_ccnuToCartTable(cells){
 		$("#fecha_desde").val('');
 		$("#fecha_hasta").val('');
 		$("#cantidad").val('0');
+		$("#cant_total_distribuir").val('100');
 		$("#precio_total").val('');
 		$('#i').val('0');
 		$('#ii').val('0');

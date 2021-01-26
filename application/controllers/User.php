@@ -57,7 +57,7 @@ class User extends CI_Controller
 				"ultimo_login" => date("Y-m-d h:m:s"),
 				"fecha" => date("Y-m-d"),
 				"intentos" => 1,
-				"unidad" => $id_unidad
+				"unidad" => $id_unidad,
 				"fecha_update" => date("Y-m-d"),
 			);
 

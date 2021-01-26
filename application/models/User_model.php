@@ -8,13 +8,13 @@ class User_model extends CI_Model
     public function save($data)
     {
         //$this->db->query("ALTER TABLE user AUTO_INCREMENT 1");
-        $this->db->insert("usuarios", $data);
+        $this->db->insert("seguridad.usuarios", $data);
     }
 
     public function getUsers()
     {
         $this->db->select("*");
-        $this->db->from("usuarios");
+        $this->db->from("seguridad.usuarios");
         $results = $this->db->get();
         return $results->result();
     }
@@ -22,7 +22,7 @@ class User_model extends CI_Model
     public function getUser($id)
     {
         $this->db->select("u.id, u.nombre, u.email");
-        $this->db->from("usuarios u");
+        $this->db->from("seguridad.usuarios u");
         $this->db->where("u.id", $id);
         $result = $this->db->get();
         return $result->row();
@@ -31,13 +31,13 @@ class User_model extends CI_Model
     public function update($data, $id)
     {
         $this->db->where("id", $id);
-        $this->db->update("usuarios", $data);
+        $this->db->update("seguridad.usuarios", $data);
     }
 
     public function delete($id)
     {
         $this->db->where("id", $id);
-        $this->db->delete("user");
+        $this->db->delete("seguridad.user");
     }
 
 
@@ -136,7 +136,7 @@ class User_model extends CI_Model
     public function savedante($data1,$datos2)
     {
 
-        $this->db->insert("usuarios", $data1);
+        $this->db->insert("seguridad.usuarios", $data1);
 
 
 
@@ -144,6 +144,6 @@ class User_model extends CI_Model
         $identificador = $this->db->insert_id();
 
         $datos2['id_usuario']=$identificador;
-        $this->db->insert('funcionarios', $datos2);
+        $this->db->insert('seguridad.funcionarios', $datos2);
     }
 }

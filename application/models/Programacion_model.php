@@ -6,12 +6,12 @@
         public function consultar_programaciones($unidad){
             $this->db->select('*');
             $this->db->where('unidad', $unidad);
-            $query = $this->db->get('programacion');
+            $query = $this->db->get('programacion.programacion');
             return $query->result_array();
         }
 
         public function agg_programacion($data){
-            $quers =$this->db->insert('programacion',$data);
+            $quers =$this->db->insert('programacion.programacion',$data);
             return true;
         }
 
@@ -19,7 +19,7 @@
             $this->db->select('*');
             $this->db->where('unidad', $unidad);
             $this->db->where('id_programacion', $id_programacion);
-            $query = $this->db->get('programacion');
+            $query = $this->db->get('programacion.programacion');
             return $query->row_array();
         }
 
@@ -31,9 +31,9 @@
                         	   pp.id_programacion,
                         	   pp.id_obj_comercial,
                         	   oc.desc_objeto_contrata');
-            $this->db->join('objeto_contrata oc', 'oc.id_objeto_contrata = pp.id_obj_comercial');
+            $this->db->join('programacion.objeto_contrata oc', 'oc.id_objeto_contrata = pp.id_obj_comercial');
             $this->db->where('pp.id_programacion', $id_programacion);
-            $query = $this->db->get('p_proyecto pp');
+            $query = $this->db->get('programacion.p_proyecto pp');
             return $query->result_array();
         }
 
@@ -41,10 +41,10 @@
             $this->db->select('pp.id_p_proyecto,
 	                           pp.nombre_proyecto,
 	                           oc.desc_objeto_contrata ');
-            $this->db->join('p_proyecto pp', 'pp.id_programacion = p.id_programacion');
-            $this->db->join('objeto_contrata oc', 'oc.id_objeto_contrata = pp.id_obj_comercial');
+            $this->db->join('programacion.p_proyecto pp', 'pp.id_programacion = p.id_programacion');
+            $this->db->join('programacion.objeto_contrata oc', 'oc.id_objeto_contrata = pp.id_obj_comercial');
             $this->db->where('p.id_programacion', $id_programacion);
-            $query = $this->db->get('programacion p');
+            $query = $this->db->get('programacion..programacion p');
             return $query->result_array();
 
         }
@@ -53,7 +53,7 @@
             foreach ($proyectos as $key){
                 $this->db->select('*');
                 $this->db->where('id_enlace', $key['id_p_proyecto']);
-                $this->db->from('p_items');
+                $this->db->from('programacion.p_items');
                 $result = $this->db->get();
             }
             return $result->result_array();
@@ -61,39 +61,39 @@
 
         public function consulta_part_pres(){
             $this->db->select('*');
-            $query = $this->db->get('partida_presupuestaria');
+            $query = $this->db->get('programacion.partida_presupuestaria');
             return $result = $query->result_array();
         }
 
         public function consulta_fuente(){
             $this->db->select('*');
-            $query = $this->db->get('fuente_financiamiento');
+            $query = $this->db->get('programacion.fuente_financiamiento');
             return $result = $query->result_array();
         }
 
         public function consulta_act_com(){
             $this->db->select('*');
             $this->db->where('id_objeto_contrata !=', 1);
-            $query = $this->db->get('objeto_contrata');
+            $query = $this->db->get('programacion.objeto_contrata');
             return $result = $query->result_array();
         }
 
         public function consulta_cnnu(){
             $this->db->select('*');
             $this->db->limit(10);
-            $query = $this->db->get('ccnu');
+            $query = $this->db->get('programacion.ccnu');
             return $result = $query->result_array();
         }
 
         public function consulta_unid(){
             $this->db->select('*');
-            $query = $this->db->get('unidad_medida');
+            $query = $this->db->get('programacion.unidad_medida');
             return $result = $query->result_array();
         }
 
         public function consulta_iva(){
             $this->db->select('*');
-            $query = $this->db->get('alicuota_iva');
+            $query = $this->db->get('programacion.alicuota_iva');
             return $result = $query->result_array();
         }
 
@@ -101,7 +101,7 @@
 
             if ($acc_cargar == '1') {
 
-                $quers =$this->db->insert('p_proyecto',$p_proyecto);
+                $quers =$this->db->insert('programacion.p_proyecto',$p_proyecto);
                 if ($quers) {
                     $id = $this->db->insert_id();
                         $cant_proy = $p_items['id_ccnu'];
@@ -130,7 +130,7 @@
                                 'iva_estimado'               => $p_items['iva_estimado'][$i],
                                 'monto_estimado'             => $p_items['monto_estimado'][$i],
                             );
-                            $this->db->insert('public.p_items',$data1);
+                            $this->db->insert('programacion.p_items',$data1);
                         }
 
                         $cant_pff = $p_ffinanciamiento['id_par_presupuestaria'];
@@ -146,12 +146,12 @@
                                 'id_fuente_financiamiento'   => $p_ffinanciamiento['id_fuente_financiamiento'][$i],
                                 'porcentaje'                 => $p_ffinanciamiento['porcentaje'][$i],
                             );
-                            $this->db->insert('public.p_ffinanciamiento',$data2);
+                            $this->db->insert('programacion.p_ffinanciamiento',$data2);
                         }
                 }
                 return true;
             }elseif ($acc_cargar == '2') {
-                $quers =$this->db->insert('p_acc_centralizada',$p_acc_centralizada);
+                $quers =$this->db->insert('programacion.p_acc_centralizada',$p_acc_centralizada);
                 if ($quers) {
                     $id = $this->db->insert_id();
 
@@ -179,7 +179,7 @@
                                 'iva_estimado'               => $p_items['iva_estimado'][$i],
                                 'monto_estimado'             => $p_items['monto_estimado'][$i],
                             );
-                            $this->db->insert('public.p_items',$data1);
+                            $this->db->insert('programacion.p_items',$data1);
                         }
 
                         $cant_pff = $p_ffinanciamiento['id_par_presupuestaria'];
@@ -195,7 +195,7 @@
                                 'id_fuente_financiamiento'   => $p_ffinanciamiento['id_fuente_financiamiento'][$i],
                                 'porcentaje'                 => $p_ffinanciamiento['porcentaje'][$i],
                             );
-                            $this->db->insert('public.p_ffinanciamiento',$data2);
+                            $this->db->insert('programacion.p_ffinanciamiento',$data2);
                         }
                 }
                 return true;
@@ -208,9 +208,9 @@
                         	   pp.id_programacion,
                         	   pp.id_obj_comercial,
                         	   oc.desc_objeto_contrata');
-            $this->db->join('objeto_contrata oc', 'oc.id_objeto_contrata = pp.id_obj_comercial');
+            $this->db->join('programacion.objeto_contrata oc', 'oc.id_objeto_contrata = pp.id_obj_comercial');
             $this->db->where('pp.id_p_proyecto', $id_p_proyecto);
-            $query = $this->db->get('p_proyecto pp');
+            $query = $this->db->get('programacion.p_proyecto pp');
             return $query->result_array();
         }
 
@@ -223,11 +223,11 @@
                         	   pf.id_fuente_financiamiento,
                         	   ff.desc_fuente_financiamiento,
                         	   pf.porcentaje ');
-            $this->db->join('partida_presupuestaria pp','pp.id_partida_presupuestaria = pf.id_partidad_presupuestaria');
-            $this->db->join('fuente_financiamiento ff','ff.id_fuente_financiamiento = pf.id_fuente_financiamiento');
+            $this->db->join('programacion.partida_presupuestaria pp','pp.id_partida_presupuestaria = pf.id_partidad_presupuestaria');
+            $this->db->join('programacion.fuente_financiamiento ff','ff.id_fuente_financiamiento = pf.id_fuente_financiamiento');
             $this->db->where('pf.id_enlace', $id_p_proyecto);
             $this->db->where('pf.id_p_acc', 0);
-            $query = $this->db->get('p_ffinanciamiento pf');
+            $query = $this->db->get('programacion.p_ffinanciamiento pf');
             return $query->result_array();
         }
 
@@ -240,11 +240,11 @@
                         	   pf.id_fuente_financiamiento,
                         	   ff.desc_fuente_financiamiento,
                         	   pf.porcentaje ');
-            $this->db->join('partida_presupuestaria pp','pp.id_partida_presupuestaria = pf.id_partidad_presupuestaria');
-            $this->db->join('fuente_financiamiento ff','ff.id_fuente_financiamiento = pf.id_fuente_financiamiento');
+            $this->db->join('programacion.partida_presupuestaria pp','pp.id_partida_presupuestaria = pf.id_partidad_presupuestaria');
+            $this->db->join('programacion.fuente_financiamiento ff','ff.id_fuente_financiamiento = pf.id_fuente_financiamiento');
             $this->db->where('pf.id_enlace', $data['id_p_proyecto']);
             $this->db->where('pf.id_p_acc', 0);
-            $query = $this->db->get('p_ffinanciamiento pf');
+            $query = $this->db->get('programacion.p_ffinanciamiento pf');
             return $query->result_array();
         }
 
@@ -269,12 +269,12 @@
                         	   pi2.alicuota_iva,
                                pi2.iva_estimado,
                                pi2.monto_estimado');
-            $this->db->join('ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
-            $this->db->join('partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
-            $this->db->join('unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
+            $this->db->join('programacion.ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
+            $this->db->join('programacion.partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
+            $this->db->join('programacion.unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
             $this->db->where('pi2.id_enlace', $id_p_proyecto);
             $this->db->where('pi2.id_p_acc', 0);
-            $query = $this->db->get('p_items pi2');
+            $query = $this->db->get('programacion.p_items pi2');
             return $query->result_array();
         }
 
@@ -299,12 +299,12 @@
                         	   pi2.alicuota_iva,
                                pi2.iva_estimado,
                                pi2.monto_estimado');
-            $this->db->join('ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
-            $this->db->join('partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
-            $this->db->join('unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
+            $this->db->join('programacion.ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
+            $this->db->join('programacion.partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
+            $this->db->join('programacion.unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
             $this->db->where('pi2.id_enlace', $data['id_p_proyecto']);
             $this->db->where('pi2.id_p_acc', 0);
-            $query = $this->db->get('p_items pi2');
+            $query = $this->db->get('programacion.p_items pi2');
             return $query->result_array();
         }
 
@@ -332,12 +332,12 @@
                         	   pi2.alicuota_iva,
                                pi2.iva_estimado,
                                pi2.monto_estimado');
-            $this->db->join('ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
-            $this->db->join('partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
-            $this->db->join('unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
+            $this->db->join('programacion.ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
+            $this->db->join('programacion.partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
+            $this->db->join('programacion.unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
             $this->db->where('pi2.id_enlace', $data['id_p_proyecto']);
             $this->db->where('pi2.id_p_acc', 0);
-            $query = $this->db->get('p_items pi2');
+            $query = $this->db->get('programacion.p_items pi2');
             return $query->result_array();
         }
 
@@ -345,12 +345,12 @@
 
             $this->db->where('id_programacion', $id_programacion);
             $this->db->where('id_p_proyecto', $id_p_proyecto);
-            $update = $this->db->update('p_proyecto', $p_proyecto);
+            $update = $this->db->update('programacion.p_proyecto', $p_proyecto);
 
-            if ($update) {
+            if ($update){
                 $this->db->where('id_enlace', $id_p_proyecto);
                 $this->db->where('id_p_acc', 0);
-                $this->db->delete('public.p_items');
+                $this->db->delete('programacion.p_items');
 
                     $cant_proy = $p_items['id_ccnu'];
                     $count_prog = count($cant_proy);
@@ -376,12 +376,12 @@
                             'iva_estimado'               => $p_items['iva_estimado'][$i],
                             'monto_estimado'               => $p_items['monto_estimado'][$i],
                         );
-                        $this->db->insert('public.p_items',$data1);
+                        $this->db->insert('programacion.p_items',$data1);
                     }
 
                     $this->db->where('id_enlace', $id_p_proyecto);
                     $this->db->where('id_p_acc', 0);
-                    $this->db->delete('public.p_ffinanciamiento');
+                    $this->db->delete('programacion.p_ffinanciamiento');
 
                     $cant_pff = $p_ffinanciamiento['id_par_presupuestaria'];
                     $count_pff = count($cant_pff);
@@ -396,7 +396,7 @@
                             'id_fuente_financiamiento'   => $p_ffinanciamiento['id_fuente_financiamiento'][$i],
                             'porcentaje'                 => $p_ffinanciamiento['porcentaje'][$i],
                         );
-                        $this->db->insert('public.p_ffinanciamiento',$data2);
+                        $this->db->insert('programacion.p_ffinanciamiento',$data2);
                     }
             }
             return true;
@@ -405,12 +405,12 @@
         public function editar_programacion_proy_b($id_p_proyecto, $id_programacion, $p_proyecto,$p_items,$p_ffinanciamiento){
             $this->db->where('id_programacion', $id_programacion);
             $this->db->where('id_p_proyecto', $id_p_proyecto);
-            $update = $this->db->update('p_proyecto', $p_proyecto);
+            $update = $this->db->update('programacion.p_proyecto', $p_proyecto);
 
             if ($update) {
                 $this->db->where('id_enlace', $id_p_proyecto);
                 $this->db->where('id_p_acc', 0);
-                $this->db->delete('public.p_items');
+                $this->db->delete('programacion.p_items');
                     $cant_proy = $p_items['id_ccnu'];
                     $count_prog = count($cant_proy);
                     for ($i=0; $i < $count_prog; $i++) {
@@ -435,11 +435,11 @@
                             'iva_estimado'               => $p_items['iva_estimado'][$i],
                             'monto_estimado'             => $p_items['monto_estimado'][$i],
                         );
-                        $this->db->insert('public.p_items',$data1);
+                        $this->db->insert('programacion.p_items',$data1);
                     }
                     $this->db->where('id_enlace', $id_p_proyecto);
                     $this->db->where('id_p_acc', 0);
-                    $this->db->delete('public.p_ffinanciamiento');
+                    $this->db->delete('programacion.p_ffinanciamiento');
                     $cant_pff = $p_ffinanciamiento['id_par_presupuestaria'];
                     $count_pff = count($cant_pff);
 
@@ -453,7 +453,7 @@
                             'id_fuente_financiamiento'   => $p_ffinanciamiento['id_fuente_financiamiento'][$i],
                             'porcentaje'                 => $p_ffinanciamiento['porcentaje'][$i],
                         );
-                        $this->db->insert('public.p_ffinanciamiento',$data2);
+                        $this->db->insert('programacion.p_ffinanciamiento',$data2);
                     }
             }
             return true;
@@ -483,39 +483,39 @@
                         	   pi2.alicuota_iva,
                                pi2.iva_estimado,
                                pi2.monto_estimado');
-            $this->db->join('ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
-            $this->db->join('partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
-            $this->db->join('unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
+            $this->db->join('programacion.ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
+            $this->db->join('programacion.partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
+            $this->db->join('programacion.unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
             $this->db->where('pi2.id_p_items', $data['id_items_proy']);
             $this->db->where('pi2.id_p_acc', 0);
-            $query = $this->db->get('p_items pi2');
+            $query = $this->db->get('programacion.p_items pi2');
             return $query->row_array();
         }
 
         public function llenar_par_pre_mod($data){
             $this->db->select('*');
             $this->db->where('codigopartida_presupuestaria !=', $data['cod_partida_pre']);
-            $query = $this->db->get('partida_presupuestaria');
+            $query = $this->db->get('programacion.partida_presupuestaria');
             return $query->result_array();
         }
 
         public function llenar_uni_med_mod($data){
             $this->db->select('*');
             $this->db->where('pi2.id_unidad_medida !=', $data['id_unid_med']);
-            $query = $this->db->get('unidad_medida pi2');
+            $query = $this->db->get('programacion.unidad_medida pi2');
             return $query->result_array();
         }
 
         public function llenar_alic_iva_mod(){
             $this->db->select('*');
-            $query = $this->db->get('alicuota_iva');
+            $query = $this->db->get('programacion.alicuota_iva');
             return $query->result_array();
         }
 
         public function llenar_selc_ccnu_m($data){
             $this->db->select('*');
             $this->db->like('desc_ccnu', $data['ccnu_b_m']);
-            $query = $this->db->get('ccnu');
+            $query = $this->db->get('programacion.ccnu');
             return $query->result_array();
         }
 
@@ -567,7 +567,7 @@
                 'iva_estimado'               => $data['monto_iva_e'],
                 'monto_estimado'             => $data['monto_tot_est'],
             );
-            $update = $this->db->update('p_items', $data1);
+            $update = $this->db->update('programacion.p_items', $data1);
             return true;
         }
         // ACCION CENTRALIZADA
@@ -579,38 +579,38 @@
                         	   ac.desc_accion_centralizada,
                         	   pac.id_obj_comercial,
                         	   oc.desc_objeto_contrata');
-            $this->db->join('objeto_contrata oc', 'oc.id_objeto_contrata = pac.id_obj_comercial ');
-            $this->db->join('accion_centralizada ac', 'ac.id_accion_centralizada = pac.id_accion_centralizada');
+            $this->db->join('programacion.objeto_contrata oc', 'oc.id_objeto_contrata = pac.id_obj_comercial ');
+            $this->db->join('programacion.accion_centralizada ac', 'ac.id_accion_centralizada = pac.id_accion_centralizada');
             $this->db->where('pac.id_programacion', $id_programacion);
-            $query = $this->db->get('p_acc_centralizada pac');
+            $query = $this->db->get('programacion.p_acc_centralizada pac');
             return $query->result_array();
         }
 
         public function consulta_act_com2(){
             $this->db->select('*');
             $this->db->where('id_objeto_contrata', 1);
-            $query = $this->db->get('objeto_contrata');
+            $query = $this->db->get('programacion.objeto_contrata');
             return $result = $query->result_array();
         }
 
         public function accion_centralizada(){
             $this->db->select('*');
-            $query = $this->db->get('accion_centralizada');
+            $query = $this->db->get('programacion.accion_centralizada');
             return $result = $query->result_array();
         }
 
         public function eliminar_proy($data){
             $this->db->where('id_p_proyecto', $data['id_items_proy']);
-            $query = $this->db->delete('p_proyecto');
+            $query = $this->db->delete('programacion.p_proyecto');
 
             if ($query) {
                 $this->db->where('id_enlace', $data['id_items_proy']);
                 $this->db->where('id_p_acc', 0);
-                $query = $this->db->delete('p_items');
+                $query = $this->db->delete('programacion.p_items');
 
                 $this->db->where('id_enlace', $data['id_items_proy']);
                 $this->db->where('id_p_acc', 0);
-                $query = $this->db->delete('p_ffinanciamiento');
+                $query = $this->db->delete('programacion.p_ffinanciamiento');
             }
            return true;
         }
@@ -618,7 +618,7 @@
         // BIENES
         public function save_programacion_acc($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento){
             if ($acc_cargar == '1') {
-                $quers =$this->db->insert('p_proyecto',$p_proyecto);
+                $quers =$this->db->insert('programacion.p_proyecto',$p_proyecto);
 
                 if ($quers) {
                     $id = $this->db->insert_id();
@@ -647,7 +647,7 @@
                                 'iva_estimado'               => $p_items['iva_estimado'][$i],
                                 'monto_estimado'             => $p_items['monto_estimado'][$i],
                             );
-                            $this->db->insert('public.p_items',$data1);
+                            $this->db->insert('programacion.p_items',$data1);
                         }
 
                         $cant_pff = $p_ffinanciamiento['id_par_presupuestaria'];
@@ -663,12 +663,12 @@
                                 'id_fuente_financiamiento'   => $p_ffinanciamiento['id_fuente_financiamiento'][$i],
                                 'porcentaje'                 => $p_ffinanciamiento['porcentaje'][$i],
                             );
-                            $this->db->insert('public.p_ffinanciamiento',$data2);
+                            $this->db->insert('programacion.p_ffinanciamiento',$data2);
                         }
                 }
                 return true;
             }elseif ($acc_cargar == '2') {
-                $quers =$this->db->insert('p_acc_centralizada',$p_acc_centralizada);
+                $quers =$this->db->insert('programacion.p_acc_centralizada',$p_acc_centralizada);
 
                 if ($quers) {
                     $id = $this->db->insert_id();
@@ -697,7 +697,7 @@
                                 'iva_estimado'               => $p_items['iva_estimado'][$i],
                                 'monto_estimado'             => $p_items['monto_estimado'][$i],
                             );
-                            $this->db->insert('public.p_items',$data1);
+                            $this->db->insert('programacion.p_items',$data1);
                         }
 
                         $cant_pff = $p_ffinanciamiento['id_par_presupuestaria'];
@@ -713,7 +713,7 @@
                                 'id_fuente_financiamiento'   => $p_ffinanciamiento['id_fuente_financiamiento'][$i],
                                 'porcentaje'                 => $p_ffinanciamiento['porcentaje'][$i],
                             );
-                            $this->db->insert('public.p_ffinanciamiento',$data2);
+                            $this->db->insert('programacion.p_ffinanciamiento',$data2);
                         }
                 }
                 return true;
@@ -727,10 +727,10 @@
                         	   ac.desc_accion_centralizada,
                         	   pac.id_obj_comercial,
                         	   oc.desc_objeto_contrata ');
-            $this->db->join('accion_centralizada ac', 'ac.id_accion_centralizada = pac.id_accion_centralizada');
-            $this->db->join('objeto_contrata oc', 'oc.id_objeto_contrata = pac.id_obj_comercial ');
+            $this->db->join('programacion.accion_centralizada ac', 'ac.id_accion_centralizada = pac.id_accion_centralizada');
+            $this->db->join('programacion.objeto_contrata oc', 'oc.id_objeto_contrata = pac.id_obj_comercial ');
             $this->db->where('pac.id_p_acc_centralizada', $id_p_acc_centralizada);
-            $query = $this->db->get('p_acc_centralizada pac ');
+            $query = $this->db->get('programacion.p_acc_centralizada pac ');
             return $query->result_array();
         }
 
@@ -743,11 +743,11 @@
                         	   pf.id_fuente_financiamiento,
                         	   ff.desc_fuente_financiamiento,
                         	   pf.porcentaje ');
-            $this->db->join('partida_presupuestaria pp','pp.id_partida_presupuestaria = pf.id_partidad_presupuestaria');
-            $this->db->join('fuente_financiamiento ff','ff.id_fuente_financiamiento = pf.id_fuente_financiamiento');
+            $this->db->join('programacion.partida_presupuestaria pp','pp.id_partida_presupuestaria = pf.id_partidad_presupuestaria');
+            $this->db->join('programacion.fuente_financiamiento ff','ff.id_fuente_financiamiento = pf.id_fuente_financiamiento');
             $this->db->where('pf.id_enlace', $id_p_acc_centralizada);
             $this->db->where('pf.id_p_acc', 1);
-            $query = $this->db->get('p_ffinanciamiento pf');
+            $query = $this->db->get('programacion.p_ffinanciamiento pf');
             return $query->result_array();
         }
 
@@ -773,12 +773,12 @@
                         	   pi2.alicuota_iva,
                                pi2.iva_estimado,
                                pi2.monto_estimado');
-            $this->db->join('ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
-            $this->db->join('partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
-            $this->db->join('unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
+            $this->db->join('programacion.ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
+            $this->db->join('programacion.partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
+            $this->db->join('programacion.unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
             $this->db->where('pi2.id_enlace', $id_p_acc_centralizada);
             $this->db->where('pi2.id_p_acc', 1);
-            $query = $this->db->get('p_items pi2');
+            $query = $this->db->get('programacion.p_items pi2');
             return $query->result_array();
         }
 
@@ -791,11 +791,11 @@
                         	   pf.id_fuente_financiamiento,
                         	   ff.desc_fuente_financiamiento,
                         	   pf.porcentaje ');
-            $this->db->join('partida_presupuestaria pp','pp.id_partida_presupuestaria = pf.id_partidad_presupuestaria');
-            $this->db->join('fuente_financiamiento ff','ff.id_fuente_financiamiento = pf.id_fuente_financiamiento');
+            $this->db->join('programacion.partida_presupuestaria pp','pp.id_partida_presupuestaria = pf.id_partidad_presupuestaria');
+            $this->db->join('programacion.fuente_financiamiento ff','ff.id_fuente_financiamiento = pf.id_fuente_financiamiento');
             $this->db->where('pf.id_enlace', $data['id_p_acc_centralizada']);
             $this->db->where('pf.id_p_acc', 1);
-            $query = $this->db->get('p_ffinanciamiento pf');
+            $query = $this->db->get('programacion.p_ffinanciamiento pf');
             return $query->result_array();
         }
 
@@ -821,12 +821,12 @@
                         	   pi2.alicuota_iva,
                                pi2.iva_estimado,
                                pi2.monto_estimado');
-            $this->db->join('ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
-            $this->db->join('partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
-            $this->db->join('unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
+            $this->db->join('programacion.ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
+            $this->db->join('programacion.partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
+            $this->db->join('programacion.unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
             $this->db->where('pi2.id_enlace', $data['id_p_acc_centralizada']);
             $this->db->where('pi2.id_p_acc', 1);
-            $query = $this->db->get('p_items pi2');
+            $query = $this->db->get('programacion.p_items pi2');
             return $query->result_array();
         }
 
@@ -854,12 +854,12 @@
                         	   pi2.alicuota_iva,
                                pi2.iva_estimado,
                                pi2.monto_estimado');
-            $this->db->join('ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
-            $this->db->join('partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
-            $this->db->join('unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
+            $this->db->join('programacion.ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
+            $this->db->join('programacion.partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
+            $this->db->join('programacion.unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
             $this->db->where('pi2.id_enlace', $data['id_p_acc_centralizada']);
             $this->db->where('pi2.id_p_acc', 1);
-            $query = $this->db->get('p_items pi2');
+            $query = $this->db->get('programacion.p_items pi2');
             return $query->result_array();
         }
 
@@ -867,12 +867,12 @@
 
             $this->db->where('id_programacion', $id_programacion);
             $this->db->where('id_p_acc_centralizada', $id_p_acc_centralizada);
-            $update = $this->db->update('p_acc_centralizada', $p_acc_centralizada);
+            $update = $this->db->update('programacion.p_acc_centralizada', $p_acc_centralizada);
 
             if ($update) {
                 $this->db->where('id_enlace', $id_p_acc_centralizada);
                 $this->db->where('id_p_acc', 1);
-                $this->db->delete('public.p_items');
+                $this->db->delete('programacion.p_items');
 
                     $cant_proy = $p_items['id_ccnu'];
                     $count_prog = count($cant_proy);
@@ -898,12 +898,12 @@
                             'iva_estimado'               => $p_items['iva_estimado'][$i],
                             'monto_estimado'               => $p_items['monto_estimado'][$i],
                         );
-                        $this->db->insert('public.p_items',$data1);
+                        $this->db->insert('programacion.p_items',$data1);
                     }
 
                     $this->db->where('id_enlace', $id_p_acc_centralizada);
                     $this->db->where('id_p_acc', 1);
-                    $this->db->delete('public.p_ffinanciamiento');
+                    $this->db->delete('programacion.p_ffinanciamiento');
 
                     $cant_pff = $p_ffinanciamiento['id_par_presupuestaria'];
                     $count_pff = count($cant_pff);
@@ -918,7 +918,7 @@
                             'id_fuente_financiamiento'   => $p_ffinanciamiento['id_fuente_financiamiento'][$i],
                             'porcentaje'                 => $p_ffinanciamiento['porcentaje'][$i],
                         );
-                        $this->db->insert('public.p_ffinanciamiento',$data2);
+                        $this->db->insert('programacion.p_ffinanciamiento',$data2);
                     }
             }
             return true;
@@ -928,12 +928,12 @@
 
             $this->db->where('id_programacion', $id_programacion);
             $this->db->where('id_p_acc_centralizada', $id_p_acc_centralizada);
-            $update = $this->db->update('p_acc_centralizada', $p_acc_centralizada);
+            $update = $this->db->update('programacion.p_acc_centralizada', $p_acc_centralizada);
 
             if ($update) {
                 $this->db->where('id_enlace', $id_p_acc_centralizada);
                 $this->db->where('id_p_acc', 1);
-                $this->db->delete('public.p_items');
+                $this->db->delete('programacion.p_items');
 
                     $cant_proy = $p_items['id_ccnu'];
                     $count_prog = count($cant_proy);
@@ -959,12 +959,12 @@
                             'iva_estimado'               => $p_items['iva_estimado'][$i],
                             'monto_estimado'               => $p_items['monto_estimado'][$i],
                         );
-                        $this->db->insert('public.p_items',$data1);
+                        $this->db->insert('programacion.p_items',$data1);
                     }
 
                     $this->db->where('id_enlace', $id_p_acc_centralizada);
                     $this->db->where('id_p_acc', 1);
-                    $this->db->delete('public.p_ffinanciamiento');
+                    $this->db->delete('programacion.p_ffinanciamiento');
 
                     $cant_pff = $p_ffinanciamiento['id_par_presupuestaria'];
                     $count_pff = count($cant_pff);
@@ -979,7 +979,7 @@
                             'id_fuente_financiamiento'   => $p_ffinanciamiento['id_fuente_financiamiento'][$i],
                             'porcentaje'                 => $p_ffinanciamiento['porcentaje'][$i],
                         );
-                        $this->db->insert('public.p_ffinanciamiento',$data2);
+                        $this->db->insert('programacion.p_ffinanciamiento',$data2);
                     }
             }
             return true;
@@ -1035,7 +1035,7 @@
                 'iva_estimado'               => $data['monto_iva_e'],
                 'monto_estimado'             => $data['monto_tot_est'],
             );
-            $update = $this->db->update('p_items', $data1);
+            $update = $this->db->update('programacion.p_items', $data1);
             return true;
         }
 
@@ -1063,27 +1063,27 @@
                         	   pi2.alicuota_iva,
                                pi2.iva_estimado,
                                pi2.monto_estimado');
-            $this->db->join('ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
-            $this->db->join('partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
-            $this->db->join('unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
+            $this->db->join('programacion.ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
+            $this->db->join('programacion.partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
+            $this->db->join('programacion.unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
             $this->db->where('pi2.id_p_items', $data['id_items_proy']);
             $this->db->where('pi2.id_p_acc', 1);
-            $query = $this->db->get('p_items pi2');
+            $query = $this->db->get('programacion.p_items pi2');
             return $query->row_array();
         }
 
         public function eliminar_acc($data){
             $this->db->where('id_p_acc_centralizada', $data['id_items_acc']);
-            $query = $this->db->delete('p_acc_centralizada');
+            $query = $this->db->delete('programacion.p_acc_centralizada');
 
             if ($query) {
                 $this->db->where('id_enlace', $data['id_items_acc']);
                 $this->db->where('id_p_acc', 1);
-                $query = $this->db->delete('p_items');
+                $query = $this->db->delete('programacion.p_items');
 
                 $this->db->where('id_enlace', $data['id_items_acc']);
                 $this->db->where('id_p_acc', 1);
-                $query = $this->db->delete('p_ffinanciamiento');
+                $query = $this->db->delete('programacion.p_ffinanciamiento');
             }
            return true;
         }
