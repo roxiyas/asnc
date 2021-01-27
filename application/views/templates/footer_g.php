@@ -12,7 +12,7 @@
 <script>
     $(document).ready(function() {
         App.init();
-        ChartJs.init();
+        // ChartJs.init();
     });
 </script>
 <script>

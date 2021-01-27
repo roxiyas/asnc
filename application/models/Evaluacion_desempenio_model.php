@@ -161,5 +161,17 @@
             $query = $this->db->get('evaluacion_desempenio.evaluacion ed');
             return $response = $query->row_array();
         }
+
+        public function graficos($data){
+            $response = array();
+            $this->db->select('count(e.calificacion) as t_calificacion,
+	                           e.calificacion');
+            $this->db->group_by('e.calificacion');
+            $this->db->order_by('e.calificacion');
+            $this->db->where('e.rif_contrat', $data['rif_b']);
+            $query = $this->db->get('evaluacion_desempenio.evaluacion e');
+            $response = $query->result_array();
+            return $response;
+        }
     }
 ?>

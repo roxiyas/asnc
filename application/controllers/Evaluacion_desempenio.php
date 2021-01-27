@@ -213,4 +213,11 @@ class Evaluacion_desempenio extends CI_Controller {
 		$this->load->view('evaluacion_desempenio/consulta.php');
         $this->load->view('templates/footer_g.php');
 	}
+
+	public function graficos(){
+		if(!$this->session->userdata('session'))redirect('login');
+		$data = $this->input->post();
+		$data =	$this->Evaluacion_desempenio_model->graficos($data);
+		echo json_encode($data);
+	}
 }

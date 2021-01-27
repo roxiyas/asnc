@@ -1,24 +1,31 @@
-
 		<div id="content" class="content">
-			<ol class="breadcrumb pull-right">
-				<li class="breadcrumb-item"><a href="javascript:;">Inicio</a></li>
-				<li class="breadcrumb-item"><a href="javascript:;">Eval. Desempeño</a></li>
-				<li class="breadcrumb-item active">Consulta</li>
-			</ol>
-			<h1 class="page-header">Chart JS <small>header small text goes here...</small></h1>
 			<div class="row">
+				<div class="col-lg-12">
+		            <div class="panel panel-inverse" data-sortable-id="form-validation-1">
+		                <div class="panel-heading">
+						</div>
+		                <div class="panel-body">
+		                    <div class="row">
+		                        <div class="col-4">
+		                            <label>Rif del Contratista a Evaluar</label>
+		                            <input class="form-control" type="text" name="rif_b" id="rif_b" onkeypress="may(this);" placeholder="J123456789">
+		                        </div>
+		                        <div class="col- mt-4">
+		                            <button type="button" class="btn btn-default" onclick="consultar_rif();" name="button"> <i class="fas fa-search"></i> </button>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
 				<div class="col-lg-6">
 					<div class="panel panel-inverse" data-sortable-id="chart-js-1">
 						<div class="panel-heading">
-							<h4 class="panel-title">Line Chart</h4>
+							<h4 class="panel-title">Calificaciones</h4>
 						</div>
 						<div class="panel-body">
-							<p>
-								A line chart is a way of plotting data points on a line.
-								Often, it is used to show trend data, and the comparison of two data sets.
-							</p>
 							<div>
-								<canvas id="line-chart" data-render="chart-js"></canvas>
+								<canvas id="miGrafico"></canvas>
+								<!-- <canvas id="line-chart" data-render="chart-js"></canvas> -->
 							</div>
 						</div>
 					</div>
@@ -26,3 +33,4 @@
 			</div>
 		</div>
 	</div>
+	<script src="<?=base_url()?>/js/graficos.js"></script>
