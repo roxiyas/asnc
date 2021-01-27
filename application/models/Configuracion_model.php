@@ -6,6 +6,12 @@
             return $result = $query->result_array();
         }
 
+        public function consulta_paises(){
+            $this->db->select('*');
+            $query = $this->db->get('public.paises');
+             return $response = $query->result_array();
+        }
+
         public function consulta_estados(){
             $this->db->select('*');
             $query = $this->db->get('public.estados');
@@ -38,6 +44,14 @@
             $response = $query->result_array();
             return $response;
         }
+
+        public function consulta_edo_civil(){
+            $this->db->select('*');
+            $query = $this->db->get('public.edo_civil');
+            return $response = $query->result_array();
+        }
+
+
         // Organismo
         public function save_organismo($data){
             $this->db->select('codigo');

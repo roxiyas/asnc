@@ -5,8 +5,12 @@ class Evaluacion_desempenio extends CI_Controller {
 
 	public function index(){
 		if(!$this->session->userdata('session'))redirect('login');
-		$data['estados'] 	= $this->Configuracion_model->consulta_estados();
-		$data['modalidades'] 	= $this->Evaluacion_desempenio_model->consulta_modalidades();
+		$data['estados'] 	 = $this->Configuracion_model->consulta_estados();
+		$data['pais'] 		 = $this->Configuracion_model->consulta_paises();
+		$data['edo_civil'] 		 = $this->Configuracion_model->consulta_edo_civil();
+		$data['operadora'] 		 = $this->Evaluacion_desempenio_model->consulta_operadora();
+		$data['modalidades'] = $this->Evaluacion_desempenio_model->consulta_modalidades();
+		$data['med_not'] = $this->Evaluacion_desempenio_model->consulta_med_notf();
 
         $this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
@@ -76,83 +80,107 @@ class Evaluacion_desempenio extends CI_Controller {
 		}
 
 		$data = array(
-			'user_id' =>  0,
-			'edocontratista_id' => 1,
-			'objcontratista_id' => 0,
-			'nivelfinanciero_id'  => 0,
-			'racoficina_id' => 0,
-			'tipocontratista' => 0,
-			'estado_id' => $this->input->POST('id_estado_n'),
-			'ciudade_id' => $this->input->POST('ciudad_n'),
-			'municipio_id' => $this->input->POST('id_municipio_n'),
-			'parroquia_id' => $this->input->POST('id_parroquia_n'),
-			'rifced' => $rif_contrat,
-			'nombre' => $this->input->POST('nombre_n'),
-			'tipopersona' => 0, //tipo de rif
-			'dencomerciale_id' => 0,
-			'ultprocaprob' =>0,
-			'procactual' => 0,
-			'dirfiscal' => 'no',
-			'percontacto' => $this->input->POST('persona_cont_n'),
-			'telf1' => $this->input->POST('tel_cont_n'),
-			'fecactsusc_at' =>  '2020-01-01',
-			'fecvencsusc_at' => '2020-01-01',
-			'fecinscrnc_at' => '2020-01-01',
-			'fecvencrnc_at' => '2020-01-01',
-			'numcertrnc' => '0',
+			'user_id' 			 =>  0,
+			'edocontratista_id'  => 1,
+			'objcontratista_id'  => 0,
+			'nivelfinanciero_id' => 0,
+			'racoficina_id' 	 => 0,
+			'tipocontratista' 	 => 0,
+			'estado_id' 		 => $this->input->POST('id_estado_n'),
+			'ciudade_id' 		 => $this->input->POST('ciudad_n'),
+			'municipio_id' 		 => $this->input->POST('id_municipio_n'),
+			'parroquia_id' 		 => $this->input->POST('id_parroquia_n'),
+			'rifced' 			 => $rif_contrat,
+			'nombre' 			 => $this->input->POST('nombre_n'),
+			'tipopersona' 		 => 0, //tipo de rif
+			'dencomerciale_id' 	 => 0,
+			'ultprocaprob' 		 =>0,
+			'procactual' 		 => 0,
+			'dirfiscal' 		 => 'no',
+			'percontacto' 		 => 'N/A',
+			'telf1' 		  	 => 'N/A',
+			'fecactsusc_at' 	 =>  '2020-01-01',
+			'fecvencsusc_at' 	 => '2020-01-01',
+			'fecinscrnc_at'	     => '2020-01-01',
+			'fecvencrnc_at' 	 => '2020-01-01',
+			'numcertrnc' 	     => '0',
 			'numcontrol_certrnc' => '0',
-			'contimp_certrnc' => '0',
-			'contimp_copiarnc' => '0',
-			'codedocont' => '0',
-			'loginant' => '0',
-			'fecvencrechazo_at' => '2020-01-01',
-			'recibido' => '0'
+			'contimp_certrnc'    => '0',
+			'contimp_copiarnc'   => '0',
+			'codedocont' 		 => '0',
+			'loginant' 			 => '0',
+			'fecvencrechazo_at'  => '2020-01-01',
+			'recibido' 			 => '0'
+		);
+
+		$data_repr_legal= array(
+				'rif_contratista' => $rif_contrat,
+				'paise_id' 		  => $this->input->POST('id_pais_n'),
+				'apeacc' 		  => $this->input->POST('ape_rep_leg_n'),
+				'nomacc' 		  => $this->input->POST('nom_rep_leg_n'),
+				'tipo' 			  => '',
+				'cedrif' 		  => $this->input->POST('ced_rep_leg_n'),
+				'edocivil' 		  => $this->input->POST('ced_rep_leg_n'),
+				'acc' 			  => '0',
+				'jd' 			  => '0',
+				'rl' 			  => '0',
+				'porcacc' 		  => '0',
+				'cargo' 		  => $this->input->POST('cargo_rep_leg_n'),
+				'tipobl' 		  => '',
+				'id_operadora' 	  => $this->input->POST('operadora_n'),
+				'telf' 		      => $this->input->POST('numero_n'),
+				'correo' 		  => $this->input->POST('correo_rep_leg_n')
 		);
 
 		if (!empty($_FILES['fileImagen']['name'])){
 			$config['upload_path'] = './imagenes';;
-			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+			$config['max_size'] = '20480';
+			$config['max_width'] = '20240';
+			$config['max_height'] = '20080';
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
 			if ($this->upload->do_upload('fileImagen')){
 				$img = $this->upload->data();
 			}else{
 				$img = 'N/A';
-				//echo $this->upload->display_errors();
+				echo $this->upload->display_errors();
 			}
 		}
+		if(!isset($img_1['file_name'])){$img_1['file_name'] = "";}
 
-		$data_ev = array('rif_contrat' => $rif_contrat,
-						 'id_modalidad' => $this->input->POST('id_modalidad'),
-						 'id_sub_modalidad' => $this->input->POST('id_sub_modalidad'),
-					 	 'fec_inicio_cont' => $this->input->POST('start'),
-				 	     'fec_fin_cont' => $this->input->POST('end'),
-					 	 'nro_procedimiento' => $this->input->POST('nro_procedimiento'),
-					 	 'nro_contrato' => $this->input->POST('nro_cont_oc_os'),
-					 	 'id_estado_contrato' => $this->input->POST('id_estado_dc'),
-				 		 'bienes' => $this->input->POST('cssCheckbox1'),
-						 'servicios' => $this->input->POST('cssCheckbox2'),
-						 'obras' => $this->input->POST('cssCheckbox3'),
-						 'descr_contrato' => $this->input->POST('desc_contratacion'),
-						 'monto' => $this->input->POST('monto'),
-						 'dolar' => $this->input->POST('cssCheckbox1'),
-						 'euro' => $this->input->POST('cssCheckbox2'),
-						 'petros' => $this->input->POST('cssCheckbox3'),
-						 'bolivares' => $this->input->POST('cssCheckbox3'),
-						 'calidad' => $this->input->POST('calidad'),
-						 'responsabilidad' => $this->input->POST('responsabilidad'),
-						 'conocimiento' => $this->input->POST('conocimiento'),
-						 'oportunidad' => $this->input->POST('oportunidad'),
-						 'total_calif' => $this->input->POST('total_claf'),
-						 'calificacion' => $this->input->POST('calificacion'),
-						 'notf_cont' => $this->input->POST('notf_cont'),
-					 	 'fecha_not' => $this->input->POST('fec_notificacion'),
-				 	  	 'medio' => $this->input->POST('medio'),
-			 		 	 'nro_oc_os' => $this->input->POST('nro_oc_os'),
-		 			 	 'fileimagen' =>  $img['file_name'],
-						 'id_usuario' 	=> $this->session->userdata('id_user')
-					);
-		$data =	$this->Evaluacion_desempenio_model->registrar($exitte,$data,$data_ev);
+		$data_ev = array('rif_contrat' 			=> $rif_contrat,
+						 'id_modalidad' 		=> $this->input->POST('id_modalidad'),
+						 'id_sub_modalidad' 	=> $this->input->POST('id_sub_modalidad'),
+					 	 'fec_inicio_cont'	 	=> $this->input->POST('start'),
+				 	     'fec_fin_cont' 		=> $this->input->POST('end'),
+					 	 'nro_procedimiento' 	=> $this->input->POST('nro_procedimiento'),
+					 	 'nro_contrato' 		=> $this->input->POST('nro_cont_oc_os'),
+					 	 'id_estado_contrato' 	=> $this->input->POST('id_estado_dc'),
+				 		 'bienes' 				=> $this->input->POST('cssCheckbox1'),
+						 'servicios' 			=> $this->input->POST('cssCheckbox2'),
+						 'obras' 				=> $this->input->POST('cssCheckbox3'),
+						 'descr_contrato' 		=> $this->input->POST('desc_contratacion'),
+						 'monto' 				=> $this->input->POST('monto'),
+						 'dolar' 				=> $this->input->POST('cssCheckbox1'),
+						 'euro' 				=> $this->input->POST('cssCheckbox2'),
+						 'petros' 				=> $this->input->POST('cssCheckbox3'),
+						 'bolivares' 			=> $this->input->POST('cssCheckbox3'),
+						 'calidad' 				=> $this->input->POST('calidad'),
+						 'responsabilidad' 		=> $this->input->POST('responsabilidad'),
+						 'conocimiento' 		=> $this->input->POST('conocimiento'),
+						 'oportunidad' 			=> $this->input->POST('oportunidad'),
+						 'total_calif' 			=> $this->input->POST('total_claf'),
+						 'calificacion' 		=> $this->input->POST('calificacion'),
+						 'notf_cont' 			=> $this->input->POST('notf_cont'),
+					 	 'fecha_not' 			=> $this->input->POST('fec_notificacion'),
+				 	  	 'medio' 				=> $this->input->POST('medio'),
+			 		 	 'nro_oc_os' 			=> $this->input->POST('nro_oc_os'),
+		 			 	 'fileimagen' 			=>  $img['file_name'],
+						 'id_usuario' 			=> $this->session->userdata('id_user')
+		);
+
+		$data =	$this->Evaluacion_desempenio_model->registrar($exitte,$data,$data_ev,$data_repr_legal);
 		echo json_encode($data);
 	}
 

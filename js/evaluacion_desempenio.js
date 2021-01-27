@@ -47,24 +47,24 @@ function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
                     $('#persona_cont').val(data['percontacto']);
                     $('#tel_cont').val(data['telf1']);
 
+                    var rif_cont_nr = data['rifced'];
                     var procactual = data['procactual'];
                     $.ajax({
                         url:base_url2,
                         method: 'post',
-                        data: {procactual: procactual},
+                        data: {procactual: procactual,
+                              rif_cont_nr: rif_cont_nr},
                         dataType: 'json',
                         success: function(data){
                             $.each(data, function(index, response){
                                $('#tabla_rep tbody').append('<tr><td>' + response['cedrif'] + '</td><td>' + response['repr'] + '</td><td>' + response['cargo'] + '</td></tr>');
                             });
                         }
-
                     });
                 }
             }
         })
     }
-
 }
 
 $("#monto").on({
@@ -245,6 +245,73 @@ function evaluar(){
     }
 }
 
+function val_not(){
+    var notf_cont = $('#notf_cont').val();
+    if (notf_cont == 2) {
+        swal({
+            title: "¡ATENCION!",
+            text: "El contratista debe ser notificado, siguiendo los parametros establecios en el art. 52.",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonColor: "#00897b",
+            confirmButtonText: "CONTINUAR",
+            closeOnConfirm: false
+        }, function(){
+            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        });
+        $('#registrar_eval').attr("disabled", true);
+    }else{
+        $('#registrar_eval').attr("disabled", false);
+    }
+}
+
+function validar_fecha(){
+    var fecha_desde = $('#fecha_desde').val();
+    var fecha_ntf = $('#datepicker-default').val();
+
+    var separar = fecha_desde.split("/");
+    var dia_d = separar['0'];
+    var mes_d = separar['1'];
+    var anio_d = separar['2'];
+
+    var separar_2 = fecha_ntf.split("/");
+    var dia_ntf = separar_2['0'];
+    var mes_ntf = separar_2['1'];
+    var anio_ntf = separar_2['2'];
+
+
+    if (dia_ntf <= dia_d || mes_ntf < mes_d || anio_ntf < anio_d) {
+        swal({
+            title: "¡ATENCION!",
+            text: "La fecha de notificación debe ser mayor a la del Inicio de Contrato.",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonColor: "#00897b",
+            confirmButtonText: "CONTINUAR",
+            closeOnConfirm: false
+        }, function(){
+            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        });
+        $('#registrar_eval').attr("disabled", true);
+    }
+    if (dia_ntf <= dia_d && mes_ntf == mes_d && anio_ntf == anio_d) {
+        swal({
+            title: "¡ATENCION!",
+            text: "La fecha de notificación debe ser mayor a la del Inicio de Contrato.",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonColor: "#00897b",
+            confirmButtonText: "CONTINUAR",
+            closeOnConfirm: false
+        }, function(){
+            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        });
+        $('#registrar_eval').attr("disabled", true);
+    }else{
+        $('#registrar_eval').attr("disabled", false);
+    }
+}
+
 function registrar(){
     var exitte  = $("#exitte").val();
 
@@ -254,8 +321,16 @@ function registrar(){
     var id_municipio_n  = $("#id_municipio_n").val();
     var id_parroquia_n  = $("#id_parroquia_n").val();
     var ciudad_n  = $("#ciudad_n").val();
-    var persona_cont_n  = $("#persona_cont_n").val();
-    var tel_cont_n  = $("#tel_cont_n").val();
+
+    var id_pais_n  = $("#id_pais_n").val();
+    var ced_rep_leg_n  = $("#ced_rep_leg_n").val();
+    var nom_rep_leg_n  = $("#nom_rep_leg_n").val();
+    var ape_rep_leg_n  = $("#ape_rep_leg_n").val();
+    var edo_civil_n  = $("#edo_civil_n").val();
+    var cargo_rep_leg_n  = $("#cargo_rep_leg_n").val();
+    var operadora_n  = $("#operadora_n").val();
+    var numero_n  = $("#numero_n").val();
+
     var id_modalidad  = $("#id_modalidad").val();
     var id_sub_modalidad  = $("#id_sub_modalidad").val();
     var fecha_desde  = $("#fecha_desde").val();
@@ -298,11 +373,29 @@ function registrar(){
         else if (ciudad_n == '0') {
             document.getElementById("ciudad_n").focus();
         }
-        else if (persona_cont_n == '') {
-            document.getElementById("persona_cont_n").focus();
+        else if (id_pais_n == '0') {
+            document.getElementById("id_pais_n").focus();
         }
-        else if (tel_cont_n == '') {
-            document.getElementById("tel_cont_n").focus();
+        else if (ced_rep_leg_n == '') {
+            document.getElementById("ced_rep_leg_n").focus();
+        }
+        else if (nom_rep_leg_n == '') {
+            document.getElementById("nom_rep_leg_n").focus();
+        }
+        else if (ape_rep_leg_n == '') {
+            document.getElementById("ape_rep_leg_n").focus();
+        }
+        else if (edo_civil_n == '0') {
+            document.getElementById("edo_civil_n").focus();
+        }
+        else if (cargo_rep_leg_n == '') {
+            document.getElementById("cargo_rep_leg_n").focus();
+        }
+        else if (operadora_n == '0') {
+            document.getElementById("operadora_n").focus();
+        }
+        else if (numero_n == '') {
+            document.getElementById("numero_n").focus();
         }
         else if (id_modalidad == '0') {
             document.getElementById("id_modalidad").focus();
@@ -356,7 +449,7 @@ function registrar(){
                 event.preventDefault();
                 swal.fire({
                     title: 'ALERTA',
-                    text: 'Con base al resultado de la evaluación de desempeño, deberá remitir al Servicio Nacional de Contrataciones, el expediente administrativo contentivo de la decisión del contratante con respecto a los supuestos generadores de sanción, así como el deposito correspondiente a la multa por trecientas (300) UCAU, a beneficio del Servicio Nacional de Contrataciones de conformidad a lo establecido en los artículos 167 y 168 del Decreto con Rango, Valor y Fuerza de Ley de Contrataciones Públicas.                                                 ¿Esta Seguro de Registrar?',
+                    text: 'Con base al resultado de la evaluación de desempeño, deberá remitir al Servicio Nacional de Contrataciones, el Expediente Administrativo contentivo de la decisión del contratante con respecto a los supuestos generadores de sanción, así como la liquidación correspondiente a la multa por trecientas (300) UCAU, a beneficio del Servicio Nacional de Contrataciones de conformidad a lo establecido en los artículos 167 y 168 del Decreto con Rango, Valor y Fuerza de Ley de Contrataciones Públicas.                                                 ¿Esta Seguro de Registrar?',
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',

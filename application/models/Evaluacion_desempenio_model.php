@@ -1,44 +1,16 @@
 <?php
     class Evaluacion_desempenio_model extends CI_model{
 
-        // public function __construct(){
-        //    parent::__construct();
-        //    // Este metodo conecta a nuestra segunda conexión
-        //    // y asigna a nuestra propiedad $this->db; los recursos de la misma.
-        //    $this->db = $this->load->database('SNCenlinea', true);
-        // }
-
-       public function consulta_estados(){
-           $this->db->select('*');
-           $query = $this->db->get('evaluacion_desempenio.estados');
+        public function consulta_operadora(){
+            $this->db->select('*');
+            $query = $this->db->get('public.operadora');
             return $response = $query->result_array();
-       }
-
-        public function listar_municipio($data){
-            $response = array();
-            $this->db->select('*');
-            $this->db->where('estado_id', $data['id_estado']);
-            $query = $this->db->get('evaluacion_desempenio.municipios');
-            $response = $query->result_array();
-            return $response;
         }
 
-        public function listar_ciudades($data){
-            $response = array();
+        public function consulta_med_notf(){
             $this->db->select('*');
-            $this->db->where('estado_id', $data['id_estado']);
-            $query = $this->db->get('evaluacion_desempenio.ciudades');
-            $response = $query->result_array();
-            return $response;
-        }
-
-        public function listar_parroquia($data){
-            $response = array();
-            $this->db->select('*');
-            $this->db->where('estado_id', $data['id_municipio']);
-            $query = $this->db->get('evaluacion_desempenio.parroquias');
-            $response = $query->result_array();
-            return $response;
+            $query = $this->db->get('public.medio_notf');
+            return $response = $query->result_array();
         }
 
         public function llenar_contratista($data){
@@ -52,11 +24,30 @@
                         	     c.percontacto,
                         	     c.telf1,
                                  c.procactual');
-            $this->db->join('evaluacion_desempenio.estados e', 'e.id = c.estado_id');
-            $this->db->join('evaluacion_desempenio.municipios m', 'm.id = c.municipio_id');
+            $this->db->join('public.estados e', 'e.id = c.estado_id');
+            $this->db->join('public.municipios m', 'm.id = c.municipio_id');
             $this->db->where('c.rifced',$data['rif_b']);
             $query = $this->db->get('evaluacion_desempenio.contratistas c');
-            return $result = $query->row_array();
+            $result = $query->row_array();
+                if ($result == '') {
+                    $this->db->select('c.user_id,
+                                	     c.edocontratista_id,
+                                	     c.rifced,
+                                	     c.nombre,
+                                	     c.dirfiscal,
+                                	     e.descedo,
+                                	     m.descmun,
+                                	     c.percontacto,
+                                	     c.telf1,
+                                         c.procactual');
+                    $this->db->join('public.estados e', 'e.id = c.estado_id');
+                    $this->db->join('public.municipios m', 'm.id = c.municipio_id');
+                    $this->db->where('c.rifced',$data['rif_b']);
+                    $query = $this->db->get('evaluacion_desempenio.contratistas_nr c');
+                    return $result = $query->row_array();
+                }else {
+                    return $result;
+                }
         }
 
         public function llenar_contratista_rp($data){
@@ -67,7 +58,19 @@
             $this->db->where('proceso_id', $data['procactual']);
             //$this->db->like('cargo', 'representante');
             $query = $this->db->get('evaluacion_desempenio.accionistas');
-            return $result = $query->result_array();
+            $result = $query->result_array();
+
+            if ($result == Array ()) {
+                $this->db->select('cedrif,
+                                   concat(nomacc, \'\' ,apeacc) as repr,
+                            	   cargo ');
+                $this->db->where('rif_contratista', $data['rif_cont_nr']);
+                //$this->db->like('cargo', 'representante');
+                $query = $this->db->get('evaluacion_desempenio.accionistas_nr');
+                return $result = $query->result_array();
+            }else {
+                return $result;
+            }
         }
 
         public function consulta_modalidades(){
@@ -83,15 +86,15 @@
             return $result = $query->result_array();
         }
 
-        public function registrar($exitte,$data,$data_ev){
+        public function registrar($exitte,$data,$data_ev,$data_repr_legal){
             $existe = $exitte;
 
             $quers =$this->db->insert('evaluacion_desempenio.evaluacion', $data_ev);
                 if ($existe == 0){
                     $quers1 = $this->db->insert('evaluacion_desempenio.contratistas_nr',$data);
+                    $quers2 = $this->db->insert('evaluacion_desempenio.accionistas_nr',$data_repr_legal);
                     return true;
                 }
-
             return $quers;
         }
 
@@ -147,11 +150,11 @@
                             	 ed.fileimagen');
             $this->db->join('evaluacion_desempenio.contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
             $this->db->join('evaluacion_desempenio.contratistas c', 'c.rifced = ed.rif_contrat', 'left');
-            $this->db->join('evaluacion_desempenio.estados e', 'e.id = ed.id_estado_contrato');
-            $this->db->join('evaluacion_desempenio.estados e2', 'e2.id = c.estado_id', 'left');
-            $this->db->join('evaluacion_desempenio.estados e3', 'e3.id = cn.estado_id', 'left');
-            $this->db->join('evaluacion_desempenio.municipios m', 'm.id = c.municipio_id', 'left');
-            $this->db->join('evaluacion_desempenio.municipios m2', 'm2.id = cn.municipio_id', 'left');
+            $this->db->join('public.estados e', 'e.id = ed.id_estado_contrato');
+            $this->db->join('public.estados e2', 'e2.id = c.estado_id', 'left');
+            $this->db->join('public.estados e3', 'e3.id = cn.estado_id', 'left');
+            $this->db->join('public.municipios m', 'm.id = c.municipio_id', 'left');
+            $this->db->join('public.municipios m2', 'm2.id = cn.municipio_id', 'left');
             $this->db->join('evaluacion_desempenio.modalidad m3', 'm3.id = ed.id_modalidad');
             $this->db->join('evaluacion_desempenio.sub_modalidad sm', 'sm.id = ed.id_sub_modalidad');
             $this->db->where('ed.id', $id_evaluacion);

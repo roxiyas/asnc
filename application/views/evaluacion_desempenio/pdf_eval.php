@@ -31,15 +31,6 @@
                             <h5><b>Ciudad:</b></h5>
                             <h5><?=$eval_ind['ciudade_id']?></h5>
                         </div>
-                        <div class="col-3"></div>
-                        <div class="form-group col-4">
-                            <h5><b>Persona de Contacto:</b></h5>
-                            <h5><?=$eval_ind['per_cont']?></h5>
-                        </div>
-                        <div class="form-group col-4">
-                            <h5><b>Télefono de Contacto:</b></h5>
-                            <h5><?=$eval_ind['tef_cont']?></h5>
-                        </div>
                     </div>
 			    </div>
 				<div class="panel-heading">
@@ -276,7 +267,7 @@
         </div>
     </div>
 </div>
-<script src="<?=base_url()?>/js/evaluacion_desempenio.js"></script>
+<!-- <script src="<?=base_url()?>/js/evaluacion_desempenio.js"></script> -->
 <script type="text/javascript">
     function printDiv(nombreDiv){
         var contenido= document.getElementById('imp1').innerHTML;

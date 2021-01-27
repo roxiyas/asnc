@@ -46,19 +46,9 @@
                                 <label>Ciudad</label>
                                 <input type="text" name="ciudad" id="ciudad" class="form-control" readonly>
                             </div>
-                            <div class="col-6"></div>
-                            <div class="form-group col-6">
-                                <label>Persona de Contacto</label>
-                                <input type="text" name="persona_cont" id="persona_cont" class="form-control"  placeholder="Persona de Contacto" readonly>
-                            </div>
-                            <div class="form-group col-6">
-                                <label>Télefono de Contacto</label>
-                                <input type="text" name="tel_cont" id="tel_cont" class="form-control"  placeholder="Télefono de Contacto" readonly>
-                            </div>
-
-                            <div class="col-3">
-
-                            </div>
+                            <br>
+                            <div class="col-11"></div>
+                            <div class="col-3"></div>
                             <div id="tabla_rep" class="col-6">
                                 <table class="table table-bordered table-hover">
                                     <thead style="background:#e4e7e8">
@@ -87,7 +77,7 @@
                             <div class="form-group col-3">
                                 <label>Estado</label>
                                 <select class="form-control" name="id_estado_n" id="id_estado_n" onclick="llenar_municipio();listar_ciudades();">
-                                    <option value="0">Seleccine</option>
+                                    <option value="0">Seleccione</option>
                                     <?php foreach ($estados as $data): ?>
                                         <option value="<?=$data['id']?>"><?=$data['descedo']?></option>
                                     <?php endforeach; ?>
@@ -96,28 +86,77 @@
                             <div class="form-group col-3">
                                 <label>Municipio</label>
                                 <select class="form-control" name="id_municipio_n" id="id_municipio_n" onclick="llenar_parroquia();">
-                                    <option value="0">Seleccine</option>
+                                    <option value="0">Seleccione</option>
                                 </select>
                             </div>
                             <div class="form-group col-3">
                                 <label>Parroquia</label>
                                 <select class="form-control" name="id_parroquia_n" id="id_parroquia_n" >
-                                    <option value="0">Seleccine</option>
+                                    <option value="0">Seleccione</option>
                                 </select>
                             </div>
                             <div class="form-group col-3">
                                 <label>Ciudad</label>
                                 <select class="selected form-control" name="ciudad_n" id="ciudad_n">
-                                    <option value="0">Seleccine</option>
+                                    <option value="0">Seleccione</option>
                                 </select>
                             </div>
-                            <div class="form-group col-6">
-                                <label>Persona de Contacto</label>
-                                <input type="text" name="persona_cont_n" id="persona_cont_n" class="form-control"  placeholder="Persona de Contacto">
+                            <div class="col-12">
+                                <h4 class="text-center mb-3 mt-3">Datos Representante Legal</h4>
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-3">
+                                <label>País de Prosedencia</label>
+                                <select class="form-control" name="id_pais_n" id="id_pais_n">
+                                    <option value="0">Seleccione</option>
+                                    <?php foreach ($pais as $data): ?>
+                                        <option value="<?=$data['id']?>"><?=$data['nompais']?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-3">
+                                <label>Cédula</label>
+                                <input type="text" name="ced_rep_leg_n" id="ced_rep_leg_n" class="form-control"  placeholder="Cédula">
+                            </div>
+                            <div class="form-group col-3">
+                                <label>Nombres</label>
+                                <input type="text" name="nom_rep_leg_n" id="nom_rep_leg_n" class="form-control"  placeholder="Nombres">
+                            </div>
+                            <div class="form-group col-3">
+                                <label>Apellidos</label>
+                                <input type="text" name="ape_rep_leg_n" id="ape_rep_leg_n" class="form-control"  placeholder="Apellidos">
+                            </div>
+                            <div class="form-group col-3">
+                                <label>Estado Civil</label>
+                                <select class="form-control" name="edo_civil_n" id="edo_civil_n">
+                                    <option value="0">Seleccione</option>
+                                    <?php foreach ($edo_civil as $data): ?>
+                                        <option value="<?=$data['id_edo_civil']?>"><?=$data['desc_rif']?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-3">
+                                <label>Cargo</label>
+                                <input type="text" name="cargo_rep_leg_n" id="cargo_rep_leg_n" class="form-control"  placeholder="Cargo">
+                            </div>
+                            <div class="form-group col-3">
                                 <label>Télefono de Contacto</label>
-                                <input type="text" name="tel_cont_n" id="tel_cont_n" class="form-control"  placeholder="Télefono de Contacto">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <select class="form-control" name="operadora_n" id="operadora_n">
+                                            <option value="0">Sel.</option>
+                                            <?php foreach ($operadora as $data): ?>
+                                                <option value="<?=$data['id_operadora']?>"><?=$data['desc_operadora']?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-7">
+                                        <input type="text" id="numero_n" name="numero_n" class="form-control" onkeypress="return valideKey(event);"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-3">
+                                <label>Correo</label>
+                                <input type="text" name="correo_rep_leg_n" id="correo_rep_leg_n" class="form-control"  placeholder="Correo">
                             </div>
                         </div>
 				    </div>
@@ -300,23 +339,23 @@
                         <div class="row">
                             <div class="form-group col-4">
                                 <label>¿Fue notificado al contratista?</label>
-                                <select class="form-control" name="notf_cont" id="notf_cont">
-                                    <option value="0">Sí, fué notificado al contratista</option>
-                                    <option value="0">No, no fué notificado al contratista</option>
+                                <select class="form-control" name="notf_cont" id="notf_cont" onclick="val_not();">
+                                    <option value="0">Seleccione</option>
+                                    <option value="1">Sí, fué notificado al contratista</option>
+                                    <option value="2">No, no fué notificado al contratista</option>
                                 </select>
                             </div>
                             <div class="form-group col-4">
                                 <label>Fecha de la Notificación</label>
-								<input type="text" class="form-control" id="datepicker-default" name="fec_notificacion" placeholder="Seleccionar Fecha" />
+								<input type="text" class="form-control" id="datepicker-default" name="fec_notificacion" placeholder="Seleccionar Fecha" onchange="validar_fecha();"/>
                             </div>
                             <div class="form-group col-4">
                                 <label>Medio de envio de la Notificación</label>
                                 <select class="selected form-control" name="medio" id="medio">
                                     <option value="0">Seleccione</option>
-                                    <option value="1">FAX</option>
-                                    <option value="2">Télefono</option>
-                                    <option value="3">Correo Electronico</option>
-                                    <option value="4">No Aplica</option>
+                                    <?php foreach ($med_not as $data): ?>
+                                        <option value="<?=$data['id_medio_notf']?>"><?=$data['descripcion']?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="form-group col-6">
@@ -330,7 +369,7 @@
                         </div>
                     </div>
                     <div class="form-group col 12 text-center">
-                        <button type="button" onclick="registrar();" class="btn btn-primary mb-3">Registrar Evaluación</button>
+                        <button type="button" onclick="registrar();" id="registrar_eval" name="registrar_eval" class="btn btn-primary mb-3">Registrar Evaluación</button>
                     </div>
                 </div>
             </form>
@@ -339,7 +378,6 @@
 </div>
 <script src="<?=base_url()?>/js/evaluacion_desempenio.js"></script>
 <script type="text/javascript">
-
     function may(e){
          e.value = e.value.toUpperCase();
     }
