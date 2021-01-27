@@ -89,12 +89,52 @@
         public function registrar($exitte,$data,$data_ev,$data_repr_legal){
             $existe = $exitte;
 
-            $quers =$this->db->insert('evaluacion_desempenio.evaluacion', $data_ev);
-                if ($existe == 0){
-                    $quers1 = $this->db->insert('evaluacion_desempenio.contratistas_nr',$data);
-                    $quers2 = $this->db->insert('evaluacion_desempenio.accionistas_nr',$data_repr_legal);
-                    return true;
-                }
+            $this->db->select('max(e.id) as id');
+            $query = $this->db->get('evaluacion_desempenio.evaluacion e');
+            $response = $query->row_array();
+            // print_r($data_ev);die;
+            if ($response) {
+                $id = $response['id'] + 1 ;
+                $data_eval = array(
+                    'id' 		        => $id,
+                    'rif_contrat' 		 => $data_ev['rif_contrat'],
+        			'id_modalidad' 		 => $data_ev['id_modalidad'],
+        			'id_sub_modalidad' 	 => $data_ev['id_sub_modalidad'],
+        			'fec_inicio_cont' 	 => $data_ev['fec_inicio_cont'],
+        			'fec_fin_cont' 		 => $data_ev['fec_fin_cont'],
+        			'nro_procedimiento'  => $data_ev['nro_procedimiento'],
+        			'nro_contrato' 		 => $data_ev['nro_contrato'],
+        			'id_estado_contrato' => $data_ev['id_estado_contrato'],
+        			'bienes' 			 => $data_ev['bienes'],
+        			'servicios' 		 => $data_ev['servicios'],
+        			'obras' 			 => $data_ev['obras'],
+        			'descr_contrato' 	 => $data_ev['descr_contrato'],
+        			'monto' 			 => $data_ev['monto'],
+        			'dolar' 			 => $data_ev['dolar'],
+        			'euro' 				 => $data_ev['euro'],
+        			'petros' 			 => $data_ev['petros'],
+        			'bolivares' 		 => $data_ev['bolivares'],
+        			'calidad' 			 => $data_ev['calidad'],
+        			'responsabilidad' 	 => $data_ev['responsabilidad'],
+        			'conocimiento' 		 => $data_ev['conocimiento'],
+        			'oportunidad' 		 => $data_ev['oportunidad'],
+        			'total_calif' 		 => $data_ev['total_calif'],
+        			'calificacion' 		 => $data_ev['calificacion'],
+        			'notf_cont' 		 => $data_ev['notf_cont'],
+        			'fecha_not' 		 => $data_ev['fecha_not'],
+        			'medio' 			 => $data_ev['medio'],
+        			'nro_oc_os' 		 => $data_ev['nro_oc_os'],
+        		 	'fileimagen' 		 => $data_ev['fileimagen'],
+        			'id_usuario' 		 => $data_ev['id_usuario']
+            );
+                $quers =$this->db->insert('evaluacion_desempenio.evaluacion', $data_eval);
+            }
+
+            if ($existe == 0){
+                $quers1 = $this->db->insert('evaluacion_desempenio.contratistas_nr',$data);
+                $quers2 = $this->db->insert('evaluacion_desempenio.accionistas_nr',$data_repr_legal);
+                return true;
+            }
             return $quers;
         }
 

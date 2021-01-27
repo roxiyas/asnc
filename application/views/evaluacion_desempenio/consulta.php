@@ -25,7 +25,6 @@
 						<div class="panel-body">
 							<div>
 								<canvas id="miGrafico"></canvas>
-								<!-- <canvas id="line-chart" data-render="chart-js"></canvas> -->
 							</div>
 						</div>
 					</div>
