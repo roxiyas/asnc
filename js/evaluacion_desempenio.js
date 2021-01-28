@@ -250,7 +250,7 @@ function val_not(){
     if (notf_cont == 2) {
         swal({
             title: "¡ATENCION!",
-            text: "El contratista debe ser notificado, siguiendo los parametros establecios en el art. 52.",
+            text: "Con base a lo establecido en el Art. 52 del Decreto con Rango Valor y Fuerza de Ley de Contrataciones Públicas, la carga de los campos correspondientes a la Notificación del Resultado de la Evaluación de Desempeño son Obligatorios.",
             type: "warning",
             showCancelButton: false,
             confirmButtonColor: "#00897b",
