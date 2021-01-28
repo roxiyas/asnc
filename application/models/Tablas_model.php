@@ -197,4 +197,61 @@ class Tablas_model extends CI_Model
      return $this->db->update('programacion.ccnu', $data, array('id_ccnu' => $data['id_ccnu']));
  }
 
+//_______ESTADO CRUD___________________________________________________
+ public function get_estado()
+    {
+        $query = $this->db->get('public.estados');
+           if (count($query->result()) > 0) {
+             return $query->result();
+         }
+    }
+    public function save_estado($data)
+    {
+        return $this->db->insert('public.estados', $data);
+    }
+    public function single_estado($id)
+ {
+     $this->db->select('*');
+     $this->db->from('public.estados');
+     $this->db->where('id', $id);
+     $query = $this->db->get();
+     if (count($query->result()) > 0) {
+         return $query->row();
+     }
+ }
+ public function update_estado($data)
+ {
+     return $this->db->update('public.estados', $data, array('id' => $data['id']));
+ }
+ //_______ municipio___________________________________________________
+ public function get_municipio()
+
+ 
+    {
+        $this->db->order_by("estado_id", "ASC");
+        $query = $this->db->get('public.municipios');
+       
+           if (count($query->result()) > 0) {
+             return $query->result();
+         }
+    }
+    public function save_municipio($data)
+    {
+        return $this->db->insert('public.municipios', $data);
+    }
+    public function single_municipio($id)
+ {
+     $this->db->select('*');
+     $this->db->from('public.municipios');
+     $this->db->where('id', $id);
+     $query = $this->db->get();
+     if (count($query->result()) > 0) {
+         return $query->row();
+     }
+ }
+ public function update_municipio($data)
+ {
+     return $this->db->update('public.municipios', $data, array('id' => $data['id']));
+ }
+
 }

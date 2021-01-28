@@ -567,6 +567,162 @@ class Fuentefinanc extends CI_Controller
 			echo "No direct script access allowed";
 		}
 	}
+//______________________estado_____________________________
+	public function estado()
+	{
+		$this->load->view('templates/header.php');
+		$this->load->view('templates/navigator.php');
+		$this->load->view('tablas/estado.php');
+		$this->load->view('templates/footer.php');
+	}
+	public function saveestado()
+	{
+		if ($this->input->is_ajax_request()) {
+			$this->form_validation->set_rules('descedo', 'descedo', 'required');
+			if ($this->form_validation->run() == FALSE) {
+				$data = array('responce' => 'error', 'message' => validation_errors());
+			} else {
+				$ajax_data = $this->input->post();
 
+				if ($this->Tablas_model->save_estado($ajax_data)) {
+					$data = array('responce' => 'success', 'message' => 'Estado Guardado con Exito');
+				} else {
+					$data = array('responce' => 'error', 'message' => 'Error , vuelva a intentar');
+				}
+			}
 
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+	public function fetchestado()
+	{
+		if ($this->input->is_ajax_request()) {
+			if ($posts = $this->Tablas_model->get_estado()) {
+				$data = array('responce' => 'success', 'posts' => $posts);
+			} else {
+				$data = array('responce' => 'error', 'menssage' => 'falied to fetch data');
+			}
+			echo json_encode($data);
+		} else {
+			echo "'No direct script access allowed'";
+		}
+	}
+	public function editestado()
+	{
+		if ($this->input->is_ajax_request()) {
+			$edit_id = $this->input->post('edit_id');
+
+			if ($post = $this->Tablas_model->single_estado($edit_id)) {
+				$data = array('responce' => 'success', 'post' => $post);
+			} else {
+				$data = array('responce' => 'error', 'message' => 'error al guardar');
+			}
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+	public function updateestado()
+	{
+		if ($this->input->is_ajax_request()) {
+			$this->form_validation->set_rules('edit_descedo', 'desc_descedo', 'required');
+			if ($this->form_validation->run() == FALSE) {
+				$data = array('responce' => 'error', 'message' => validation_errors());
+			} else {
+				$data['id'] = $this->input->post('edit_record_id');
+				$data['descedo'] = $this->input->post('edit_descedo');
+
+				if ($this->Tablas_model->update_estado($data)) {
+					$data = array('responce' => 'success', 'message' => 'Registro Modificado Con Exito');
+				} else {
+					$data = array('responce' => 'error', 'message' => 'Error al Modificar Registor');
+				}
+			}
+
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+	//______________________Muncipio_____________________________
+	public function municipio()
+	{
+		$this->load->view('templates/header.php');
+		$this->load->view('templates/navigator.php');
+		$this->load->view('tablas/municipio.php');
+		$this->load->view('templates/footer.php');
+	}
+	public function savemunicipio()
+	{
+		if ($this->input->is_ajax_request()) {
+			$this->form_validation->set_rules('descedo', 'descedo', 'required');
+			if ($this->form_validation->run() == FALSE) {
+				$data = array('responce' => 'error', 'message' => validation_errors());
+			} else {
+				$ajax_data = $this->input->post();
+
+				if ($this->Tablas_model->save_municipio($ajax_data)) {
+					$data = array('responce' => 'success', 'message' => 'Estado Guardado con Exito');
+				} else {
+					$data = array('responce' => 'error', 'message' => 'Error , vuelva a intentar');
+				}
+			}
+
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+	public function fetchmunicipio()
+	{
+		if ($this->input->is_ajax_request()) {
+			if ($posts = $this->Tablas_model->get_municipio()) {
+				$data = array('responce' => 'success', 'posts' => $posts);
+			} else {
+				$data = array('responce' => 'error', 'menssage' => 'falied to fetch data');
+			}
+			echo json_encode($data);
+		} else {
+			echo "'No direct script access allowed'";
+		}
+	}
+	public function editmunicipio()
+	{
+		if ($this->input->is_ajax_request()) {
+			$edit_id = $this->input->post('edit_id');
+
+			if ($post = $this->Tablas_model->single_municipio($edit_id)) {
+				$data = array('responce' => 'success', 'post' => $post);
+			} else {
+				$data = array('responce' => 'error', 'message' => 'error al guardar');
+			}
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+	public function updatemunicipio()
+	{
+		if ($this->input->is_ajax_request()) {
+			$this->form_validation->set_rules('edit_descmun', 'desc_descmun', 'required');
+			if ($this->form_validation->run() == FALSE) {
+				$data = array('responce' => 'error', 'message' => validation_errors());
+			} else {
+				$data['id'] = $this->input->post('edit_record_id');
+				$data['descmun'] = $this->input->post('edit_descmun');
+
+				if ($this->Tablas_model->update_municipio($data)) {
+					$data = array('responce' => 'success', 'message' => 'Registro Modificado Con Exito');
+				} else {
+					$data = array('responce' => 'error', 'message' => 'Error al Modificar Registor');
+				}
+			}
+
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
 }
