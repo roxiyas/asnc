@@ -159,6 +159,21 @@
 									- Municipio
 								</a>
 							</li>
+							<li>
+								<a href="<?= base_url() ?>index.php/Fuentefinanc/parroquia">
+									- Parroquia
+								</a>
+							</li>
+							<li>
+								<a href="<?= base_url() ?>index.php/Fuentefinanc/ciudades">
+									- Ciudades
+								</a>
+							</li>
+							<li>
+								<a href="<?= base_url() ?>index.php/Fuentefinanc/operador">
+									- Operadora
+								</a>
+							</li>
 						</ul>
 					</li>
 					<li class="has-sub">

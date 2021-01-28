@@ -253,5 +253,95 @@ class Tablas_model extends CI_Model
  {
      return $this->db->update('public.municipios', $data, array('id' => $data['id']));
  }
+//_______ parroquia___________________________________________________
+public function get_parroquia()
 
+ 
+{
+    $this->db->order_by("estado_id", "ASC");
+    $query = $this->db->get('public.parroquias');
+   
+       if (count($query->result()) > 0) {
+         return $query->result();
+     }
+}
+public function save_parroquia($data)
+{
+    return $this->db->insert('public.parroquias', $data);
+}
+public function single_parroquia($id)
+{
+ $this->db->select('*');
+ $this->db->from('public.parroquias');
+ $this->db->where('id', $id);
+
+ $query = $this->db->get();
+ if (count($query->result()) > 0) {
+     return $query->row();
+ }
+} 
+public function update_parroquia($data)
+{
+ return $this->db->update('public.parroquias', $data, array('id' => $data['id']));
+}
+//_______ ciudades___________________________________________________
+public function get_ciudades()
+
+ 
+{
+    $this->db->order_by("estado_id", "ASC");
+    $query = $this->db->get('public.ciudades');
+   
+       if (count($query->result()) > 0) {
+         return $query->result();
+     }
+}
+public function save_ciudades($data)
+{
+    return $this->db->insert('public.ciudades', $data);
+}
+public function single_ciudades($id)
+{
+ $this->db->select('*');
+ $this->db->from('public.ciudades');
+ $this->db->where('id', $id);
+ $query = $this->db->get();
+ if (count($query->result()) > 0) {
+     return $query->row();
+ }
+} 
+public function update_ciudades($data)
+{
+ return $this->db->update('public.ciudades', $data, array('id' => $data['id']));
+}
+//_______ operadoras___________________________________________________
+public function get_operadora()
+
+ 
+{
+    $this->db->order_by("id_operadora", "ASC");
+    $query = $this->db->get('public.operadora');
+   
+       if (count($query->result()) > 0) {
+         return $query->result();
+     }
+}
+public function save_operadoras($data)
+{
+    return $this->db->insert('public.operadora', $data);
+}
+public function single_operadora($id)
+{
+ $this->db->select('*');
+ $this->db->from('public.operadora');
+ $this->db->where('id_operadora', $id);
+ $query = $this->db->get();
+ if (count($query->result()) > 0) {
+     return $query->row();
+ }
+} 
+public function update_operadora($data)
+{
+ return $this->db->update('public.operadora', $data, array('id_operadora' => $data['id_operadora']));
+}
 }
