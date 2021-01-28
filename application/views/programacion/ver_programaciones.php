@@ -21,7 +21,7 @@
 
                     <div class="col-12 text-center">
                         <buttontype="button" class="btn btn-lg mt-2 mb-2 btn-default" data-toggle="modal" data-target="#agregar_programacion">
-                            Agregar Programación
+                            Agregar Año de Programación
                         </button>
                     </div>
                     <div class="col-3">
@@ -43,11 +43,11 @@
                                     <td class="center">
                                         <a href="<?php echo base_url();?>index.php/programacion/nueva_prog?id=<?php echo $lista['id_programacion'];?>"
                                             class="button">
-                                            <i class="fas fa-lg fa-fw fa-edit"></i>
+                                            <i class="fas fa-lg fa-fw fa-edit" title="Cargar información de la programación"></i>
                                         <a/>
                                         <a href="<?php echo base_url();?>index.php/programacion/nueva_prog?id=<?php echo $lista['id_programacion'];?>"
                                             class="button">
-                                            <i class="fas fa-lg fa-fw fa-upload" style="color: green;"></i>
+                                            <i class="fas fa-lg fa-fw fa-upload" style="color: green;" title="Enviar Programación"></i>
                                         <a/>
                                     </td>
                                 </tr>
@@ -64,20 +64,18 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Agregar Programación</h4>
+                <h4 class="modal-title" id="exampleModalLabel">Agregar año</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?=base_url()?>index.php/programacion/agg_programacion" method="POST" class="form-horizontal">
+            <form id="resgistrar_anio" method="POST" class="form-horizontal">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12 text-center">
-                            <h4>Año a Cargar<b style="color:red">*</b></h4>
+                            <h4>Año a Cargar <b style="color:red">*</b></h4>
                         </div>
-                        <div class="col-4">
-
-                        </div>
+                        <div class="col-4"></div>
                         <div class="col-4 text-center form-group" id="proyecto_s">
                             <input id="anio" name="anio" type="text" class="form-control" required placeholder="2020" onkeypress="return valideKey(event);">
                         </div>
@@ -85,24 +83,22 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
-                  <button type="submit" class="btn btn-primary">Guardar</button>
+                  <button type="button" onclick="registrar_anio();" class="btn btn-primary">Guardar</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 <script type="text/javascript">
-function valideKey(evt){
-   var code = (evt.which) ? evt.which : evt.keyCode;
-    if(code==8) { // backspace.
-        return true;
-    }else if(code>=48 && code<=57) { // is a number.
-        return true;
-    }else{ // other keys.
-        return false;
+    function valideKey(evt){
+       var code = (evt.which) ? evt.which : evt.keyCode;
+        if(code==8) { // backspace.
+            return true;
+        }else if(code>=48 && code<=57) { // is a number.
+            return true;
+        }else{ // other keys.
+            return false;
+        }
     }
-}
 </script>
-<?php if ($this->session->flashdata('sa-success2')) { ?>
-    <div hidden id="sa-success2"> <?= $this->session->flashdata('sa-success2') ?> </div>
-<?php } ?>
+<script src="<?=base_url()?>/js/programacion.js"></script>

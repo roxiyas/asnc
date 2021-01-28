@@ -20,9 +20,24 @@
                         </div>
                     </div>
                     <div class="col-12 text-center">
-                        <button onclick="location.href='<?php echo base_url()?>index.php/Programacion/add?id=<?php echo $id_programacion;?>'" type="button" class="btn btn-lg mt-2 mb-2 btn-default"  name="button">
-                            Agregar Información de Obra / Servicio / Bien
-                        </button>
+                        <div class="row">
+                            <div class="col-4">
+                                <button onclick="location.href='<?php echo base_url()?>index.php/Programacion/agregar_bien?id=<?php echo $id_programacion;?>'" type="button" class="btn btn-lg btn-default"  name="button">
+                                    Agregar Información de Bienes
+                                </button>
+                            </div>
+                            <div class="col-4">
+                                <button onclick="location.href='<?php echo base_url()?>index.php/Programacion/agregar_servicio?id=<?php echo $id_programacion;?>'" type="button" class="btn btn-lg btn-default"  name="button">
+                                    Agregar Información de Servicio
+                                </button>
+                            </div>
+                            <!-- <div class="col-4">
+                                <button onclick="location.href='<?php echo base_url()?>index.php/Programacion/add?id=<?php echo $id_programacion;?>'" type="button" class="btn btn-lg btn-default"  name="button">
+                                    Agregar Información de Obra
+                                </button>
+                            </div> -->
+                        </div>
+
                         <br>
                         <!-- <button onclick="location.href='<?php echo base_url()?>index.php/Programacion/pdf_compl?id=<?php echo $id_programacion;?>'" type="button" class="btn btn-lg mt-2 mb-2 btn-default"  name="button">
                             Ver PDF con Información Completa

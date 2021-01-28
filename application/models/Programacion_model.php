@@ -10,7 +10,8 @@
             return $query->result_array();
         }
 
-        public function agg_programacion($data){
+        //----Registrar año de programación--
+        public function agg_programacion_anio($data){
             $quers =$this->db->insert('programacion.programacion',$data);
             return true;
         }
