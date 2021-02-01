@@ -132,23 +132,6 @@ class Evaluacion_desempenio extends CI_Controller {
 				'correo' 		  => $this->input->POST('correo_rep_leg_n')
 		);
 
-		if (!empty($_FILES['fileImagen']['name'])){
-			$config['upload_path'] = './imagenes';;
-			$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
-			$config['max_size'] = '204800';
-			$config['max_width'] = '202400';
-			$config['max_height'] = '200800';
-			$this->load->library('upload', $config);
-			$this->upload->initialize($config);
-			if ($this->upload->do_upload('fileImagen')){
-				$img = $this->upload->data();
-			}else{
-				$img = 'N/A';
-				echo $this->upload->display_errors();
-			}
-		}
-		if(!isset($img_1['file_name'])){$img_1['file_name'] = "";}
-
 		$data_ev = array('rif_contrat' 			=> $rif_contrat,
 						 'id_modalidad' 		=> $this->input->POST('id_modalidad'),
 						 'id_sub_modalidad' 	=> $this->input->POST('id_sub_modalidad'),
@@ -162,28 +145,71 @@ class Evaluacion_desempenio extends CI_Controller {
 						 'obras' 				=> $this->input->POST('cssCheckbox3'),
 						 'descr_contrato' 		=> $this->input->POST('desc_contratacion'),
 						 'monto' 				=> $this->input->POST('monto'),
-						 'dolar' 				=> $this->input->POST('cssCheckbox4'),
-						 'euro' 				=> $this->input->POST('cssCheckbox5'),
-						 'petros' 				=> $this->input->POST('cssCheckbox6'),
-						 'bolivares' 			=> $this->input->POST('cssCheckbox7'),
+						 'dolar' 				=> $this->input->POST('cssRadio1'),
+						 'euro' 				=> $this->input->POST('cssRadio2'),
+						 'petros' 				=> $this->input->POST('cssRadio3'),
+						 'bolivares' 			=> $this->input->POST('cssRadio4'),
 						 'calidad' 				=> $this->input->POST('calidad'),
 						 'responsabilidad' 		=> $this->input->POST('responsabilidad'),
 						 'conocimiento' 		=> $this->input->POST('conocimiento'),
 						 'oportunidad' 			=> $this->input->POST('oportunidad'),
 						 'total_calif' 			=> $this->input->POST('total_claf'),
 						 'calificacion' 		=> $this->input->POST('calificacion'),
-						 'notf_cont' 			=> $this->input->POST('notf_cont'),
-					 	 'fecha_not' 			=> $this->input->POST('fec_notificacion'),
-				 	  	 'medio' 				=> $this->input->POST('medio'),
-			 		 	 'nro_oc_os' 			=> $this->input->POST('nro_oc_os'),
-		 			 	 'fileimagen' 			=>  $img['file_name'],
-						 'id_usuario' 			=> $this->session->userdata('id_user')
+						 'id_usuario' 			=> $this->session->userdata('id_user'),
+						 'id_estatus'			=> 1
 		);
 
 		$data =	$this->Evaluacion_desempenio_model->registrar($exitte,$data,$data_ev,$data_repr_legal);
 		echo json_encode($data);
 	}
 
+	// NOTIFICACIÖN DE EVALUACION AL CONTRATISTA
+	public function notificacion(){
+		if(!$this->session->userdata('session'))redirect('login');
+
+        $this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('evaluacion_desempenio/notificacion.php');
+        $this->load->view('templates/footer.php');
+	}
+
+	public function registrar_not_m(){
+
+		$medio = $this->input->POST('medio');
+		if ($medio == '1' || $medio == '4') {
+			if (!empty($_FILES['fileImagen']['name'])){
+				$config['upload_path'] = './imagenes';;
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+				$config['max_size'] = '204800';
+				$config['max_width'] = '202400';
+				$config['max_height'] = '200800';
+				$this->load->library('upload', $config);
+				$this->upload->initialize($config);
+				if ($this->upload->do_upload('fileImagen')){
+					$img = $this->upload->data();
+				}else{
+					$img = 'N/A';
+					echo $this->upload->display_errors();
+				}
+			}
+			if(!isset($img['file_name'])){$img['file_name'] = "";}
+
+			$file_img = $img['file_name'];
+		}else {
+			$file_img = 'NULL';
+		}
+
+		$data = array('id_evaluacion'=> $this->input->POST('id'),
+	 				  'medio' 		 => $this->input->POST('medio'),
+				  	  'nro_not' 	 => $this->input->POST('nro_not'),
+				  	  'correo' 	 	 => $this->input->POST('correo'),
+				  	  'fileimagen' 	 => $file_img,
+					  'id_usuario' 	 => $this->session->userdata('id_user'),
+					  'id_estatus'	 => 2);
+
+		$data =	$this->Evaluacion_desempenio_model->registrar_not($data);
+  		echo json_encode($data);
+	}
 	//Para consultar las evaluaciones que tiene el usuarios registradas
 	public function reporte(){
 		if(!$this->session->userdata('session'))redirect('login');
@@ -201,9 +227,9 @@ class Evaluacion_desempenio extends CI_Controller {
 		$id_evaluacion = $this->input->get('id');
 		$data['eval_ind'] 	= $this->Evaluacion_desempenio_model->consulta_eval_ind($id_evaluacion);
 
-		$img = $data['eval_ind']['fileimagen'];
-		$separar  = explode(".", $img);
-		$data['tipo_img'] = $separar['1'];
+		// $img = $data['eval_ind']['fileimagen'];
+		// $separar  = explode(".", $img);
+		// $data['tipo_img'] = $separar['1'];
 
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');

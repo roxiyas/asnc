@@ -241,21 +241,21 @@
                             <div class="form-group col-2">
                                 <label>Moneda</label>
 								<div class="col-md-12">
-									<div class="checkbox checkbox-css">
-										<input type="checkbox" id="cssCheckbox4" name="cssCheckbox4"/>
-										<label for="cssCheckbox4">$</label>
+									<div class="radio radio-css">
+										<input type="radio" id="cssRadio1" name="radio_css"/>
+										<label for="cssRadio1">$</label>
 									</div>
-									<div class="checkbox checkbox-css">
-										<input type="checkbox" id="cssCheckbox5" name="cssCheckbox5"/>
-										<label for="cssCheckbox5">Euros</label>
+									<div class="radio radio-css">
+										<input type="radio" id="cssRadio2" name="radio_css"/>
+										<label for="cssRadio2">Euros</label>
 									</div>
-									<div class="checkbox checkbox-css">
-										<input type="checkbox" id="cssCheckbox6" name="cssCheckbox6"/>
-										<label for="cssCheckbox6">Petros</label>
+									<div class="radio radio-css">
+										<input type="radio" id="cssRadio3" name="radio_css"/>
+										<label for="cssRadio3">Petros</label>
 									</div>
-                                    <div class="checkbox checkbox-css">
-										<input type="checkbox" id="cssCheckbox7" name="cssCheckbox7"/>
-										<label for="cssCheckbox7">Bolivares</label>
+                                    <div class="radio radio-css">
+										<input type="radio" id="cssRadio4" name="radio_css"/>
+										<label for="cssRadio4">Bolivares</label>
 									</div>
 								</div>
                             </div>
@@ -332,42 +332,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-heading">
-    					<h4 class="panel-title"><b>Información de Notificación al Contratista</b></h4>
-    				</div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="form-group col-4">
-                                <label>¿Fue notificado al contratista?</label>
-                                <select class="form-control" name="notf_cont" id="notf_cont" onchange="val_not();">
-                                    <option value="0">Seleccione</option>
-                                    <option value="1">Sí, fué notificado al contratista</option>
-                                    <option value="2">No, no fué notificado al contratista</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-4">
-                                <label>Fecha de la Notificación</label>
-								<input type="text" class="form-control" id="datepicker-default" name="fec_notificacion" placeholder="Seleccionar Fecha" onchange="validar_fecha();"/>
-                            </div>
-                            <div class="form-group col-4">
-                                <label>Medio de envio de la Notificación</label>
-                                <select class="selected form-control" name="medio" id="medio">
-                                    <option value="0">Seleccione</option>
-                                    <?php foreach ($med_not as $data): ?>
-                                        <option value="<?=$data['id_medio_notf']?>"><?=$data['descripcion']?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group col-6">
-                                <label>Nro. de Oficio / Fax / Correo Electronico / Otro</label>
-								<input type="text" class="form-control" id="nro_oc_os" name="nro_oc_os" placeholder="Nro. de Oficio / Fax / Correo Electronico / Otro" />
-                            </div>
-                            <div class="form-group col-6">
-                                <label>Acuse de Recibido <b style="color:red">*</b></label>
-                                <input type="file" name="fileImagen" id="fileImagen" class="form-control">
-                            </div>
-                        </div>
-                    </div>
                     <div class="form-group col 12 text-center">
                         <button type="button" onclick="registrar();" id="registrar_eval" name="registrar_eval" class="btn btn-primary mb-3">Registrar Evaluación</button>
                     </div>
@@ -376,7 +340,55 @@
         </div>
     </div>
 </div>
-<script src="<?=base_url()?>/js/evaluacion_desempenio.js"></script>
+
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" style="display:none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Notificación al Contratista</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">.
+                    <form class="form-horizontal" id="resgistrar_not" data-parsley-validate="true" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <input type="hidden" class="form-control" name="id" id="id">
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Medio de envio de la Notificación</label>
+                            <select class="selected form-control" name="medio" id="medio" onchange="mostrar_medio();">
+                                <option value="0">Seleccione</option>
+                                <?php foreach ($med_not as $data): ?>
+                                    <option value="<?=$data['id_medio_notf']?>"><?=$data['descripcion']?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div id="resp_medi" class="form-group col-6" style="display:none;">
+                            <label>Nro. al cual fue notificado</label>
+                            <input type="text" class="form-control" id="nro_not" name="nro_not" placeholder="Nro. al cual fue notificado" />
+                        </div>
+                        <div id="correo" class="form-group col-6" style="display:none;">
+                            <label>Correo Electronico a Notificar</label>
+                            <input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" />
+                        </div>
+                        <div id="adjunto" class="form-group col-6"  style="display:none;">
+                            <label>Acuse de Envio / Recibido <b style="color:red">*</b></label>
+                            <input type="file" name="fileImagen" id="fileImagen" class="form-control">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button style="display:none" id="guardar_enviar" type="button" class="btn btn-primary">Guardar y Enviar</button>
+                <button style="display:none" id="guardar" onclick="guardar_not();" type="button" class="btn btn-primary">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="<?=base_url()?>/js/eval_desempenio/registro.js"></script>
 <script type="text/javascript">
     function may(e){
          e.value = e.value.toUpperCase();

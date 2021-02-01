@@ -204,10 +204,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel-heading">
+                <!-- <div class="panel-heading">
 					<h5 style="font-size: 16px;" class="panel-title text-center"><b>Información de Notificación al Contratista</b></h5>
-				</div>
-                <div class="panel-body">
+				</div> -->
+                <!-- <div class="panel-body">
                     <div class="row">
                         <div class="form-group col-4">
                             <h5><b>¿Fue notificado al contratista?:</b></h5>
@@ -269,7 +269,7 @@
                             <?php endif; ?>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

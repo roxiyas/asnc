@@ -134,7 +134,7 @@ function llenar_parroquia(){
 function listar_ciudades(){
     var id_estado_n = $('#id_estado_n').val();
     var base_url = window.location.origin+'/asnc/index.php/evaluacion_desempenio/listar_ciudades';
-    // var base_url = '/index.php/evaluacion_desempenio/listar_parroquia';
+    // var base_url = '/index.php/evaluacion_desempenio/listar_ciudades';
 
     $.ajax({
         url: base_url,
@@ -331,51 +331,46 @@ function validar_fecha(){
 }
 
 function registrar(){
-    var exitte  = $("#exitte").val();
+    var exitte            = $("#exitte").val();
 
-    var rif_cont_n  = $("#rif_cont_n").val();
-    var nombre_n  = $("#nombre_n").val();
-    var id_estado_n  = $("#id_estado_n").val();
-    var id_municipio_n  = $("#id_municipio_n").val();
-    var id_parroquia_n  = $("#id_parroquia_n").val();
-    var ciudad_n  = $("#ciudad_n").val();
+    var rif_cont_n        = $("#rif_cont_n").val();
+    var nombre_n          = $("#nombre_n").val();
+    var id_estado_n       = $("#id_estado_n").val();
+    var id_municipio_n    = $("#id_municipio_n").val();
+    var id_parroquia_n    = $("#id_parroquia_n").val();
+    var ciudad_n          = $("#ciudad_n").val();
 
-    var id_pais_n  = $("#id_pais_n").val();
-    var ced_rep_leg_n  = $("#ced_rep_leg_n").val();
-    var nom_rep_leg_n  = $("#nom_rep_leg_n").val();
-    var ape_rep_leg_n  = $("#ape_rep_leg_n").val();
-    var edo_civil_n  = $("#edo_civil_n").val();
-    var cargo_rep_leg_n  = $("#cargo_rep_leg_n").val();
-    var operadora_n  = $("#operadora_n").val();
-    var numero_n  = $("#numero_n").val();
+    var id_pais_n         = $("#id_pais_n").val();
+    var ced_rep_leg_n     = $("#ced_rep_leg_n").val();
+    var nom_rep_leg_n     = $("#nom_rep_leg_n").val();
+    var ape_rep_leg_n     = $("#ape_rep_leg_n").val();
+    var edo_civil_n       = $("#edo_civil_n").val();
+    var cargo_rep_leg_n   = $("#cargo_rep_leg_n").val();
+    var operadora_n       = $("#operadora_n").val();
+    var numero_n          = $("#numero_n").val();
 
-    var id_modalidad  = $("#id_modalidad").val();
+    var id_modalidad      = $("#id_modalidad").val();
     var id_sub_modalidad  = $("#id_sub_modalidad").val();
-    var fecha_desde  = $("#fecha_desde").val();
-    var fecha_hasta  = $("#fecha_hasta").val();
-    var nro_procedimiento  = $("#nro_procedimiento").val();
-    var nro_cont_oc_os  = $("#nro_cont_oc_os").val();
-    var id_estado_dc  = $("#id_estado_dc").val();
-    var cssCheckbox1  = $("#cssCheckbox1").val();
-    var cssCheckbox2  = $("#cssCheckbox2").val();
-    var cssCheckbox3  = $("#cssCheckbox3").val();
-    var desc_contratacion  = $("#desc_contratacion").val();
-    var monto  = $("#monto").val();
-    var cssCheckbox4  = $("#cssCheckbox4").val();
-    var cssCheckbox5  = $("#cssCheckbox5").val();
-    var cssCheckbox6  = $("#cssCheckbox6").val();
-    var cssCheckbox7  = $("#cssCheckbox7").val();
-    var total_claf  = $("#total_claf").val();
-    var calificacion  = $("#calificacion").val();
-    var datepicker = $("#datepicker-default").val();
-    var medio  = $("#medio").val();
-    var nro_oc_os  = $("#nro_oc_os").val();
-    var fileImagen  = $("#fileImagen").val();
+    var fecha_desde       = $("#fecha_desde").val();
+    var fecha_hasta       = $("#fecha_hasta").val();
+    var nro_procedimiento = $("#nro_procedimiento").val();
+    var nro_cont_oc_os    = $("#nro_cont_oc_os").val();
+    var id_estado_dc      = $("#id_estado_dc").val();
+    var cssCheckbox1      = $("#cssCheckbox1").val();
+    var cssCheckbox2      = $("#cssCheckbox2").val();
+    var cssCheckbox3      = $("#cssCheckbox3").val();
+    var desc_contratacion = $("#desc_contratacion").val();
+    var monto             = $("#monto").val();
+    var cssRadio1         = $("#cssRadio1").val();
+    var cssRadio2         = $("#cssRadio2").val();
+    var cssRadio3         = $("#cssRadio3").val();
+    var cssRadio4         = $("#cssRadio4").val();
+    var total_claf        = $("#total_claf").val();
+    var calificacion      = $("#calificacion").val();
 
     if (exitte == '0'){
         if (rif_cont_n == '') {
             document.getElementById("rif_cont_n").focus();
-
         }else if (nombre_n == '') {
             document.getElementById("nombre_n").focus();
         }
@@ -448,18 +443,6 @@ function registrar(){
         else if (calificacion == '') {
             document.getElementById("calificacion").focus();
         }
-        else if (datepicker == '') {
-            document.getElementById("datepicker-default").focus();
-        }
-        else if (medio == '0') {
-            document.getElementById("medio").focus();
-        }
-        else if (nro_oc_os == '') {
-            document.getElementById("nro_oc_os").focus();
-        }
-        else if (fileImagen == '') {
-            document.getElementById("fileImagen").focus();
-        }
 
         else{
             var calificacion = $('#calificacion').val();
@@ -496,7 +479,9 @@ function registrar(){
                                             confirmButtonText: 'Ok'
                                         }).then((result) => {
                                             if (result.value == true) {
-                                                location.reload();
+                                                $('#registrar_eval').attr("disabled", true)
+                                                $('#exampleModal').modal('show');
+                                                $('#rif_cont_ref').val(response);
                                             }
                                         });
                                     }
@@ -539,7 +524,9 @@ function registrar(){
                                         confirmButtonText: 'Ok'
                                     }).then((result) => {
                                         if (result.value == true) {
-                                            location.reload();
+                                            $('#registrar_eval').attr("disabled", true)
+                                            $('#exampleModal').modal('show');
+                                            $('#rif_cont_ref').val(response);
                                         }
                                     });
                                 }
@@ -584,22 +571,9 @@ function registrar(){
         else if (calificacion == '') {
             document.getElementById("calificacion").focus();
         }
-        else if (datepicker == '') {
-            document.getElementById("datepicker-default").focus();
-        }
-        else if (medio == '0') {
-            document.getElementById("medio").focus();
-        }
-        else if (nro_oc_os == '') {
-            document.getElementById("nro_oc_os").focus();
-        }
-        else if (fileImagen == '') {
-            document.getElementById("fileImagen").focus();
-        }
-
         else{
             var calificacion = $('#calificacion').val();
-            if (calificacion == 'REGULAR' || calificacion == 'DEFICIENTE' || calificacion == 'SIN CALIFICACIÓN'){
+            if (calificacion == 'DEFICIENTE' || calificacion == 'SIN CALIFICACIÓN'){
                 event.preventDefault();
                 swal.fire({
                     title: 'ALERTA',
@@ -632,7 +606,9 @@ function registrar(){
                                             confirmButtonText: 'Ok'
                                         }).then((result) => {
                                             if (result.value == true) {
-                                                location.reload();
+                                                $('#registrar_eval').attr("disabled", true)
+                                                $('#exampleModal').modal('show');
+                                                $('#rif_cont_ref').val(response);
                                             }
                                         });
                                     }
@@ -666,7 +642,8 @@ function registrar(){
                             contentType: false,
                             processData: false,
                             success: function(response){
-                                if(response == 'true') {
+                                console.log(response);
+                                if(response != '') {
                                     swal.fire({
                                         title: 'Registro Exitoso',
                                         type: 'success',
@@ -674,8 +651,10 @@ function registrar(){
                                         confirmButtonColor: '#3085d6',
                                         confirmButtonText: 'Ok'
                                     }).then((result) => {
-                                        if (result.value == true) {
-                                            location.reload();
+                                        if (result.value == true){
+                                            //$('#registrar_eval').attr("disabled", true)
+                                            $('#exampleModal').modal('show');
+                                            $('#id').val(response);
                                         }
                                     });
                                 }
@@ -685,5 +664,83 @@ function registrar(){
                 });
             }
         }
+    }
+}
+// Registrar Notificacion
+function mostrar_medio(){
+    var medio = $('#medio').val();
+    if (medio == '1' || medio == '4') {
+        $("#adjunto").show();
+        $("#guardar").show();
+        $("#resp_medi").hide();
+        $("#correo").hide();
+        $("#guardar_enviar").hide();
+    }else if (medio == '2') {
+        $("#correo").hide();
+        $("#guardar").show();
+        $("#resp_medi").show();
+        $("#adjunto").hide();
+        $("#guardar_enviar").hide();
+    }else if (medio == '3') {
+        $("#correo").show();
+        $("#guardar_enviar").show();
+        $("#resp_medi").hide();
+        $("#adjunto").hide();
+        $("#guardar").hide();
+    }else {
+        $("#correo").hide();
+        $("#resp_medi").hide();
+        $("#adjunto").hide();
+        $("#guardar_enviar").hide();
+        $("#guardar").show();
+    }
+}
+
+function guardar_not(){
+    var medio        = $("#medio").val();
+    if (medio == '0') {
+        document.getElementById("medio").focus();
+    }else {
+        event.preventDefault();
+        swal.fire({
+            title: '¿Registrar?',
+            text: '¿Esta seguro de Registrar la Nitificación de Evaluación de Desempeño?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: '¡Si, guardar!'
+        }).then((result) => {
+            if (result.value == true) {
+
+                event.preventDefault();
+                var datos = new FormData($("#resgistrar_not")[0]);
+                var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar_not_m';
+                // var base_url = '/index.php/evaluacion_desempenio/registrar_not_m';
+                $.ajax({
+                    url:base_url,
+                    method: 'POST',
+                    data: datos,
+                    contentType: false,
+                    processData: false,
+                    success: function(response){
+                        if(response != '') {
+                            swal.fire({
+                                title: 'Registro Exitoso',
+                                type: 'success',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Ok'
+                            }).then((result) => {
+                                // if (result.value == true){
+                                //     location.reload();
+                                // }
+                            });
+                        }
+                    }
+                })
+            }
+        });
     }
 }
