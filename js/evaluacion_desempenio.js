@@ -260,16 +260,25 @@ function val_not(){
             swal("Deleted!", "Your imaginary file has been deleted.", "success");
         });
         $('#registrar_eval').attr("disabled", true);
+        $('#datepicker-default').attr("disabled", true);
+        $('#medio').attr("disabled", true);
+        $('#nro_oc_os').attr("disabled", true);
+        $('#fileImagen').attr("disabled", true);
+
     }else{
         $('#registrar_eval').attr("disabled", false);
+        $('#datepicker-default').attr("disabled", false);
+        $('#medio').attr("disabled", false);
+        $('#nro_oc_os').attr("disabled", false);
+        $('#fileImagen').attr("disabled", false);
     }
 }
 
 function validar_fecha(){
-    var fecha_desde = $('#fecha_desde').val();
+    var fecha_hasta = $('#fecha_hasta').val();
     var fecha_ntf = $('#datepicker-default').val();
 
-    var separar = fecha_desde.split("/");
+    var separar = fecha_hasta.split("/");
     var dia_d = separar['0'];
     var mes_d = separar['1'];
     var anio_d = separar['2'];
@@ -283,7 +292,7 @@ function validar_fecha(){
     if (dia_ntf <= dia_d || mes_ntf < mes_d || anio_ntf < anio_d) {
         swal({
             title: "¡ATENCION!",
-            text: "La fecha de notificación debe ser mayor a la del Inicio de Contrato.",
+            text: "La fecha de notificación debe ser mayor a la de Finalización de Contrato.",
             type: "warning",
             showCancelButton: false,
             confirmButtonColor: "#00897b",
@@ -293,11 +302,14 @@ function validar_fecha(){
             swal("Deleted!", "Your imaginary file has been deleted.", "success");
         });
         $('#registrar_eval').attr("disabled", true);
+        $('#medio').attr("disabled", true);
+        $('#nro_oc_os').attr("disabled", true);
+        $('#fileImagen').attr("disabled", true);
     }
     if (dia_ntf <= dia_d && mes_ntf == mes_d && anio_ntf == anio_d) {
         swal({
             title: "¡ATENCION!",
-            text: "La fecha de notificación debe ser mayor a la del Inicio de Contrato.",
+            text: "La fecha de notificación debe ser mayor a la de Finalización de Contrato.",
             type: "warning",
             showCancelButton: false,
             confirmButtonColor: "#00897b",
@@ -307,8 +319,14 @@ function validar_fecha(){
             swal("Deleted!", "Your imaginary file has been deleted.", "success");
         });
         $('#registrar_eval').attr("disabled", true);
+        $('#medio').attr("disabled", true);
+        $('#nro_oc_os').attr("disabled", true);
+        $('#fileImagen').attr("disabled", true);
     }else{
         $('#registrar_eval').attr("disabled", false);
+        $('#medio').attr("disabled", false);
+        $('#nro_oc_os').attr("disabled", false);
+        $('#fileImagen').attr("disabled", false);
     }
 }
 
@@ -445,7 +463,7 @@ function registrar(){
 
         else{
             var calificacion = $('#calificacion').val();
-            if (calificacion == 'REGULAR' || calificacion == 'DEFICIENTE' || calificacion == 'SIN CALIFICACIÓN'){
+            if (calificacion == 'DEFICIENTE' || calificacion == 'SIN CALIFICACIÓN'){
                 event.preventDefault();
                 swal.fire({
                     title: 'ALERTA',

@@ -162,10 +162,10 @@ class Evaluacion_desempenio extends CI_Controller {
 						 'obras' 				=> $this->input->POST('cssCheckbox3'),
 						 'descr_contrato' 		=> $this->input->POST('desc_contratacion'),
 						 'monto' 				=> $this->input->POST('monto'),
-						 'dolar' 				=> $this->input->POST('cssCheckbox1'),
-						 'euro' 				=> $this->input->POST('cssCheckbox2'),
-						 'petros' 				=> $this->input->POST('cssCheckbox3'),
-						 'bolivares' 			=> $this->input->POST('cssCheckbox3'),
+						 'dolar' 				=> $this->input->POST('cssCheckbox4'),
+						 'euro' 				=> $this->input->POST('cssCheckbox5'),
+						 'petros' 				=> $this->input->POST('cssCheckbox6'),
+						 'bolivares' 			=> $this->input->POST('cssCheckbox7'),
 						 'calidad' 				=> $this->input->POST('calidad'),
 						 'responsabilidad' 		=> $this->input->POST('responsabilidad'),
 						 'conocimiento' 		=> $this->input->POST('conocimiento'),
@@ -200,6 +200,11 @@ class Evaluacion_desempenio extends CI_Controller {
 	public function ver_evaluacion(){
 		$id_evaluacion = $this->input->get('id');
 		$data['eval_ind'] 	= $this->Evaluacion_desempenio_model->consulta_eval_ind($id_evaluacion);
+
+		$img = $data['eval_ind']['fileimagen'];
+		$separar  = explode(".", $img);
+		$data['tipo_img'] = $separar['1'];
+
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
 		$this->load->view('evaluacion_desempenio/pdf_eval.php', $data);

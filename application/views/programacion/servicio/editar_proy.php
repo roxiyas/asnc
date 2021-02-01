@@ -113,10 +113,10 @@
                             </div>
 
                             <div class="form-group col-12">
-                                <label>CCNU <i title="Si requiere cambiar el CCNU, debe seleccionarlo en este campo" class="fas fa-question-circle"></i></label>
+                                <label>CCNU <i style="color: red;" title="Para llenar el campo de CCNU debe ingresar una palabra clave, esto le ayudara con la busqueda"  class="fas fa-question-circle"></i></label>
                                 <div class="row">
                                     <div class="col-4">
-                                        <input title="Debe ingresar una palabra para realizar la busqueda" type="text" class="form-control" name="ccnu_b" id="ccnu_b" onblur="buscar_ccnnu();">
+                                        <input title="Debe ingresar una palabra para realizar la busqueda" type="text" class="form-control" onKeyUp="this.value=this.value.toUpperCase();" name="ccnu_b" id="ccnu_b" onblur="buscar_ccnnu();">
                                     </div>
                                     <div class="col-8">
                                         <select title="Depende de la palabra ingresada en el campo anterior, se listaran las opciones." class="form-control" name="id_ccnu" id="id_ccnu">
@@ -306,10 +306,10 @@
                         <input type="date" class="form-control" name="fecha_hasta_e" id="fecha_hasta_e" onchange="verif_h_mod();" onblur="habilitar_trim_mod();">
                     </div>
                     <div class="form-group col-12">
-                        <label>Cambiar CCNU <i title="Si requiere cambiar el CCNU, debe seleccionarlo en el siguiente campo" class="fas fa-question-circle"></i></label>
+                        <label>Cambiar CCNU <i style="color: red;" title="Para llenar el campo de CCNU debe ingresar una palabra clave, esto le ayudara con la busqueda"  class="fas fa-question-circle"></i></label>
                         <div class="row">
                             <div class="col-4">
-                                <input title="Debe ingresar una palabra para realizar la busqueda" type="text" class="form-control" name="ccnu_b_m" id="ccnu_b_m" onblur="buscar_ccnnu_m();">
+                                <input title="Debe ingresar una palabra para realizar la busqueda" type="text" class="form-control" onKeyUp="this.value=this.value.toUpperCase();" name="ccnu_b_m" id="ccnu_b_m" onblur="buscar_ccnnu_m();">
                             </div>
                             <div class="col-8">
                                 <select title="Depende de la palabra ingresada en el campo anterior, se listaran las opciones." class="form-control" name="sel_ccnu_b_m" id="sel_ccnu_b_m">
@@ -418,16 +418,13 @@
     </div>
 </div>
 
-<script src="<?=base_url()?>/js/llenar_editar_proy.js"></script>
-<script src="<?=base_url()?>/js/calculos_edit.js"></script>
-
-<script src="<?=base_url()?>/js/calculos2.js"></script>
-<!-- <script src="<?=base_url()?>/js/calculos3.js"></script> -->
+<script src="<?=base_url()?>/js/servicio/llenar_editar_proy.js"></script>
+<script src="<?=base_url()?>/js/servicio/calculos_edit.js"></script>
 
 <script src="<?=base_url()?>/js/dependientes.js"></script>
 
-<script src="<?=base_url()?>/js/agregar_proyecto_edit.js"></script>
-<script src="<?=base_url()?>/js/agregar_proyecto_ff.js"></script>
+<script src="<?=base_url()?>/js/servicio/agregar_proyecto_edit.js"></script>
+<script src="<?=base_url()?>/js/servicio/agregar_proyecto_ff.js"></script>
 <script type="text/javascript">
 function valideKey(evt){
     var code = (evt.which) ? evt.which : evt.keyCode;

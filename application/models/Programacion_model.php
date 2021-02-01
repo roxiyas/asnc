@@ -98,7 +98,8 @@
             return $result = $query->result_array();
         }
 
-        public function save_programacion($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento){
+        // REGISTRAR SERVICIO
+        public function save_servicio($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento){
 
             if ($acc_cargar == '1') {
 
@@ -175,6 +176,111 @@
                                 'iv'                         => $p_items['iv'][$i],
                                 'cant_total_distribuir'      => 0,
                                 'costo_unitario'             => 0,
+                                'precio_total'               => $p_items['precio_total'][$i],
+                                'alicuota_iva'               => $p_items['id_alicuota_iva'][$i],
+                                'iva_estimado'               => $p_items['iva_estimado'][$i],
+                                'monto_estimado'             => $p_items['monto_estimado'][$i],
+                            );
+                            $this->db->insert('programacion.p_items',$data1);
+                        }
+
+                        $cant_pff = $p_ffinanciamiento['id_par_presupuestaria'];
+                        $count_pff = count($cant_pff);
+
+                        for ($i=0; $i < $count_pff; $i++) {
+
+                            $data2 = array(
+                                'id_enlace'                  => $id,
+                                'id_p_acc'                   => 1,
+                                'id_estado'                  => $p_ffinanciamiento['id_estado'][$i],
+                                'id_partidad_presupuestaria' => $p_ffinanciamiento['id_par_presupuestaria'][$i],
+                                'id_fuente_financiamiento'   => $p_ffinanciamiento['id_fuente_financiamiento'][$i],
+                                'porcentaje'                 => $p_ffinanciamiento['porcentaje'][$i],
+                            );
+                            $this->db->insert('programacion.p_ffinanciamiento',$data2);
+                        }
+                }
+                return true;
+            }
+        }
+
+        //REGSITRAR BIENES// BIENES
+        public function save_bienes($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento){
+            if ($acc_cargar == '1') {
+                $quers =$this->db->insert('programacion.p_proyecto',$p_proyecto);
+
+                if ($quers) {
+                    $id = $this->db->insert_id();
+
+                        $cant_proy = $p_items['id_ccnu'];
+                        $count_prog = count($cant_proy);
+                        for ($i=0; $i < $count_prog; $i++) {
+                            $data1 = array(
+                                'id_enlace'                  => $id,
+                                'id_p_acc'                   => 0,
+                                'id_partidad_presupuestaria' => $p_items['id_par_presupuestaria'][$i],
+                                'id_ccnu'                    => $p_items['id_ccnu'][$i],
+                                'fecha_desde'                => $p_items['fecha_desde'],
+                                'fecha_hasta'                => $p_items['fecha_hasta'],
+                                'especificacion'             => $p_items['especificacion'][$i],
+                                'id_unidad_medida'           => $p_items['id_unidad_medida'][$i],
+                                'cantidad'                   => $p_items['cantidad'][$i],
+                                'i'                          => $p_items['i'][$i],
+                                'ii'                         => $p_items['ii'][$i],
+                                'iii'                        => $p_items['iii'][$i],
+                                'iv'                         => $p_items['iv'][$i],
+                                'cant_total_distribuir'      => $p_items['cant_total_distribuir'][$i],
+                                'costo_unitario'             => $p_items['costo_unitario'][$i],
+                                'precio_total'               => $p_items['precio_total'][$i],
+                                'alicuota_iva'               => $p_items['id_alicuota_iva'][$i],
+                                'iva_estimado'               => $p_items['iva_estimado'][$i],
+                                'monto_estimado'             => $p_items['monto_estimado'][$i],
+                            );
+                            $this->db->insert('programacion.p_items',$data1);
+                        }
+
+                        $cant_pff = $p_ffinanciamiento['id_par_presupuestaria'];
+                        $count_pff = count($cant_pff);
+
+                        for ($i=0; $i < $count_pff; $i++) {
+
+                            $data2 = array(
+                                'id_enlace'                  => $id,
+                                'id_p_acc'                   => 0,
+                                'id_estado'                  => $p_ffinanciamiento['id_estado'][$i],
+                                'id_partidad_presupuestaria' => $p_ffinanciamiento['id_par_presupuestaria'][$i],
+                                'id_fuente_financiamiento'   => $p_ffinanciamiento['id_fuente_financiamiento'][$i],
+                                'porcentaje'                 => $p_ffinanciamiento['porcentaje'][$i],
+                            );
+                            $this->db->insert('programacion.p_ffinanciamiento',$data2);
+                        }
+                }
+                return true;
+            }elseif ($acc_cargar == '2') {
+                $quers =$this->db->insert('programacion.p_acc_centralizada',$p_acc_centralizada);
+
+                if ($quers) {
+                    $id = $this->db->insert_id();
+
+                        $cant_proy = $p_items['id_ccnu'];
+                        $count_prog = count($cant_proy);
+                        for ($i=0; $i < $count_prog; $i++) {
+                            $data1 = array(
+                                'id_enlace'                  => $id,
+                                'id_p_acc'                   => 1,
+                                'id_partidad_presupuestaria' => $p_items['id_par_presupuestaria'][$i],
+                                'id_ccnu'                    => $p_items['id_ccnu'][$i],
+                                'fecha_desde'                => $p_items['fecha_desde'],
+                                'fecha_hasta'                => $p_items['fecha_hasta'],
+                                'especificacion'             => $p_items['especificacion'][$i],
+                                'id_unidad_medida'           => $p_items['id_unidad_medida'][$i],
+                                'cantidad'                   => $p_items['cantidad'][$i],
+                                'i'                          => $p_items['i'][$i],
+                                'ii'                         => $p_items['ii'][$i],
+                                'iii'                        => $p_items['iii'][$i],
+                                'iv'                         => $p_items['iv'][$i],
+                                'cant_total_distribuir'      => $p_items['cant_total_distribuir'][$i],
+                                'costo_unitario'             => $p_items['costo_unitario'][$i],
                                 'precio_total'               => $p_items['precio_total'][$i],
                                 'alicuota_iva'               => $p_items['id_alicuota_iva'][$i],
                                 'iva_estimado'               => $p_items['iva_estimado'][$i],
@@ -614,111 +720,6 @@
                 $query = $this->db->delete('programacion.p_ffinanciamiento');
             }
            return true;
-        }
-
-        // BIENES
-        public function save_programacion_acc($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento){
-            if ($acc_cargar == '1') {
-                $quers =$this->db->insert('programacion.p_proyecto',$p_proyecto);
-
-                if ($quers) {
-                    $id = $this->db->insert_id();
-
-                        $cant_proy = $p_items['id_ccnu'];
-                        $count_prog = count($cant_proy);
-                        for ($i=0; $i < $count_prog; $i++) {
-                            $data1 = array(
-                                'id_enlace'                  => $id,
-                                'id_p_acc'                   => 0,
-                                'id_partidad_presupuestaria' => $p_items['id_par_presupuestaria'][$i],
-                                'id_ccnu'                    => $p_items['id_ccnu'][$i],
-                                'fecha_desde'                => $p_items['fecha_desde'],
-                                'fecha_hasta'                => $p_items['fecha_hasta'],
-                                'especificacion'             => $p_items['especificacion'][$i],
-                                'id_unidad_medida'           => $p_items['id_unidad_medida'][$i],
-                                'cantidad'                   => $p_items['cantidad'][$i],
-                                'i'                          => $p_items['i'][$i],
-                                'ii'                         => $p_items['ii'][$i],
-                                'iii'                        => $p_items['iii'][$i],
-                                'iv'                         => $p_items['iv'][$i],
-                                'cant_total_distribuir'      => $p_items['cant_total_distribuir'][$i],
-                                'costo_unitario'             => $p_items['costo_unitario'][$i],
-                                'precio_total'               => $p_items['precio_total'][$i],
-                                'alicuota_iva'               => $p_items['id_alicuota_iva'][$i],
-                                'iva_estimado'               => $p_items['iva_estimado'][$i],
-                                'monto_estimado'             => $p_items['monto_estimado'][$i],
-                            );
-                            $this->db->insert('programacion.p_items',$data1);
-                        }
-
-                        $cant_pff = $p_ffinanciamiento['id_par_presupuestaria'];
-                        $count_pff = count($cant_pff);
-
-                        for ($i=0; $i < $count_pff; $i++) {
-
-                            $data2 = array(
-                                'id_enlace'                  => $id,
-                                'id_p_acc'                   => 0,
-                                'id_estado'                  => $p_ffinanciamiento['id_estado'][$i],
-                                'id_partidad_presupuestaria' => $p_ffinanciamiento['id_par_presupuestaria'][$i],
-                                'id_fuente_financiamiento'   => $p_ffinanciamiento['id_fuente_financiamiento'][$i],
-                                'porcentaje'                 => $p_ffinanciamiento['porcentaje'][$i],
-                            );
-                            $this->db->insert('programacion.p_ffinanciamiento',$data2);
-                        }
-                }
-                return true;
-            }elseif ($acc_cargar == '2') {
-                $quers =$this->db->insert('programacion.p_acc_centralizada',$p_acc_centralizada);
-
-                if ($quers) {
-                    $id = $this->db->insert_id();
-
-                        $cant_proy = $p_items['id_ccnu'];
-                        $count_prog = count($cant_proy);
-                        for ($i=0; $i < $count_prog; $i++) {
-                            $data1 = array(
-                                'id_enlace'                  => $id,
-                                'id_p_acc'                   => 1,
-                                'id_partidad_presupuestaria' => $p_items['id_par_presupuestaria'][$i],
-                                'id_ccnu'                    => $p_items['id_ccnu'][$i],
-                                'fecha_desde'                => $p_items['fecha_desde'],
-                                'fecha_hasta'                => $p_items['fecha_hasta'],
-                                'especificacion'             => $p_items['especificacion'][$i],
-                                'id_unidad_medida'           => $p_items['id_unidad_medida'][$i],
-                                'cantidad'                   => $p_items['cantidad'][$i],
-                                'i'                          => $p_items['i'][$i],
-                                'ii'                         => $p_items['ii'][$i],
-                                'iii'                        => $p_items['iii'][$i],
-                                'iv'                         => $p_items['iv'][$i],
-                                'cant_total_distribuir'      => $p_items['cant_total_distribuir'][$i],
-                                'costo_unitario'             => $p_items['costo_unitario'][$i],
-                                'precio_total'               => $p_items['precio_total'][$i],
-                                'alicuota_iva'               => $p_items['id_alicuota_iva'][$i],
-                                'iva_estimado'               => $p_items['iva_estimado'][$i],
-                                'monto_estimado'             => $p_items['monto_estimado'][$i],
-                            );
-                            $this->db->insert('programacion.p_items',$data1);
-                        }
-
-                        $cant_pff = $p_ffinanciamiento['id_par_presupuestaria'];
-                        $count_pff = count($cant_pff);
-
-                        for ($i=0; $i < $count_pff; $i++) {
-
-                            $data2 = array(
-                                'id_enlace'                  => $id,
-                                'id_p_acc'                   => 1,
-                                'id_estado'                  => $p_ffinanciamiento['id_estado'][$i],
-                                'id_partidad_presupuestaria' => $p_ffinanciamiento['id_par_presupuestaria'][$i],
-                                'id_fuente_financiamiento'   => $p_ffinanciamiento['id_fuente_financiamiento'][$i],
-                                'porcentaje'                 => $p_ffinanciamiento['porcentaje'][$i],
-                            );
-                            $this->db->insert('programacion.p_ffinanciamiento',$data2);
-                        }
-                }
-                return true;
-            }
         }
 
         public function inf_1_acc($id_p_acc_centralizada){

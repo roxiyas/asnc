@@ -62,37 +62,37 @@ class Programacion extends CI_Controller {
         $this->load->view('templates/footer.php');
     }
 
-    // public function add(){
-    //     if(!$this->session->userdata('session'))redirect('login');
-    //
-    //     $data['unidad'] = $this->session->userdata('id_unidad');
-    //     $data['des_unidad'] = $this->session->userdata('unidad');
-    //     $data['rif'] = $this->session->userdata('rif');
-    //     $data['codigo_onapre'] = $this->session->userdata('codigo_onapre');
-    //
-    //     $data['id_programacion'] = $this->input->get('id');
-    //     $data['programacion_anio'] = $this->Programacion_model->consultar_prog_anio($data['id_programacion'], $data['unidad']);
-    //     $data['anio'] = $data['programacion_anio']['anio'];
-    //
-    //
-    //     //Proyecto
-    //     $data['part_pres'] = $this->Programacion_model->consulta_part_pres();
-    //     $data['fuente'] = $this->Programacion_model->consulta_fuente();
-    //     $data['act_com'] = $this->Programacion_model->consulta_act_com();
-    //     $data['ccnu'] = $this->Programacion_model->consulta_cnnu();
-    //     $data['estados'] 	= $this->Configuracion_model->consulta_estados();
-    //     $data['unid'] 	= $this->Programacion_model->consulta_unid();
-    //     $data['iva'] 	= $this->Programacion_model->consulta_iva();
-    //
-    //     //ACCION CENTRALIZADA
-    //     $data['act_com2'] = $this->Programacion_model->consulta_act_com2();
-    //     $data['acc_cent'] = $this->Programacion_model->accion_centralizada();
-    //
-    //     $this->load->view('templates/header.php');
-    //     $this->load->view('templates/navigator.php');
-    //     $this->load->view('programacion/add.php', $data);
-    //     $this->load->view('templates/footer.php');
-    // }
+    public function add(){
+        if(!$this->session->userdata('session'))redirect('login');
+
+        $data['unidad'] = $this->session->userdata('id_unidad');
+        $data['des_unidad'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+        $data['codigo_onapre'] = $this->session->userdata('codigo_onapre');
+
+        $data['id_programacion'] = $this->input->get('id');
+        $data['programacion_anio'] = $this->Programacion_model->consultar_prog_anio($data['id_programacion'], $data['unidad']);
+        $data['anio'] = $data['programacion_anio']['anio'];
+
+
+        //Proyecto
+        $data['part_pres'] = $this->Programacion_model->consulta_part_pres();
+        $data['fuente'] = $this->Programacion_model->consulta_fuente();
+        $data['act_com'] = $this->Programacion_model->consulta_act_com();
+        $data['ccnu'] = $this->Programacion_model->consulta_cnnu();
+        $data['estados'] 	= $this->Configuracion_model->consulta_estados();
+        $data['unid'] 	= $this->Programacion_model->consulta_unid();
+        $data['iva'] 	= $this->Programacion_model->consulta_iva();
+
+        //ACCION CENTRALIZADA
+        $data['act_com2'] = $this->Programacion_model->consulta_act_com2();
+        $data['acc_cent'] = $this->Programacion_model->accion_centralizada();
+
+        $this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+        $this->load->view('programacion/add.php', $data);
+        $this->load->view('templates/footer.php');
+    }
 
     //funcion para cargar la información completa de la programación (En desarrollo)
     public function pdf_compl(){
@@ -217,7 +217,7 @@ class Programacion extends CI_Controller {
             'porcentaje' 	            => $this->input->post('porcentaje'),
         );
 
-        $data = $this->Programacion_model->save_programacion($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento);
+        $data = $this->Programacion_model->save_servicio($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento);
         echo json_encode($data);
     }
 
@@ -254,6 +254,59 @@ class Programacion extends CI_Controller {
         $this->load->view('templates/footer.php');
     }
 
+    public function registrar_bien(){
+        if(!$this->session->userdata('session'))redirect('login');
+
+        $acc_cargar = $this->input->POST('acc_cargar');
+
+        $p_proyecto = array(
+            'id_programacion'        => $this->input->POST('id_programacion'),
+            'nombre_proyecto'        => $this->input->POST('nombre_proyecto'),
+            'id_obj_comercial'       => 1,
+            'id_usuario' 		     => $this->session->userdata('id_user'),
+            'estatus'                => 1
+        );
+
+        $p_acc_centralizada = array(
+            'id_programacion'        => $this->input->POST('id_programacion'),
+            'id_accion_centralizada' => $this->input->POST('id_accion_centralizada'),
+            'id_obj_comercial'       => 1,
+            'id_usuario' 		     => $this->session->userdata('id_user'),
+            'estatus'                => 1
+       );
+
+        $p_items = array(
+            'id_par_presupuestaria'  => $this->input->post('par_presupuestaria'),
+            'id_ccnu' 		         => $this->input->post('id_ccnu'),
+            'fecha_desde'   	     => date('Y-m-d'),
+            'fecha_hasta'   	     => date('Y-m-d'),
+            'especificacion' 		 => $this->input->post('especificacion'),
+            'id_unidad_medida' 		 => $this->input->post('id_unidad_medida'),
+            'cantidad'               => $this->input->post('cantidad'),
+            'i' 		             => $this->input->post('I'),
+            'ii' 		             => $this->input->post('II'),
+            'iii' 		             => $this->input->post('III'),
+            'iv' 		             => $this->input->post('IV'),
+            'cant_total_distribuir'  => $this->input->post('cant_total_distribuir'),
+            'costo_unitario' 	     => $this->input->post('costo_unitario'),
+            'precio_total' 		     => $this->input->post('precio_total'),
+            'id_alicuota_iva' 		 => $this->input->post('id_alicuota_iva'),
+            'iva_estimado' 		     => $this->input->post('iva_estimado'),
+            'monto_estimado' 		 => $this->input->post('monto_estimado'),
+        );
+        // print_r();die;
+
+        $p_ffinanciamiento = array(
+            'id_estado'   		        => $this->input->post('id_estado'),
+            'id_par_presupuestaria' 	=> $this->input->post('par_presupuestaria_ff'),
+            'id_fuente_financiamiento'  => $this->input->post('fuente_financiamiento'),
+            'porcentaje' 	            => $this->input->post('porcentaje'),
+        );
+
+        $data = $this->Programacion_model->save_bienes($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento);
+        echo json_encode($data);
+    }
+
     public function ver_programacion_proy(){
         if(!$this->session->userdata('session'))
         redirect('login');
@@ -281,6 +334,7 @@ class Programacion extends CI_Controller {
         $this->load->view('templates/footer.php');
     }
 
+    //Para editar desde la ptabla de Proyectos Registrados--------------------------------------------------
     public function editar_proy(){
         if(!$this->session->userdata('session'))
         redirect('login');
@@ -299,8 +353,9 @@ class Programacion extends CI_Controller {
         $data['programacion_anio'] = $this->Programacion_model->consultar_prog_anio($data['id_programacion'], $data['unidad']);
         $data['anio'] = $data['programacion_anio']['anio'];
 
-        if ($id_obj_comercial == '2' || $id_obj_comercial == '3') {
-
+        //Se pregunta y depende de la actividad comercial muestra la vista correspondiente------------------------
+        if ($id_obj_comercial == '2') {
+            //SERVICIO
             $data['inf_1'] = $this->Programacion_model->inf_1($data['id_p_proyecto']);
 
             //Proyecto
@@ -318,11 +373,11 @@ class Programacion extends CI_Controller {
 
             $this->load->view('templates/header.php');
             $this->load->view('templates/navigator.php');
-            $this->load->view('programacion/editar_proy.php', $data);
+            $this->load->view('programacion/servicio/editar_proy.php', $data);
             $this->load->view('templates/footer.php');
 
         }elseif ($id_obj_comercial == '1') {
-
+            //BIEN
             $data['inf_1'] = $this->Programacion_model->inf_1($data['id_p_proyecto']);
 
             //Proyecto
@@ -340,7 +395,7 @@ class Programacion extends CI_Controller {
 
             $this->load->view('templates/header.php');
             $this->load->view('templates/navigator.php');
-            $this->load->view('programacion/editar_proy_b.php', $data);
+            $this->load->view('programacion/bien/editar_proy_b.php', $data);
             $this->load->view('templates/footer.php');
         }
     }
@@ -380,11 +435,11 @@ class Programacion extends CI_Controller {
         $id_p_proyecto    = $separar['1'];
 
         $p_proyecto = array(
-			       'nombre_proyecto'        => $this->input->POST('nombre_proyecto_a'),
+			'nombre_proyecto'        => $this->input->POST('nombre_proyecto_a'),
             'id_obj_comercial'       => $this->input->post('id_obj_comercial'),
             'id_usuario' 		     => $this->session->userdata('id_user'),
             'estatus'                => 1
-	         );
+	    );
 
         $p_items = array(
             'id_par_presupuestaria'  => $this->input->post('par_presupuestaria'),
@@ -525,66 +580,67 @@ class Programacion extends CI_Controller {
     }
 
     // BIEN
-    public function save_programacion_acc(){
-        if(!$this->session->userdata('session'))  redirect('login');
 
-        $acc_cargar = $this->input->POST('cambiar');
-
-        $p_proyecto = array(
-            'id_programacion'        => $this->input->POST('id_programacion_acc'),
-			'nombre_proyecto'        => $this->input->POST('nombre_proyecto_acc'),
-            'id_obj_comercial'       => $this->input->post('id_obj_comercial_acc'),
-            'id_usuario' 		     => $this->session->userdata('id_user'),
-            'estatus'                => 1
-	         );
-
-        $p_acc_centralizada = array(
-            'id_programacion'        => $this->input->POST('id_programacion_acc'),
-            'id_accion_centralizada' => $this->input->POST('id_accion_centralizada_acc'),
-            'id_obj_comercial'       => $this->input->post('id_obj_comercial_acc'),
-            'id_usuario' 		     => $this->session->userdata('id_user'),
-            'estatus'                => 1
-  	   );
-
-        $p_items = array(
-            'id_par_presupuestaria'  => $this->input->post('par_presupuestaria_acc'),
-			         'id_ccnu' 		         => $this->input->post('id_ccnu_acc'),
-            'fecha_desde'   	     => date('Y-m-d'),
-            'fecha_hasta'   	     => date('Y-m-d'),
-			         'especificacion' 		 => $this->input->post('especificacion_acc'),
-            'id_unidad_medida' 		 => $this->input->post('id_unidad_medida_acc'),
-            'cantidad'               => $this->input->post('cantidad_acc'),
-            'i' 		             => $this->input->post('I_acc'),
-            'ii' 		             => $this->input->post('II_acc'),
-            'iii' 		             => $this->input->post('III_acc'),
-            'iv' 		             => $this->input->post('IV_acc'),
-            'cant_total_distribuir'  => $this->input->post('cant_total_distribuir_acc'),
-            'costo_unitario' 	     => $this->input->post('costo_unitario_acc'),
-            'precio_total' 		     => $this->input->post('precio_total_acc'),
-            'id_alicuota_iva' 		 => $this->input->post('id_alicuota_iva_acc'),
-            'iva_estimado' 		     => $this->input->post('iva_estimado_acc'),
-            'monto_estimado' 		 => $this->input->post('monto_estimado_acc'),
-		        );
-
-            $p_ffinanciamiento = array(
-            'id_estado'   		        => $this->input->post('id_estado_acc'),
-            'id_par_presupuestaria' 	=> $this->input->post('par_presupuestaria_acc_ff'),
-            'id_fuente_financiamiento'  => $this->input->post('fuente_financiamiento_acc'),
-            'porcentaje' 	            => $this->input->post('porcentaje_acc'),
-          );
-
-
-        $data = $this->Programacion_model->save_programacion_acc($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento);
-
-        if ($data) {
-            $id_programacion  = $this->input->POST('id_programacion_acc');
-            $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
-    		redirect('Programacion/nueva_prog?id='.$id_programacion);
-        }else{
-		   $this->session->set_flashdata('sa-error', 'error');
-		   redirect ('Programacion/nueva_prog?id='.$id_programacion);
-	    }
-    }
+    // public function save_programacion_acc(){
+    //     if(!$this->session->userdata('session'))  redirect('login');
+    //
+    //     $acc_cargar = $this->input->POST('cambiar');
+    //
+    //     $p_proyecto = array(
+    //         'id_programacion'        => $this->input->POST('id_programacion_acc'),
+	// 		'nombre_proyecto'        => $this->input->POST('nombre_proyecto_acc'),
+    //         'id_obj_comercial'       => $this->input->post('id_obj_comercial_acc'),
+    //         'id_usuario' 		     => $this->session->userdata('id_user'),
+    //         'estatus'                => 1
+	//          );
+    //
+    //     $p_acc_centralizada = array(
+    //         'id_programacion'        => $this->input->POST('id_programacion_acc'),
+    //         'id_accion_centralizada' => $this->input->POST('id_accion_centralizada_acc'),
+    //         'id_obj_comercial'       => $this->input->post('id_obj_comercial_acc'),
+    //         'id_usuario' 		     => $this->session->userdata('id_user'),
+    //         'estatus'                => 1
+  	//    );
+    //
+    //     $p_items = array(
+    //         'id_par_presupuestaria'  => $this->input->post('par_presupuestaria_acc'),
+	// 		         'id_ccnu' 		         => $this->input->post('id_ccnu_acc'),
+    //         'fecha_desde'   	     => date('Y-m-d'),
+    //         'fecha_hasta'   	     => date('Y-m-d'),
+	// 		         'especificacion' 		 => $this->input->post('especificacion_acc'),
+    //         'id_unidad_medida' 		 => $this->input->post('id_unidad_medida_acc'),
+    //         'cantidad'               => $this->input->post('cantidad_acc'),
+    //         'i' 		             => $this->input->post('I_acc'),
+    //         'ii' 		             => $this->input->post('II_acc'),
+    //         'iii' 		             => $this->input->post('III_acc'),
+    //         'iv' 		             => $this->input->post('IV_acc'),
+    //         'cant_total_distribuir'  => $this->input->post('cant_total_distribuir_acc'),
+    //         'costo_unitario' 	     => $this->input->post('costo_unitario_acc'),
+    //         'precio_total' 		     => $this->input->post('precio_total_acc'),
+    //         'id_alicuota_iva' 		 => $this->input->post('id_alicuota_iva_acc'),
+    //         'iva_estimado' 		     => $this->input->post('iva_estimado_acc'),
+    //         'monto_estimado' 		 => $this->input->post('monto_estimado_acc'),
+	// 	        );
+    //
+    //         $p_ffinanciamiento = array(
+    //         'id_estado'   		        => $this->input->post('id_estado_acc'),
+    //         'id_par_presupuestaria' 	=> $this->input->post('par_presupuestaria_acc_ff'),
+    //         'id_fuente_financiamiento'  => $this->input->post('fuente_financiamiento_acc'),
+    //         'porcentaje' 	            => $this->input->post('porcentaje_acc'),
+    //       );
+    //
+    //
+    //     $data = $this->Programacion_model->save_programacion_acc($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento);
+    //
+    //     if ($data) {
+    //         $id_programacion  = $this->input->POST('id_programacion_acc');
+    //         $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
+    // 		redirect('Programacion/nueva_prog?id='.$id_programacion);
+    //     }else{
+	// 	   $this->session->set_flashdata('sa-error', 'error');
+	// 	   redirect ('Programacion/nueva_prog?id='.$id_programacion);
+	//     }
+    // }
 
     public function ver_programacion_acc(){
         if(!$this->session->userdata('session'))
@@ -614,6 +670,7 @@ class Programacion extends CI_Controller {
 
     }
 
+    //Para editar desde la ptabla de Acción Centralizada Registradas ---------------------------------------
     public function editar_acc(){
         if(!$this->session->userdata('session'))
         redirect('login');
@@ -632,11 +689,11 @@ class Programacion extends CI_Controller {
         $data['programacion_anio'] = $this->Programacion_model->consultar_prog_anio($data['id_programacion'], $data['unidad']);
         $data['anio'] = $data['programacion_anio']['anio'];
 
-        if ($id_obj_comercial == '2' || $id_obj_comercial == '3') {
-
+        //Se pregunta y depende de la actividad comercial muestra la vista correspondiente----------------------------------------
+        if ($id_obj_comercial == '2') {
+            //SERVICIO
             $data['inf_1_acc'] = $this->Programacion_model->inf_1_acc($data['id_p_acc_centralizada']);
 
-            //Proyecto
             $data['part_pres'] = $this->Programacion_model->consulta_part_pres();
             $data['fuente'] = $this->Programacion_model->consulta_fuente();
             $data['act_com'] = $this->Programacion_model->consulta_act_com();
@@ -645,17 +702,16 @@ class Programacion extends CI_Controller {
             $data['unid'] 	= $this->Programacion_model->consulta_unid();
             $data['iva'] 	= $this->Programacion_model->consulta_iva();
 
-            //ACCION CENTRALIZADA
             $data['act_com2'] = $this->Programacion_model->consulta_act_com2();
             $data['acc_cent'] = $this->Programacion_model->accion_centralizada();
 
             $this->load->view('templates/header.php');
             $this->load->view('templates/navigator.php');
-            $this->load->view('programacion/editar_acc.php', $data);
+            $this->load->view('programacion/servicio/editar_acc.php', $data);
             $this->load->view('templates/footer.php');
 
         }elseif ($id_obj_comercial == '1') {
-
+            //BIEN
             $data['part_pres'] = $this->Programacion_model->consulta_part_pres();
             $data['fuente'] = $this->Programacion_model->consulta_fuente();
             $data['act_com'] = $this->Programacion_model->consulta_act_com();
@@ -664,7 +720,6 @@ class Programacion extends CI_Controller {
             $data['unid'] 	= $this->Programacion_model->consulta_unid();
             $data['iva'] 	= $this->Programacion_model->consulta_iva();
 
-            //ACCION CENTRALIZADA
             $data['act_com2'] = $this->Programacion_model->consulta_act_com2();
             $data['acc_cent'] = $this->Programacion_model->accion_centralizada();
 
@@ -672,7 +727,7 @@ class Programacion extends CI_Controller {
 
             $this->load->view('templates/header.php');
             $this->load->view('templates/navigator.php');
-            $this->load->view('programacion/editar_acc_b.php', $data);
+            $this->load->view('programacion/bien/editar_acc_b.php', $data);
             $this->load->view('templates/footer.php');
         }
     }

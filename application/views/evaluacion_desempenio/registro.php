@@ -339,7 +339,7 @@
                         <div class="row">
                             <div class="form-group col-4">
                                 <label>¿Fue notificado al contratista?</label>
-                                <select class="form-control" name="notf_cont" id="notf_cont" onclick="val_not();">
+                                <select class="form-control" name="notf_cont" id="notf_cont" onchange="val_not();">
                                     <option value="0">Seleccione</option>
                                     <option value="1">Sí, fué notificado al contratista</option>
                                     <option value="2">No, no fué notificado al contratista</option>
