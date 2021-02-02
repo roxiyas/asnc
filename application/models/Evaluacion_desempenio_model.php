@@ -154,12 +154,14 @@
 
         public function consulta_eval($usuario){
             $this->db->select('ed.id,
-                            	 ed.rif_contrat,
-                            	 concat(cn.nombre,\'\',c.nombre ) as nombre,
-                                 ed.calificacion
-                               ');
+                               ed.rif_contrat,
+                               concat(cn.nombre,\'\',c.nombre ) as nombre,
+                               ed.calificacion,
+                               e.descripcion
+            ');
             $this->db->join('evaluacion_desempenio.contratistas c', 'c.rifced = ed.rif_contrat', 'left');
             $this->db->join('evaluacion_desempenio.contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
+            $this->db->join('public.estatus e', 'e.id = ed.id_estatus');
             $this->db->where('ed.id_usuario', $usuario);
             $query = $this->db->get('evaluacion_desempenio.evaluacion ed');
             return $response = $query->result_array();

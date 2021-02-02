@@ -172,7 +172,7 @@ class Evaluacion_desempenio extends CI_Controller {
 
         $this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
-		$this->load->view('evaluacion_desempenio/reporte.php', $data);
+		$this->load->view('evaluacion_desempenio/notificacion.php', $data);
         $this->load->view('templates/footer.php');
 	}
 

@@ -12,6 +12,7 @@
                                 <th>Rif contratista</th>
                                 <th>Denominación Razón Social</th>
                                 <th>Clasificación</th>
+                                <th>Estatus de Notificación</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -20,14 +21,12 @@
                             <tr class="odd gradeX" style="text-align:center">
                                 <td><?=$data['rif_contrat']?> </td>
                                 <td><?=$data['nombre']?> </td>
-                                <td><?=$data['calificacion']?> </td>
+                                <td><?=$data['calificacion']?></td>
+                                <td><?=$data['descripcion']?></td>
                                 <td class="center">
                                     <a title="Visualizar e Imprimir la Evaluación de Desempeño" href="<?php echo base_url();?>index.php/Evaluacion_desempenio/ver_evaluacion?id=<?php echo $data['id'];?>"
                                         class="button">
                                         <i class="fas fa-lg fa-fw fa-eye" style="color: green;"></i>
-                                    <a/>
-                                    <a class="button">
-                                        <i title="Indicar Metodo de Notificación" onclick="modal(<?php echo $data['id']?>);" data-toggle="modal" data-target="#exampleModal" class="fas fa-lg fa-fw fa-envelope" style="color: red;"></i>
                                     <a/>
                                 </td>
                             </tr>

@@ -1,0 +1,9 @@
+DROP TABLE public.estatus;
+
+CREATE TABLE public.estatus (
+	id serial NOT NULL,
+	descripcion varchar NOT NULL,
+	id_usuario int4 NOT NULL,
+	fecha_reg date NULL DEFAULT now(),
+	CONSTRAINT pk_estatus PRIMARY KEY (id)
+);
