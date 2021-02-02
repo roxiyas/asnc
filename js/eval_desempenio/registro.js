@@ -459,36 +459,35 @@ function registrar(){
                     confirmButtonText: '¡Si, guardar!'
                 }).then((result) => {
                     if (result.value == true) {
-                            event.preventDefault();
-                            var datos = new FormData($("#resgistrar_eva")[0]);
-                            var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
-                            // var base_url = '/index.php/evaluacion_desempenio/registrar';
-                            $.ajax({
-                                url:base_url,
-                                method: 'POST',
-                                data: datos,
-                                contentType: false,
-                                processData: false,
-                                success: function(response){
-                                    if(response == 'true') {
-                                        swal.fire({
-                                            title: 'Registro Exitoso',
-                                            type: 'success',
-                                            showCancelButton: false,
-                                            confirmButtonColor: '#3085d6',
-                                            confirmButtonText: 'Ok'
-                                        }).then((result) => {
-                                            if (result.value == true) {
-                                                $('#registrar_eval').attr("disabled", true)
-                                                $('#exampleModal').modal('show');
-                                                $('#rif_cont_ref').val(response);
-                                            }
-                                        });
-                                    }
+                        event.preventDefault();
+                        var datos = new FormData($("#resgistrar_eva")[0]);
+                        var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
+                        // var base_url = '/index.php/evaluacion_desempenio/registrar';
+                        $.ajax({
+                            url:base_url,
+                            method: 'POST',
+                            data: datos,
+                            contentType: false,
+                            processData: false,
+                            success: function(response){
+                                if(response != '') {
+                                    swal.fire({
+                                        title: 'Registro Exitoso',
+                                        type: 'success',
+                                        showCancelButton: false,
+                                        confirmButtonColor: '#3085d6',
+                                        confirmButtonText: 'Ok'
+                                    }).then((result) => {
+                                        if (result.value == true){
+                                            $('#registrar_eval').attr("disabled", true)
+                                            $('#exampleModal').modal('show');
+                                            $('#id').val(response);
+                                        }
+                                    });
                                 }
-                            })
-                        }
-
+                            }
+                        })
+                    }
                 });
             }else {
                 event.preventDefault();
@@ -515,7 +514,7 @@ function registrar(){
                             contentType: false,
                             processData: false,
                             success: function(response){
-                                if(response == 'true') {
+                                if(response != '') {
                                     swal.fire({
                                         title: 'Registro Exitoso',
                                         type: 'success',
@@ -523,10 +522,10 @@ function registrar(){
                                         confirmButtonColor: '#3085d6',
                                         confirmButtonText: 'Ok'
                                     }).then((result) => {
-                                        if (result.value == true) {
+                                        if (result.value == true){
                                             $('#registrar_eval').attr("disabled", true)
                                             $('#exampleModal').modal('show');
-                                            $('#rif_cont_ref').val(response);
+                                            $('#id').val(response);
                                         }
                                     });
                                 }
@@ -584,40 +583,39 @@ function registrar(){
                     cancelButtonColor: '#d33',
                     cancelButtonText: 'Cancelar',
                     confirmButtonText: '¡Si, guardar!'
-                }).then((result) => {
-                    if (result.value == true) {
-                            event.preventDefault();
-                            var datos = new FormData($("#resgistrar_eva")[0]);
-                            var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
-                            // var base_url = '/index.php/evaluacion_desempenio/registrar';
-                            $.ajax({
-                                url:base_url,
-                                method: 'POST',
-                                data: datos,
-                                contentType: false,
-                                processData: false,
-                                success: function(response){
-                                    if(response == 'true') {
-                                        swal.fire({
-                                            title: 'Registro Exitoso',
-                                            type: 'success',
-                                            showCancelButton: false,
-                                            confirmButtonColor: '#3085d6',
-                                            confirmButtonText: 'Ok'
-                                        }).then((result) => {
-                                            if (result.value == true) {
-                                                $('#registrar_eval').attr("disabled", true)
-                                                $('#exampleModal').modal('show');
-                                                $('#rif_cont_ref').val(response);
-                                            }
-                                        });
-                                    }
+                }).then((result) =>{
+                    if (result.value == true){
+                        event.preventDefault();
+                        var datos = new FormData($("#resgistrar_eva")[0]);
+                        var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
+                        // var base_url = '/index.php/evaluacion_desempenio/registrar';
+                        $.ajax({
+                            url:base_url,
+                            method: 'POST',
+                            data: datos,
+                            contentType: false,
+                            processData: false,
+                            success: function(response){
+                                if(response != '') {
+                                    swal.fire({
+                                        title: 'Registro Exitoso',
+                                        type: 'success',
+                                        showCancelButton: false,
+                                        confirmButtonColor: '#3085d6',
+                                        confirmButtonText: 'Ok'
+                                    }).then((result) => {
+                                        if (result.value == true){
+                                            $('#registrar_eval').attr("disabled", true)
+                                            $('#exampleModal').modal('show');
+                                            $('#id').val(response);
+                                        }
+                                    });
                                 }
-                            })
-                        }
-
+                            }
+                        })
+                    }
                 });
-            }else {
+            }else{
                 event.preventDefault();
                 swal.fire({
                     title: '¿Registrar?',
@@ -642,7 +640,6 @@ function registrar(){
                             contentType: false,
                             processData: false,
                             success: function(response){
-                                console.log(response);
                                 if(response != '') {
                                     swal.fire({
                                         title: 'Registro Exitoso',
@@ -652,7 +649,7 @@ function registrar(){
                                         confirmButtonText: 'Ok'
                                     }).then((result) => {
                                         if (result.value == true){
-                                            //$('#registrar_eval').attr("disabled", true)
+                                            $('#registrar_eval').attr("disabled", true)
                                             $('#exampleModal').modal('show');
                                             $('#id').val(response);
                                         }
@@ -671,28 +668,20 @@ function mostrar_medio(){
     var medio = $('#medio').val();
     if (medio == '1' || medio == '4') {
         $("#adjunto").show();
-        $("#guardar").show();
         $("#resp_medi").hide();
         $("#correo").hide();
-        $("#guardar_enviar").hide();
     }else if (medio == '2') {
         $("#correo").hide();
-        $("#guardar").show();
         $("#resp_medi").show();
         $("#adjunto").hide();
-        $("#guardar_enviar").hide();
     }else if (medio == '3') {
         $("#correo").show();
-        $("#guardar_enviar").show();
         $("#resp_medi").hide();
         $("#adjunto").hide();
-        $("#guardar").hide();
     }else {
         $("#correo").hide();
         $("#resp_medi").hide();
         $("#adjunto").hide();
-        $("#guardar_enviar").hide();
-        $("#guardar").show();
     }
 }
 
@@ -733,9 +722,9 @@ function guardar_not(){
                                 confirmButtonColor: '#3085d6',
                                 confirmButtonText: 'Ok'
                             }).then((result) => {
-                                // if (result.value == true){
-                                //     location.reload();
-                                // }
+                                if (result.value == true){
+                                    location.reload();
+                                }
                             });
                         }
                     }

@@ -145,10 +145,10 @@ class Evaluacion_desempenio extends CI_Controller {
 						 'obras' 				=> $this->input->POST('cssCheckbox3'),
 						 'descr_contrato' 		=> $this->input->POST('desc_contratacion'),
 						 'monto' 				=> $this->input->POST('monto'),
-						 'dolar' 				=> $this->input->POST('cssRadio1'),
-						 'euro' 				=> $this->input->POST('cssRadio2'),
-						 'petros' 				=> $this->input->POST('cssRadio3'),
-						 'bolivares' 			=> $this->input->POST('cssRadio4'),
+						 'dolar' 				=> $this->input->POST('radio_css1'),
+						 'euro' 				=> $this->input->POST('radio_css2'),
+						 'petros' 				=> $this->input->POST('radio_css3'),
+						 'bolivares' 			=> $this->input->POST('radio_css4'),
 						 'calidad' 				=> $this->input->POST('calidad'),
 						 'responsabilidad' 		=> $this->input->POST('responsabilidad'),
 						 'conocimiento' 		=> $this->input->POST('conocimiento'),
@@ -158,7 +158,6 @@ class Evaluacion_desempenio extends CI_Controller {
 						 'id_usuario' 			=> $this->session->userdata('id_user'),
 						 'id_estatus'			=> 1
 		);
-
 		$data =	$this->Evaluacion_desempenio_model->registrar($exitte,$data,$data_ev,$data_repr_legal);
 		echo json_encode($data);
 	}
@@ -167,13 +166,84 @@ class Evaluacion_desempenio extends CI_Controller {
 	public function notificacion(){
 		if(!$this->session->userdata('session'))redirect('login');
 
+		$usuario = $this->session->userdata('id_user');
+		$data['reportes'] 	= $this->Evaluacion_desempenio_model->consulta_eval_not($usuario);
+		$data['med_not'] = $this->Evaluacion_desempenio_model->consulta_med_notf();
+
         $this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
-		$this->load->view('evaluacion_desempenio/notificacion.php');
+		$this->load->view('evaluacion_desempenio/reporte.php', $data);
         $this->load->view('templates/footer.php');
 	}
 
 	public function registrar_not_m(){
+
+		$medio = $this->input->POST('medio');
+
+		// if ($medio == '4') {
+		// 	$this->load->library('email');
+		// 	$htmlContent = '<h1>HTML email testing by CodeIgniter Email Library</h1>';
+		// 	$htmlContent .= '<p>You can use any HTML tags and content in this email.</p>';
+		//
+		// 		// $config['protocol'] = 'smtp.gmail.com';
+		// 		$config['smtp_host'] = 'smtp.gmail.com';
+		// 		$config['smtp_port'] = '587';
+		// 		$config['mailtype'] = 'html';
+		// 		$config['smtp_user'] = 'snccontrataciones@gmail.com';
+		// 		$config['smtp_pass'] = 'Servicio_123';
+		//
+		// 		$this->email->initialize($config);
+		// 		$this->email->to('roxiyas.30@gmail.com');
+		// 		$this->email->from('roxiyas.30@gmail.com','Programacionnet');
+		// 		$this->email->subject('Test Email (HTML)');
+		// 		$this->email->message($htmlContent);
+		// 		$this->email->send();
+		// 		if($this->email->send(FALSE)){
+		// 			echo "enviado<br/>";
+		// 			echo $this->email->print_debugger(array('headers'));
+		// 		}else {
+		// 			echo "fallo <br/>";
+		// 			echo "error: ".$this->email->print_debugger(array('headers'));
+		// 		}
+		// }
+
+		if ($medio == '1' || $medio == '4') {
+			if (!empty($_FILES['fileImagen']['name'])){
+				$config['upload_path'] = './imagenes';;
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+				$config['max_size'] = '204800';
+				$config['max_width'] = '202400';
+				$config['max_height'] = '200800';
+				$this->load->library('upload', $config);
+				$this->upload->initialize($config);
+				if ($this->upload->do_upload('fileImagen')){
+					$img = $this->upload->data();
+				}else{
+					$img = 'N/A';
+					echo $this->upload->display_errors();
+				}
+			}
+			if(!isset($img['file_name'])){$img['file_name'] = "";}
+
+			$file_img = $img['file_name'];
+		}else{
+			$file_img = 'NULL';
+		}
+
+		$data = array('id_evaluacion'=> $this->input->POST('id'),
+	 				  'medio' 		 => $this->input->POST('medio'),
+				  	  'nro_not' 	 => $this->input->POST('nro_not'),
+				  	  'correo' 	 	 => $this->input->POST('correo'),
+				  	  'fileimagen' 	 => $file_img,
+					  'id_usuario' 	 => $this->session->userdata('id_user'),
+					  'id_estatus'	 => 2);
+
+		$data =	$this->Evaluacion_desempenio_model->registrar_not($data);
+		print_r($data);die;
+  		echo json_encode($data);
+	}
+
+	public function registrar_not_2(){
 
 		$medio = $this->input->POST('medio');
 		if ($medio == '1' || $medio == '4') {
@@ -195,7 +265,7 @@ class Evaluacion_desempenio extends CI_Controller {
 			if(!isset($img['file_name'])){$img['file_name'] = "";}
 
 			$file_img = $img['file_name'];
-		}else {
+		}else{
 			$file_img = 'NULL';
 		}
 
@@ -207,7 +277,8 @@ class Evaluacion_desempenio extends CI_Controller {
 					  'id_usuario' 	 => $this->session->userdata('id_user'),
 					  'id_estatus'	 => 2);
 
-		$data =	$this->Evaluacion_desempenio_model->registrar_not($data);
+		$data =	$this->Evaluacion_desempenio_model->registrar_not_2($data);
+		print_r($data);die;
   		echo json_encode($data);
 	}
 	//Para consultar las evaluaciones que tiene el usuarios registradas

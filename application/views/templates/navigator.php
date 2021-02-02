@@ -80,6 +80,9 @@
 								<a href="<?= base_url() ?>index.php/evaluacion_desempenio">- Registrar</a>
 							</li>
 							<li>
+								<a href="<?= base_url() ?>index.php/evaluacion_desempenio/notificacion">- Notificación</a>
+							</li>
+							<li>
 								<a href="<?= base_url() ?>index.php/evaluacion_desempenio/reporte">- Reporte</a>
 							</li>
 							<li><a href="<?= base_url() ?>index.php/evaluacion_desempenio/consulta">- Consulta</a></li>

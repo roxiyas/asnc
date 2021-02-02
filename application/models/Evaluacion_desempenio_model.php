@@ -138,6 +138,20 @@
             }
         }
 
+        public function consulta_eval_not($usuario){
+            $this->db->select('ed.id,
+                            	 ed.rif_contrat,
+                            	 concat(cn.nombre,\'\',c.nombre ) as nombre,
+                                 ed.calificacion
+                               ');
+            $this->db->join('evaluacion_desempenio.contratistas c', 'c.rifced = ed.rif_contrat', 'left');
+            $this->db->join('evaluacion_desempenio.contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
+            $this->db->where('ed.id_usuario', $usuario);
+            $this->db->where('id_estatus', 1);
+            $query = $this->db->get('evaluacion_desempenio.evaluacion ed');
+            return $response = $query->result_array();
+        }
+
         public function consulta_eval($usuario){
             $this->db->select('ed.id,
                             	 ed.rif_contrat,
@@ -156,7 +170,30 @@
             $id_evaluacion = $data['id_evaluacion'];
             $separar        = explode('"', $id_evaluacion);
             //print_r($separar);die;
-             $id_evaluacion = $separar['3'];
+            $id_evaluacion = $separar['3'];
+
+            $data_reg = array(
+                        'id_evaluacion' => $id_evaluacion,
+                        'medio' => $data['medio'],
+                        'nro_not' => $data['nro_not'],
+                        'correo' => $data['correo'],
+                        'fileimagen' => $data['fileimagen'],
+                        'id_usuario' => $data['id_usuario'],
+            );
+            $quers =$this->db->insert('evaluacion_desempenio.not_evaluacion', $data_reg);
+
+            if ($quers){
+                $data1 = array('id_estatus' => $data['id_estatus']);
+                $this->db->where('id', $id_evaluacion);
+                $update = $this->db->update('evaluacion_desempenio.evaluacion', $data1);
+                return true;
+            }
+
+            return true;
+        }
+
+        public function registrar_not_2($data){
+            $id_evaluacion = $data['id_evaluacion'];
 
             $data_reg = array(
                         'id_evaluacion' => $id_evaluacion,

@@ -242,19 +242,19 @@
                                 <label>Moneda</label>
 								<div class="col-md-12">
 									<div class="radio radio-css">
-										<input type="radio" id="cssRadio1" name="radio_css"/>
+										<input type="radio" id="cssRadio1" name="radio_css1"/>
 										<label for="cssRadio1">$</label>
 									</div>
 									<div class="radio radio-css">
-										<input type="radio" id="cssRadio2" name="radio_css"/>
+										<input type="radio" id="cssRadio2" name="radio_css2"/>
 										<label for="cssRadio2">Euros</label>
 									</div>
 									<div class="radio radio-css">
-										<input type="radio" id="cssRadio3" name="radio_css"/>
+										<input type="radio" id="cssRadio3" name="radio_css3"/>
 										<label for="cssRadio3">Petros</label>
 									</div>
                                     <div class="radio radio-css">
-										<input type="radio" id="cssRadio4" name="radio_css"/>
+										<input type="radio" id="cssRadio4" name="radio_css4"/>
 										<label for="cssRadio4">Bolivares</label>
 									</div>
 								</div>
@@ -353,10 +353,8 @@
             <div class="modal-body">.
                     <form class="form-horizontal" id="resgistrar_not" data-parsley-validate="true" method="POST" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="form-group col-12">
-                            <input type="hidden" class="form-control" name="id" id="id">
-                        </div>
-                        <div class="form-group col-6">
+                        <input type="hidden" class="form-control" name="id" id="id">
+                        <div class="form-group col-4">
                             <label>Medio de envio de la Notificación</label>
                             <select class="selected form-control" name="medio" id="medio" onchange="mostrar_medio();">
                                 <option value="0">Seleccione</option>
@@ -365,15 +363,17 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div id="resp_medi" class="form-group col-6" style="display:none;">
+                        <div id="resp_medi" class="form-group col-8" style="display:none;">
                             <label>Nro. al cual fue notificado</label>
                             <input type="text" class="form-control" id="nro_not" name="nro_not" placeholder="Nro. al cual fue notificado" />
                         </div>
-                        <div id="correo" class="form-group col-6" style="display:none;">
-                            <label>Correo Electronico a Notificar</label>
+                        <div id="correo" class="form-group col-8" style="display:none;">
+                            <h5><b style="color:red;">Nota:</b> Si decea enviar la Evaluación de Desempeño que se registro, puede ingresar al <b>Sub-Módulo Notificación</b> y descargar la misma, para luego enviar al contratista.</h5>
+                            <label>Correo Electronico al cual fue notificado</label>
                             <input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" />
                         </div>
-                        <div id="adjunto" class="form-group col-6"  style="display:none;">
+                        <div id="adjunto" class="form-group col-8"  style="display:none;">
+                            <h5><b style="color:red;">Nota:</b> Si no posee la Imagen o PDF, de la notificación de Evaluación de Desempeño, puede ingresar luego por el <b>Sub-Módulo Notificación</b> y realizar la misma.</h5>
                             <label>Acuse de Envio / Recibido <b style="color:red">*</b></label>
                             <input type="file" name="fileImagen" id="fileImagen" class="form-control">
                         </div>
@@ -381,9 +381,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button style="display:none" id="guardar_enviar" type="button" class="btn btn-primary">Guardar y Enviar</button>
-                <button style="display:none" id="guardar" onclick="guardar_not();" type="button" class="btn btn-primary">Guardar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button id="guardar" onclick="guardar_not();" type="button" class="btn btn-primary">Guardar</button>
+                <button onclick="javascript:window.location.reload()" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>
