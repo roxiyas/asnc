@@ -31,11 +31,11 @@
                                     Agregar Información de Servicio
                                 </button>
                             </div>
-                            <div class="col-4">
+                            <!-- <div class="col-4">
                                 <button onclick="location.href='<?php echo base_url()?>index.php/Programacion/agregar_obra?id=<?php echo $id_programacion;?>'" type="button" class="btn btn-lg btn-default"  name="button">
                                     Agregar Información de Obra
                                 </button>
-                            </div>
+                            </div> -->
                             <!-- <div class="col-4">
                                 <button onclick="location.href='<?php echo base_url()?>index.php/Programacion/add?id=<?php echo $id_programacion;?>'" type="button" class="btn btn-lg btn-default"  name="button">
                                     Agregar Información de todas
