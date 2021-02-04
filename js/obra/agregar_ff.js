@@ -19,8 +19,6 @@ function agregar_ffToCartTable(cells){
 	var pp3 = pp.split("/")[2];
 
 	var estad = $("#id_estado").val();
-	var desc_ff = $("#desc_ff").val();
-	console.log(desc_ff);
 
 	var ff = $("#fuente_financiamiento").val();
 	var ff1 = ff.split("/")[0];
@@ -47,9 +45,7 @@ function agregar_ffToCartTable(cells){
 		<td>${estad}<input type="text" name="id_estado[]" id="ins-type-${increment}" hidden value="${estad}"></td>
 
 		<td>${ff2}<input type="text" name="fuente_financiamiento[]" id="ins-type-${increment}" hidden value="${ff1}"></td>
-		<td >${desc_ff}<input type="text" name="desc_ff[]" id="ins-type-${increment}" hidden value="${desc_ff}"></td>
 		<td >${pc}<input type="text" name="porcentaje[]" id="ins-type-${increment}" hidden value="${pc}"></td>
-
 
 		`;
 
@@ -60,7 +56,6 @@ function agregar_ffToCartTable(cells){
 		document.querySelector('#target_ff tbody').appendChild(newRow);
 
 		var par = $("#porcentaje").val('');
-		$("#desc_ff").val('');
 		$("#fuente_financiamiento").val($("#fuente_financiamiento").data("default-value"));
 
 	}

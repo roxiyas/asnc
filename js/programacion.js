@@ -10,6 +10,18 @@ $(document).ready(function(){
         }
     });
 
+    $('#fuente_financiamiento').change(function(){
+        var fuente_financiamiento = $(this).val();
+         var ff = fuente_financiamiento.split("/")[0];
+        console.log(ff);
+        if (ff === '12') {
+            $("#desc_ff").show();
+        }else{
+            $("#desc_ff").hide();
+        }
+    });
+
+
     $("#precio_total").on({
         "focus": function (event) {
             $(event.target).select();
@@ -48,7 +60,7 @@ $(document).ready(function(){
             });
         }
     });
-    
+
     function valideKey(evt){
        var code = (evt.which) ? evt.which : evt.keyCode;
         if(code==8) { // backspace.

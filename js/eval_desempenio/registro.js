@@ -80,6 +80,15 @@ $("#monto").on({
     }
 });
 
+function hab_campo(){
+    var otro = document. getElementById('cssRadio5').checked;
+    if (otro == true) {
+        $("#hab_campo_esp").show();
+    }else {
+        $('#hab_campo_esp').hide();
+    }
+}
+
 function valideKey(evt){
    var code = (evt.which) ? evt.which : evt.keyCode;
     if(code==8) { // backspace.
@@ -211,9 +220,13 @@ function evaluar(){
         var oportunidad_p = 25
 
         var calidad_t = calidad * calidad_p
+        $('#total1').val(calidad_t);
         var responsabilidad_t = responsabilidad * responsabilidad_p
+        $('#total2').val(responsabilidad_t);
         var conocimiento_t = conocimiento * conocimiento_p
+        $('#total3').val(conocimiento_t);
         var oportunidad_t = oportunidad * oportunidad_p
+        $('#total4').val(oportunidad_t);
         var total = calidad_t + responsabilidad_t + conocimiento_t + oportunidad_t
 
         $('#total_claf').val(total);
@@ -368,6 +381,12 @@ function registrar(){
     var total_claf        = $("#total_claf").val();
     var calificacion      = $("#calificacion").val();
 
+    var notf_cont       = $("#notf_cont").val();
+    var fecha_not = $("#datepicker-default").val();
+    var medio       = $("#medio").val();
+    var nro_oc_os       = $("#nro_oc_os").val();
+    var fileImagen       = $("#fileImagen").val();
+
     if (exitte == '0'){
         if (rif_cont_n == '') {
             document.getElementById("rif_cont_n").focus();
@@ -444,6 +463,22 @@ function registrar(){
             document.getElementById("calificacion").focus();
         }
 
+        else if (notf_cont == '0') {
+            document.getElementById("calificacion").focus();
+        }
+        else if (fecha_not == '') {
+            document.getElementById("calificacion").focus();
+        }
+        else if (medio == '0') {
+            document.getElementById("calificacion").focus();
+        }
+        else if (nro_oc_os == '') {
+            document.getElementById("calificacion").focus();
+        }
+        else if (fileImagen == '') {
+            document.getElementById("calificacion").focus();
+        }
+
         else{
             var calificacion = $('#calificacion').val();
             if (calificacion == 'DEFICIENTE' || calificacion == 'SIN CALIFICACIÓN'){
@@ -478,10 +513,12 @@ function registrar(){
                                         confirmButtonColor: '#3085d6',
                                         confirmButtonText: 'Ok'
                                     }).then((result) => {
+                                        console.log(result.value);
                                         if (result.value == true){
-                                            $('#registrar_eval').attr("disabled", true)
-                                            $('#exampleModal').modal('show');
-                                            $('#id').val(response);
+                                            location.reload();
+                                            // $('#registrar_eval').attr("disabled", true)
+                                            // $('#exampleModal').modal('show');
+                                            // $('#id').val(response);
                                         }
                                     });
                                 }
@@ -514,6 +551,7 @@ function registrar(){
                             contentType: false,
                             processData: false,
                             success: function(response){
+                                console.log(response);
                                 if(response != '') {
                                     swal.fire({
                                         title: 'Registro Exitoso',
@@ -523,9 +561,10 @@ function registrar(){
                                         confirmButtonText: 'Ok'
                                     }).then((result) => {
                                         if (result.value == true){
-                                            $('#registrar_eval').attr("disabled", true)
-                                            $('#exampleModal').modal('show');
-                                            $('#id').val(response);
+                                            location.reload();
+                                            // $('#registrar_eval').attr("disabled", true)
+                                            // $('#exampleModal').modal('show');
+                                            // $('#id').val(response);
                                         }
                                     });
                                 }
@@ -605,9 +644,10 @@ function registrar(){
                                         confirmButtonText: 'Ok'
                                     }).then((result) => {
                                         if (result.value == true){
-                                            $('#registrar_eval').attr("disabled", true)
-                                            $('#exampleModal').modal('show');
-                                            $('#id').val(response);
+                                            location.reload();
+                                            // $('#registrar_eval').attr("disabled", true)
+                                            // $('#exampleModal').modal('show');
+                                            // $('#id').val(response);
                                         }
                                     });
                                 }
@@ -649,9 +689,10 @@ function registrar(){
                                         confirmButtonText: 'Ok'
                                     }).then((result) => {
                                         if (result.value == true){
-                                            $('#registrar_eval').attr("disabled", true)
-                                            $('#exampleModal').modal('show');
-                                            $('#id').val(response);
+                                            location.reload();
+                                            // $('#registrar_eval').attr("disabled", true)
+                                            // $('#exampleModal').modal('show');
+                                            // $('#id').val(response);
                                         }
                                     });
                                 }
@@ -663,73 +704,75 @@ function registrar(){
         }
     }
 }
+
+
 // Registrar Notificacion
-function mostrar_medio(){
-    var medio = $('#medio').val();
-    if (medio == '1' || medio == '4') {
-        $("#adjunto").show();
-        $("#resp_medi").hide();
-        $("#correo").hide();
-    }else if (medio == '2') {
-        $("#correo").hide();
-        $("#resp_medi").show();
-        $("#adjunto").hide();
-    }else if (medio == '3') {
-        $("#correo").show();
-        $("#resp_medi").hide();
-        $("#adjunto").hide();
-    }else {
-        $("#correo").hide();
-        $("#resp_medi").hide();
-        $("#adjunto").hide();
-    }
-}
-
-function guardar_not(){
-    var medio        = $("#medio").val();
-    if (medio == '0') {
-        document.getElementById("medio").focus();
-    }else {
-        event.preventDefault();
-        swal.fire({
-            title: '¿Registrar?',
-            text: '¿Esta seguro de Registrar la Nitificación de Evaluación de Desempeño?',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'Cancelar',
-            confirmButtonText: '¡Si, guardar!'
-        }).then((result) => {
-            if (result.value == true) {
-
-                event.preventDefault();
-                var datos = new FormData($("#resgistrar_not")[0]);
-                var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar_not_m';
-                // var base_url = '/index.php/evaluacion_desempenio/registrar_not_m';
-                $.ajax({
-                    url:base_url,
-                    method: 'POST',
-                    data: datos,
-                    contentType: false,
-                    processData: false,
-                    success: function(response){
-                        if(response != '') {
-                            swal.fire({
-                                title: 'Registro Exitoso',
-                                type: 'success',
-                                showCancelButton: false,
-                                confirmButtonColor: '#3085d6',
-                                confirmButtonText: 'Ok'
-                            }).then((result) => {
-                                if (result.value == true){
-                                    location.reload();
-                                }
-                            });
-                        }
-                    }
-                })
-            }
-        });
-    }
-}
+// function mostrar_medio(){
+//     var medio = $('#medio').val();
+//     if (medio == '1' || medio == '4') {
+//         $("#adjunto").show();
+//         $("#resp_medi").hide();
+//         $("#correo").hide();
+//     }else if (medio == '2') {
+//         $("#correo").hide();
+//         $("#resp_medi").show();
+//         $("#adjunto").hide();
+//     }else if (medio == '3') {
+//         $("#correo").show();
+//         $("#resp_medi").hide();
+//         $("#adjunto").hide();
+//     }else {
+//         $("#correo").hide();
+//         $("#resp_medi").hide();
+//         $("#adjunto").hide();
+//     }
+// }
+//
+// function guardar_not(){
+//     var medio        = $("#medio").val();
+//     if (medio == '0') {
+//         document.getElementById("medio").focus();
+//     }else {
+//         event.preventDefault();
+//         swal.fire({
+//             title: '¿Registrar?',
+//             text: '¿Esta seguro de Registrar la Nitificación de Evaluación de Desempeño?',
+//             type: 'warning',
+//             showCancelButton: true,
+//             confirmButtonColor: '#3085d6',
+//             cancelButtonColor: '#d33',
+//             cancelButtonText: 'Cancelar',
+//             confirmButtonText: '¡Si, guardar!'
+//         }).then((result) => {
+//             if (result.value == true) {
+//
+//                 event.preventDefault();
+//                 var datos = new FormData($("#resgistrar_not")[0]);
+//                 var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar_not_m';
+//                 // var base_url = '/index.php/evaluacion_desempenio/registrar_not_m';
+//                 $.ajax({
+//                     url:base_url,
+//                     method: 'POST',
+//                     data: datos,
+//                     contentType: false,
+//                     processData: false,
+//                     success: function(response){
+//                         if(response != '') {
+//                             swal.fire({
+//                                 title: 'Registro Exitoso',
+//                                 type: 'success',
+//                                 showCancelButton: false,
+//                                 confirmButtonColor: '#3085d6',
+//                                 confirmButtonText: 'Ok'
+//                             }).then((result) => {
+//                                 if (result.value == true){
+//                                     location.reload();
+//                                 }
+//                             });
+//                         }
+//                     }
+//                 })
+//             }
+//         });
+//     }
+// }

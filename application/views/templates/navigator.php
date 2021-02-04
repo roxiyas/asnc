@@ -52,148 +52,187 @@
 			</ul>
 			<ul class="nav">
 				<li class="nav-header">Navegador</li>
-				<?php if (($this->session->userdata('perfil') == 1) ||  ($this->session->userdata('perfil') <= 3)) : ?>
-					<li class="has-sub">
-						<a href="javascript:;">
-							<b class="caret"></b>
-							<i class="ion-ios-briefcase" style="background:darkred;"></i>
-							<span>Programación</span>
-						</a>
-						<ul class="sub-menu">
-							<li>
-								<a href="<?= base_url() ?>index.php/programacion">
-									- Programación Anual
-								</a>
-							</li>
-							<!-- <li><a>- Reprogramación</a></li> -->
-						</ul>
-					</li>
-					<li class="has-sub">
-						<a href="javascript:;">
-							<b class="caret"></b>
-							<i class="ion-md-today" style="background:darkred;"></i>
-							<span>Evaluación de</span>
-							<span class="ml-5">Desempeño</span>
-						</a>
-						<ul class="sub-menu">
-							<li>
-								<a href="<?= base_url() ?>index.php/evaluacion_desempenio">- Registrar</a>
-							</li>
-							<li>
-								<a href="<?= base_url() ?>index.php/evaluacion_desempenio/notificacion">- Notificación</a>
-							</li>
-							<li>
-								<a href="<?= base_url() ?>index.php/evaluacion_desempenio/reporte">- Reporte</a>
-							</li>
-							<li><a href="<?= base_url() ?>index.php/evaluacion_desempenio/consulta">- Consulta</a></li>
-						</ul>
-					</li>
-				<?php endif; ?>
 
-				<?php if (($this->session->userdata('perfil') == 1)) : ?>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							<i class="fas fa-sliders-h" style="background:darkred;"></i>
+							<span>RNC</span>
+						</a>
+						<?php if (($this->session->userdata('perfil') == 1) ||  ($this->session->userdata('perfil') <= 3)) : ?>
+							<ul class="sub-menu">
+								<li class="has-sub">
+									<a href="javascript:;">
+										<b class="caret"></b>
+										<span>Programación</span>
+									</a>
+									<ul class="sub-menu">
+										<li>
+											<a href="<?= base_url() ?>index.php/programacion">
+												- Programación Anual
+											</a>
+										</li>
+										<!-- <li><a>- Reprogramación</a></li> -->
+									</ul>
+								</li>
+								<li class="has-sub">
+									<a href="javascript:;">
+										<b class="caret"></b>
+										<span>Evaluación de</span>
+										<span class="ml-1">Desempeño</span>
+									</a>
+									<ul class="sub-menu">
+										<li>
+											<a href="<?= base_url() ?>index.php/evaluacion_desempenio">- Registrar</a>
+										</li>
+										<!-- <li>
+											<a href="<?= base_url() ?>index.php/evaluacion_desempenio/notificacion">- Notificación</a>
+										</li> -->
+										<li>
+											<a href="<?= base_url() ?>index.php/evaluacion_desempenio/reporte">- Reporte</a>
+										</li>
+										<li><a href="<?= base_url() ?>index.php/evaluacion_desempenio/consulta">- Consulta</a></li>
+									</ul>
+								</li>
+							<?php endif; ?>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							<i class="fas fa-server" style="background:darkred;"></i>
+							<span>RNCE</span>
+						</a>
+						<?php if (($this->session->userdata('perfil') == 1) ||  ($this->session->userdata('perfil') <= 3)) : ?>
+							<ul class="sub-menu">
+								<li class="has-sub">
+									<a href="javascript:;">
+										<b class="caret"></b>
+										<span>Consultas</span>
+									</a>
+									<ul class="sub-menu">
+										<li>
+											<a href="<?= base_url() ?>index.php/programacion">
+												Contratistas
+											</a>
+										</li>
+										<!-- <li><a>- Reprogramación</a></li> -->
+									</ul>
+								</li>
+							<?php endif; ?>
+						</ul>
+					</li>
+					<?php if (($this->session->userdata('perfil') == 1)) : ?>
 					<li class="has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
 							<i class="ion-md-settings fa-spin" style="background:darkred;"></i>
-							<span>Configuraciones</span>
+							<span>Configuración</span>
 						</a>
 						<ul class="sub-menu">
-							<li>
-								<a href="<?= base_url() ?>index.php/configuracion/organismo">
-									<i class="fas fa-lg fa-fw m-r-10 fa-landmark"></i>Organismos
+							<li class="has-sub">
+								<a href="javascript:;">
+									<b class="caret"></b>
+									Entes
 								</a>
+								<ul class="sub-menu">
+									<li class="has-sub">
+										<li>
+											<a href="<?= base_url() ?>index.php/configuracion/organismo">
+												<i class="fas fa-lg fa-fw m-r-10 fa-landmark"></i>Organismos
+											</a>
+										</li>
+										<li>
+											<a href="<?= base_url() ?>index.php/configuracion/entes">
+												<i class="fas fa-lg fa-fw m-r-10 fa-building"></i>Entes
+											</a>
+										</li>
+										<li>
+											<a href="<?= base_url() ?>index.php/configuracion/entes_adscritos">
+												<i class="fas fa-lg fa-fw m-r-10 fa-city"></i>Entes Adscritos
+											</a>
+										</li>
+									</li>
+								</ul>
 							</li>
-							<li>
-								<a href="<?= base_url() ?>index.php/configuracion/entes">
-									<i class="fas fa-lg fa-fw m-r-10 fa-building"></i>Entes
+							<li class="has-sub">
+								<a href="javascript:;">
+									<span>Tablas Parametros</span>
 								</a>
+								<ul class="sub-menu">
+									<li>
+										<a href="<?= base_url() ?>index.php/Fuentefinanc/index">
+											- Fuente de Financiamiento
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Fuentefinanc/alicuotaiva">
+											- Alicuota
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Fuentefinanc/partidap">
+											- Partida Presupuestaria
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Fuentefinanc/centra">
+											- Acción Centralizada
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Fuentefinanc/und">
+											- Unidad de Medida
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Fuentefinanc/ccnu">
+											- CCNU
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Fuentefinanc/estado">
+											- Estado
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Fuentefinanc/municipio">
+											- Municipio
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Fuentefinanc/parroquia">
+											- Parroquia
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Fuentefinanc/ciudades">
+											- Ciudades
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Fuentefinanc/operador">
+											- Operadora
+										</a>
+									</li>
+								</ul>
 							</li>
-							<li>
-								<a href="<?= base_url() ?>index.php/configuracion/entes_adscritos">
-									<i class="fas fa-lg fa-fw m-r-10 fa-city"></i>Entes Adscritos
+							<li class="has-sub">
+								<a href="javascript:;">
+									<span>Usuarios</span>
 								</a>
-							</li>
-						</ul>
-					</li>
-					<li class="has-sub">
-						<a href="javascript:;">
-							<b class="caret"></b>
-							<i class="ion-ios-color-filter" style="background:darkred;"></i>
-							<span>Tablas Parametros</span>
-						</a>
-						<ul class="sub-menu">
-							<li>
-								<a href="<?= base_url() ?>index.php/Fuentefinanc/index">
-									- Fuente de Financiamiento
-								</a>
-							</li>
-							<li>
-								<a href="<?= base_url() ?>index.php/Fuentefinanc/alicuotaiva">
-									- Alicuota
-								</a>
-							</li>
-							<li>
-								<a href="<?= base_url() ?>index.php/Fuentefinanc/partidap">
-									- Partida Presupuestaria
-								</a>
-							</li>
-							<li>
-								<a href="<?= base_url() ?>index.php/Fuentefinanc/centra">
-									- Acción Centralizada
-								</a>
-							</li>
-							<li>
-								<a href="<?= base_url() ?>index.php/Fuentefinanc/und">
-									- Unidad de Medida
-								</a>
-							</li>
-							<li>
-								<a href="<?= base_url() ?>index.php/Fuentefinanc/ccnu">
-									- CCNU
-								</a>
-							</li>
-							<li>
-								<a href="<?= base_url() ?>index.php/Fuentefinanc/estado">
-									- Estado
-								</a>
-							</li>
-							<li>
-								<a href="<?= base_url() ?>index.php/Fuentefinanc/municipio">
-									- Municipio
-								</a>
-							</li>
-							<li>
-								<a href="<?= base_url() ?>index.php/Fuentefinanc/parroquia">
-									- Parroquia
-								</a>
-							</li>
-							<li>
-								<a href="<?= base_url() ?>index.php/Fuentefinanc/ciudades">
-									- Ciudades
-								</a>
-							</li>
-							<li>
-								<a href="<?= base_url() ?>index.php/Fuentefinanc/operador">
-									- Operadora
-								</a>
-							</li>
-						</ul>
-					</li>
-					<li class="has-sub">
-						<a href="javascript:;">
-							<b class="caret"></b>
-							<i class="fas fa-user" style="background:darkred;"></i>
-							<span>Usuarios</span>
-						</a>
-						<ul class="sub-menu">
-							<li>
-								<a href="<?= base_url() ?>index.php/user">
-									<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>- Registros
-								</a>
+								<ul class="sub-menu">
+									<li>
+										<a href="<?= base_url() ?>index.php/user">
+											<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>- Registros
+										</a>
+									</li>
+								</ul>
 							</li>
 						</ul>
 					</li>
 				<?php endif; ?>
+
 				<li class="mt-5"><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="ion-ios-arrow-back"></i> <span>Cerrar Navegador</span></a></li>
 			</ul>
 		</div>

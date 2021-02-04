@@ -119,22 +119,31 @@
         			'oportunidad' 		 => $data_ev['oportunidad'],
         			'total_calif' 		 => $data_ev['total_calif'],
         			'calificacion' 		 => $data_ev['calificacion'],
+                    'notf_cont' 		 => $data_ev['notf_cont'],
+        			'fecha_not' 		 => $data_ev['fecha_not'],
+        			'medio' 			 => $data_ev['medio'],
+        			'nro_oc_os' 		 => $data_ev['nro_oc_os'],
+        		 	'fileimagen' 		 => $data_ev['fileimagen'],
         			'id_usuario' 		 => $data_ev['id_usuario'],
                     'id_estatus'         => $data_ev['id_estatus'],
+                    'mod_otro'           => $data_ev['mod_otro'],
+                    'id_estatus'         => $data_ev['id_estatus'],
+                    'otro'               => $data_ev['otro'],
                 );
                 $quers2 =$this->db->insert('evaluacion_desempenio.evaluacion', $data_eval);
-                if ($quers2) {
-                    $this->db->select('max(e.id) as id');
-                    $query = $this->db->get('evaluacion_desempenio.evaluacion e');
-                    $response2 = $query->row_array();
-                    return $response2;
-                }
+                // if ($quers2) {
+                //     $this->db->select('max(e.id) as id');
+                //     $query = $this->db->get('evaluacion_desempenio.evaluacion e');
+                //     $response2 = $query->row_array();
+                //     return $response2;
+                // }
 
                 if ($existe == 0){
                     $quers1 = $this->db->insert('evaluacion_desempenio.contratistas_nr',$data);
                     $quers2 = $this->db->insert('evaluacion_desempenio.accionistas_nr',$data_repr_legal);
                     return true;
                 }
+                return $quers;
             }
         }
 
@@ -248,7 +257,14 @@
                             	 ed.conocimiento,
                             	 ed.oportunidad,
                             	 ed.total_calif,
-                            	 ed.calificacion');
+                            	 ed.calificacion,
+                                 ed.notf_cont,
+                                 ed.fecha_not,
+                                 ed.medio,
+                                 ed.nro_oc_os,
+                                 ed.fileimagen,
+                                 ed.mod_otro,
+                                 ed.id_estatus');
             $this->db->join('evaluacion_desempenio.contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
             $this->db->join('evaluacion_desempenio.contratistas c', 'c.rifced = ed.rif_contrat', 'left');
             $this->db->join('public.estados e', 'e.id = ed.id_estado_contrato');

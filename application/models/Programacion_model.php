@@ -68,6 +68,7 @@
 
         public function consulta_fuente(){
             $this->db->select('*');
+            $this->db->order_by('id_fuente_financiamiento ASC');
             $query = $this->db->get('programacion.fuente_financiamiento');
             return $result = $query->result_array();
         }
@@ -81,7 +82,7 @@
 
         public function consulta_cnnu(){
             $this->db->select('*');
-            $this->db->limit(10);
+            // $this->db->limit(10);
             $query = $this->db->get('programacion.ccnu');
             return $result = $query->result_array();
         }

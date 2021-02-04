@@ -18,6 +18,8 @@ function buscar_ccnnu(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
     })
 }
 
+
+
 function porc(){
     var porcentaje = $('#porcentaje').val();
 

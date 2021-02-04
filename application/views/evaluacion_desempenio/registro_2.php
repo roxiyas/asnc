@@ -238,35 +238,27 @@
                                 <label>Monto</label>
                                 <input class="form-control"  type="text" name="monto" id="monto" onkeypress="return valideKey(event);">
                             </div>
-                            <div class="form-group col-2">
-									<label>Moneda</label>
-									<div class="col-md-12">
-										<div class="radio radio-css">
-											<input type="radio" name="radio_css" id="cssRadio1" value="1"/>
-											<label for="cssRadio1">Bolívares</label>
-										</div>
-										<div class="radio radio-css">
-											<input type="radio" name="radio_css" id="cssRadio2" value="2"/>
-											<label for="cssRadio2">Petros</label>
-										</div>
-										<div class="radio radio-css">
-											<input type="radio" name="radio_css" id="cssRadio3" value="3"/>
-											<label for="cssRadio3">Dólares</label>
-										</div>
-										<div class="radio radio-css">
-											<input type="radio" name="radio_css" id="cssRadio4" value="4"/>
-											<label for="cssRadio4">Euros</label>
-										</div>
-                                        <div class="radio radio-css">
-    										<input onclick="hab_campo();" type="radio" name="radio_css" id="cssRadio5" />
-    										<label for="cssRadio5">Otro</label>
-    									</div>
-                                        <div class="mt-2" style="display:none" id="hab_campo_esp">
-                                            <label>Especifique</label>
-                                            <input class="form-control" type="text" name="mod_otro" id="mod_otro">
-                                        </div>
+                            <div class="form-group row m-b-10">
+                                <label>Moneda</label>
+								<div class="col-md-12">
+									<div class="radio radio-css">
+										<input type="radio" id="cssRadio1" name="radio_css1"/>
+										<label for="cssRadio1">$</label>
+									</div>
+									<div class="radio radio-css">
+										<input type="radio" id="cssRadio2" name="radio_css2"/>
+										<label for="cssRadio2">Euros</label>
+									</div>
+									<div class="radio radio-css">
+										<input type="radio" id="cssRadio3" name="radio_css3"/>
+										<label for="cssRadio3">Petros</label>
+									</div>
+                                    <div class="radio radio-css">
+										<input type="radio" id="cssRadio4" name="radio_css4"/>
+										<label for="cssRadio4">Bolivares</label>
 									</div>
 								</div>
+                            </div>
                         </div>
                     </div>
                     <div class="panel-heading">
@@ -279,16 +271,13 @@
 									<tr>
 										<th>Criterio</th>
 										<th>Descripción</th>
-                                        <th>Peso</th>
 										<th>Clasificación</th>
-                                        <th>Total</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<td>Calidad</td>
 										<td>Mide el cumplimiento de los parámetros técnicos y de calidad exigidos: disposición del personal capacitado/calificado, disponibilidad oportuna y confiable de equipos, instrumentos e infraestructura adecuados, procura (compra, manejo y almacenaje), respuesta eficiente a reclamos técnicos/calidad, organización e implantación de mejoras</td>
-                                        <td>25</td>
 										<td>
                                             <select class="selected form-control" name="calidad" id="calidad" onclick="evaluar();">
                                                 <option value="">Sel</option>
@@ -296,14 +285,10 @@
                                                 <option value="0">No</option>
                                             </select>
                                         </td>
-                                        <td>
-                                            <input class="form-control" style="width: 50px" type="text" name="total1" id="total1" readonly>
-                                        </td>
 									</tr>
 									<tr>
 										<td>Responsabilidad</td>
 										<td>Cumplimiento de leyes, decretos y clausulas relativos al contrato, respuestas a demandas o reclamos de proveedores/subcontratistas, cumplimiento y respuesta de requisitos como solvencia laboral, administración de vacaciones, reclamos laborales, paros, demñas obligraciones legales y contractuales</td>
-                                        <td>25</td>
 										<td>
                                             <select class="selected form-control" name="responsabilidad" id="responsabilidad" onclick="evaluar();">
                                                 <option value="">Sel</option>
@@ -311,14 +296,10 @@
                                                 <option value="0">No</option>
                                             </select>
                                         </td>
-                                        <td>
-                                            <input class="form-control" style="width: 50px" type="text" name="total2" id="total2" readonly>
-                                        </td>
 									</tr>
 									<tr>
                                         <td>Conocimiento del trabajo</td>
 										<td>Cumplimiento de practicas de trabajo seguro, programas de inspección SHA, herramientas y equipos, condiciones del area de trabajo adecuadas, adiestramiento y motivación al personal, SHA de contratistas, respuesta y control de emergencias entre otras, aplicacion de las normativas técnicas.</td>
-                                        <td>25</td>
                                         <td>
                                             <select class="selected form-control" name="conocimiento" id="conocimiento" onclick="evaluar();">
                                                 <option value="">Sel</option>
@@ -326,23 +307,16 @@
                                                 <option value="0">No</option>
                                             </select>
                                         </td>
-                                        <td>
-                                            <input class="form-control" style="width: 50px" type="text" name="total3" id="total3" readonly>
-                                        </td>
 									</tr>
                                     <tr>
 										<td>Opotunidad (Plazos Establecidos)</td>
 										<td>Corresponde al periodo establecido en el contrato para la ejecución de la obra, prestación del servicio o suministro de bienes.</td>
-                                        <td>25</td>
                                         <td>
                                             <select class="selected form-control" name="oportunidad" id="oportunidad" onclick="evaluar();">
                                                 <option value="">Sel</option>
                                                 <option value="1">Si</option>
                                                 <option value="0">No</option>
                                             </select>
-                                        </td>
-                                        <td>
-                                            <input class="form-control" style="width: 50px" type="text" name="total4" id="total4" readonly>
                                         </td>
 									</tr>
 								</tbody>
@@ -363,34 +337,9 @@
     				</div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="form-group col-4">
-                                <label>¿Fue notificado al contratista?</label>
-                                <select class="form-control" name="notf_cont" id="notf_cont" onblur="val_not();">
-                                    <option value="0">Seleccione</option>
-                                    <option value="1">Sí, fué notificado al contratista</option>
-                                    <option value="2">No, no fué notificado al contratista</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-4">
-                                <label>Fecha de la Notificación</label>
-								<input type="text" class="form-control" id="datepicker-default" name="fec_notificacion" placeholder="Seleccionar Fecha" onchange="validar_fecha();"/>
-                            </div>
-                            <div class="form-group col-4">
-                                <label>Medio de envio de la Notificación</label>
-                                <select class="selected form-control" name="medio" id="medio">
-                                    <option value="0">Seleccione</option>
-                                    <?php foreach ($med_not as $data): ?>
-                                        <option value="<?=$data['id_medio_notf']?>"><?=$data['descripcion']?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group col-6">
-                                <label>Nro. de Oficio / Fax / Correo Electronico / Otro</label>
-								<input type="text" class="form-control" id="nro_oc_os" name="nro_oc_os" placeholder="Nro. de Oficio / Fax / Correo Electronico / Otro" />
-                            </div>
-                            <div class="form-group col-6">
-                                <label>Acuse de Recibido <b style="color:red">*</b></label>
-                                <input type="file" name="fileImagen" id="fileImagen" class="form-control">
+                            <div class="col-6">
+                                <label>¿Fue Notificado el contratista?</label>
+                                <input class="form-control"  type="text" name="nro_procedimiento" id="nro_procedimiento" placeholder="Nro. del Procedimiento">
                             </div>
                         </div>
                     </div>
@@ -399,6 +348,49 @@
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" style="display:none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Notificación al Contratista</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">.
+                    <form class="form-horizontal" id="resgistrar_not" data-parsley-validate="true" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <input type="hidden" class="form-control" name="id" id="id">
+                        <div class="form-group col-4">
+                            <label>Medio de envio de la Notificación</label>
+                            <select class="selected form-control" name="medio" id="medio" onchange="mostrar_medio();">
+                                <option value="0">Seleccione</option>
+                                <?php foreach ($med_not as $data): ?>
+                                    <option value="<?=$data['id_medio_notf']?>"><?=$data['descripcion']?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div id="correo" class="form-group col-8" style="display:none;">
+                            <h5><b style="color:red;">Nota:</b> Si decea enviar la Evaluación de Desempeño que se registro, puede ingresar al <b>Sub-Módulo Notificación</b> y descargar la misma, para luego enviar al contratista.</h5>
+                            <label>Correo Electronico al cual fue notificado</label>
+                            <input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" />
+                        </div>
+                        <div id="adjunto" class="form-group col-8"  style="display:none;">
+                            <h5><b style="color:red;">Nota:</b> Si no posee la Imagen o PDF, de la notificación de Evaluación de Desempeño, puede ingresar luego por el <b>Sub-Módulo Notificación</b> y realizar la misma.</h5>
+                            <label>Acuse de Envio / Recibido <b style="color:red">*</b></label>
+                            <input type="file" name="fileImagen" id="fileImagen" class="form-control">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="guardar" onclick="guardar_not();" type="button" class="btn btn-primary">Guardar</button>
+                <button onclick="javascript:window.location.reload()" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
         </div>
     </div>
 </div>

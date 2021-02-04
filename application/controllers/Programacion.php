@@ -37,7 +37,6 @@ class Programacion extends CI_Controller {
         echo json_encode($data);
     }
 
-    // OBAR / SERVICIO
     //Consulta los proyectos y acc por año
     public function nueva_prog(){
         if(!$this->session->userdata('session'))redirect('login');
@@ -62,6 +61,7 @@ class Programacion extends CI_Controller {
         $this->load->view('templates/footer.php');
     }
 
+    // Anterior
     public function add(){
         if(!$this->session->userdata('session'))redirect('login');
 
@@ -131,13 +131,6 @@ class Programacion extends CI_Controller {
         $this->load->view('templates/footer.php');
     }
 
-    // public function llenar_ff_pp(){
-    //     if(!$this->session->userdata('session'))
-    //     redirect('login');
-	// 	$data = $this->input->post();
-	// 	$data = $this->Programacion_model->llenar_ff($data);
-	// 	echo json_encode($data);
-    // }
 
     //Registrar Servicio
     public function agregar_servicio(){
@@ -214,8 +207,11 @@ class Programacion extends CI_Controller {
             'id_estado'   		        => $this->input->post('id_estado'),
             'id_par_presupuestaria' 	=> $this->input->post('par_presupuestaria_ff'),
             'id_fuente_financiamiento'  => $this->input->post('fuente_financiamiento'),
+            'desc_ff' 	                => $this->input->post('desc_ff'),
             'porcentaje' 	            => $this->input->post('porcentaje'),
         );
+
+        print_r($p_ffinanciamiento);die;
 
         $data = $this->Programacion_model->save_servicio($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento);
         echo json_encode($data);
@@ -305,6 +301,39 @@ class Programacion extends CI_Controller {
 
         $data = $this->Programacion_model->save_bienes($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento);
         echo json_encode($data);
+    }
+
+    //Registrar Obras
+    public function agregar_obra(){
+        if(!$this->session->userdata('session'))redirect('login');
+
+        $data['unidad'] = $this->session->userdata('id_unidad');
+        $data['des_unidad'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+        $data['codigo_onapre'] = $this->session->userdata('codigo_onapre');
+
+        $data['id_programacion'] = $this->input->get('id');
+        $data['programacion_anio'] = $this->Programacion_model->consultar_prog_anio($data['id_programacion'], $data['unidad']);
+        $data['anio'] = $data['programacion_anio']['anio'];
+
+
+        //Proyecto
+        $data['part_pres'] = $this->Programacion_model->consulta_part_pres();
+        $data['fuente'] = $this->Programacion_model->consulta_fuente();
+        $data['act_com'] = $this->Programacion_model->consulta_act_com();
+        $data['ccnu'] = $this->Programacion_model->consulta_cnnu();
+        $data['estados'] 	= $this->Configuracion_model->consulta_estados();
+        $data['unid'] 	= $this->Programacion_model->consulta_unid();
+        $data['iva'] 	= $this->Programacion_model->consulta_iva();
+
+        //ACCION CENTRALIZADA
+        $data['act_com2'] = $this->Programacion_model->consulta_act_com2();
+        $data['acc_cent'] = $this->Programacion_model->accion_centralizada();
+
+        $this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+        $this->load->view('programacion/obra/agregar_obra.php', $data);
+        $this->load->view('templates/footer.php');
     }
 
     public function ver_programacion_proy(){
