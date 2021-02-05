@@ -60,6 +60,7 @@
             return $result->result_array();
         }
 
+        // CONSULTAS GENERALES
         public function consulta_part_pres(){
             $this->db->select('*');
             $query = $this->db->get('programacion.partida_presupuestaria');
@@ -98,6 +99,25 @@
             $query = $this->db->get('programacion.alicuota_iva');
             return $result = $query->result_array();
         }
+
+        public function consulta_tip_obra(){
+            $this->db->select('*');
+            $query = $this->db->get('programacion.tip_obra');
+            return $result = $query->result_array();
+        }
+
+        public function consulta_alcance_obra(){
+            $this->db->select('*');
+            $query = $this->db->get('programacion.alcance_obra');
+            return $result = $query->result_array();
+        }
+
+        public function consulta_obj_obra(){
+            $this->db->select('*');
+            $query = $this->db->get('programacion.obj_obra');
+            return $result = $query->result_array();
+        }
+
 
         // REGISTRAR SERVICIO
         public function save_servicio($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento){
@@ -147,6 +167,7 @@
                                 'id_estado'                  => $p_ffinanciamiento['id_estado'][$i],
                                 'id_partidad_presupuestaria' => $p_ffinanciamiento['id_par_presupuestaria'][$i],
                                 'id_fuente_financiamiento'   => $p_ffinanciamiento['id_fuente_financiamiento'][$i],
+                                'descripcion_ff'             => $p_ffinanciamiento['descripcion_ff'][$i],
                                 'porcentaje'                 => $p_ffinanciamiento['porcentaje'][$i],
                             );
                             $this->db->insert('programacion.p_ffinanciamiento',$data2);
@@ -196,6 +217,7 @@
                                 'id_estado'                  => $p_ffinanciamiento['id_estado'][$i],
                                 'id_partidad_presupuestaria' => $p_ffinanciamiento['id_par_presupuestaria'][$i],
                                 'id_fuente_financiamiento'   => $p_ffinanciamiento['id_fuente_financiamiento'][$i],
+                                'descripcion_ff'             => $p_ffinanciamiento['descripcion_ff'][$i],
                                 'porcentaje'                 => $p_ffinanciamiento['porcentaje'][$i],
                             );
                             $this->db->insert('programacion.p_ffinanciamiento',$data2);

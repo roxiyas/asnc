@@ -63,7 +63,7 @@
                                     </select>
                             </div>
                             <hr style="border-top: 1px solid rgba(0, 0, 0, 0.17);">
-                            <div class="form-group col-6">
+                            <div class="form-group col-3">
                                 <label>Estado</label><br>
                                 <select style="width: 100%;" id="id_estado" name="id_estado" class="default-select2 form-control" multiple="multiple">
                                     <option value="0">Seleccione</option>
@@ -80,6 +80,10 @@
                                         <option value="<?=$data['id_fuente_financiamiento']?>/<?=$data['desc_fuente_financiamiento']?>"><?=$data['desc_fuente_financiamiento']?></option>
                                     <?php endforeach; ?>
                                 </select>
+                            </div>
+							<div id="desc_ff" class="form-group col-3" style="display:none">
+                                <label>Descripcion<b style="color:red">*</b></label>
+                                <input id="descripcion_ff" name="descripcion_ff" type="text" class="form-control">
                             </div>
                             <div class="form-group col-3">
                                 <label>Porcentaje<b style="color:red">*</b></label>
@@ -104,6 +108,7 @@
                                             <th>Partida Presupuestaria</th>
                                             <th>Estado</th>
                                             <th>Fuente de Financiamiento</th>
+											<th></th>
                                             <th>%</th>
                                             <th>Acciones</th>
                                         </tr>

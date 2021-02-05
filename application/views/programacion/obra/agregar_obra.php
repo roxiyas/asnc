@@ -89,6 +89,10 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
+							<div id="desc_ff" class="form-group col-3" style="display:none">
+                                <label>Descripcion<b style="color:red">*</b></label>
+                                <input id="descripcion_ff" name="descripcion_ff" type="text" class="form-control">
+                            </div>
                             <div id="desc_ff" class="form-group col-3" style="display:none">
                                 <label>Descripcion<b style="color:red">*</b></label>
                                 <input id="desc_ff" name="desc_ff" type="text" class="form-control">
@@ -115,6 +119,7 @@
                                             <th>Partida Presupuestaria</th>
                                             <th>Estado</th>
                                             <th>Fuente de Financiamiento</th>
+											<th></th>
                                             <th>%</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -130,28 +135,28 @@
                             </div>
                             <div class="col-4">
                                 <label>Tipo de Obra <b style="color:red">*</b></label><br>
-                                <select  id="id_unidad_medida" name="id_unidad_medida" class="form-control">
+                                <select  id="id_tip_obra" name="id_tip_obra" class="form-control">
                                     <option value="">SELECCIONE</option>
-                                    <?php foreach ($unid as $data): ?>
-                                        <option value="<?=$data['id_unidad_medida']?>/<?=$data['desc_unidad_medida']?>"><?=$data['desc_unidad_medida']?></option>
+                                    <?php foreach ($tip_obra as $data): ?>
+                                        <option value="<?=$data['id_tip_obra']?>/<?=$data['descripcion_tip_obr']?>"><?=$data['descripcion_tip_obr']?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="col-4">
                                 <label>Alcance de la Obra <b style="color:red">*</b></label><br>
-                                <select  id="id_unidad_medida" name="id_unidad_medida" class="form-control">
+                                <select  id="id_alcance_obra" name="id_alcance_obra" class="form-control">
                                     <option value="">SELECCIONE</option>
-                                    <?php foreach ($unid as $data): ?>
-                                        <option value="<?=$data['id_unidad_medida']?>/<?=$data['desc_unidad_medida']?>"><?=$data['desc_unidad_medida']?></option>
+                                    <?php foreach ($alcance_obra as $data): ?>
+                                        <option value="<?=$data['id_alcance_obra']?>/<?=$data['descripcion_alcance_obra']?>"><?=$data['descripcion_alcance_obra']?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="col-4">
                                 <label>Objeto de la Obra <b style="color:red">*</b></label><br>
-                                <select  id="id_unidad_medida" name="id_unidad_medida" class="form-control">
+                                <select  id="id_obj_obra" name="id_obj_obra" class="form-control">
                                     <option value="">SELECCIONE</option>
-                                    <?php foreach ($unid as $data): ?>
-                                        <option value="<?=$data['id_unidad_medida']?>/<?=$data['desc_unidad_medida']?>"><?=$data['desc_unidad_medida']?></option>
+                                    <?php foreach ($obj_obra as $data): ?>
+                                        <option value="<?=$data['id_obj_obra']?>/<?=$data['descripcion_obj_obra']?>"><?=$data['descripcion_obj_obra']?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -278,7 +283,9 @@
                                     <thead style="background:#e4e7e8;">
                                         <tr class="text-center">
                                             <th>Partida Pres.</th>
-                                            <th>CCNU</th>
+                                            <th>Tipo</th>
+											<th>Alcance</th>
+											<th>Objeto</th>
                                             <th>Fecha Desde</th>
                                             <th>Fecha Hasta</th>
                                             <th>Esp.</th>
@@ -311,7 +318,7 @@
 <script src="<?=base_url()?>/js/programacion.js"></script>
 <script src="<?=base_url()?>/js/calculos.js"></script>
 <script src="<?=base_url()?>/js/obra/agregar_ff.js"></script>
-<!-- <script src="<?=base_url()?>/js/servicio/agregar_ip.js"></script> -->
+<script src="<?=base_url()?>/js/obra/agregar_ip.js"></script>
 <!-- <script src="<?=base_url()?>/js/servicio/registro.js"></script> -->
 <script type="text/javascript">
 function valideKey(evt){

@@ -207,11 +207,9 @@ class Programacion extends CI_Controller {
             'id_estado'   		        => $this->input->post('id_estado'),
             'id_par_presupuestaria' 	=> $this->input->post('par_presupuestaria_ff'),
             'id_fuente_financiamiento'  => $this->input->post('fuente_financiamiento'),
-            'desc_ff' 	                => $this->input->post('desc_ff'),
+            'descripcion_ff' 	                => $this->input->post('descripcion_ff'),
             'porcentaje' 	            => $this->input->post('porcentaje'),
         );
-
-        print_r($p_ffinanciamiento);die;
 
         $data = $this->Programacion_model->save_servicio($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento);
         echo json_encode($data);
@@ -325,6 +323,10 @@ class Programacion extends CI_Controller {
         $data['estados'] 	= $this->Configuracion_model->consulta_estados();
         $data['unid'] 	= $this->Programacion_model->consulta_unid();
         $data['iva'] 	= $this->Programacion_model->consulta_iva();
+
+        $data['tip_obra'] 	= $this->Programacion_model->consulta_tip_obra();
+        $data['alcance_obra'] 	= $this->Programacion_model->consulta_alcance_obra();
+        $data['obj_obra'] 	= $this->Programacion_model->consulta_obj_obra();
 
         //ACCION CENTRALIZADA
         $data['act_com2'] = $this->Programacion_model->consulta_act_com2();

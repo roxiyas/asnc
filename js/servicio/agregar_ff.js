@@ -19,8 +19,7 @@ function agregar_ffToCartTable(cells){
 	var pp3 = pp.split("/")[2];
 
 	var estad = $("#id_estado").val();
-	var desc_ff = $("#desc_ff").val();
-	console.log(desc_ff);
+	var desc_ff = $("#descripcion_ff").val();
 
 	var ff = $("#fuente_financiamiento").val();
 	var ff1 = ff.split("/")[0];

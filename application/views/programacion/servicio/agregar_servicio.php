@@ -84,7 +84,7 @@
                             </div>
 							<div id="desc_ff" class="form-group col-3" style="display:none">
                                 <label>Descripcion<b style="color:red">*</b></label>
-                                <input id="desc_ff" name="desc_ff" type="text" class="form-control">
+                                <input id="descripcion_ff" name="descripcion_ff" type="text" class="form-control">
                             </div>
                             <div class="form-group col-3">
                                 <label>Porcentaje<b style="color:red">*</b></label>
@@ -108,6 +108,7 @@
                                             <th>Partida Presupuestaria</th>
                                             <th>Estado</th>
                                             <th>Fuente de Financiamiento</th>
+											<th></th>
                                             <th>%</th>
                                             <th>Acciones</th>
                                         </tr>
