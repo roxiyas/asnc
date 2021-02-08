@@ -4,6 +4,19 @@
         <div class="row">
             <div class="panel panel-inverse">
                 <div class="panel-body">
+					<div class="row">
+						<div class="col-2"></div>
+						<div class="col-4">
+							<button onclick="location.href='<?php echo base_url()?>index.php/Programacion/agregar_servicio?id=<?php echo $id_programacion;?>'" type="button" class="btn btn-lg btn-default"  name="button">
+								Agregar Información de Servicio
+							</button>
+						</div>
+						<div class="col-4">
+							<button onclick="location.href='<?php echo base_url()?>index.php/Programacion/agregar_obra?id=<?php echo $id_programacion;?>'" type="button" class="btn btn-lg btn-default"  name="button">
+								Agregar Información de Obra
+							</button>
+						</div>
+					</div>
                     <form id="reg_bien" method="POST" class="form-horizontal">
                         <div class="row">
                             <div class="col-1"></div>
@@ -279,7 +292,7 @@
     </div>
 </div>
 <script src="<?=base_url()?>/js/programacion.js"></script>
-<script src="<?=base_url()?>/js/calculos.js"></script>
+<script src="<?=base_url()?>/js/bien/calculos_bienes.js"></script>
 <script src="<?=base_url()?>/js/bien/agregar_ff.js"></script>
 <script src="<?=base_url()?>/js/bien/agregar_ip.js"></script>
 <script src="<?=base_url()?>/js/bien/calculos_bienes.js"></script>

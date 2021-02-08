@@ -19,14 +19,17 @@ function agregar_ccnuToCartTable(cells){
 	var tipo_obra = $("#id_tip_obra").val();
 	var tipo_obra1 = tipo_obra.split("/")[0];
 	var tipo_obra2 = tipo_obra.split("/")[1];
+	console.log(tipo_obra1);
 
 	var alcance_obra = $("#id_alcance_obra").val();
 	var alcance_obra1 = alcance_obra.split("/")[0];
 	var alcance_obra2 = alcance_obra.split("/")[1];
+	console.log(alcance_obra1);
 
 	var obj_obra = $("#id_obj_obra").val();
 	var obj_obra1 = obj_obra.split("/")[0];
 	var obj_obra2 = obj_obra.split("/")[1];
+	console.log(obj_obra1);
 
 	var fecha_desde = $("#fecha_desde").val();
 	var fecha_hasta = $("#fecha_hasta").val();
@@ -91,9 +94,9 @@ function agregar_ccnuToCartTable(cells){
 		newRow.innerHTML = `
 		<td>${pp3}<input type="text" name="par_presupuestaria[]" id="ins-type-${increment}" hidden value="${pp1}"></td>
 
-		<td>${tipo_obra2}<input type="text" name="id_ccnu[]" id="ins-type-${increment}" hidden value="${tipo_obra1}"></td>
-		<td>${alcance_obra2}<input type="text" name="id_ccnu[]" id="ins-type-${increment}" hidden value="${alcance_obra1}"></td>
-		<td>${obj_obra2}<input type="text" name="id_ccnu[]" id="ins-type-${increment}" hidden value="${obj_obra1}"></td>
+		<td>${tipo_obra2}<input type="text" name="id_tip_obra[]" id="ins-type-${increment}" hidden value="${tipo_obra1}"></td>
+		<td>${alcance_obra2}<input type="text" name="id_alcance_obra[]" id="ins-type-${increment}" hidden value="${alcance_obra1}"></td>
+		<td>${obj_obra2}<input type="text" name="id_obj_obra[]" id="ins-type-${increment}" hidden value="${obj_obra1}"></td>
 
 		<td>${fecha_desde}<input type="text" name="fecha_desde[]" id="ins-type-${increment}" hidden value="${fecha_desde}"></td>
 		<td>${fecha_hasta}<input type="text" name="fecha_hasta[]" id="ins-type-${increment}" hidden value="${fecha_hasta}"></td>
@@ -138,7 +141,7 @@ function agregar_ccnuToCartTable(cells){
 		$("#estimado_iV").val('');
 		$("#estimado_total_t").val('');
 
-		$("#btn_guar_1").prop('disabled', false);
+		$("#btn_guar").prop('disabled', false);
 	}
 }
 

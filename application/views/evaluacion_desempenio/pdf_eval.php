@@ -6,7 +6,11 @@
         </div>
 		<div class="col-lg-12" id="imp1">
             <div class="panel panel-inverse">
-                <h3>Identificador de Evaluación de Desempeño: <?=$eval_ind['id']?></h3>
+                <br>
+                <div class="col-12">
+                    <h3>Identificador de Evaluación de Desempeño: <?=$eval_ind['id']?></h3>
+                </div>
+
                 <div class="panel-heading">
                     <h2 style="font-size: 16px;" class="panel-title text-center"><b>Datos del Contratista Adjudicado</b></h2>
                 </div>

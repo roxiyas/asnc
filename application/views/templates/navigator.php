@@ -57,7 +57,7 @@
 						<a href="javascript:;">
 							<b class="caret"></b>
 							<i class="fas fa-sliders-h" style="background:darkred;"></i>
-							<span>RNC</span>
+							<span>RNCE</span>
 						</a>
 						<?php if (($this->session->userdata('perfil') == 1) ||  ($this->session->userdata('perfil') <= 3)) : ?>
 							<ul class="sub-menu">
@@ -92,6 +92,7 @@
 											<a href="<?= base_url() ?>index.php/evaluacion_desempenio/reporte">- Reporte</a>
 										</li>
 										<li><a href="<?= base_url() ?>index.php/evaluacion_desempenio/consulta">- Consulta</a></li>
+										<li><a href="<?= base_url() ?>index.php/evaluacion_desempenio/anulacion">- Anulación</a></li>
 									</ul>
 								</li>
 							<?php endif; ?>
@@ -101,7 +102,7 @@
 						<a href="javascript:;">
 							<b class="caret"></b>
 							<i class="fas fa-server" style="background:darkred;"></i>
-							<span>RNCE</span>
+							<span>RNC</span>
 						</a>
 						<?php if (($this->session->userdata('perfil') == 1) ||  ($this->session->userdata('perfil') <= 3)) : ?>
 							<ul class="sub-menu">

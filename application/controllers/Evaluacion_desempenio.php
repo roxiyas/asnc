@@ -275,43 +275,43 @@ class Evaluacion_desempenio extends CI_Controller {
   	// 	echo json_encode($data);
 	// }
 
-	public function registrar_not_2(){
+	// public function registrar_not_2(){
+	// 	$medio = $this->input->POST('medio');
+	// 	if ($medio == '1' || $medio == '4') {
+	// 		if (!empty($_FILES['fileImagen']['name'])){
+	// 			$config['upload_path'] = './imagenes';;
+	// 			$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+	// 			$config['max_size'] = '204800';
+	// 			$config['max_width'] = '202400';
+	// 			$config['max_height'] = '200800';
+	// 			$this->load->library('upload', $config);
+	// 			$this->upload->initialize($config);
+	// 			if ($this->upload->do_upload('fileImagen')){
+	// 				$img = $this->upload->data();
+	// 			}else{
+	// 				$img = 'N/A';
+	// 				echo $this->upload->display_errors();
+	// 			}
+	// 		}
+	// 		if(!isset($img['file_name'])){$img['file_name'] = "";}
+	//
+	// 		$file_img = $img['file_name'];
+	// 	}else{
+	// 		$file_img = 'NULL';
+	// 	}
+	//
+	// 	$data = array('id_evaluacion'=> $this->input->POST('id'),
+	//  				  'medio' 		 => $this->input->POST('medio'),
+	// 			  	  'nro_not' 	 => $this->input->POST('nro_not'),
+	// 			  	  'correo' 	 	 => $this->input->POST('correo'),
+	// 			  	  'fileimagen' 	 => $file_img,
+	// 				  'id_usuario' 	 => $this->session->userdata('id_user'),
+	// 				  'id_estatus'	 => 2);
+	//
+	// 	$data =	$this->Evaluacion_desempenio_model->registrar_not_2($data);
+  	// 	echo json_encode($data);
+	// }
 
-		$medio = $this->input->POST('medio');
-		if ($medio == '1' || $medio == '4') {
-			if (!empty($_FILES['fileImagen']['name'])){
-				$config['upload_path'] = './imagenes';;
-				$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
-				$config['max_size'] = '204800';
-				$config['max_width'] = '202400';
-				$config['max_height'] = '200800';
-				$this->load->library('upload', $config);
-				$this->upload->initialize($config);
-				if ($this->upload->do_upload('fileImagen')){
-					$img = $this->upload->data();
-				}else{
-					$img = 'N/A';
-					echo $this->upload->display_errors();
-				}
-			}
-			if(!isset($img['file_name'])){$img['file_name'] = "";}
-
-			$file_img = $img['file_name'];
-		}else{
-			$file_img = 'NULL';
-		}
-
-		$data = array('id_evaluacion'=> $this->input->POST('id'),
-	 				  'medio' 		 => $this->input->POST('medio'),
-				  	  'nro_not' 	 => $this->input->POST('nro_not'),
-				  	  'correo' 	 	 => $this->input->POST('correo'),
-				  	  'fileimagen' 	 => $file_img,
-					  'id_usuario' 	 => $this->session->userdata('id_user'),
-					  'id_estatus'	 => 2);
-
-		$data =	$this->Evaluacion_desempenio_model->registrar_not_2($data);
-  		echo json_encode($data);
-	}
 	//Para consultar las evaluaciones que tiene el usuarios registradas
 	public function reporte(){
 		if(!$this->session->userdata('session'))redirect('login');
@@ -326,6 +326,7 @@ class Evaluacion_desempenio extends CI_Controller {
 	}
 
 	public function ver_evaluacion(){
+		if(!$this->session->userdata('session'))redirect('login');
 		$id_evaluacion = $this->input->get('id');
 		$data['eval_ind'] 	= $this->Evaluacion_desempenio_model->consulta_eval_ind($id_evaluacion);
 
@@ -341,6 +342,7 @@ class Evaluacion_desempenio extends CI_Controller {
 
 	//Para La Consulta de Gráficos
 	public function consulta(){
+		if(!$this->session->userdata('session'))redirect('login');
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
 		$this->load->view('evaluacion_desempenio/consulta.php');
@@ -353,4 +355,16 @@ class Evaluacion_desempenio extends CI_Controller {
 		$data =	$this->Evaluacion_desempenio_model->graficos($data);
 		echo json_encode($data);
 	}
+
+	//Anulacion de Evaluacion de Desempeños
+	 public function anulacion(){
+		if(!$this->session->userdata('session'))redirect('login');
+
+		$data['evaluaciones']	= $this->Evaluacion_desempenio_model->consulta_eval_anul();
+
+		$this->load->view('templates/header.php');
+		$this->load->view('templates/navigator.php');
+		$this->load->view('evaluacion_desempenio/anulacion.php', $data);
+		$this->load->view('templates/footer.php');
+	 }
 }

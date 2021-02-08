@@ -4,6 +4,18 @@
         <div class="row">
             <div class="panel panel-inverse">
                 <div class="panel-body">
+					<div class="row">
+						<div class="col-4">
+							<button onclick="location.href='<?php echo base_url()?>index.php/Programacion/agregar_bien?id=<?php echo $id_programacion;?>'" type="button" class="btn btn-lg btn-default"  name="button">
+								Agregar Información de Bienes
+							</button>
+						</div>
+						<div class="col-4">
+							<button onclick="location.href='<?php echo base_url()?>index.php/Programacion/agregar_obra?id=<?php echo $id_programacion;?>'" type="button" class="btn btn-lg btn-default"  name="button">
+								Agregar Información de Obra
+							</button>
+						</div>
+					</div>
                     <form id="reg_servicio" method="POST" class="form-horizontal">
                         <div class="row">
                             <div class="col-1"></div>

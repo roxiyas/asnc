@@ -4,7 +4,20 @@
         <div class="row">
             <div class="panel panel-inverse">
                 <div class="panel-body">
-                    <form id="reg_servicio" method="POST" class="form-horizontal">
+					<div class="row">
+						<div class="col-2"></div>
+						<div class="col-4">
+							<button onclick="location.href='<?php echo base_url()?>index.php/Programacion/agregar_bien?id=<?php echo $id_programacion;?>'" type="button" class="btn btn-lg btn-default"  name="button">
+								Agregar Información de Bienes
+							</button>
+						</div>
+						<div class="col-4">
+							<button onclick="location.href='<?php echo base_url()?>index.php/Programacion/agregar_servicio?id=<?php echo $id_programacion;?>'" type="button" class="btn btn-lg btn-default"  name="button">
+								Agregar Información de Servicio
+							</button>
+						</div>
+					</div>
+                    <form id="reg_obra" method="POST" class="form-horizontal">
                         <div class="row">
                             <div class="col-1"></div>
                             <div class="col-10 mt-4">
@@ -21,7 +34,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-9 mt-3" >
+                            <div class="col-3 mt-3" >
                                 <label>Acción a Cargar</label>
                                 <select id="acc_cargar" name="acc_cargar" class="select2 form-control">
                                     <option value="0">Seleccione</option>
@@ -29,7 +42,6 @@
                                     <option value="2">Acción Centralizada</option>
                                 </select>
                             </div>
-                            <div class="col-3"></div>
 
                             <div class="col-6 mt-3 form-group" id="acc_s" style="display:none;">
                                 <label>Acción Centralizada<b style="color:red">*</b></label><br>
@@ -43,18 +55,14 @@
 
                             <div class="col-6 mt-3 form-group" id="proyecto_s" style="display:none;">
                                 <label>Nombre del Proyecto <b style="color:red">*</b></label>
-                                <input id="nombre_proyecto" name="nombre_proyecto" value="Nombre" type="text" class="form-control" required>
+                                <input id="nombre_proyecto" name="nombre_proyecto" type="text" class="form-control" required>
                             </div>
 
-                            <div class="form-group mt-3 col-3">
+							<div class="form-group mt-3 col-3">
                                 <label>Objeto de Contratación</label>
-                                <select id="id_obj_comercial" name="id_obj_comercial" class="default-select2 form-control">
-                                    <option value="0">Seleccione</option>
-                                    <?php foreach ($act_com as $data): ?>
-                                        <option value="<?=$data['id_objeto_contrata']?>"><?=$data['desc_objeto_contrata']?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <input type="text" class="form-control" id="id_obj_comercial" name="id_obj_comercial" value="Obras" readonly>
                             </div>
+
                             <div class="col-12">
                                 <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                             </div>
@@ -133,7 +141,7 @@
                             <div class="col-12 mt-2 text-center">
                                 <h4 style="color:red;">Información Items Productos (IP)</h4>
                             </div>
-                            <div class="col-4">
+                            <div class="form-group col-4">
                                 <label>Tipo de Obra <b style="color:red">*</b></label><br>
                                 <select  id="id_tip_obra" name="id_tip_obra" class="form-control">
                                     <option value="">SELECCIONE</option>
@@ -142,7 +150,7 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="col-4">
+                            <div class="form-group col-4">
                                 <label>Alcance de la Obra <b style="color:red">*</b></label><br>
                                 <select  id="id_alcance_obra" name="id_alcance_obra" class="form-control">
                                     <option value="">SELECCIONE</option>
@@ -151,7 +159,7 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="col-4">
+                            <div class="form-group col-4">
                                 <label>Objeto de la Obra <b style="color:red">*</b></label><br>
                                 <select  id="id_obj_obra" name="id_obj_obra" class="form-control">
                                     <option value="">SELECCIONE</option>
@@ -307,7 +315,7 @@
                         </div>
                         <!--////////////////////////////SEGUNDA PARTE DE LA CARGA -->
                         <div class="col-12 text-center mt-3">
-                            <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="submit" name="button" id="btn_guar_1" disabled>Guardar</button>
+                            <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="button" name="button" id="btn_guar" onclick="guardar_obra();" disabled>Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -319,7 +327,7 @@
 <script src="<?=base_url()?>/js/calculos.js"></script>
 <script src="<?=base_url()?>/js/obra/agregar_ff.js"></script>
 <script src="<?=base_url()?>/js/obra/agregar_ip.js"></script>
-<!-- <script src="<?=base_url()?>/js/servicio/registro.js"></script> -->
+<script src="<?=base_url()?>/js/obra/registro.js"></script>
 <script type="text/javascript">
 function valideKey(evt){
    var code = (evt.which) ? evt.which : evt.keyCode;

@@ -6,13 +6,13 @@
             $query = $this->db->get('public.operadora');
             return $response = $query->result_array();
         }
-
+//-------------------------------------------------------
         public function consulta_med_notf(){
             $this->db->select('*');
             $query = $this->db->get('public.medio_notf');
             return $response = $query->result_array();
         }
-
+//-------------------------------------------------------
         public function llenar_contratista($data){
             $this->db->select('c.user_id,
                         	     c.edocontratista_id,
@@ -49,7 +49,7 @@
                     return $result;
                 }
         }
-
+//-------------------------------------------------------
         public function llenar_contratista_rp($data){
             $this->db->select('proceso_id,
                         	   cedrif,
@@ -72,23 +72,22 @@
                 return $result;
             }
         }
-
+//-------------------------------------------------------
         public function consulta_modalidades(){
             $this->db->select('*');
             $query = $this->db->get('evaluacion_desempenio.modalidad');
             return $result = $query->result_array();
         }
-
+//-------------------------------------------------------
         public function llenar_sub_modalidad($data){
             $this->db->select('*');
             $this->db->where('id_modalidad', $data['id_modalidad']);
             $query = $this->db->get('evaluacion_desempenio.sub_modalidad');
             return $result = $query->result_array();
         }
-
+//-------------------------------------------------------
         public function registrar($exitte,$data,$data_ev,$data_repr_legal){
             $existe = $exitte;
-
             $this->db->select('max(e.id) as id');
             $query = $this->db->get('evaluacion_desempenio.evaluacion e');
             $response = $query->row_array();
@@ -146,36 +145,21 @@
                 return $quers;
             }
         }
-
-        public function consulta_eval_not($usuario){
-            $this->db->select('ed.id,
-                            	 ed.rif_contrat,
-                            	 concat(cn.nombre,\'\',c.nombre ) as nombre,
-                                 ed.calificacion
-                               ');
-            $this->db->join('evaluacion_desempenio.contratistas c', 'c.rifced = ed.rif_contrat', 'left');
-            $this->db->join('evaluacion_desempenio.contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
-            $this->db->where('ed.id_usuario', $usuario);
-            $this->db->where('id_estatus', 1);
-            $query = $this->db->get('evaluacion_desempenio.evaluacion ed');
-            return $response = $query->result_array();
-        }
-
-        public function consulta_eval($usuario){
-            $this->db->select('ed.id,
-                               ed.rif_contrat,
-                               concat(cn.nombre,\'\',c.nombre ) as nombre,
-                               ed.calificacion,
-                               e.descripcion
-            ');
-            $this->db->join('evaluacion_desempenio.contratistas c', 'c.rifced = ed.rif_contrat', 'left');
-            $this->db->join('evaluacion_desempenio.contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
-            $this->db->join('public.estatus e', 'e.id = ed.id_estatus');
-            $this->db->where('ed.id_usuario', $usuario);
-            $query = $this->db->get('evaluacion_desempenio.evaluacion ed');
-            return $response = $query->result_array();
-        }
-
+//-------------------------------------------------------
+        // public function consulta_eval_not($usuario){
+        //     $this->db->select('ed.id,
+        //                     	 ed.rif_contrat,
+        //                     	 concat(cn.nombre,\'\',c.nombre ) as nombre,
+        //                          ed.calificacion
+        //                        ');
+        //     $this->db->join('evaluacion_desempenio.contratistas c', 'c.rifced = ed.rif_contrat', 'left');
+        //     $this->db->join('evaluacion_desempenio.contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
+        //     $this->db->where('ed.id_usuario', $usuario);
+        //     $this->db->where('id_estatus', 1);
+        //     $query = $this->db->get('evaluacion_desempenio.evaluacion ed');
+        //     return $response = $query->result_array();
+        // }
+//-------------------------------------------------------
         //Registrar notificacion
         public function registrar_not($data){
             $id_evaluacion = $data['id_evaluacion'];
@@ -192,38 +176,53 @@
                         'id_usuario' => $data['id_usuario'],
             );
             $quers =$this->db->insert('evaluacion_desempenio.not_evaluacion', $data_reg);
-
             if ($quers){
                 $data1 = array('id_estatus' => $data['id_estatus']);
                 $this->db->where('id', $id_evaluacion);
                 $update = $this->db->update('evaluacion_desempenio.evaluacion', $data1);
                 return true;
             }
-
             return true;
         }
+//-------------------------------------------------------
+        // public function registrar_not_2($data){
+        //     $id_evaluacion = $data['id_evaluacion'];
+        //
+        //     $data_reg = array(
+        //                 'id_evaluacion' => $id_evaluacion,
+        //                 'medio' => $data['medio'],
+        //                 'nro_not' => $data['nro_not'],
+        //                 'correo' => $data['correo'],
+        //                 'fileimagen' => $data['fileimagen'],
+        //                 'id_usuario' => $data['id_usuario'],
+        //     );
+        //     $quers =$this->db->insert('evaluacion_desempenio.not_evaluacion', $data_reg);
+        //
+        //     if ($quers){
+        //         $data1 = array('id_estatus' => $data['id_estatus']);
+        //         $this->db->where('id', $id_evaluacion);
+        //         $update = $this->db->update('evaluacion_desempenio.evaluacion', $data1);
+        //         return true;
+        //     }
+        //
+        //     return true;
+        // }
+//-------------------------------------------------------
 
-        public function registrar_not_2($data){
-            $id_evaluacion = $data['id_evaluacion'];
-
-            $data_reg = array(
-                        'id_evaluacion' => $id_evaluacion,
-                        'medio' => $data['medio'],
-                        'nro_not' => $data['nro_not'],
-                        'correo' => $data['correo'],
-                        'fileimagen' => $data['fileimagen'],
-                        'id_usuario' => $data['id_usuario'],
-            );
-            $quers =$this->db->insert('evaluacion_desempenio.not_evaluacion', $data_reg);
-
-            if ($quers){
-                $data1 = array('id_estatus' => $data['id_estatus']);
-                $this->db->where('id', $id_evaluacion);
-                $update = $this->db->update('evaluacion_desempenio.evaluacion', $data1);
-                return true;
-            }
-
-            return true;
+        // Reporte de Evaluacion de Desempeño por Usuario
+        public function consulta_eval($usuario){
+            $this->db->select('ed.id,
+                               ed.rif_contrat,
+                               concat(cn.nombre,\'\',c.nombre ) as nombre,
+                               ed.calificacion,
+                               e.descripcion
+            ');
+            $this->db->join('evaluacion_desempenio.contratistas c', 'c.rifced = ed.rif_contrat', 'left');
+            $this->db->join('evaluacion_desempenio.contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
+            $this->db->join('public.estatus e', 'e.id = ed.id_estatus');
+            $this->db->where('ed.id_usuario', $usuario);
+            $query = $this->db->get('evaluacion_desempenio.evaluacion ed');
+            return $response = $query->result_array();
         }
 
         //Se consulta la Evaluación de desempeño. Tomando en cuenta que hay dos tablas de consultas de los contratistas (Solicitado de esa forma).
@@ -289,6 +288,21 @@
             $query = $this->db->get('evaluacion_desempenio.evaluacion e');
             $response = $query->result_array();
             return $response;
+        }
+
+        // Consulta de Evaluacion completas para anulación
+        public function consulta_eval_anul(){
+            $this->db->select('ed.id,
+                               ed.rif_contrat,
+                               concat(cn.nombre,\'\',c.nombre ) as nombre,
+                               ed.calificacion,
+                               e.descripcion
+            ');
+            $this->db->join('evaluacion_desempenio.contratistas c', 'c.rifced = ed.rif_contrat', 'left');
+            $this->db->join('evaluacion_desempenio.contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
+            $this->db->join('public.estatus e', 'e.id = ed.id_estatus');
+            $query = $this->db->get('evaluacion_desempenio.evaluacion ed');
+            return $response = $query->result_array();
         }
     }
 ?>

@@ -1,8 +1,8 @@
-function guardar_bien(){
+function guardar_obra(){
     event.preventDefault();
     swal.fire({
         title: '¿Registrar?',
-        text: '¿Esta seguro de Registrar la información ingresada para Bienes?',
+        text: '¿Esta seguro de Registrar la información ingresada para Obras?',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -13,8 +13,8 @@ function guardar_bien(){
         if (result.value == true) {
 
             event.preventDefault();
-            var datos = new FormData($("#reg_bien")[0]);
-            var base_url =window.location.origin+'/asnc/index.php/Programacion/registrar_bien';
+            var datos = new FormData($("#reg_obra")[0]);
+            var base_url =window.location.origin+'/asnc/index.php/Programacion/registrar_obra';
             // var base_url = '/index.php/Programacion/registrar_servicio';
             $.ajax({
                 url:base_url,

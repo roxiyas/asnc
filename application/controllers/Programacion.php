@@ -189,6 +189,9 @@ class Programacion extends CI_Controller {
         $p_items = array(
             'id_par_presupuestaria'  => $this->input->post('par_presupuestaria'),
             'id_ccnu' 		         => $this->input->post('id_ccnu'),
+            'id_tip_obra' 		     => 0,
+            'id_alcance_obra' 		 => 0,
+            'id_obj_obra' 		     => 0,
             'fecha_desde'   	     => $this->input->POST('fecha_desde'),
             'fecha_hasta'   	     => $this->input->POST('fecha_hasta'),
             'especificacion' 		 => $this->input->post('especificacion'),
@@ -272,6 +275,9 @@ class Programacion extends CI_Controller {
         $p_items = array(
             'id_par_presupuestaria'  => $this->input->post('par_presupuestaria'),
             'id_ccnu' 		         => $this->input->post('id_ccnu'),
+            'id_tip_obra' 		     => 0,
+            'id_alcance_obra' 		 => 0,
+            'id_obj_obra' 		     => 0,
             'fecha_desde'   	     => date('Y-m-d'),
             'fecha_hasta'   	     => date('Y-m-d'),
             'especificacion' 		 => $this->input->post('especificacion'),
@@ -288,12 +294,12 @@ class Programacion extends CI_Controller {
             'iva_estimado' 		     => $this->input->post('iva_estimado'),
             'monto_estimado' 		 => $this->input->post('monto_estimado'),
         );
-        // print_r();die;
 
         $p_ffinanciamiento = array(
             'id_estado'   		        => $this->input->post('id_estado'),
             'id_par_presupuestaria' 	=> $this->input->post('par_presupuestaria_ff'),
             'id_fuente_financiamiento'  => $this->input->post('fuente_financiamiento'),
+            'descripcion_ff' 	                => $this->input->post('descripcion_ff'),
             'porcentaje' 	            => $this->input->post('porcentaje'),
         );
 
@@ -338,6 +344,61 @@ class Programacion extends CI_Controller {
         $this->load->view('templates/footer.php');
     }
 
+    public function registrar_obra(){
+        if(!$this->session->userdata('session'))redirect('login');
+
+        $acc_cargar = $this->input->POST('acc_cargar');
+
+        $p_proyecto = array(
+            'id_programacion'        => $this->input->POST('id_programacion'),
+            'nombre_proyecto'        => $this->input->POST('nombre_proyecto'),
+            'id_obj_comercial'       => 1,
+            'id_usuario' 		     => $this->session->userdata('id_user'),
+            'estatus'                => 1
+        );
+
+        $p_acc_centralizada = array(
+            'id_programacion'        => $this->input->POST('id_programacion'),
+            'id_accion_centralizada' => $this->input->POST('id_accion_centralizada'),
+            'id_obj_comercial'       => 1,
+            'id_usuario' 		     => $this->session->userdata('id_user'),
+            'estatus'                => 1
+       );
+
+       $p_items = array(
+           'id_par_presupuestaria'  => $this->input->post('par_presupuestaria'),
+           'id_ccnu' 		         => $this->input->post('id_ccnu'),
+           'id_tip_obra' 		    => $this->input->post('id_tip_obra'),
+           'id_alcance_obra' 		=> $this->input->post('id_alcance_obra'),
+           'id_obj_obra' 		    => $this->input->post('id_obj_obra'),
+           'fecha_desde'   	     => $this->input->POST('fecha_desde'),
+           'fecha_hasta'   	     => $this->input->POST('fecha_hasta'),
+           'especificacion' 		 => $this->input->post('especificacion'),
+           'id_unidad_medida' 		 => $this->input->post('id_unidad_medida'),
+           'i' 		             => $this->input->post('i'),
+           'ii' 		             => $this->input->post('ii'),
+           'iii' 		             => $this->input->post('iii'),
+           'iv' 		             => $this->input->post('iv'),
+           'precio_total' 		     => $this->input->post('precio_total'),
+           'id_alicuota_iva' 		 => $this->input->post('id_alicuota_iva'),
+           'iva_estimado' 		     => $this->input->post('iva_estimado'),
+           'monto_estimado' 		 => $this->input->post('monto_estimado'),
+       );
+
+       $p_ffinanciamiento = array(
+           'id_estado'   		        => $this->input->post('id_estado'),
+           'id_par_presupuestaria' 	    => $this->input->post('par_presupuestaria_ff'),
+           'id_fuente_financiamiento'   => $this->input->post('fuente_financiamiento'),
+           'descripcion_ff' 	        => $this->input->post('descripcion_ff'),
+           'porcentaje' 	            => $this->input->post('porcentaje'),
+       );
+
+       $data = $this->Programacion_model->save_obra($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento);
+       echo json_encode($data);
+
+    }
+
+///////////////////////////////////////////////////////////////////////////////////////
     public function ver_programacion_proy(){
         if(!$this->session->userdata('session'))
         redirect('login');
