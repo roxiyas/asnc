@@ -628,7 +628,7 @@ function registrar(){
                 event.preventDefault();
                 swal.fire({
                     title: 'ALERTA',
-                    text: 'Con base al resultado de la evaluación de desempeño, deberá remitir al Servicio Nacional de Contrataciones, el expediente administrativo contentivo de la decisión del contratante con respecto a los supuestos generadores de sanción, así como el deposito correspondiente a la multa por trecientas (300) UCAU, a beneficio del Servicio Nacional de Contrataciones de conformidad a lo establecido en los artículos 167 y 168 del Decreto con Rango, Valor y Fuerza de Ley de Contrataciones Públicas.                                                 ¿Esta Seguro de Registrar?',
+                    text: 'Con base al resultado de la evaluación de desempeño, deberá remitir al Servicio Nacional de Contrataciones, el Expediente Administrativo contentivo de la decisión del contratante con respecto a los supuestos generadores de sanción, así como la liquidación correspondiente a la multa por trecientas (300) UCAU, a beneficio del Servicio Nacional de Contrataciones de conformidad a lo establecido en los artículos 167 y 168 del Decreto con Rango, Valor y Fuerza de Ley de Contrataciones Públicas.                                                 ¿Esta Seguro de Registrar?',
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
