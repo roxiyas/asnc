@@ -67,15 +67,15 @@
                     <div class="panel-body" id="no_existe">
                         <div class="row">
                             <div class="form-group col-3">
-                                <label>Rif del Contratista</label>
+                                <label>Rif del Contratista <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input class="form-control"  type="text" name="rif_cont_n" id="rif_cont_n" placeholder="Rif">
                             </div>
                             <div class="form-group col-9">
-                                <label>Nombre completo</label>
+                                <label>Nombre completo <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input type="text" name="nombre_n" id="nombre_n" class="form-control" placeholder="Nombre completo">
                             </div>
                             <div class="form-group col-3">
-                                <label>Estado</label>
+                                <label>Estado <b style="color:red">*</b></label>
                                 <select class="form-control" name="id_estado_n" id="id_estado_n" onclick="llenar_municipio();listar_ciudades();">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($estados as $data): ?>
@@ -84,19 +84,19 @@
                                 </select>
                             </div>
                             <div class="form-group col-3">
-                                <label>Municipio</label>
+                                <label>Municipio <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <select class="form-control" name="id_municipio_n" id="id_municipio_n" onclick="llenar_parroquia();">
                                     <option value="0">Seleccione</option>
                                 </select>
                             </div>
                             <div class="form-group col-3">
-                                <label>Parroquia</label>
+                                <label>Parroquia <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <select class="form-control" name="id_parroquia_n" id="id_parroquia_n" >
                                     <option value="0">Seleccione</option>
                                 </select>
                             </div>
                             <div class="form-group col-3">
-                                <label>Ciudad</label>
+                                <label>Ciudad <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <select class="selected form-control" name="ciudad_n" id="ciudad_n">
                                     <option value="0">Seleccione</option>
                                 </select>
@@ -105,7 +105,7 @@
                                 <h4 class="text-center mb-3 mt-3">Datos Representante Legal</h4>
                             </div>
                             <div class="form-group col-3">
-                                <label>País de Prosedencia</label>
+                                <label>País de Procedencia <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <select class="form-control" name="id_pais_n" id="id_pais_n">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($pais as $data): ?>
@@ -114,19 +114,19 @@
                                 </select>
                             </div>
                             <div class="form-group col-3">
-                                <label>Cédula</label>
+                                <label>Cédula <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input type="text" name="ced_rep_leg_n" id="ced_rep_leg_n" class="form-control"  placeholder="Cédula">
                             </div>
                             <div class="form-group col-3">
-                                <label>Nombres</label>
+                                <label>Nombres <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input type="text" name="nom_rep_leg_n" id="nom_rep_leg_n" class="form-control"  placeholder="Nombres">
                             </div>
                             <div class="form-group col-3">
-                                <label>Apellidos</label>
+                                <label>Apellidos <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input type="text" name="ape_rep_leg_n" id="ape_rep_leg_n" class="form-control"  placeholder="Apellidos">
                             </div>
                             <div class="form-group col-3">
-                                <label>Estado Civil</label>
+                                <label>Estado Civil <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <select class="form-control" name="edo_civil_n" id="edo_civil_n">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($edo_civil as $data): ?>
@@ -135,11 +135,11 @@
                                 </select>
                             </div>
                             <div class="form-group col-3">
-                                <label>Cargo</label>
+                                <label>Cargo <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input type="text" name="cargo_rep_leg_n" id="cargo_rep_leg_n" class="form-control"  placeholder="Cargo">
                             </div>
                             <div class="form-group col-3">
-                                <label>Télefono de Contacto</label>
+                                <label>Télefono de Contacto <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <div class="row">
                                     <div class="col-5">
                                         <select class="form-control" name="operadora_n" id="operadora_n">
@@ -155,7 +155,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-3">
-                                <label>Correo</label>
+                                <label>Correo <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input type="text" name="correo_rep_leg_n" id="correo_rep_leg_n" class="form-control"  placeholder="Correo">
                             </div>
                         </div>
@@ -167,7 +167,7 @@
     				<div class="panel-body">
                         <div class="row">
                             <div class="form-group col-7">
-                                <label>Modalidad de la Contratación</label>
+                                <label>Modalidad de la Contratación <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <select class="form-control" name="id_modalidad" id="id_modalidad" onclick="llenar_sub_mod();">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($modalidades as $data): ?>
@@ -176,13 +176,13 @@
                                 </select>
                             </div>
                             <div class="form-group col-12">
-                                <label>Sub-Modalidad de la Contratación</label>
+                                <label>Sub-Modalidad de la Contratación <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <select class="form-control" name="id_sub_modalidad" id="id_sub_modalidad">
                                     <option value="0">Seleccione</option>
                                 </select>
                             </div>
                             <div class="form-group col-6">
-                                <label>Rango de Fecha - Inicio a Culminacion del Contrato</label>
+                                <label>Rango de Fecha - Inicio a Culminacion del Contrato <b title="Campo Obligatorio" style="color:red">*</b></label>
                                     <div class="input-group input-daterange">
                                         <input type="text" class="form-control" id="fecha_desde" name="start" placeholder="Desde" />
                                         <span class="input-group-addon">-</span>
@@ -197,15 +197,15 @@
     				<div class="panel-body">
                         <div class="row">
                             <div class="form-group col-4">
-                                <label>Nro. del Procedimiento</label>
+                                <label>Nro. del Procedimiento <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input class="form-control"  type="text" name="nro_procedimiento" id="nro_procedimiento" placeholder="Nro. del Procedimiento">
                             </div>
                             <div class="form-group col-4">
-                                <label>Nro. de contrato / Orden de Compra / Orden de Servicio</label>
+                                <label>Nro. de contrato / Orden de Compra / Orden de Servicio <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input class="form-control" name="nro_cont_oc_os" id="nro_cont_oc_os" rows="3" cols="70"></input>
                             </div>
                             <div class="form-group col-4">
-                                <label>Estado donde se ejecuto el Contrato</label>
+                                <label>Estado donde se ejecuto el Contrato <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <select class="form-control" name="id_estado_dc" id="id_estado_dc">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($estados as $data): ?>
@@ -214,7 +214,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-2">
-                                <label>Objeto de la Contratación</label>
+                                <label>Objeto de la Contratación <b title="Campo Obligatorio" style="color:red">*</b></label>
 								<div class="col-md-12">
 									<div class="checkbox checkbox-css">
 										<input type="checkbox" id="cssCheckbox1" name="cssCheckbox1" onclick="evaluar();"/>
@@ -231,15 +231,15 @@
 								</div>
                             </div>
                             <div class="form-group col-5">
-                                <label>Descripción de la Contratación</label>
+                                <label>Descripción de la Contratación <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <textarea class="form-control" name="desc_contratacion" id="desc_contratacion" rows="3" cols="70"></textarea>
                             </div>
                             <div class="form-group col-3">
-                                <label>Monto</label>
+                                <label>Monto <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input class="form-control"  type="text" name="monto" id="monto" onkeypress="return valideKey(event);">
                             </div>
                             <div class="form-group col-2">
-									<label>Moneda</label>
+									<label>Moneda <b title="Campo Obligatorio" style="color:red">*</b></label>
 									<div class="col-md-12">
 										<div class="radio radio-css">
 											<input type="radio" name="radio_css" id="cssRadio1" value="1"/>
@@ -364,7 +364,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="form-group col-4">
-                                <label>¿Fue notificado al contratista?</label>
+                                <label>¿Fue notificado al contratista? <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <select class="form-control" name="notf_cont" id="notf_cont" onblur="val_not();">
                                     <option value="0">Seleccione</option>
                                     <option value="1">Sí, fué notificado al contratista</option>
@@ -372,11 +372,11 @@
                                 </select>
                             </div>
                             <div class="form-group col-4">
-                                <label>Fecha de la Notificación</label>
+                                <label>Fecha de la Notificación <b title="Campo Obligatorio" style="color:red">*</b></label>
 								<input type="text" class="form-control" id="datepicker-default" name="fec_notificacion" placeholder="Seleccionar Fecha" onchange="validar_fecha();"/>
                             </div>
                             <div class="form-group col-4">
-                                <label>Medio de envio de la Notificación</label>
+                                <label>Medio de envio de la Notificación <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <select class="selected form-control" name="medio" id="medio">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($med_not as $data): ?>
@@ -385,11 +385,11 @@
                                 </select>
                             </div>
                             <div class="form-group col-6">
-                                <label>Nro. de Oficio / Fax / Correo Electronico / Otro</label>
+                                <label>Nro. de Oficio / Fax / Correo Electronico / Otro <b title="Campo Obligatorio" style="color:red">*</b></label>
 								<input type="text" class="form-control" id="nro_oc_os" name="nro_oc_os" placeholder="Nro. de Oficio / Fax / Correo Electronico / Otro" />
                             </div>
                             <div class="form-group col-6">
-                                <label>Acuse de Recibido <b style="color:red">*</b></label>
+                                <label>Acuse de Recibido <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input type="file" name="fileImagen" id="fileImagen" class="form-control">
                             </div>
                         </div>

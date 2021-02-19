@@ -7,7 +7,7 @@
 		                <div class="panel-body">
 		                    <div class="row">
 		                        <div class="col-4">
-		                            <label>Rif del Contratista a Evaluar</label>
+		                            <label>Rif del Contratista a Consultar</label>
 		                            <input class="form-control" type="text" name="rif_b" id="rif_b" onkeypress="may(this);" placeholder="J123456789">
 		                        </div>
 		                        <div class="col- mt-4">

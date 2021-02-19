@@ -20,7 +20,6 @@ class Evaluacion_desempenio extends CI_Controller {
 
 	//Registro de Evaluacion Desempenio
 	public function listar_municipio(){
-
 		if(!$this->session->userdata('session'))redirect('login');
 		$data = $this->input->post();
 		$data =	$this->Configuracion_model->listar_municipio($data);
@@ -55,7 +54,7 @@ class Evaluacion_desempenio extends CI_Controller {
 		$data =	$this->Evaluacion_desempenio_model->llenar_contratista_rp($data);
 		echo json_encode($data);
 	}
-
+	//-------------------------------------------------
 	public function llenar_sub_modalidad(){
 		if(!$this->session->userdata('session'))redirect('login');
 		$data = $this->input->post();
@@ -135,9 +134,9 @@ class Evaluacion_desempenio extends CI_Controller {
 		if (!empty($_FILES['fileImagen']['name'])){
 			$config['upload_path'] = './imagenes';;
 			$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
-			$config['max_size'] = '2048000';
-			$config['max_width'] = '2024000';
-			$config['max_height'] = '2008000';
+			$config['max_size'] = '204800000';
+			$config['max_width'] = '202400000';
+			$config['max_height'] = '200800000';
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
 			if ($this->upload->do_upload('fileImagen')){
@@ -152,36 +151,36 @@ class Evaluacion_desempenio extends CI_Controller {
 		$dato = $_POST['radio_css'];
 
 		if ($dato == 1){
-			$bolivares = '';
+			$bolivares = 'on';
+			$petros  = '';
 			$dolar  = '';
 			$euro  = '';
-			$petros  = 'on';
 			$otro  = '';
 		}elseif ($dato == 2){
-			$bolivares = 'on';
+			$bolivares = '';
+			$petros  = 'on';
 			$dolar  = '';
 			$euro  = '';
-			$petros  = '';
 			$otro  = '';
 		}
 		elseif ($dato == 3){
 			$bolivares = '';
+			$petros  = '';
 			$dolar  = 'on';
 			$euro  = '';
-			$petros  = '';
 			$otro  = '';
 		}
 		elseif ($dato == 4){
 			$bolivares = '';
+			$petros  = '';
 			$dolar  = '';
 			$euro  = 'on';
-			$petros  = '';
 			$otro  = '';
 		}elseif ($dato == 5){
 			$bolivares = '';
+			$petros  = '';
 			$dolar  = '';
 			$euro  = '';
-			$petros  = '';
 			$otro  = 'on';
 		}
 
@@ -330,9 +329,29 @@ class Evaluacion_desempenio extends CI_Controller {
 		$id_evaluacion = $this->input->get('id');
 		$data['eval_ind'] 	= $this->Evaluacion_desempenio_model->consulta_eval_ind($id_evaluacion);
 
+		$fecha_d = $data['eval_ind']['fec_inicio_cont'];
+		$date_d = date("d-m-Y", strtotime($fecha_d));
+		$data['fec_inicio_cont'] = $date_d;
+
+		$fecha_h = $data['eval_ind']['fec_fin_cont'];
+		$date_h = date("d-m-Y", strtotime($fecha_h));
+		$data['fec_fin_cont'] = $date_h;
+
 		$img = $data['eval_ind']['fileimagen'];
 		$separar  = explode(".", $img);
 		$data['tipo_img'] = $separar['1'];
+
+		$calidad = $data['eval_ind']['calidad'];
+		$data['calc_cald'] = $calidad * 25;
+
+		$responsabilidad = $data['eval_ind']['responsabilidad'];
+		$data['calc_responsabilidad'] = $responsabilidad * 25;
+
+		$conocimiento = $data['eval_ind']['conocimiento'];
+		$data['calc_conocimiento'] = $conocimiento * 25;
+
+		$oportunidad = $data['eval_ind']['oportunidad'];
+		$data['calc_oportunidad'] = $oportunidad * 25;
 
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');

@@ -382,10 +382,10 @@ function registrar(){
     var calificacion      = $("#calificacion").val();
 
     var notf_cont       = $("#notf_cont").val();
-    var fecha_not = $("#datepicker-default").val();
-    var medio       = $("#medio").val();
+    var fecha_not       = $("#datepicker-default").val();
+    var medio           = $("#medio").val();
     var nro_oc_os       = $("#nro_oc_os").val();
-    var fileImagen       = $("#fileImagen").val();
+    var fileImagen      = $("#fileImagen").val();
 
     if (exitte == '0'){
         if (rif_cont_n == '') {
@@ -462,21 +462,20 @@ function registrar(){
         else if (calificacion == '') {
             document.getElementById("calificacion").focus();
         }
-
         else if (notf_cont == '0') {
-            document.getElementById("calificacion").focus();
+            document.getElementById("notf_cont").focus();
         }
         else if (fecha_not == '') {
-            document.getElementById("calificacion").focus();
+            document.getElementById("datepicker-default").focus();
         }
         else if (medio == '0') {
-            document.getElementById("calificacion").focus();
+            document.getElementById("medio").focus();
         }
         else if (nro_oc_os == '') {
-            document.getElementById("calificacion").focus();
+            document.getElementById("nro_oc_os").focus();
         }
         else if (fileImagen == '') {
-            document.getElementById("calificacion").focus();
+            document.getElementById("fileImagen").focus();
         }
 
         else{
@@ -608,6 +607,20 @@ function registrar(){
         }
         else if (calificacion == '') {
             document.getElementById("calificacion").focus();
+        }else if (notf_cont == '0') {
+            document.getElementById("notf_cont").focus();
+        }
+        else if (fecha_not == '') {
+            document.getElementById("datepicker-default").focus();
+        }
+        else if (medio == '0') {
+            document.getElementById("medio").focus();
+        }
+        else if (nro_oc_os == '') {
+            document.getElementById("nro_oc_os").focus();
+        }
+        else if (fileImagen == '') {
+            document.getElementById("fileImagen").focus();
         }
         else{
             var calificacion = $('#calificacion').val();

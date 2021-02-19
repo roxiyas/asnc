@@ -1,16 +1,30 @@
 <div class="sidebar-bg"></div>
 <div id="content" class="content">
     <div class="row">
-        <div class="col-3 text-center">
-            <button class="btn btn-default mt-1 mb-1" type="submit" onclick="printDiv('areaImprimir');" name="action">Descargar Registro</button>
-        </div>
+        <!-- <div class="col-3 text-center">
+            <button class="btn btn-default mt-1 mb-1" type="button" onclick="printDiv();">Descargar Registro</button>
+        </div> -->
 		<div class="col-lg-12" id="imp1">
             <div class="panel panel-inverse">
                 <br>
                 <div class="col-12">
-                    <h3>Identificador de Evaluación de Desempeño: <?=$eval_ind['id']?></h3>
+                    <h4>Identificador de Evaluación de Desempeño: <?=$eval_ind['id']?></h4>
                 </div>
-
+                <div class="panel-heading">
+                    <h2 style="font-size: 16px;" class="panel-title text-center"><b>Datos del Contratante</b></h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-2">
+                            <h5><b>Rif de Contratante:</b></h5>
+                            <h5><?=$eval_ind['rif_organo']?></h5>
+                        </div>
+                        <div class="form-group col-10">
+                            <h5><b>Nombre Completo:</b></h5>
+                            <h5><?=$eval_ind['organo']?></h5>
+                        </div>
+                    </div>
+                </div>
                 <div class="panel-heading">
                     <h2 style="font-size: 16px;" class="panel-title text-center"><b>Datos del Contratista Adjudicado</b></h2>
                 </div>
@@ -34,7 +48,7 @@
                         </div>
                         <div class="form-group col-2">
                             <h5><b>Ciudad:</b></h5>
-                            <h5><?=$eval_ind['ciudade_id']?></h5>
+                            <h5><?=$eval_ind['ciudad']?></h5>
                         </div>
                     </div>
 			    </div>
@@ -49,7 +63,7 @@
                         </div>
                         <div class="form-group col-5">
                             <h5><b>Rango de Fecha - Inicio a Culminacion del Contrato:</b></h5>
-                            <h5>Desde: <?=$eval_ind['fec_inicio_cont']?> / Hasta: <?=$eval_ind['fec_fin_cont']?></h5>
+                            <h5>Desde: <?=$fec_inicio_cont?> <b>/</b> Hasta: <?=$fec_fin_cont?></h5>
                         </div>
                         <div class="form-group col-12">
                             <h5><b>Sub-Modalidad de la Contratación:</b></h5>
@@ -146,13 +160,16 @@
                                 <tr>
                                     <th>Criterio</th>
                                     <th>Descripción</th>
+                                    <th>Peso</th>
                                     <th>Clasificación</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Calidad</td>
                                     <td>Mide el cumplimiento de los parámetros técnicos y de calidad exigidos: disposición del personal capacitado/calificado, disponibilidad oportuna y confiable de equipos, instrumentos e infraestructura adecuados, procura (compra, manejo y almacenaje), respuesta eficiente a reclamos técnicos/calidad, organización e implantación de mejoras</td>
+                                    <td><h5 class="text-center mt-3">25</h5></td>
                                     <td>
                                         <?php if ($eval_ind['calidad'] == 1): ?>
                                             <h5 class="text-center mt-3">Si</h5>
@@ -161,10 +178,14 @@
                                             <h5 class="text-center mt-3">No</h5>
                                         <?php endif; ?>
                                     </td>
+                                    <td>
+                                        <h5 class="text-center mt-3"><?=$calc_cald?></h5>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Responsabilidad</td>
                                     <td>Cumplimiento de leyes, decretos y clausulas relativos al contrato, respuestas a demandas o reclamos de proveedores/subcontratistas, cumplimiento y respuesta de requisitos como solvencia laboral, administración de vacaciones, reclamos laborales, paros, demñas obligraciones legales y contractuales</td>
+                                    <td><h5 class="text-center mt-3">25</h5></td>
                                     <td>
                                         <?php if ($eval_ind['responsabilidad'] == 1): ?>
                                             <h5 class="text-center mt-3">Si</h5>
@@ -173,10 +194,14 @@
                                             <h5 class="text-center mt-3">No</h5>
                                         <?php endif; ?>
                                     </td>
+                                    <td>
+                                        <h5 class="text-center mt-3"><?=$calc_responsabilidad?></h5>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Conocimiento del trabajo</td>
                                     <td>Cumplimiento de practicas de trabajo seguro, programas de inspección SHA, herramientas y equipos, condiciones del area de trabajo adecuadas, adiestramiento y motivación al personal, SHA de contratistas, respuesta y control de emergencias entre otras, aplicacion de las normativas técnicas.</td>
+                                    <td><h5 class="text-center mt-3">25</h5></td>
                                     <td>
                                         <?php if ($eval_ind['conocimiento'] == 1): ?>
                                             <h5 class="text-center mt-3">Si</h5>
@@ -185,10 +210,14 @@
                                             <h5 class="text-center mt-3">No</h5>
                                         <?php endif; ?>
                                     </td>
+                                    <td>
+                                        <h5 class="text-center mt-3"><?=$calc_conocimiento?></h5>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Opotunidad (Plazos Establecidos)</td>
                                     <td>Corresponde al periodo establecido en el contrato para la ejecución de la obra, prestación del servicio o suministro de bienes.</td>
+                                    <td><h5 class="text-center mt-3">25</h5></td>
                                     <td>
                                         <?php if ($eval_ind['oportunidad'] == 1): ?>
                                             <h5 class="text-center mt-3">Si</h5>
@@ -196,6 +225,9 @@
                                         <?php if ($eval_ind['oportunidad'] == 0): ?>
                                             <h5 class="text-center mt-3">No</h5>
                                         <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <h5 class="text-center mt-3"><?=$calc_oportunidad?></h5>
                                     </td>
                                 </tr>
                             </tbody>
@@ -216,12 +248,12 @@
                     <div class="row">
                         <div class="form-group col-4">
                             <h5><b>¿Fue notificado al contratista?:</b></h5>
-                            <?php if ($eval_ind['notf_cont'] == 0): ?>
+                            <?php if ($eval_ind['notf_cont'] == 1): ?>
                                 <div>
                                     <h5>Sí, fué notificado al contratista</h5>
                                 </div>
                             <?php endif; ?>
-                            <?php if ($eval_ind['notf_cont'] == 1): ?>
+                            <?php if ($eval_ind['notf_cont'] == 2): ?>
                                 <div>
                                     <h5>No, no fué notificado al contratista</h5>
                                 </div>
@@ -240,17 +272,12 @@
                             <?php endif; ?>
                             <?php if ($eval_ind['medio'] == 2): ?>
                                 <div>
-                                    <h5>Télefono</h5>
+                                    <h5>Correo Electronico</h5>
                                 </div>
                             <?php endif; ?>
                             <?php if ($eval_ind['medio'] == 3): ?>
                                 <div>
-                                    <h5>Correo Electronico</h5>
-                                </div>
-                            <?php endif; ?>
-                            <?php if ($eval_ind['medio'] == 4): ?>
-                                <div>
-                                    <h5>No Aplica</h5>
+                                    <h5>Oficio / Memo / Notificación</h5>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -261,9 +288,9 @@
                         <div class="form-group col-6">
                             <h5><b>Acuse de Recibido</b></h5>
                             <?php if ($tipo_img == 'pdf'): ?>
-                                <div class="image-inner">
-                                    <embed type="application/pdf" style="width: 100%; height: 300px;" src="<?=base_url()?>imagenes/<?=$eval_ind['fileimagen'] ?>">
-                                </div>
+                            <div class="image-inner">
+                                <embed type="application/pdf" style="width: 100%; height: 300px;" src="<?=base_url()?>imagenes/<?=$eval_ind['fileimagen'] ?>">
+                            </div>
                             <?php endif; ?>
                             <?php if ($tipo_img != 'pdf'): ?>
                             <div class="image-inner">
@@ -279,9 +306,9 @@
         </div>
     </div>
 </div>
-<!-- <script src="<?=base_url()?>/js/evaluacion_desempenio.js"></script> -->
 <script type="text/javascript">
-    function printDiv(nombreDiv){
+    function printDiv(areaImprimir){
+        //console.log('yeaghh');
         var contenido= document.getElementById('imp1').innerHTML;
         var contenidoOriginal= document.body.innerHTML;
 
