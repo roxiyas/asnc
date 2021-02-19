@@ -258,7 +258,7 @@
 											<label for="cssRadio4">Euros</label>
 										</div>
                                         <div class="radio radio-css">
-    										<input onclick="hab_campo();" type="radio" name="radio_css" id="cssRadio5" />
+    										<input onclick="hab_campo();" type="radio" name="radio_css" id="cssRadio5" value="5"/>
     										<label for="cssRadio5">Otro</label>
     									</div>
                                         <div class="mt-2" style="display:none" id="hab_campo_esp">

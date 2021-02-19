@@ -505,8 +505,10 @@ function registrar(){
                             processData: false,
                             success: function(response){
                                 if(response != '') {
+                                    var menj = 'Identificador de Evaluación de Desempeño: ';
                                     swal.fire({
                                         title: 'Registro Exitoso',
+                                        text: menj + response,
                                         type: 'success',
                                         showCancelButton: false,
                                         confirmButtonColor: '#3085d6',
@@ -552,8 +554,10 @@ function registrar(){
                             success: function(response){
                                 console.log(response);
                                 if(response != '') {
+                                        var menj = 'Identificador de Evaluación de Desempeño: ';
                                     swal.fire({
                                         title: 'Registro Exitoso',
+                                        text: menj + response,
                                         type: 'success',
                                         showCancelButton: false,
                                         confirmButtonColor: '#3085d6',
@@ -649,8 +653,10 @@ function registrar(){
                             processData: false,
                             success: function(response){
                                 if(response != '') {
+                                    var menj = 'Identificador de Evaluación de Desempeño: ';
                                     swal.fire({
                                         title: 'Registro Exitoso',
+                                        text: menj + response,
                                         type: 'success',
                                         showCancelButton: false,
                                         confirmButtonColor: '#3085d6',
@@ -693,9 +699,12 @@ function registrar(){
                             contentType: false,
                             processData: false,
                             success: function(response){
+                                var menj = 'Identificador de Evaluación de Desempeño: ';
+
                                 if(response != '') {
                                     swal.fire({
                                         title: 'Registro Exitoso',
+                                        text: menj + response,
                                         type: 'success',
                                         showCancelButton: false,
                                         confirmButtonColor: '#3085d6',

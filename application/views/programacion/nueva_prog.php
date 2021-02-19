@@ -51,7 +51,7 @@
 
                     <div class="col-1"></div>
                     <div class="col-10 mt-3">
-                        <h3 class="text-center">Tabla Refrente a Proyectos Registrados</h3>
+                        <h3 class="text-center">Tabla Referente a Proyectos Registrados</h3>
                         <table id="data-table-default" class="table table-bordered table-hover">
                             <thead style="background:#e4e7e8">
                                 <tr class="text-center">
@@ -85,7 +85,7 @@
                     <div class="col-1"></div>
                     <div class="col-1"></div>
                     <div class="col-10 mt-4">
-                        <h3 class="text-center">Tabla Refrente a Acción Centralizada Registradas</h3>
+                        <h3 class="text-center">Tabla Referente a Acción Centralizada Registradas</h3>
                         <table id="data-table-autofill" class="table table-hover">
                             <thead style="background:#e4e7e8">
                                 <tr class="text-center">

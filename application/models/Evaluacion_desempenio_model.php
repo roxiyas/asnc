@@ -130,6 +130,7 @@
                     'otro'               => $data_ev['otro'],
                 );
                 $quers =$this->db->insert('evaluacion_desempenio.evaluacion', $data_eval);
+
                 // if ($quers2) {
                 //     $this->db->select('max(e.id) as id');
                 //     $query = $this->db->get('evaluacion_desempenio.evaluacion e');
@@ -142,7 +143,7 @@
                     $quers2 = $this->db->insert('evaluacion_desempenio.accionistas_nr',$data_repr_legal);
                     return true;
                 }
-                return $quers;
+                return $id;
             }
         }
 //-------------------------------------------------------

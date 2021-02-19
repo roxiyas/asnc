@@ -2,7 +2,6 @@
     class Programacion_model extends CI_model{
 
         // PROGRAMACION
-
         public function consultar_programaciones($unidad){
             $this->db->select('*');
             $this->db->where('unidad', $unidad);
