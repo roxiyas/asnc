@@ -24,7 +24,7 @@
 
     $('#sa-error').each(function(){
         swal({
-            title: "¡Ocurrio un error inesperado, Por favor intente de nuevo!",
+            title: "¡Usuario y Clave erroneos, por favor intente de nuevo!",
             text: "",
             type: "error",
             showCancelButton: false,
@@ -95,33 +95,6 @@
         });
     });
 
-    $('#sa-cambios').each(function(){
-        swal({
-            title: "¡ATENCION!",
-            text: "No se dectaron cambios en el Rubro, no se ha realizado la actualizacion.",
-            type: "warning",
-            showCancelButton: false,
-            confirmButtonColor: "#00897b",
-            confirmButtonText: "CONTINUAR",
-            closeOnConfirm: false
-        }, function(){
-            swal("Deleted!", "Your imaginary file has been deleted.", "success");
-        });
-    });
-
-    $('#sa-cambios2').each(function(){
-        swal({
-            title: "¡ATENCION!",
-            text: "No se dectaron cambios en el Insumo, no se ha realizado la actualizacion.",
-            type: "warning",
-            showCancelButton: false,
-            confirmButtonColor: "#00897b",
-            confirmButtonText: "CONTINUAR",
-            closeOnConfirm: false
-        }, function(){
-            swal("Deleted!", "Your imaginary file has been deleted.", "success");
-        });
-    });
 
     //Warning Message
     $('#sa-desactivado').each(function(){
