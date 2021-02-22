@@ -11,8 +11,10 @@ class Login extends CI_Controller {
         $usuario = $_POST['usuario'];
         $contrasena = $_POST ['contrasena'];
         $data = $this->login_model->iniciar($usuario,$contrasena);
-
-		if($data){
+		if($data == 'FALSE'){
+			$this->session->set_flashdata('sa-error', 'Datos de autenticación erróneos.');
+			redirect('login/index', 'refres');
+		}else{
             $inf =[
 				'id_unidad' => $data['unidad']
             ];
@@ -35,12 +37,15 @@ class Login extends CI_Controller {
 				$this->session->set_userdata($user_data);
 	            redirect('home/index');
 			}
-			else {
+			else{
+				echo "<script>alert('usuario o Clave Errorena! Por favor intente de nuevo.');</script>";
 				redirect('login/index');
 			}
-        }else{
-            redirect('login/index');
         }
+		// else{
+		// 	echo "<script>alert('usuario o Clave Errorena! Por favor intente de nuevo.');</script>";
+        //     redirect('login/index');
+        // }
     }
 
 	public function logout(){

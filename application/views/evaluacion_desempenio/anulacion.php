@@ -30,7 +30,7 @@
                                         <i class="fas fa-lg fa-fw fa-eye" style="color: green;"></i>
                                     <a/>
                                     <a class="button">
-                                        <i title="Anulación de Desempeño" onclick="modal(<?php echo $data['id']?>);" data-toggle="modal" data-target="#exampleModal" class="fas fa-lg fa-fw fa-envelope" style="color: red;"></i>
+                                        <i title="Anulación de Desempeño" onclick="modal(<?php echo $data['id']?>);" data-toggle="modal" data-target="#exampleModal" class="fas fa-lg fa-fw fa-times" style="color: red;"></i>
                                     <a/>
                                 </td>
                             </tr>
@@ -52,29 +52,33 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="resgistrar_not_2" data-parsley-validate="true" method="POST" enctype="multipart/form-data">
+                <form class="form-horizontal" id="resgistrar_anulacion" data-parsley-validate="true" method="POST" enctype="multipart/form-data">
                     <div class="row">
-                        <div id="resp_medi" class="form-group col-2">
+                        <div class="form-group col-2">
                             <label>ID de Evaluación</label>
                             <input class="form-control" type="text" name="id" id="id" readonly>
                         </div>
-                        <div id="resp_medi" class="form-group col-3">
+                        <div class="form-group col-3">
                             <label>Nro. de Oficio de la Solicitud</label>
-                            <input class="form-control" type="text" name="nro_expediente" id="nro_expediente">
+                            <input class="form-control" type="text" name="nro_oficicio" id="nro_oficicio">
                         </div>
-                        <div id="resp_medi" class="form-group col-3">
+                        <div class="form-group col-3">
                             <label>Fecha de Notificación</label>
                             <input type="text" class="form-control" id="datepicker-default" name="fec_solicitud" placeholder="Seleccionar Fecha"/>
                         </div>
-                        <div id="resp_medi" class="form-group col-4">
+                        <div class="form-group col-4">
                             <label>Nro. del Expediente</label>
                             <input class="form-control" type="text" name="nro_expediente" id="nro_expediente">
                         </div>
-                        <div id="resp_medi" class="form-group col-8">
+                        <div class="form-group col-2">
+                            <label>Cédula del Sol.</label>
+                            <input class="form-control" type="text" name="cedula_solc" id="cedula_solc">
+                        </div>
+                        <div class="form-group col-6">
                             <label>Nombre y Apellido del Solicitante</label>
                             <input class="form-control" type="text" name="nom_ape_solc" id="nom_ape_solc">
                         </div>
-                        <div id="resp_medi" class="form-group col-4">
+                        <div class="form-group col-4">
                             <label>Cargo</label>
                             <input class="form-control" type="text" name="cargo" id="cargo">
                         </div>
@@ -82,8 +86,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
+                <button type="button" onclick="javascript:window.location.reload()" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" onclick="guardar_anulacion();" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>

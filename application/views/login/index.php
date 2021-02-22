@@ -16,6 +16,7 @@
 		<link href="<?=base_url()?>Plantilla/admin/assets/css/apple/style-responsive.min.css" rel="stylesheet" />
 		<link href="<?=base_url()?>Plantilla/admin/assets/css/apple/theme/default.css" rel="stylesheet" id="theme" />
 		<script src="<?=base_url()?>Plantilla/admin/assets/plugins/pace/pace.min.js"></script>
+			<link href="<?=base_url()?>Plantilla/admin/assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
 	</head>
 	<body class="pace-top bg-white">
 		<div id="page-loader" class="fade show"><span class="spinner"></span></div>
@@ -60,6 +61,10 @@
 			</div>
 		</div>
 
+	<?php if ($this->session->flashdata('sa-error')) { ?>
+		<div hidden id="sa-error"> <?= $this->session->flashdata('sa-error') ?> </div>
+	<?php } ?>
+
 		<!-- ================== BEGIN BASE JS ================== -->
 		<script src="<?=base_url()?>Plantilla/admin/assets/plugins/jquery/jquery-3.3.1.min.js"></script>
 		<script src="<?=base_url()?>Plantilla/admin/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
@@ -68,6 +73,9 @@
 		<script src="<?=base_url()?>Plantilla/admin/assets/plugins/js-cookie/js.cookie.js"></script>
 		<script src="<?=base_url()?>Plantilla/admin/assets/js/theme/apple.min.js"></script>
 		<script src="<?=base_url()?>Plantilla/admin/assets/js/apps.min.js"></script>
+
+		<script src="<?=base_url()?>Plantilla/admin/assets/plugins/sweetalert/sweetalert.min.js"></script>
+		<script src="<?=base_url()?>Plantilla/admin/assets/plugins/sweetalert/jquery.sweet-alert.custom.js"></script>
 		<!-- ================== END BASE JS ================== -->
 
 		<script>

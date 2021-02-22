@@ -15,7 +15,7 @@
 					return $result->row_array();
 				}
 			}else{
-				return FALSE;
+				return 'FALSE';
 			}
         }
 

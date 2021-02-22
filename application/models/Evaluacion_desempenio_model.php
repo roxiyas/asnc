@@ -319,5 +319,16 @@
             $query = $this->db->get('evaluacion_desempenio.evaluacion ed');
             return $response = $query->result_array();
         }
+
+        public function save_anulacion($id, $d_anulacion){
+
+            $quers =$this->db->insert('evaluacion_desempenio.anulacion', $d_anulacion);
+
+            $data2 = array(
+                'id_estatus' => 3,
+            );
+            $this->db->where('id', $id);
+            $update = $this->db->update('evaluacion_desempenio.evaluacion', $data2);
+        }
     }
 ?>

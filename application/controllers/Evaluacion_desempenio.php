@@ -376,7 +376,7 @@ class Evaluacion_desempenio extends CI_Controller {
 	}
 
 	//Anulacion de Evaluacion de Desempeños
-	 public function anulacion(){
+	public function anulacion(){
 		if(!$this->session->userdata('session'))redirect('login');
 
 		$data['evaluaciones']	= $this->Evaluacion_desempenio_model->consulta_eval_anul();
@@ -385,5 +385,23 @@ class Evaluacion_desempenio extends CI_Controller {
 		$this->load->view('templates/navigator.php');
 		$this->load->view('evaluacion_desempenio/anulacion.php', $data);
 		$this->load->view('templates/footer.php');
-	 }
+	}
+
+	public function resgistrar_anulacion(){
+		$id = $this->input->POST('id');
+
+		$d_anulacion = array(
+			'id_evaluacion'   => $this->input->POST('id'),
+            'nro_oficicio'    => $this->input->POST('nro_oficicio'),
+            'fecha_anulacion' => $this->input->POST('fec_solicitud'),
+            'nro_expediente'  => $this->input->POST('nro_expediente'),
+            'cedula_solc'     => $this->input->POST('cedula_solc'),
+			'nom_ape_solc'    => $this->input->POST('nom_ape_solc'),
+			'cargo'        	  => $this->input->POST('cargo'),
+			'id_usuario' 	  => $this->session->userdata('id_user'),
+        );
+
+		$data = $this->Evaluacion_desempenio_model->save_anulacion($id, $d_anulacion);
+        echo json_encode($data);
+	}
 }
