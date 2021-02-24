@@ -7,9 +7,20 @@
 		<div class="col-lg-12" id="imp1">
             <div class="panel panel-inverse">
                 <br>
-                <div class="col-12">
+                <div class="col-6">
                     <h4>Identificador de Evaluación de Desempeño: <?=$eval_ind['id']?></h4>
                 </div>
+                <?php if ($eval_ind['id_estatus'] == 3): ?>
+                    <div class="col-6">
+                        <h4>Estatus de Evaluación de Desempeño: <b style="color:red;"><?=$eval_ind['descripcion']?></b> </h4>
+                    </div>
+                <?php endif; ?>
+                <?php if ($eval_ind['id_estatus'] != 3): ?>
+                    <div class="col-6">
+                        <h4>Estatus de Evaluación de Desempeño: <b><?=$eval_ind['descripcion']?></b> </h4>
+                    </div>
+                <?php endif; ?>
+
                 <div class="panel-heading">
                     <h2 style="font-size: 16px;" class="panel-title text-center"><b>Datos del Contratante</b></h2>
                 </div>
@@ -144,6 +155,15 @@
                                     <div  class="checkbox checkbox-css">
                                         <input type="checkbox" value="bolivares" name="bolivares" id="cssCheckbox1" checked disabled/>
                                         <label for="cssCheckbox1">Bolivares</label>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($eval_ind['otro'] != null): ?>
+                                    <div  class="checkbox checkbox-css">
+                                        <input type="checkbox" value="bolivares" name="bolivares" id="cssCheckbox1" checked disabled/>
+                                        <label for="cssCheckbox1">Otro</label>
+
+                                        <h5 class="mt-3"><b>Especifique:</b></h5>
+                                        <h5><?=$eval_ind['mod_otro']?></h5>
                                     </div>
                                 <?php endif; ?>
 							</div>

@@ -2,6 +2,28 @@ function modal(id){
     $('#id').val(id);
 }
 
+function modal_ver(id){
+    var id_evaluacion = id;
+    var base_url = window.location.origin+'/asnc/index.php/Evaluacion_desempenio/consulta_anulacion';
+    // var base_url = '/index.php/Configuracion/consulta_anulacion';
+    $.ajax({
+        url: base_url,
+        method:'post',
+        data: {id_evaluacion: id_evaluacion},
+        dataType:'json',
+
+        success: function(response){
+            $('#id_ver').val(response['id_evaluacion']);
+            $('#nro_oficicio_ver').val(response['nro_oficicio']);
+            $('#fec_solicitud_ver').val(response['fecha_anulacion']);
+            $('#nro_expediente_ver').val(response['nro_expediente']);
+            $('#cedula_solc_ver').val(response['cedula_solc']);
+            $('#nom_ape_solc_ver').val(response['nom_ape_solc']);
+            $('#cargo_ver').val(response['cargo']);
+        }
+    });
+}
+
 function guardar_anulacion(){
     var id              = $("#id").val();
     var nro_oficicio    = $("#nro_oficicio").val();
@@ -48,7 +70,6 @@ function guardar_anulacion(){
                     contentType: false,
                     processData: false,
                     success: function(response){
-                        console.log(response);
                         if(response != '') {
                                 var menj = 'Se ha anulado la Evaluación de Desempeño Nroº: ';
                             swal.fire({

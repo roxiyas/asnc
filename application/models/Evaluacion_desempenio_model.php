@@ -15,17 +15,20 @@
 //-------------------------------------------------------
         public function llenar_contratista($data){
             $this->db->select('c.user_id,
-                        	     c.edocontratista_id,
-                        	     c.rifced,
-                        	     c.nombre,
-                        	     c.dirfiscal,
-                        	     e.descedo,
-                        	     m.descmun,
-                        	     c.percontacto,
-                        	     c.telf1,
-                                 c.procactual');
+                                c.edocontratista_id,
+                                c.rifced,
+                                c.nombre,
+                                c.dirfiscal,
+                                e.descedo,
+                                c.ciudade_id,
+                                c2.descciu,
+                                m.descmun,
+                                c.percontacto,
+                                c.telf1,
+                                c.procactual');
             $this->db->join('public.estados e', 'e.id = c.estado_id');
             $this->db->join('public.municipios m', 'm.id = c.municipio_id');
+            $this->db->join('public.ciudades c2', 'c2.id = c.ciudade_id');
             $this->db->where('c.rifced',$data['rif_b']);
             $query = $this->db->get('evaluacion_desempenio.contratistas c');
             $result = $query->row_array();
@@ -211,18 +214,34 @@
 //-------------------------------------------------------
         // Reporte de Evaluacion de Desempeño por Usuario
         public function consulta_eval($usuario){
-            $this->db->select('ed.id,
-                               ed.rif_contrat,
-                               concat(cn.nombre,\'\',c.nombre ) as nombre,
-                               ed.calificacion,
-                               e.descripcion
-            ');
-            $this->db->join('evaluacion_desempenio.contratistas c', 'c.rifced = ed.rif_contrat', 'left');
-            $this->db->join('evaluacion_desempenio.contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
-            $this->db->join('public.estatus e', 'e.id = ed.id_estatus');
-            $this->db->where('ed.id_usuario', $usuario);
-            $query = $this->db->get('evaluacion_desempenio.evaluacion ed');
-            return $response = $query->result_array();
+            // $this->db->select('ed.id,
+            //                    ed.rif_contrat,
+            //                    DATE_FORMAT(21/21/2221,'%Y-%m') as fecha,
+            //                    concat(cn.nombre,\'\',c.nombre ) as nombre,
+            //                    ed.calificacion,
+            //                    e.descripcion
+            // ');
+            // $this->db->join('evaluacion_desempenio.contratistas c', 'c.rifced = ed.rif_contrat', 'left');
+            // $this->db->join('evaluacion_desempenio.contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
+            // $this->db->join('public.estatus e', 'e.id = ed.id_estatus');
+            // $this->db->where('ed.id_usuario', $usuario);
+            // $query = $this->db->get('evaluacion_desempenio.evaluacion ed');
+            // return $response = $query->result_array();
+
+            $query = $this->db->query("SELECT ed.id,
+                                	   to_char(ed.fecha_reg_eval, 'dd-mm-yyyy') as fecha,
+                                       ed.rif_contrat,
+                                       concat(cn.nombre,'\',c.nombre ) as nombre,
+                                       ed.calificacion,
+                                       ed.id_estatus,
+                                       e.descripcion
+                                       FROM evaluacion_desempenio.evaluacion as ed
+                                       left join evaluacion_desempenio.contratistas c on  c.rifced = ed.rif_contrat
+                                       left join evaluacion_desempenio.contratistas_nr cn on cn.rifced = ed.rif_contrat
+                                       join public.estatus e on e.id = ed.id_estatus
+                                       where ed.id_usuario = '$usuario'");
+            return $query->result_array();
+
         }
 
         //Se consulta la Evaluación de desempeño. Tomando en cuenta que hay dos tablas de consultas de los contratistas (Solicitado de esa forma).
@@ -266,13 +285,14 @@
                                  ed.medio,
                                  ed.nro_oc_os,
                                  ed.fileimagen,
+                                 ed.otro,
                                  ed.mod_otro,
-                                 ed.id_estatus');
+                                 ed.id_estatus,
+                                 e5.descripcion ');
             $this->db->join('seguridad.usuarios u', 'u.id = ed.id_usuario');
             $this->db->join('public.organos o', 'o.codigo = u.unidad', 'left');
             $this->db->join('public.entes e4', 'e4.codigo = u.unidad', 'left');
             $this->db->join('public.entes_ads ea', 'ea.codigo = u.unidad', 'left');
-
             $this->db->join('public.tipo_rif tr', 'tr.id_rif = o.tipo_rif', 'left');
             $this->db->join('public.tipo_rif tr2', 'tr2.id_rif = e4.tipo_rif', 'left');
             $this->db->join('public.tipo_rif tr3', 'tr3.id_rif = ea.tipo_rif', 'left');
@@ -288,6 +308,7 @@
             $this->db->join('public.ciudades c2', 'c2.id = cn.ciudade_id', 'left');
             $this->db->join('evaluacion_desempenio.modalidad m3', 'm3.id = ed.id_modalidad');
             $this->db->join('evaluacion_desempenio.sub_modalidad sm', 'sm.id = ed.id_sub_modalidad');
+            $this->db->join('public.estatus e5', 'e5.id = ed.id_estatus');
             $this->db->where('ed.id', $id_evaluacion);
             $query = $this->db->get('evaluacion_desempenio.evaluacion ed');
             return $response = $query->row_array();
@@ -307,17 +328,31 @@
 
         // Consulta de Evaluacion completas para anulación
         public function consulta_eval_anul(){
-            $this->db->select('ed.id,
-                               ed.rif_contrat,
-                               concat(cn.nombre,\'\',c.nombre ) as nombre,
-                               ed.calificacion,
-                               e.descripcion
-            ');
-            $this->db->join('evaluacion_desempenio.contratistas c', 'c.rifced = ed.rif_contrat', 'left');
-            $this->db->join('evaluacion_desempenio.contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
-            $this->db->join('public.estatus e', 'e.id = ed.id_estatus');
-            $query = $this->db->get('evaluacion_desempenio.evaluacion ed');
-            return $response = $query->result_array();
+            // $this->db->select('ed.id,
+            //                    ed.rif_contrat,
+            //                    concat(cn.nombre,\'\',c.nombre ) as nombre,
+            //                    ed.calificacion,
+            //                    ed.id_estatus,
+            //                    e.descripcion
+            // ');
+            // $this->db->join('evaluacion_desempenio.contratistas c', 'c.rifced = ed.rif_contrat', 'left');
+            // $this->db->join('evaluacion_desempenio.contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
+            // $this->db->join('public.estatus e', 'e.id = ed.id_estatus');
+            // $query = $this->db->get('evaluacion_desempenio.evaluacion ed');
+            // return $response = $query->result_array();
+
+            $query = $this->db->query("SELECT ed.id,
+                                    		to_char(ed.fecha_reg_eval, 'dd-mm-yyyy') as fecha,
+                                            ed.rif_contrat,
+                                            concat(cn.nombre,'\',c.nombre ) as nombre,
+                                            ed.calificacion,
+                                            ed.id_estatus,
+                                            e.descripcion
+                                    from evaluacion_desempenio.evaluacion ed
+                                    left join evaluacion_desempenio.contratistas c on c.rifced = ed.rif_contrat
+                                    left join evaluacion_desempenio.contratistas_nr cn on cn.rifced = ed.rif_contrat
+                                    join public.estatus e on e.id = ed.id_estatus");
+            return $query->result_array();
         }
 
         public function save_anulacion($id, $d_anulacion){
@@ -329,6 +364,14 @@
             );
             $this->db->where('id', $id);
             $update = $this->db->update('evaluacion_desempenio.evaluacion', $data2);
+            return $id;
+        }
+
+        public function consulta_anulacion($data){
+            $this->db->select('*');
+            $this->db->where('id_evaluacion', $data['id_evaluacion']);
+            $query = $this->db->get('evaluacion_desempenio.anulacion');
+            return $response = $query->row_array();
         }
     }
 ?>

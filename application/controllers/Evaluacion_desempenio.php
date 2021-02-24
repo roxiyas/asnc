@@ -317,7 +317,6 @@ class Evaluacion_desempenio extends CI_Controller {
 
 		$usuario = $this->session->userdata('id_user');
 		$data['reportes'] 	= $this->Evaluacion_desempenio_model->consulta_eval($usuario);
-
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
 		$this->load->view('evaluacion_desempenio/reporte.php', $data);
@@ -403,5 +402,12 @@ class Evaluacion_desempenio extends CI_Controller {
 
 		$data = $this->Evaluacion_desempenio_model->save_anulacion($id, $d_anulacion);
         echo json_encode($data);
+	}
+
+	public function consulta_anulacion(){
+		if(!$this->session->userdata('session'))redirect('login');
+		$data = $this->input->post();
+		$data =	$this->Evaluacion_desempenio_model->consulta_anulacion($data);
+		echo json_encode($data);
 	}
 }

@@ -10,6 +10,7 @@
                         <thead style="background:#e4e7e8">
                             <tr class="text-center">
                                 <th>ID</th>
+                                <th>Fecha Reg. Evaluación</th>
                                 <th>Rif contratista</th>
                                 <th>Denominación Razón Social</th>
                                 <th>Clasificación</th>
@@ -21,6 +22,7 @@
                             <?php foreach($reportes as $data):?>
                             <tr class="odd gradeX" style="text-align:center">
                                 <td><?=$data['id']?> </td>
+                                <td><?=$data['fecha']?> </td>
                                 <td><?=$data['rif_contrat']?> </td>
                                 <td><?=$data['nombre']?> </td>
                                 <td><?=$data['calificacion']?></td>

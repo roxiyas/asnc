@@ -43,7 +43,7 @@ function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
                     $('#nombre').val(data['nombre']);
                     $('#estado').val(data['descedo']);
                     $('#municipio').val(data['descmun']);
-                    $('#ciudad').val(data['ciudade_id']);
+                    $('#ciudad').val(data['descciu']);
                     $('#persona_cont').val(data['percontacto']);
                     $('#tel_cont').val(data['telf1']);
 
@@ -263,7 +263,7 @@ function val_not(){
     if (notf_cont == 2) {
         swal({
             title: "¡ATENCION!",
-            text: "Con base a lo establecido en el Art. 52 del Decreto con Rango Valor y Fuerza de Ley de Contrataciones Públicas, la carga de los campos correspondientes a la Notificación del Resultado de la Evaluación de Desempeño son Obligatorios.",
+            text: "Con base a lo establecido en el Art. 51 del Decreto con Rango Valor y Fuerza de Ley de Contrataciones Públicas, la carga de los campos correspondientes a la Notificación del Resultado de la Evaluación de Desempeño son Obligatorios.",
             type: "warning",
             showCancelButton: false,
             confirmButtonColor: "#00897b",
