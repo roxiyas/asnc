@@ -334,7 +334,8 @@
         //------------------------------------------------------
         //REGISTRAR OBRAS
         public function save_obra($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento){
-            if ($acc_cargar == '1') {
+
+            if ($acc_cargar == '1'){
                 $quers =$this->db->insert('programacion.p_proyecto',$p_proyecto);
                 if ($quers) {
                     $id = $this->db->insert_id();
@@ -383,6 +384,7 @@
                             'descripcion_ff'             => $p_ffinanciamiento['descripcion_ff'][$i],
                             'porcentaje'                 => $p_ffinanciamiento['porcentaje'][$i],
                         );
+
                         $this->db->insert('programacion.p_ffinanciamiento',$data2);
                     }
                 }
@@ -491,26 +493,35 @@
 
         public function inf_3($id_p_proyecto){
             $this->db->select('pi2.id_p_items,
-                        	   pi2.id_enlace,
+                               pi2.id_enlace,
                                pi2.id_partidad_presupuestaria,
                                pp.desc_partida_presupuestaria,
                                pp.codigopartida_presupuestaria,
-                        	   pi2.id_ccnu,
-                        	   c2.desc_ccnu,
-                        	   pi2.fecha_desde,
-                        	   pi2.fecha_hasta,
-                        	   pi2.especificacion,
+                               pi2.id_ccnu,
+                               c2.desc_ccnu,
+                               pi2.id_tip_obra,
+                               to2.descripcion_tip_obr,
+                               pi2.id_alcance_obra,
+                               ao.descripcion_alcance_obra,
+                               pi2.id_obj_obra,
+                               oo.descripcion_obj_obra,
+                               pi2.fecha_desde,
+                               pi2.fecha_hasta,
+                               pi2.especificacion,
                                pi2.id_unidad_medida,
-                        	   um.desc_unidad_medida,
-                        	   pi2.i,
-                        	   pi2.ii,
-                        	   pi2.iii,
-                        	   pi2.iv,
-                        	   pi2.precio_total,
-                        	   pi2.alicuota_iva,
+                               um.desc_unidad_medida,
+                               pi2.i,
+                               pi2.ii,
+                               pi2.iii,
+                               pi2.iv,
+                               pi2.precio_total,
+                               pi2.alicuota_iva,
                                pi2.iva_estimado,
                                pi2.monto_estimado');
-            $this->db->join('programacion.ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
+            $this->db->join('programacion.ccnu c2','c2.codigo_ccnu = pi2.id_ccnu', 'left');
+            $this->db->join('programacion.tip_obra to2','to2.id_tip_obra = pi2.id_tip_obra', 'left');
+            $this->db->join('programacion.alcance_obra ao','ao.id_alcance_obra = pi2.id_alcance_obra', 'left');
+            $this->db->join('programacion.obj_obra oo','oo.id_obj_obra = pi2.id_obj_obra', 'left');
             $this->db->join('programacion.partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
             $this->db->join('programacion.unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
             $this->db->where('pi2.id_enlace', $id_p_proyecto);
@@ -889,27 +900,36 @@
 
         public function inf_3_acc_pdf($id_p_acc_centralizada){
             $this->db->select('pi2.id_p_items,
-                        	   pi2.id_enlace,
+                        	     pi2.id_enlace,
                                pi2.id_partidad_presupuestaria,
                                pp.desc_partida_presupuestaria,
                                pp.codigopartida_presupuestaria,
-                        	   pi2.id_ccnu,
-                        	   c2.desc_ccnu,
+                        	     pi2.id_ccnu,
+                        	     c2.desc_ccnu,
+                               pi2.id_tip_obra,
+                               to2.descripcion_tip_obr,
+                               pi2.id_alcance_obra,
+                               ao.descripcion_alcance_obra,
+                               pi2.id_obj_obra,
+                               oo.descripcion_obj_obra,
                                pi2.fecha_desde,
                                pi2.fecha_hasta,
-                        	   pi2.especificacion,
+                        	     pi2.especificacion,
                                pi2.id_unidad_medida,
-                        	   um.desc_unidad_medida,
-                        	   pi2.i,
-                        	   pi2.ii,
-                        	   pi2.iii,
-                        	   pi2.iv,
+                        	     um.desc_unidad_medida,
+                        	     pi2.i,
+                        	     pi2.ii,
+                        	     pi2.iii,
+                        	     pi2.iv,
                                pi2.costo_unitario,
-                        	   pi2.precio_total,
-                        	   pi2.alicuota_iva,
+                        	     pi2.precio_total,
+                        	     pi2.alicuota_iva,
                                pi2.iva_estimado,
                                pi2.monto_estimado');
-            $this->db->join('programacion.ccnu c2','c2.codigo_ccnu = pi2.id_ccnu');
+            $this->db->join('programacion.ccnu c2','c2.codigo_ccnu = pi2.id_ccnu', 'left');
+            $this->db->join('programacion.tip_obra to2','to2.id_tip_obra = pi2.id_tip_obra', 'left');
+            $this->db->join('programacion.alcance_obra ao','ao.id_alcance_obra = pi2.id_alcance_obra', 'left');
+            $this->db->join('programacion.obj_obra oo','oo.id_obj_obra = pi2.id_obj_obra', 'left');
             $this->db->join('programacion.partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
             $this->db->join('programacion.unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
             $this->db->where('pi2.id_enlace', $id_p_acc_centralizada);

@@ -97,7 +97,7 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-							<div id="desc_ff" class="form-group col-3" style="display:none">
+														<div id="desc_ff" class="form-group col-3" style="display:none">
                                 <label>Descripcion<b style="color:red">*</b></label>
                                 <input id="descripcion_ff" name="descripcion_ff" type="text" class="form-control">
                             </div>

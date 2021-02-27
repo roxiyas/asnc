@@ -46,7 +46,7 @@ function agregar_ffToCartTable(cells){
 		<td>${estad}<input type="text" name="id_estado[]" id="ins-type-${increment}" hidden value="${estad}"></td>
 
 		<td>${ff2}<input type="text" name="fuente_financiamiento[]" id="ins-type-${increment}" hidden value="${ff1}"></td>
-		<td >${desc_ff}<input type="text" name="desc_ff[]" id="ins-type-${increment}" hidden value="${desc_ff}"></td>
+		<td >${desc_ff}<input type="text" name="descripcion_ff[]" id="ins-type-${increment}" hidden value="${desc_ff}"></td>
 		<td >${pc}<input type="text" name="porcentaje[]" id="ins-type-${increment}" hidden value="${pc}"></td>
 
 

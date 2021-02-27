@@ -66,7 +66,7 @@
                                     <td><?=$ver_proyecto['nombre_proyecto']?> </td>
                                     <td><?=$ver_proyecto['desc_objeto_contrata']?> </td>
                                     <td class="center">
-                                        <a href="<?php echo base_url();?>index.php/programacion/ver_programacion_proy?id=<?php echo $ver_proyecto['id_p_proyecto'];?>/<?php echo $ver_proyecto['id_programacion'];?>"
+                                        <a href="<?php echo base_url();?>index.php/programacion/ver_programacion_proy?id=<?php echo $ver_proyecto['id_p_proyecto'];?>/<?php echo $ver_proyecto['id_programacion'];?>/<?php echo $ver_proyecto['id_obj_comercial'];?>"
                                             class="button">
                                             <i class="fas fa-lg fa-fw fa-eye" style="color: green;"></i>
                                         <a/>
@@ -100,7 +100,7 @@
                                     <td><?=$ver_acc_centralizad['desc_accion_centralizada']?> </td>
                                     <td><?=$ver_acc_centralizad['desc_objeto_contrata']?> </td>
                                     <td class="center">
-                                        <a href="<?php echo base_url();?>index.php/programacion/ver_programacion_acc?id=<?php echo $ver_acc_centralizad['id_p_acc_centralizada'];?>/<?php echo $ver_acc_centralizad['id_programacion'];?>"
+                                        <a href="<?php echo base_url();?>index.php/programacion/ver_programacion_acc?id=<?php echo $ver_acc_centralizad['id_p_acc_centralizada'];?>/<?php echo $ver_acc_centralizad['id_programacion'];?>/<?php echo $ver_acc_centralizad['id_obj_comercial'];?>"
                                             class="button">
                                             <i class="fas fa-lg fa-fw fa-eye" style="color: green;"></i>
                                         <a/>

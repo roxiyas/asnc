@@ -352,7 +352,7 @@ class Programacion extends CI_Controller {
         $p_proyecto = array(
             'id_programacion'        => $this->input->POST('id_programacion'),
             'nombre_proyecto'        => $this->input->POST('nombre_proyecto'),
-            'id_obj_comercial'       => 1,
+            'id_obj_comercial'       => 3,
             'id_usuario' 		     => $this->session->userdata('id_user'),
             'estatus'                => 1
         );
@@ -367,22 +367,22 @@ class Programacion extends CI_Controller {
 
        $p_items = array(
            'id_par_presupuestaria'  => $this->input->post('par_presupuestaria'),
-           'id_ccnu' 		         => $this->input->post('id_ccnu'),
+           'id_ccnu' 		        => $this->input->post('id_ccnu'),
            'id_tip_obra' 		    => $this->input->post('id_tip_obra'),
            'id_alcance_obra' 		=> $this->input->post('id_alcance_obra'),
            'id_obj_obra' 		    => $this->input->post('id_obj_obra'),
-           'fecha_desde'   	     => $this->input->POST('fecha_desde'),
-           'fecha_hasta'   	     => $this->input->POST('fecha_hasta'),
-           'especificacion' 		 => $this->input->post('especificacion'),
-           'id_unidad_medida' 		 => $this->input->post('id_unidad_medida'),
-           'i' 		             => $this->input->post('i'),
-           'ii' 		             => $this->input->post('ii'),
-           'iii' 		             => $this->input->post('iii'),
-           'iv' 		             => $this->input->post('iv'),
-           'precio_total' 		     => $this->input->post('precio_total'),
-           'id_alicuota_iva' 		 => $this->input->post('id_alicuota_iva'),
-           'iva_estimado' 		     => $this->input->post('iva_estimado'),
-           'monto_estimado' 		 => $this->input->post('monto_estimado'),
+           'fecha_desde'   	        => $this->input->POST('fecha_desde'),
+           'fecha_hasta'   	        => $this->input->POST('fecha_hasta'),
+           'especificacion' 		=> $this->input->post('especificacion'),
+           'id_unidad_medida' 		=> $this->input->post('id_unidad_medida'),
+           'i' 		                => $this->input->post('i'),
+           'ii' 		            => $this->input->post('ii'),
+           'iii' 		            => $this->input->post('iii'),
+           'iv' 		            => $this->input->post('iv'),
+           'precio_total' 		    => $this->input->post('precio_total'),
+           'id_alicuota_iva' 		=> $this->input->post('id_alicuota_iva'),
+           'iva_estimado' 		    => $this->input->post('iva_estimado'),
+           'monto_estimado' 	    => $this->input->post('monto_estimado'),
        );
 
        $p_ffinanciamiento = array(
@@ -407,6 +407,7 @@ class Programacion extends CI_Controller {
         $separar        = explode("/", $parametros);
         $data['id_p_proyecto']  = $separar['0'];
         $data['id_programacion'] = $separar['1'];
+        $data['id_obj_comercial'] = $separar['2'];
 
         $data['unidad'] = $this->session->userdata('id_unidad');
         $data['des_unidad'] = $this->session->userdata('unidad');
@@ -422,7 +423,11 @@ class Programacion extends CI_Controller {
 
         $this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
-        $this->load->view('programacion/pdf_proyecto.php', $data);
+        if ($data['id_obj_comercial'] == 3) {
+          $this->load->view('programacion/obra/pdf_obra.php', $data);
+        }else {
+          $this->load->view('programacion/pdf_proyecto.php', $data);
+        }
         $this->load->view('templates/footer.php');
     }
 
@@ -671,69 +676,6 @@ class Programacion extends CI_Controller {
         echo json_encode($data);
     }
 
-    // BIEN
-
-    // public function save_programacion_acc(){
-    //     if(!$this->session->userdata('session'))  redirect('login');
-    //
-    //     $acc_cargar = $this->input->POST('cambiar');
-    //
-    //     $p_proyecto = array(
-    //         'id_programacion'        => $this->input->POST('id_programacion_acc'),
-	// 		'nombre_proyecto'        => $this->input->POST('nombre_proyecto_acc'),
-    //         'id_obj_comercial'       => $this->input->post('id_obj_comercial_acc'),
-    //         'id_usuario' 		     => $this->session->userdata('id_user'),
-    //         'estatus'                => 1
-	//          );
-    //
-    //     $p_acc_centralizada = array(
-    //         'id_programacion'        => $this->input->POST('id_programacion_acc'),
-    //         'id_accion_centralizada' => $this->input->POST('id_accion_centralizada_acc'),
-    //         'id_obj_comercial'       => $this->input->post('id_obj_comercial_acc'),
-    //         'id_usuario' 		     => $this->session->userdata('id_user'),
-    //         'estatus'                => 1
-  	//    );
-    //
-    //     $p_items = array(
-    //         'id_par_presupuestaria'  => $this->input->post('par_presupuestaria_acc'),
-	// 		         'id_ccnu' 		         => $this->input->post('id_ccnu_acc'),
-    //         'fecha_desde'   	     => date('Y-m-d'),
-    //         'fecha_hasta'   	     => date('Y-m-d'),
-	// 		         'especificacion' 		 => $this->input->post('especificacion_acc'),
-    //         'id_unidad_medida' 		 => $this->input->post('id_unidad_medida_acc'),
-    //         'cantidad'               => $this->input->post('cantidad_acc'),
-    //         'i' 		             => $this->input->post('I_acc'),
-    //         'ii' 		             => $this->input->post('II_acc'),
-    //         'iii' 		             => $this->input->post('III_acc'),
-    //         'iv' 		             => $this->input->post('IV_acc'),
-    //         'cant_total_distribuir'  => $this->input->post('cant_total_distribuir_acc'),
-    //         'costo_unitario' 	     => $this->input->post('costo_unitario_acc'),
-    //         'precio_total' 		     => $this->input->post('precio_total_acc'),
-    //         'id_alicuota_iva' 		 => $this->input->post('id_alicuota_iva_acc'),
-    //         'iva_estimado' 		     => $this->input->post('iva_estimado_acc'),
-    //         'monto_estimado' 		 => $this->input->post('monto_estimado_acc'),
-	// 	        );
-    //
-    //         $p_ffinanciamiento = array(
-    //         'id_estado'   		        => $this->input->post('id_estado_acc'),
-    //         'id_par_presupuestaria' 	=> $this->input->post('par_presupuestaria_acc_ff'),
-    //         'id_fuente_financiamiento'  => $this->input->post('fuente_financiamiento_acc'),
-    //         'porcentaje' 	            => $this->input->post('porcentaje_acc'),
-    //       );
-    //
-    //
-    //     $data = $this->Programacion_model->save_programacion_acc($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento);
-    //
-    //     if ($data) {
-    //         $id_programacion  = $this->input->POST('id_programacion_acc');
-    //         $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
-    // 		redirect('Programacion/nueva_prog?id='.$id_programacion);
-    //     }else{
-	// 	   $this->session->set_flashdata('sa-error', 'error');
-	// 	   redirect ('Programacion/nueva_prog?id='.$id_programacion);
-	//     }
-    // }
-
     public function ver_programacion_acc(){
         if(!$this->session->userdata('session'))
         redirect('login');
@@ -742,6 +684,7 @@ class Programacion extends CI_Controller {
         $separar        = explode("/", $parametros);
         $data['id_p_acc_centralizada']  = $separar['0'];
         $data['id_programacion'] = $separar['1'];
+        $data['id_obj_comercial'] = $separar['2'];
 
         $data['unidad'] = $this->session->userdata('id_unidad');
         $data['des_unidad'] = $this->session->userdata('unidad');
@@ -757,7 +700,12 @@ class Programacion extends CI_Controller {
 
         $this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
-        $this->load->view('programacion/pdf_acc.php', $data);
+
+        if ($data['id_obj_comercial'] == 3) {
+          $this->load->view('programacion/obra/pdf_obra_acc.php', $data);
+        }else {
+          $this->load->view('programacion/pdf_acc.php', $data);
+        }
         $this->load->view('templates/footer.php');
 
     }
