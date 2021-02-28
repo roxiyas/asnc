@@ -58,7 +58,7 @@
                                 <input id="nombre_proyecto" name="nombre_proyecto" type="text" class="form-control" required>
                             </div>
 
-							<div class="form-group mt-3 col-3">
+														<div class="form-group mt-3 col-3">
                                 <label>Objeto de Contratación</label>
                                 <input type="text" class="form-control" id="id_obj_comercial" name="id_obj_comercial" value="Obras" readonly>
                             </div>
@@ -292,8 +292,8 @@
                                         <tr class="text-center">
                                             <th>Partida Pres.</th>
                                             <th>Tipo</th>
-											<th>Alcance</th>
-											<th>Objeto</th>
+																						<th>Alcance</th>
+																						<th>Objeto</th>
                                             <th>Fecha Desde</th>
                                             <th>Fecha Hasta</th>
                                             <th>Esp.</th>
@@ -314,9 +314,14 @@
                             </div>
                         </div>
                         <!--////////////////////////////SEGUNDA PARTE DE LA CARGA -->
-                        <div class="col-12 text-center mt-3">
-                            <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="button" name="button" id="btn_guar" onclick="guardar_obra();" disabled>Guardar</button>
-                        </div>
+                        <div class="col-12 text-center row mt-3">
+													<div class="col-6">
+														<button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-success" type="button" name="button" id="btn_guar" onclick="guardar_obra();" disabled>Guardar</button>
+													</div>
+													<div class="col-6">
+														<a class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" href="javascript:history.back()"> Volver</a>
+													</div>
+												</div>
                     </form>
                 </div>
             </div>

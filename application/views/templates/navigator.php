@@ -113,7 +113,7 @@
 									</a>
 									<ul class="sub-menu">
 										<li>
-											<a href="<?= base_url() ?>index.php/programacion">
+											<a title="En Construcción">
 												Contratistas
 											</a>
 										</li>

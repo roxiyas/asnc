@@ -176,7 +176,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-12">
-                                <label>Sub-Modalidad de la Contratación <b title="Campo Obligatorio" style="color:red">*</b></label>
+                                <label>Supuestos de la Modalidad de Contratación <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <select class="form-control" name="id_sub_modalidad" id="id_sub_modalidad">
                                     <option value="0">Seleccione</option>
                                 </select>

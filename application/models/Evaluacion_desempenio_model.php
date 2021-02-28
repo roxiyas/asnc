@@ -343,11 +343,11 @@
 
             $query = $this->db->query("SELECT ed.id,
                                     		to_char(ed.fecha_reg_eval, 'dd-mm-yyyy') as fecha,
-                                            ed.rif_contrat,
-                                            concat(cn.nombre,'\',c.nombre ) as nombre,
-                                            ed.calificacion,
-                                            ed.id_estatus,
-                                            e.descripcion
+                                        ed.rif_contrat,
+                                        concat(cn.nombre,'\',c.nombre ) as nombre,
+                                        ed.calificacion,
+                                        ed.id_estatus,
+                                        e.descripcion
                                     from evaluacion_desempenio.evaluacion ed
                                     left join evaluacion_desempenio.contratistas c on c.rifced = ed.rif_contrat
                                     left join evaluacion_desempenio.contratistas_nr cn on cn.rifced = ed.rif_contrat

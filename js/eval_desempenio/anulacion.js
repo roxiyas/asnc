@@ -48,7 +48,7 @@ function guardar_anulacion(){
     }else {
         event.preventDefault();
         swal.fire({
-            title: '¿Registrar?',
+            title: '¿Anular?',
             text: '¿Esta seguro que desea anular la Evaluación de Desempeño?',
             type: 'warning',
             showCancelButton: true,
