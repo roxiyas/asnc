@@ -378,6 +378,12 @@ function registrar(){
     var cssRadio2         = $("#cssRadio2").val();
     var cssRadio3         = $("#cssRadio3").val();
     var cssRadio4         = $("#cssRadio4").val();
+
+    var calidad           = $("#calidad").val();
+    var responsabilidad   = $("#responsabilidad").val();
+    var conocimiento      = $("#conocimiento").val();
+    var oportunidad       = $("#oportunidad").val();
+
     var total_claf        = $("#total_claf").val();
     var calificacion      = $("#calificacion").val();
 
@@ -455,6 +461,18 @@ function registrar(){
         }
         else if (monto == '') {
             document.getElementById("monto").focus();
+        }
+        else if (calidad == '3') {
+            document.getElementById("calidad").focus();
+        }
+        else if (responsabilidad == '3') {
+            document.getElementById("responsabilidad").focus();
+        }
+        else if (conocimiento == '3') {
+            document.getElementById("conocimiento").focus();
+        }
+        else if (oportunidad == '3') {
+            document.getElementById("oportunidad").focus();
         }
         else if (total_claf == '') {
             document.getElementById("total_claf").focus();
@@ -605,6 +623,18 @@ function registrar(){
         }
         else if (monto == '') {
             document.getElementById("monto").focus();
+        }
+        else if (calidad == '3') {
+            document.getElementById("calidad").focus();
+        }
+        else if (responsabilidad == '3') {
+            document.getElementById("responsabilidad").focus();
+        }
+        else if (conocimiento == '3') {
+            document.getElementById("conocimiento").focus();
+        }
+        else if (oportunidad == '3') {
+            document.getElementById("oportunidad").focus();
         }
         else if (total_claf == '') {
             document.getElementById("total_claf").focus();

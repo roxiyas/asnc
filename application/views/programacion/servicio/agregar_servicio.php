@@ -103,7 +103,8 @@
                                     <input id="porcentaje" onblur="porc();" id="porcentaje" type="text" class="form-control">
                             </div>
                             <div class="col-12">
-                                <h5 class="text-center"><b style="color:red;">NOTA:</b> Debe llenar todos lo items para llenar la tabla.</h5>
+                                <h5 class="text-center"><b style="color:red;">NOTA:</b> Debe llenar todos lo items para llenar la tabla. <br>
+																 																									<b>Recuerde que la suma del procentaje de cada fuente de Financiamiento debe dar un total de 100</b></h5>
                             </div>
                             <div class="col-5"></div>
                             <div class="col-7 mt-4">
@@ -281,11 +282,15 @@
                                     </table>
                                 </div>
                             </div>
-
                             <!--////////////////////////////SEGUNDA PARTE DE LA CARGA -->
-                            <div class="col-12 text-center mt-3">
-                                <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" type="button" id="btn_guar_1" onclick="reg_servicio();" disabled>Guardar</button>
-                            </div>
+                            <div class="col-12 row text-center mt-3">
+															<div class="col-6">
+  															<button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-success" type="button" id="btn_guar_1" onclick="reg_servicio();" disabled>Guardar</button>
+															</div>
+															<div class="col-6">
+																<a class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" href="javascript:history.back()"> Volver</a>
+															</div>
+														</div>
                         </div>
                     </form>
                 </div>

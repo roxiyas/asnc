@@ -104,7 +104,8 @@
                   </div>
 
                   <div class="col-12">
-                      <h5 class="text-center"><b style="color:red;">NOTA:</b> Debe llenar todos lo items para llenar la tabla.</h5>
+                      <h5 class="text-center"><b style="color:red;">NOTA:</b> Debe llenar todos lo items para llenar la tabla. <br>
+											 												<b>Recuerde que la suma del procentaje de cada fuente de Financiamiento debe dar un total de 100</b></h5>
                   </div>
                   <div class="col-5"></div>
                   <div class="col-7 mt-4">

@@ -1,10 +1,13 @@
 <div class="sidebar-bg"></div>
 <div id="content" class="content">
     <div class="row">
+      <div class="col-6 mb-3">
+        <a class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" href="javascript:history.back()"> Volver</a>
+      </div>
         <!-- <div class="col-3 text-center">
             <button class="btn btn-default mt-1 mb-1" type="button" onclick="printDiv();">Descargar Registro</button>
         </div> -->
-		<div class="col-lg-12" id="imp1">
+		  <div class="col-lg-12" id="imp1">
             <div class="panel panel-inverse">
                 <br>
                 <div class="col-6">

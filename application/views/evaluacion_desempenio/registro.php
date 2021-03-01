@@ -291,7 +291,7 @@
                                         <td>25</td>
 										<td>
                                             <select class="selected form-control" name="calidad" id="calidad" onclick="evaluar();">
-                                                <option value="">Sel</option>
+                                                <option value="3">Sel</option>
                                                 <option value="1">Si</option>
                                                 <option value="0">No</option>
                                             </select>
@@ -306,7 +306,7 @@
                                         <td>25</td>
 										<td>
                                             <select class="selected form-control" name="responsabilidad" id="responsabilidad" onclick="evaluar();">
-                                                <option value="">Sel</option>
+                                                <option value="3">Sel</option>
                                                 <option value="1">Si</option>
                                                 <option value="0">No</option>
                                             </select>
@@ -321,7 +321,7 @@
                                         <td>25</td>
                                         <td>
                                             <select class="selected form-control" name="conocimiento" id="conocimiento" onclick="evaluar();">
-                                                <option value="">Sel</option>
+                                                <option value="3">Sel</option>
                                                 <option value="1">Si</option>
                                                 <option value="0">No</option>
                                             </select>
@@ -336,7 +336,7 @@
                                         <td>25</td>
                                         <td>
                                             <select class="selected form-control" name="oportunidad" id="oportunidad" onclick="evaluar();">
-                                                <option value="">Sel</option>
+                                                <option value="3">Sel</option>
                                                 <option value="1">Si</option>
                                                 <option value="0">No</option>
                                             </select>
