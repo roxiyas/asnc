@@ -112,11 +112,8 @@
 										<span>Consultas</span>
 									</a>
 									<ul class="sub-menu">
-										<li>
-											<a title="En Construcción">
-												Contratistas
-											</a>
-										</li>
+									<li><a href="<?= base_url() ?>index.php/Contratista/infor_contratista">- Consulta</a></li>
+										
 										<!-- <li><a>- Reprogramación</a></li> -->
 									</ul>
 								</li>
