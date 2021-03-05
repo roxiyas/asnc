@@ -1,43 +1,6 @@
-CREATE TABLE evaluacion_desempenio.objcontratistas
-(
-   	id serial ,
-    descobjcont character varying(100) NOT NULL,
-	tipo character varying(2) NOT NULL 
-)
-INSERT INTO evaluacion_desempenio.objcontratistas VALUES 
-(default,'Proveedor - Fabricante','P' ),
-(default,'Proveedor - Distribuidor','P' ),
-(default,'Proveedor - Distribuidor Autorizado','P'  ),
-(default,'Obras','O'),
-(default,'Servicios','S'),
-(default,'Servicio Autorizado','S')
 
-	CREATE TABLE evaluacion_desempenio.dencomerciales
-(
-   	id serial ,
-     descdencom character varying(100) NOT NULL
-)
-INSERT INTO evaluacion_desempenio.dencomerciales VALUES 
-(default,'C.A.'),
-(default,'S.A.'),
-(default,'S.R.L.'),
-(default,'C.R.L.'),
-(default,'Firma Personal'),
-(default,'S.A.C.A.'),
-(default,'Sociedad Civil'),
-(default,'Sociedad en Comandita'),
-(default,'Persona Natural'),
-(default,'Cooperativas'),
-(default,'Sociedad en Nombre Colectivo'),
-(default,'Subsidiaria'),
-(default,'Empresa Extranjera con Sucursal en Venezuela'),
-(default,'Gobierno'),
-(default,'Sociedad en Comandita por Acciones'),
-(default,'Empresa sin Domicilio en Venezuela'),
-(default,'ETT'),
-(default,'Sucesión')
-______________________________________________________________
-CREATE VIEW evaluacion_desempenio.infcontratista AS
+ESTA ES LA QUE SE CREA EN SNCENLINEA
+CREATE VIEW public.infcontratista AS
 SELECT 
   contratistas.id, 
   edocontratistas.infoadic, 
@@ -58,10 +21,10 @@ SELECT
   edocontratistas.id as idedocontratistas, 
   contratistas.tipopersona
 FROM 
-  evaluacion_desempenio.contratistas, 
-  evaluacion_desempenio.dencomerciales, 
-  evaluacion_desempenio.edocontratistas, 
-  evaluacion_desempenio.objcontratistas
+  public.contratistas, 
+  public.dencomerciales, 
+  public.edocontratistas, 
+  public.objcontratistas
 WHERE 
   contratistas.edocontratista_id = edocontratistas.id AND
   contratistas.dencomerciale_id = dencomerciales.id AND

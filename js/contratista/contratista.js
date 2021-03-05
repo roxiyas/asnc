@@ -66,7 +66,7 @@ function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
 }
 
  
-	function check() {
+	/*function check() {
         var descedocont = document.getElementById('descedocont');
     var porId=document.getElementById("idedocontratistas").value;
     var t=1;
@@ -82,7 +82,7 @@ function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
 	check();
 function mayus(e) {
     e.value = e.value.toUpperCase();
-}
+}*/
 
 function valideKey(evt){
    var code = (evt.which) ? evt.which : evt.keyCode;
