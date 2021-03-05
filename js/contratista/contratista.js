@@ -16,7 +16,7 @@ function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
     }else{
         $("#items").show();
         var base_url =window.location.origin+'/asnc/index.php/Contratista/llenar_contratista';
-       // var base_url2 =window.location.origin+'/asnc/index.php/evaluacion_desempenio/llenar_contratista_rp';
+       // var base_url =window.location.origin+'/asnc/index.php/Contratista/llenar_contratista';
 
         //var base_url = '/index.php/evaluacion_desempenio/llenar_contratista';
         //var base_url2 = '/index.php/evaluacion_desempenio/llenar_contratista_rp';
@@ -41,8 +41,8 @@ function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
                     $('#descedocont').val(data['descedocont']);
                     $('#infoadic').val(data['infoadic']);
                     $('#idedocontratistas').val(data['idedocontratistas']);
-                    
-                    
+
+
                     $('#rif_cont').val(data['rifced']);
                     $('#nombre').val(data['nombre']);
                     $('#tipopersona').val(data['tipopersona']);
@@ -57,15 +57,15 @@ function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
                     $('#numcontrol_certrnc').val(data['numcontrol_certrnc']);
                     $('#fecinscrnc_at').val(data['fecinscrnc_at']);
                     $('#fecvencrnc_at').val(data['fecvencrnc_at']);
-                    $('#situacionact').val(data['descedocont']);               
-                    
+                    $('#situacionact').val(data['descedocont']);
+
                 }
             }
         })
     }
 }
 
- 
+
 	/*function check() {
         var descedocont = document.getElementById('descedocont');
     var porId=document.getElementById("idedocontratistas").value;
@@ -75,7 +75,7 @@ function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
             descedocont.style.color = '#000';
 		} else {
             descedocont.style.color = '#FF0000';
-           
+
 		}
 	}
 	descedocont.addEventListener('blur', check);
@@ -94,9 +94,3 @@ function valideKey(evt){
         return false;
     }
 }
-
-
-
-
-
-
