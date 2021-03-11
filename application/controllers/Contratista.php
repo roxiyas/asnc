@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Contratista extends CI_Controller
 {
-	
+
 
 	public function infor_contratista()
 	{
@@ -20,5 +20,5 @@ class Contratista extends CI_Controller
 		$data =	$this->Contratista_model->llenar_contratista($data);
 		echo json_encode($data);
 	}
-	
+
 }

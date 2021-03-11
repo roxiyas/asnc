@@ -363,19 +363,19 @@
     				</div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="form-group col-4">
+                            <!-- <div class="form-group col-4">
                                 <label>¿Fue notificado al contratista? <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <select class="form-control" name="notf_cont" id="notf_cont" onblur="val_not();">
                                     <option value="0">Seleccione</option>
                                     <option value="1">Sí, fué notificado al contratista</option>
                                     <option value="2">No, no fué notificado al contratista</option>
                                 </select>
-                            </div>
-                            <div class="form-group col-4">
+                            </div> -->
+                            <div class="form-group col-6">
                                 <label>Fecha de la Notificación <b title="Campo Obligatorio" style="color:red">*</b></label>
 								<input type="text" class="form-control" id="datepicker-default" name="fec_notificacion" placeholder="Seleccionar Fecha" onchange="validar_fecha();"/>
                             </div>
-                            <div class="form-group col-4">
+                            <div class="form-group col-6">
                                 <label>Medio de envio de la Notificación <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <select class="selected form-control" name="medio" id="medio">
                                     <option value="0">Seleccione</option>

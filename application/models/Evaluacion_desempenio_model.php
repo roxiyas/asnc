@@ -144,7 +144,7 @@
                 if ($existe == 0){
                     $quers1 = $this->db->insert('evaluacion_desempenio.contratistas_nr',$data);
                     $quers2 = $this->db->insert('evaluacion_desempenio.accionistas_nr',$data_repr_legal);
-                    return true;
+                    return $id;
                 }
                 return $id;
             }
@@ -288,7 +288,8 @@
                                  ed.otro,
                                  ed.mod_otro,
                                  ed.id_estatus,
-                                 e5.descripcion ');
+                                 e5.descripcion,
+                                 ed.fecha_reg_eval');
             $this->db->join('seguridad.usuarios u', 'u.id = ed.id_usuario');
             $this->db->join('public.organos o', 'o.codigo = u.unidad', 'left');
             $this->db->join('public.entes e4', 'e4.codigo = u.unidad', 'left');
@@ -322,6 +323,26 @@
             $this->db->order_by('e.calificacion');
             $this->db->where('e.rif_contrat', $data['rif_b']);
             $query = $this->db->get('evaluacion_desempenio.evaluacion e');
+            $response = $query->result_array();
+            return $response;
+        }
+
+        public function consulta_contr_nr(){
+            $this->db->select('cn.id,
+                        	   cn.user_id,
+                        	   cn.rifced rif_contratante,
+                        	   cn.nombre contratante,
+                        	   u.unidad,
+                               concat(tr.desc_rif,\'\',o.rif, tr2.desc_rif,\'\', e.rif, tr3.desc_rif,\'\',ea.rif) as rif_contratista,
+                        	   concat(o.desc_organo,\'\', e.desc_entes, \'\', ea.desc_entes_ads) as contratista');
+            $this->db->join('public.usuarios u', 'u.id = cn.user_id');
+            $this->db->join('public.organos o', 'o.codigo = u.unidad' ,'left');
+            $this->db->join('public.entes e', 'e.codigo = u.unidad' ,'left');
+            $this->db->join('public.entes_ads ea', 'ea.codigo = u.unidad' ,'left');
+            $this->db->join('public.tipo_rif tr', 'tr.id_rif = o.tipo_rif' ,'left');
+            $this->db->join('public.tipo_rif tr2', 'tr2.id_rif = e.tipo_rif' ,'left');
+            $this->db->join('public.tipo_rif tr3', 'tr3.id_rif = ea.tipo_rif' ,'left');
+            $query = $this->db->get('evaluacion_desempenio.contratistas_nr cn');
             $response = $query->result_array();
             return $response;
         }

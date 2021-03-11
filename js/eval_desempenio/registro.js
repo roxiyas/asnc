@@ -258,34 +258,34 @@ function evaluar(){
     }
 }
 
-function val_not(){
-    var notf_cont = $('#notf_cont').val();
-    if (notf_cont == 2) {
-        swal({
-            title: "¡ATENCION!",
-            text: "Con base a lo establecido en el Art. 51 del Decreto con Rango Valor y Fuerza de Ley de Contrataciones Públicas, la carga de los campos correspondientes a la Notificación del Resultado de la Evaluación de Desempeño son Obligatorios.",
-            type: "warning",
-            showCancelButton: false,
-            confirmButtonColor: "#00897b",
-            confirmButtonText: "CONTINUAR",
-            closeOnConfirm: false
-        }, function(){
-            swal("Deleted!", "Your imaginary file has been deleted.", "success");
-        });
-        $('#registrar_eval').attr("disabled", true);
-        $('#datepicker-default').attr("disabled", true);
-        $('#medio').attr("disabled", true);
-        $('#nro_oc_os').attr("disabled", true);
-        $('#fileImagen').attr("disabled", true);
-
-    }else{
-        $('#registrar_eval').attr("disabled", false);
-        $('#datepicker-default').attr("disabled", false);
-        $('#medio').attr("disabled", false);
-        $('#nro_oc_os').attr("disabled", false);
-        $('#fileImagen').attr("disabled", false);
-    }
-}
+// function val_not(){
+//     var notf_cont = $('#notf_cont').val();
+//     if (notf_cont == 2) {
+//         swal({
+//             title: "¡ATENCION!",
+//             text: "Con base a lo establecido en el Art. 51 del Decreto con Rango Valor y Fuerza de Ley de Contrataciones Públicas, la carga de los campos correspondientes a la Notificación del Resultado de la Evaluación de Desempeño son Obligatorios.",
+//             type: "warning",
+//             showCancelButton: false,
+//             confirmButtonColor: "#00897b",
+//             confirmButtonText: "CONTINUAR",
+//             closeOnConfirm: false
+//         }, function(){
+//             swal("Deleted!", "Your imaginary file has been deleted.", "success");
+//         });
+//         $('#registrar_eval').attr("disabled", true);
+//         $('#datepicker-default').attr("disabled", true);
+//         $('#medio').attr("disabled", true);
+//         $('#nro_oc_os').attr("disabled", true);
+//         $('#fileImagen').attr("disabled", true);
+//
+//     }else{
+//         $('#registrar_eval').attr("disabled", false);
+//         $('#datepicker-default').attr("disabled", false);
+//         $('#medio').attr("disabled", false);
+//         $('#nro_oc_os').attr("disabled", false);
+//         $('#fileImagen').attr("disabled", false);
+//     }
+// }
 
 function validar_fecha(){
     var fecha_hasta = $('#fecha_hasta').val();
@@ -387,7 +387,7 @@ function registrar(){
     var total_claf        = $("#total_claf").val();
     var calificacion      = $("#calificacion").val();
 
-    var notf_cont       = $("#notf_cont").val();
+    // var notf_cont       = $("#notf_cont").val();
     var fecha_not       = $("#datepicker-default").val();
     var medio           = $("#medio").val();
     var nro_oc_os       = $("#nro_oc_os").val();
@@ -480,9 +480,9 @@ function registrar(){
         else if (calificacion == '') {
             document.getElementById("calificacion").focus();
         }
-        else if (notf_cont == '0') {
-            document.getElementById("notf_cont").focus();
-        }
+        // else if (notf_cont == '0') {
+        //     document.getElementById("notf_cont").focus();
+        // }
         else if (fecha_not == '') {
             document.getElementById("datepicker-default").focus();
         }
@@ -494,9 +494,7 @@ function registrar(){
         }
         else if (fileImagen == '') {
             document.getElementById("fileImagen").focus();
-        }
-
-        else{
+        }else{
             var calificacion = $('#calificacion').val();
             if (calificacion == 'DEFICIENTE' || calificacion == 'SIN CALIFICACIÓN'){
                 event.preventDefault();
@@ -558,7 +556,6 @@ function registrar(){
                     confirmButtonText: '¡Si, guardar!'
                 }).then((result) => {
                     if (result.value == true) {
-
                         event.preventDefault();
                         var datos = new FormData($("#resgistrar_eva")[0]);
                         var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar';
@@ -572,6 +569,7 @@ function registrar(){
                             success: function(response){
                                 console.log(response);
                                 if(response != '') {
+                                    console.log(response);
                                         var menj = 'Identificador de Evaluación de Desempeño: ';
                                     swal.fire({
                                         title: 'Registro Exitoso',
@@ -595,7 +593,6 @@ function registrar(){
                 });
             }
         }
-
     }else if (exitte == '1'){
         if (id_modalidad == '0') {
             document.getElementById("id_modalidad").focus();
@@ -641,9 +638,10 @@ function registrar(){
         }
         else if (calificacion == '') {
             document.getElementById("calificacion").focus();
-        }else if (notf_cont == '0') {
-            document.getElementById("notf_cont").focus();
         }
+        // else if (notf_cont == '0') {
+        //     document.getElementById("notf_cont").focus();
+        // }
         else if (fecha_not == '') {
             document.getElementById("datepicker-default").focus();
         }

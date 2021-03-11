@@ -23,7 +23,9 @@
                         <h4>Estatus de Evaluación de Desempeño: <b><?=$eval_ind['descripcion']?></b> </h4>
                     </div>
                 <?php endif; ?>
-
+                <div class="col-12">
+                    <h4>Fecha de Registro de la Evaluación de Desempeño: <?=$fecha_reg_eval?></h4>
+                </div>
                 <div class="panel-heading">
                     <h2 style="font-size: 16px;" class="panel-title text-center"><b>Datos del Contratante</b></h2>
                 </div>
@@ -269,7 +271,7 @@
 				</div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="form-group col-4">
+                        <!-- <div class="form-group col-4">
                             <h5><b>¿Fue notificado al contratista?:</b></h5>
                             <?php if ($eval_ind['notf_cont'] == 1): ?>
                                 <div>
@@ -281,12 +283,12 @@
                                     <h5>No, no fué notificado al contratista</h5>
                                 </div>
                             <?php endif; ?>
-                        </div>
-                        <div class="form-group col-4">
+                        </div> -->
+                        <div class="form-group col-6">
                             <h5><b>Fecha de la Notificación:</b></h5>
                             <h5><?=$eval_ind['fecha_not']?></h5>
                         </div>
-                        <div class="form-group col-4">
+                        <div class="form-group col-6">
                             <h5><b>Medio de envio de la Notificación:</b></h5>
                             <?php if ($eval_ind['medio'] == 1): ?>
                                 <div>

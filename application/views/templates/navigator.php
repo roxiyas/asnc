@@ -92,7 +92,10 @@
 											<a href="<?= base_url() ?>index.php/evaluacion_desempenio/reporte">- Reporte</a>
 										</li>
 										<li><a href="<?= base_url() ?>index.php/evaluacion_desempenio/consulta">- Consulta</a></li>
+										<?php if (($this->session->userdata('perfil') == 1)) : ?>
+										<li><a href="<?= base_url() ?>index.php/Evaluacion_desempenio/estatus_contratista">- Consulta 2</a></li>
 										<li><a href="<?= base_url() ?>index.php/evaluacion_desempenio/anulacion">- Anulación</a></li>
+										<?php endif; ?>
 									</ul>
 								</li>
 							<?php endif; ?>
@@ -112,8 +115,7 @@
 										<span>Consultas</span>
 									</a>
 									<ul class="sub-menu">
-									<li><a href="<?= base_url() ?>index.php/Contratista/infor_contratista">- Consulta</a></li>
-										
+									<li><a href="<?= base_url() ?>index.php/Contratista/infor_contratista">- Planilla Resumen</a></li>
 										<!-- <li><a>- Reprogramación</a></li> -->
 									</ul>
 								</li>
