@@ -231,7 +231,7 @@
             $query = $this->db->query("SELECT ed.id,
                                 	   to_char(ed.fecha_reg_eval, 'dd-mm-yyyy') as fecha,
                                        ed.rif_contrat,
-                                       concat(cn.nombre,'\',c.nombre ) as nombre,
+                                       concat(cn.nombre,'',c.nombre ) as nombre,
                                        ed.calificacion,
                                        ed.id_estatus,
                                        e.descripcion
@@ -365,7 +365,7 @@
             $query = $this->db->query("SELECT ed.id,
                                     		to_char(ed.fecha_reg_eval, 'dd-mm-yyyy') as fecha,
                                         ed.rif_contrat,
-                                        concat(cn.nombre,'\',c.nombre ) as nombre,
+                                        concat(cn.nombre,'',c.nombre ) as nombre,
                                         ed.calificacion,
                                         ed.id_estatus,
                                         e.descripcion
