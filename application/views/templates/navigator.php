@@ -215,6 +215,16 @@
 											- Operadora
 										</a>
 									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Fuentefinanc/proce">
+											- Procedimiento Selección de Contratista
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Fuentefinanc/supuestos">
+											- Supuestos de Procedimientos
+										</a>
+									</li>
 								</ul>
 							</li>
 							<li class="has-sub">

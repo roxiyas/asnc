@@ -344,4 +344,34 @@ public function update_operadora($data)
 {
  return $this->db->update('public.operadora', $data, array('id_operadora' => $data['id_operadora']));
 }
+//_______ proce___________________________________________________
+public function get_proce()
+
+ 
+{
+    $this->db->order_by("id", "ASC");
+    $query = $this->db->get('evaluacion_desempenio.modalidad');
+   
+       if (count($query->result()) > 0) {
+         return $query->result();
+     }
+}
+public function save_proce($data)
+{
+    return $this->db->insert('evaluacion_desempenio.modalidad', $data);
+}
+public function single_proce($id)
+{
+ $this->db->select('*');
+ $this->db->from('evaluacion_desempenio.modalidad');
+ $this->db->where('id', $id);
+ $query = $this->db->get();
+ if (count($query->result()) > 0) {
+     return $query->row();
+ }
+}
+public function update_proce($data)
+{
+ return $this->db->update('evaluacion_desempenio.modalidad', $data, array('id' => $data['id']));
+}
 }

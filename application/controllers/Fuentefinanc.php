@@ -4,9 +4,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Fuentefinanc extends CI_Controller
 {
 	public function __construct()
-	{
+	{ 
 		parent::__construct();
 		$this->load->model('Tablas_model');
+	
 	}
 	public function index()
 	{
@@ -648,23 +649,26 @@ class Fuentefinanc extends CI_Controller
 	}
 	//______________________Muncipio_____________________________
 	public function municipio()
-	{
+	{ if(!$this->session->userdata('session'))redirect('login');
+		$data['estados'] = $this->Configuracion_model->consulta_estados();
+		//print($data);
 		$this->load->view('templates/header.php');
 		$this->load->view('templates/navigator.php');
-		$this->load->view('tablas/municipio.php');
+		$this->load->view('tablas/municipio.php',$data);
 		$this->load->view('templates/footer.php');
+		
 	}
 	public function savemunicipio()
 	{
 		if ($this->input->is_ajax_request()) {
-			$this->form_validation->set_rules('descedo', 'descedo', 'required');
+			$this->form_validation->set_rules('descmun', 'descmun', 'required');
 			if ($this->form_validation->run() == FALSE) {
 				$data = array('responce' => 'error', 'message' => validation_errors());
 			} else {
 				$ajax_data = $this->input->post();
 
 				if ($this->Tablas_model->save_municipio($ajax_data)) {
-					$data = array('responce' => 'success', 'message' => 'Estado Guardado con Exito');
+					$data = array('responce' => 'success', 'message' => 'Municipio Guardado con Exito');
 				} else {
 					$data = array('responce' => 'error', 'message' => 'Error , vuelva a intentar');
 				}
@@ -962,4 +966,86 @@ class Fuentefinanc extends CI_Controller
 				echo "No direct script access allowed";
 			}
 		}
+		//______________________proce_____________________________
+	public function proce()
+	{ if(!$this->session->userdata('session'))redirect('login');
+		$data['estados'] = $this->Configuracion_model->consulta_estados();
+		//print($data);
+		$this->load->view('templates/header.php');
+		$this->load->view('templates/navigator.php');
+		$this->load->view('tablas/proce.php',$data);
+		$this->load->view('templates/footer.php');
+		
+	}
+	public function saveproce()
+	{
+		if ($this->input->is_ajax_request()) {
+			$this->form_validation->set_rules('descmun', 'descmun', 'required');
+			if ($this->form_validation->run() == FALSE) {
+				$data = array('responce' => 'error', 'message' => validation_errors());
+			} else {
+				$ajax_data = $this->input->post();
+
+				if ($this->Tablas_model->save_proce($ajax_data)) {
+					$data = array('responce' => 'success', 'message' => ' Guardado con Exito');
+				} else {
+					$data = array('responce' => 'error', 'message' => 'Error , vuelva a intentar');
+				}
+			}
+
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+	public function fetchproce()
+	{
+		if ($this->input->is_ajax_request()) {
+			if ($posts = $this->Tablas_model->get_proce()) {
+				$data = array('responce' => 'success', 'posts' => $posts);
+			} else {
+				$data = array('responce' => 'error', 'menssage' => 'falied to fetch data');
+			}
+			echo json_encode($data);
+		} else {
+			echo "'No direct script access allowed'";
+		}
+	}
+	public function editproce()
+	{
+		if ($this->input->is_ajax_request()) {
+			$edit_id = $this->input->post('edit_id');
+
+			if ($post = $this->Tablas_model->single_proce($edit_id)) {
+				$data = array('responce' => 'success', 'post' => $post);
+			} else {
+				$data = array('responce' => 'error', 'message' => 'error al guardar');
+			}
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+	public function updateproce()
+	{
+		if ($this->input->is_ajax_request()) {
+			$this->form_validation->set_rules('edit_descripcion',  'required');
+			if ($this->form_validation->run() == FALSE) {
+				$data = array('responce' => 'error', 'message' => validation_errors());
+			} else {
+				$data['id'] = $this->input->post('edit_record_id');
+				$data['descripcion'] = $this->input->post('edit_descripcion');
+
+				if ($this->Tablas_model->update_proce($data)) {
+					$data = array('responce' => 'success', 'message' => 'Registro Modificado Con Exito');
+				} else {
+					$data = array('responce' => 'error', 'message' => 'Error al Modificar Registor');
+				}
+			}
+
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
 }
