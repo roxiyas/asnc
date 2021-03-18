@@ -75,6 +75,7 @@
 										<!-- <li><a>- Reprogramación</a></li> -->
 									</ul>
 								</li>
+
 								<li class="has-sub">
 									<a href="javascript:;">
 										<b class="caret"></b>
@@ -82,25 +83,39 @@
 										<span class="ml-1">Desempeño</span>
 									</a>
 									<ul class="sub-menu">
-										<li>
-											<a href="<?= base_url() ?>index.php/evaluacion_desempenio">- Registrar</a>
+										<li><a href="<?= base_url() ?>index.php/evaluacion_desempenio">Registrar</a></li>
+										<li class="has-sub">
+											<a href="javascript:;">
+												<b class="caret"></b>
+												Anulación
+											</a>
+											<ul class="sub-menu">
+												<li><a href="<?= base_url() ?>index.php/evaluacion_desempenio/anulacion">- Sol. Anulación</a></li>
+												<?php if (($this->session->userdata('perfil') == 1)) : ?>
+													<li><a href="<?= base_url() ?>index.php/Evaluacion_desempenio/proc_anulacion">- Proc. Anulaciones</a></li>
+												<?php endif; ?>
+											</ul>
 										</li>
-										<!-- <li>
-											<a href="<?= base_url() ?>index.php/evaluacion_desempenio/notificacion">- Notificación</a>
-										</li> -->
-										<li>
-											<a href="<?= base_url() ?>index.php/evaluacion_desempenio/reporte">- Reporte</a>
+										<li class="has-sub">
+											<a href="javascript:;">
+												<b class="caret"></b>
+												Reportes
+											</a>
+											<ul class="sub-menu">
+												<li><a href="<?= base_url() ?>index.php/evaluacion_desempenio/reporte">- Reporte</a></li>
+												<li><a href="<?= base_url() ?>index.php/evaluacion_desempenio/consulta">- Consulta</a></li>
+												<?php if (($this->session->userdata('perfil') == 1)) : ?>
+												<li><a href="<?= base_url() ?>index.php/Evaluacion_desempenio/estatus_contratista">- Consulta 2</a></li>
+												<?php endif; ?>
+											</ul>
 										</li>
-										<li><a href="<?= base_url() ?>index.php/evaluacion_desempenio/consulta">- Consulta</a></li>
-										<?php if (($this->session->userdata('perfil') == 1)) : ?>
-										<li><a href="<?= base_url() ?>index.php/Evaluacion_desempenio/estatus_contratista">- Consulta 2</a></li>
-										<li><a href="<?= base_url() ?>index.php/evaluacion_desempenio/anulacion">- Anulación</a></li>
-										<?php endif; ?>
 									</ul>
 								</li>
 							<?php endif; ?>
 						</ul>
 					</li>
+
+
 					<li class="has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>

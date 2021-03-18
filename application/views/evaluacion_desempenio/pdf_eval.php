@@ -74,7 +74,7 @@
 				<div class="panel-body">
                     <div class="row">
                         <div class="form-group col-7">
-                            <h5><b>Modalidad de la Contratación:</b></h5>
+                            <h5><b>Procedimiento de Selección del Contratista:</b></h5>
                             <h5><?=$eval_ind['modalidad']?></h5>
                         </div>
                         <div class="form-group col-5">
@@ -82,7 +82,7 @@
                             <h5>Desde: <?=$fec_inicio_cont?> <b>/</b> Hasta: <?=$fec_fin_cont?></h5>
                         </div>
                         <div class="form-group col-12">
-                            <h5><b>Sub-Modalidad de la Contratación:</b></h5>
+                            <h5><b>Supuestos del Procedimiento de la Selección del Contratista:</b></h5>
                             <h5><?=$eval_ind['sub_modalidad']?></h5>
                         </div>
                     </div>

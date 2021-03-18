@@ -348,7 +348,7 @@
         }
 
         // Consulta de Evaluacion completas para anulación
-        public function consulta_eval_anul(){
+        public function consulta_eval_anul($usuario){
             // $this->db->select('ed.id,
             //                    ed.rif_contrat,
             //                    concat(cn.nombre,\'\',c.nombre ) as nombre,
@@ -372,7 +372,8 @@
                                     from evaluacion_desempenio.evaluacion ed
                                     left join evaluacion_desempenio.contratistas c on c.rifced = ed.rif_contrat
                                     left join evaluacion_desempenio.contratistas_nr cn on cn.rifced = ed.rif_contrat
-                                    join public.estatus e on e.id = ed.id_estatus");
+                                    join public.estatus e on e.id = ed.id_estatus
+                                    where ed.id_usuario = '$usuario'");
             return $query->result_array();
         }
 
@@ -381,7 +382,7 @@
             $quers =$this->db->insert('evaluacion_desempenio.anulacion', $d_anulacion);
 
             $data2 = array(
-                'id_estatus' => 3,
+                'id_estatus' => 2,
             );
             $this->db->where('id', $id);
             $update = $this->db->update('evaluacion_desempenio.evaluacion', $data2);
@@ -393,6 +394,54 @@
             $this->db->where('id_evaluacion', $data['id_evaluacion']);
             $query = $this->db->get('evaluacion_desempenio.anulacion');
             return $response = $query->row_array();
+        }
+
+        public function consl_proc_anulacion(){
+            // $this->db->select('ed.id,
+            //                    ed.rif_contrat,
+            //                    concat(cn.nombre,\'\',c.nombre ) as nombre,
+            //                    ed.calificacion,
+            //                    ed.id_estatus,
+            //                    e.descripcion
+            // ');
+            // $this->db->join('evaluacion_desempenio.contratistas c', 'c.rifced = ed.rif_contrat', 'left');
+            // $this->db->join('evaluacion_desempenio.contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
+            // $this->db->join('public.estatus e', 'e.id = ed.id_estatus');
+            // $query = $this->db->get('evaluacion_desempenio.evaluacion ed');
+            // return $response = $query->result_array();
+
+            $query = $this->db->query("SELECT a.id_anulacion,
+                                        	   a.id_evaluacion,
+                                        	   e.rif_contrat,
+                                        	   concat(c.nombre, '', cn.nombre) AS contratante,
+                                               e.calificacion,
+                                        	   e.id_estatus,
+                                        	   e2.descripcion AS estatus,
+                                        	   to_char(a.fecha_reg_anulacion, 'dd-mm-yyyy') AS fech_reg
+                                        FROM evaluacion_desempenio.anulacion a
+                                        JOIN evaluacion_desempenio.evaluacion e ON e.id = a.id_evaluacion
+                                        LEFT JOIN evaluacion_desempenio.contratistas c ON c.rifced = e.rif_contrat
+                                        LEFT JOIN evaluacion_desempenio.contratistas_nr cn ON cn.rifced = e.rif_contrat
+                                        JOIN public.estatus e2 ON e2.id = e.id_estatus ");
+            return $query->result_array();
+        }
+
+        public function aprv_anulacion($data){
+
+            $data1 = array(
+                'fecha_aprv_anul' => date('Y-m-d'),
+            );
+            $this->db->where('id_evaluacion', $data['id_evaluacion']);
+            $update = $this->db->update('evaluacion_desempenio.anulacion', $data1);
+
+
+            $data2 = array(
+                'id_estatus' => 3,
+            );
+            $this->db->where('id', $data['id_evaluacion']);
+            $update = $this->db->update('evaluacion_desempenio.evaluacion', $data2);
+
+            return $data['id_evaluacion'];
         }
     }
 ?>

@@ -305,8 +305,8 @@ class Evaluacion_desempenio extends CI_Controller {
 	//Anulacion de Evaluacion de Desempeños
 	public function anulacion(){
 		if(!$this->session->userdata('session'))redirect('login');
-
-		$data['evaluaciones']	= $this->Evaluacion_desempenio_model->consulta_eval_anul();
+		$usuario = $this->session->userdata('id_user');
+		$data['evaluaciones']	= $this->Evaluacion_desempenio_model->consulta_eval_anul($usuario);
 
 		$this->load->view('templates/header.php');
 		$this->load->view('templates/navigator.php');
@@ -322,10 +322,13 @@ class Evaluacion_desempenio extends CI_Controller {
             'nro_oficicio'    => $this->input->POST('nro_oficicio'),
             'fecha_anulacion' => $this->input->POST('fec_solicitud'),
             'nro_expediente'  => $this->input->POST('nro_expediente'),
+			'nro_gacet_resol' => $this->input->POST('nro_gacet_resol'),
             'cedula_solc'     => $this->input->POST('cedula_solc'),
 			'nom_ape_solc'    => $this->input->POST('nom_ape_solc'),
 			'cargo'        	  => $this->input->POST('cargo'),
+			'telf_solc'       => $this->input->POST('telf_solc'),
 			'id_usuario' 	  => $this->session->userdata('id_user'),
+			'fecha_aprv_anul' => date('Y-m-d'),
         );
 
 		$data = $this->Evaluacion_desempenio_model->save_anulacion($id, $d_anulacion);
@@ -337,5 +340,24 @@ class Evaluacion_desempenio extends CI_Controller {
 		$data = $this->input->post();
 		$data =	$this->Evaluacion_desempenio_model->consulta_anulacion($data);
 		echo json_encode($data);
+	}
+
+	public function proc_anulacion(){
+		if(!$this->session->userdata('session'))redirect('login');
+
+		$data['anulaciones']	= $this->Evaluacion_desempenio_model->consl_proc_anulacion();
+
+		$this->load->view('templates/header.php');
+		$this->load->view('templates/navigator.php');
+		$this->load->view('evaluacion_desempenio/proc_anulacion.php', $data);
+		$this->load->view('templates/footer.php');
+	}
+
+	public function resgistrar_aprv_anulacion(){
+		if(!$this->session->userdata('session'))redirect('login');
+		// $id_evaluacion = $this->input->POST('id_evaluacion');
+		$data = $this->input->post();
+		$data = $this->Evaluacion_desempenio_model->aprv_anulacion($data);
+        echo json_encode($data);
 	}
 }

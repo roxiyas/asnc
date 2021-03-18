@@ -4,7 +4,7 @@
 		<div class="col-lg-12">
             <div class="panel panel-inverse">
                 <div class="col-12"><br>
-                    <h3 class="text-center">Evaluaciones Registradas Para Solicitar Anulación</h3>
+                    <h3 class="text-center">Anulaciones Solicitadas</h3>
                     <table id="data-table-default" class="table table-bordered table-hover">
                         <thead style="background:#e4e7e8">
                             <tr class="text-center">
@@ -18,27 +18,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($evaluaciones as $data):?>
+                            <?php foreach($anulaciones as $data):?>
                             <tr class="odd gradeX" style="text-align:center">
-                                <td><?=$data['id']?> </td>
-                                <td><?=$data['fecha']?> </td>
+                                <td><?=$data['id_anulacion']?> </td>
+                                <td><?=$data['fech_reg']?> </td>
                                 <td><?=$data['rif_contrat']?> </td>
-                                <td><?=$data['nombre']?> </td>
+                                <td><?=$data['contratante']?> </td>
                                 <td><?=$data['calificacion']?></td>
-                                <td><?=$data['descripcion']?></td>
+                                <td><?=$data['estatus']?></td>
                                 <td class="center">
-                                    <a title="Visualizar e Imprimir la Evaluación de Desempeño" href="<?php echo base_url();?>index.php/Evaluacion_desempenio/ver_evaluacion?id=<?php echo $data['id'];?>"
+                                    <a title="Visualizar e Imprimir la Evaluación de Desempeño" href="<?php echo base_url();?>index.php/Evaluacion_desempenio/ver_evaluacion?id=<?php echo $data['id_evaluacion'];?>"
                                         class="button">
                                         <i class="fas fa-lg fa-fw fa-eye" style="color: green;"></i>
                                     <a/>
-                                    <?php if ($data['id_estatus'] == 1): ?>
+                                    <a class="button">
+                                        <i title="Ver datos de Anulación de Desempeño" onclick="modal_ver(<?php echo $data['id_evaluacion']?>);" data-toggle="modal" data-target="#exampleModal_ver" class="fas fa-lg fa-fw fa-file-excel" style="color: blue;"></i>
+                                    <a/>
+                                    <?php if ($data['id_estatus'] != 3): ?>
                                         <a class="button">
-                                            <i title="Solicitar Anulación de Desempeño" onclick="modal(<?php echo $data['id']?>);" data-toggle="modal" data-target="#exampleModal" class="fas fa-lg fa-fw fa-times" style="color: red;"></i>
-                                        <a/>
-                                    <?php endif; ?>
-                                    <?php if ($data['id_estatus'] != 1): ?>
-                                        <a class="button">
-                                            <i title="Ver datos de Anulación de Desempeño" onclick="modal_ver(<?php echo $data['id']?>);" data-toggle="modal" data-target="#exampleModal_ver" class="fas fa-lg fa-fw fa-file-excel" style="color: blue;"></i>
+                                            <i title="Aprovar Anulación de Desempeño" onclick="aprovar_anul(<?php echo $data['id_evaluacion']?>);" class="fas fa-lg fa-fw fa-check" style="color: #fbff00;"></i>
                                         <a/>
                                     <?php endif; ?>
                                 </td>

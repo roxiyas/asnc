@@ -32,6 +32,8 @@ function guardar_anulacion(){
     var cedula_solc     = $("#cedula_solc").val();
     var nom_ape_solc    = $("#nom_ape_solc").val();
     var cargo           = $("#cargo").val();
+    var nro_gacet_resol = $("#nro_gacet_resol").val();
+    var telf_solc       = $("#telf_solc").val();
 
     if (nro_oficicio == '') {
         document.getElementById("nro_oficicio").focus();
@@ -45,11 +47,15 @@ function guardar_anulacion(){
         document.getElementById("nom_ape_solc").focus();
     }else if (cargo == '') {
         document.getElementById("cargo").focus();
+    }else if (nro_gacet_resol == '') {
+        document.getElementById("nro_gacet_resol").focus();
+    }else if (telf_solc == '') {
+        document.getElementById("telf_solc").focus();
     }else {
         event.preventDefault();
         swal.fire({
             title: '¿Anular?',
-            text: '¿Esta seguro que desea anular la Evaluación de Desempeño?',
+            text: '¿Esta seguro que desea solicitar anular la Evaluación de Desempeño?',
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -71,7 +77,7 @@ function guardar_anulacion(){
                     processData: false,
                     success: function(response){
                         if(response != '') {
-                                var menj = 'Se ha anulado la Evaluación de Desempeño Nroº: ';
+                                var menj = 'Se ha Enviado la Solicitud de anulación de la Evaluación de Desempeño Nroº: ';
                             swal.fire({
                                 title: 'Registro Exitoso',
                                 text: menj + response,
@@ -93,4 +99,57 @@ function guardar_anulacion(){
             }
         });
     }
+}
+
+function aprovar_anul(id){
+    event.preventDefault();
+    swal.fire({
+        title: '¿Anular?',
+        text: '¿Esta seguro que desea anular la Evaluación de Desempeño?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: '¡Si, guardar!'
+    }).then((result) => {
+        if (result.value == true) {
+            event.preventDefault();
+
+            var id_evaluacion = id;
+            console.log(id_evaluacion);
+            var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/resgistrar_aprv_anulacion';
+            // var base_url = '/index.php/evaluacion_desempenio/resgistrar_aprv_anulacion';
+            $.ajax({
+                url:base_url,
+                method: 'POST',
+                data: {
+                    id_evaluacion: id_evaluacion
+                },
+                dataType: 'json',
+                success: function(response){
+                    if(response != '') {
+                            var menj = 'Se ha anulado la Evaluación de Desempeño Nroº: ';
+                        swal.fire({
+                            title: 'Registro Exitoso',
+                            text: menj + response,
+                            type: 'success',
+                            showCancelButton: false,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            if (result.value == true){
+                                location.reload();
+                                // $('#registrar_eval').attr("disabled", true)
+                                // $('#exampleModal').modal('show');
+                                // $('#id').val(response);
+                            }
+                        });
+                    }
+                }
+            })
+        }
+    });
+
+
 }

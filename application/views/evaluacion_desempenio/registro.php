@@ -1,5 +1,6 @@
 <div class="sidebar-bg"></div>
 <div id="content" class="content">
+    <h2>Registro de Evaluación de Desempeño</h2>
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-inverse" data-sortable-id="form-validation-1">
@@ -167,7 +168,7 @@
     				<div class="panel-body">
                         <div class="row">
                             <div class="form-group col-7">
-                                <label>Modalidad de la Contratación <b title="Campo Obligatorio" style="color:red">*</b></label>
+                                <label>Procedimiento de Selección del Contratista <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <select class="form-control" name="id_modalidad" id="id_modalidad" onclick="llenar_sub_mod();">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($modalidades as $data): ?>
@@ -176,7 +177,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-12">
-                                <label>Supuestos de la Modalidad de Contratación <b title="Campo Obligatorio" style="color:red">*</b></label>
+                                <label>Supuestos del Procedimiento de la Selección del Contratista: <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <select class="form-control" name="id_sub_modalidad" id="id_sub_modalidad">
                                     <option value="0">Seleccione</option>
                                 </select>
@@ -353,7 +354,7 @@
                                 <input class="form-control" type="text" name="total_claf" id="total_claf" readonly>
                             </div>
                             <div class="col-3" class="form-control">
-                                <label>Calificacion:</label>
+                                <label>Calificación:</label>
                                 <input class="form-control" type="text" name="calificacion" id="calificacion" readonly>
                             </div>
                         </div>
