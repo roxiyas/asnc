@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="panel panel-inverse" data-sortable-id="form-validation-1">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Municipio</h4>
+                    <h4 class="panel-title">Procedimiento Selección de Contratista</h4>
                 </div>
                 <div class="row">
                     <div class="col-md-12 mt-2">
@@ -20,7 +20,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Crear Municipio</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Crear Procedimiento Selección de Contratista</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -28,23 +28,11 @@
                                     <div class="modal-body">
                                         <form action="" method="post" id="form">
                                             <div class="form-group">
-                                                <label for="">Nombre del Municipio</label>
-                                                <input type="text" class="form-control" id="descmun"
-                                                    placeholder="Nombre del Municipio">
+                                                <label for="">Procedimiento Selección de Contratista</label>
+                                                <input type="text" class="form-control" id="descripcion"
+                                                    placeholder="Procedimiento Selección de Contratista">
                                             </div>
-                                            <div class="form-group">
-                                                <label for="">Codigo de área del Municipio</label>
-                                                <input type="text" class="form-control" id="codug"
-                                                    placeholder="Codigo de área  del Municipio">
-                                            </div>
-                                            <div class="form-group">
-                                                <select class="form-control" name="id_estado" id="id_estado">
-                                                    <option value="0">Seleccione</option>
-                                                    <?php foreach ($estados as $data): ?>
-                                                    <option value="<?=$data['id']?>"><?=$data['descedo']?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
+                                           
                                         </form>
                                     </div>
                                     <div class="modal-footer">
@@ -71,8 +59,8 @@
                                     <form action="" method="post" id="update_form">
                                         <input type="hidden" id="edit_record_id" name="edit_record_id" value="">
                                         <div class="form-group">
-                                            <label for="">Ingrese Nombre del Municipio</label>
-                                            <input type="text" class="form-control" id="edit_descmun">
+                                            <label for="">Procedimiento Selección de Contratista</label>
+                                            <input type="text" class="form-control" id="edit_descripcion">
                                         </div>
                                     </form>
                                 </div>
@@ -109,24 +97,18 @@
 <script>
 $(document).on("click", "#add", function(e) {
     e.preventDefault();
-    var descmun = $("#descmun").val();
-    var codug = $("#codug").val();
-    var id_estado = $("#id_estado").val();
-    
-    
-    //alert(desc_descmun + '' + desc_porcentaj);
-    if (descmun == ""|| id_estado == "" || codug == "") {
+    var descripcion = $("#descripcion").val();
+   //alert(descmun + '' + desc_porcentaj);
+    if (descripcion == "") {
         alert("Both field is required");
     } else {
         $.ajax({
-            url: "<?php echo base_url(); ?>index.php/Fuentefinanc/savemunicipio",
+            url: "<?php echo base_url(); ?>index.php/Fuentefinanc/saveproce",
             type: "post",
             dataType: "json",
             data: {
                 
-                codug: codug,
-                estado_id : id_estado,
-                descmun: descmun
+                descripcion: descripcion
 
 
             },
@@ -153,7 +135,7 @@ $(document).on("click", "#add", function(e) {
 
 function fetch() {
     $.ajax({
-        url: "<?php echo base_url(); ?>index.php/Fuentefinanc/fetchmunicipio",
+        url: "<?php echo base_url(); ?>index.php/Fuentefinanc/fetchproce",
         type: "post",
         dataType: "json",
         success: function(data) {
@@ -176,7 +158,7 @@ function fetch() {
                         },
 
                         {
-                            "data": "descmun"
+                            "data": "descripcion"
                         },
 
                         {
@@ -207,7 +189,7 @@ $(document).on("click", "#edit", function(e) {
     var edit_id = $(this).attr("value");
 
     $.ajax({
-        url: "<?php echo base_url(); ?>index.php/Fuentefinanc/editmunicipio",
+        url: "<?php echo base_url(); ?>index.php/Fuentefinanc/editproce",
         type: "post",
         dataType: "json",
         data: {
@@ -217,7 +199,7 @@ $(document).on("click", "#edit", function(e) {
             if (data.responce == "success") {
                 $('#edit_modal').modal('show');
                 $("#edit_record_id").val(data.post.id);
-                $("#edit_descmun").val(data.post.descmun);
+                $("#edit_descripcion").val(data.post.descripcion);
 
             } else {
                 toastr["error"](data.message);
@@ -232,17 +214,17 @@ $(document).on("click", "#edit", function(e) {
 $(document).on("click", "#update", function(e) {
     e.preventDefault();
     var edit_record_id = $("#edit_record_id").val();
-    var edit_descmun = $("#edit_descmun").val();
-    if (edit_record_id == "" || edit_descmun == "") {
+    var edit_descmun = $("#edit_descripcion").val();
+    if (edit_record_id == "" || edit_descripcion == "") {
         alert("Both field is required");
     } else {
         $.ajax({
-            url: "<?php echo base_url(); ?>index.php/Fuentefinanc/updatemunicipio",
+            url: "<?php echo base_url(); ?>index.php/Fuentefinanc/updateproce",
             type: "post",
             dataType: "json",
             data: {
                 edit_record_id: edit_record_id,
-                edit_descmun: edit_descmun
+                edit_descripcion: edit_descripcion
             },
             success: function(data) {
                 if (data.responce == "success") {
@@ -260,4 +242,3 @@ $(document).on("click", "#update", function(e) {
 
 });
 </script>
-<script src="<?=base_url()?>/js/eval_desempenio/registro.js"></script>
