@@ -980,14 +980,14 @@ class Fuentefinanc extends CI_Controller
 	public function saveproce()
 	{
 		if ($this->input->is_ajax_request()) {
-			$this->form_validation->set_rules('descmun', 'descmun', 'required');
+			$this->form_validation->set_rules('descripcion','descripcion', 'required');
 			if ($this->form_validation->run() == FALSE) {
 				$data = array('responce' => 'error', 'message' => validation_errors());
 			} else {
 				$ajax_data = $this->input->post();
 
 				if ($this->Tablas_model->save_proce($ajax_data)) {
-					$data = array('responce' => 'success', 'message' => ' Guardado con Exito');
+					$data = array('responce' => 'success', 'message' => 'Se ha creado con Exito el Procedimiento Selección de Contratista');
 				} else {
 					$data = array('responce' => 'error', 'message' => 'Error , vuelva a intentar');
 				}
@@ -1029,7 +1029,7 @@ class Fuentefinanc extends CI_Controller
 	public function updateproce()
 	{
 		if ($this->input->is_ajax_request()) {
-			$this->form_validation->set_rules('edit_descripcion',  'required');
+			$this->form_validation->set_rules('edit_descripcion', 'edit_record_id', 'required');
 			if ($this->form_validation->run() == FALSE) {
 				$data = array('responce' => 'error', 'message' => validation_errors());
 			} else {
@@ -1048,4 +1048,168 @@ class Fuentefinanc extends CI_Controller
 			echo "No direct script access allowed";
 		}
 	}
+	//______________________supuestos_____________________________
+	public function supuestos()
+	{ if(!$this->session->userdata('session'))redirect('login');
+		$data['modalidad'] = $this->Configuracion_model->consulta_modalidad();
+		//print($data);
+		$this->load->view('templates/header.php');
+		$this->load->view('templates/navigator.php');
+		$this->load->view('tablas/supuestos.php',$data);
+		$this->load->view('templates/footer.php');
+		
+	}
+	public function savesupuestos()
+	{
+		if ($this->input->is_ajax_request()) {
+			$this->form_validation->set_rules('descripcion','descripcion', 'required');
+			if ($this->form_validation->run() == FALSE) {
+				$data = array('responce' => 'error', 'message' => validation_errors());
+			} else {
+				$ajax_data = $this->input->post();
+
+				if ($this->Tablas_model->save_supuestos($ajax_data)) {
+					$data = array('responce' => 'success', 'message' => 'Se ha creado con Exito el Procedimiento Selección de Contratista');
+				} else {
+					$data = array('responce' => 'error', 'message' => 'Error , vuelva a intentar');
+				}
+			}
+
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+	public function fetchsupuestos()
+	{
+		if ($this->input->is_ajax_request()) {
+			if ($posts = $this->Tablas_model->get_supuestos()) {
+				$data = array('responce' => 'success', 'posts' => $posts);
+			} else {
+				$data = array('responce' => 'error', 'menssage' => 'falied to fetch data');
+			}
+			echo json_encode($data);
+		} else {
+			echo "'No direct script access allowed'";
+		}
+	}
+	public function editsupuestos()
+	{
+		if ($this->input->is_ajax_request()) {
+			$edit_id = $this->input->post('edit_id');
+
+			if ($post = $this->Tablas_model->single_supuestos($edit_id)) {
+				$data = array('responce' => 'success', 'post' => $post);
+			} else {
+				$data = array('responce' => 'error', 'message' => 'error al guardar');
+			}
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+	public function updatesupuestos()
+	{
+		if ($this->input->is_ajax_request()) {
+			$this->form_validation->set_rules('edit_descripcion', 'edit_record_id', 'required');
+			if ($this->form_validation->run() == FALSE) {
+				$data = array('responce' => 'error', 'message' => validation_errors());
+			} else {
+				$data['id'] = $this->input->post('edit_record_id');
+				$data['descripcion'] = $this->input->post('edit_descripcion');
+
+				if ($this->Tablas_model->update_supuestos($data)) {
+					$data = array('responce' => 'success', 'message' => 'Registro Modificado Con Exito');
+				} else {
+					$data = array('responce' => 'error', 'message' => 'Error al Modificar Registor');
+				}
+			}
+
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+//______________________edo civil_____________________________
+public function edocivil()
+{ if(!$this->session->userdata('session'))redirect('login');
+	
+	$this->load->view('templates/header.php');
+	$this->load->view('templates/navigator.php');
+	$this->load->view('tablas/edocivil.php');
+	$this->load->view('templates/footer.php');
+	
+}
+public function saveedocivil()
+{
+	if ($this->input->is_ajax_request()) {
+		$this->form_validation->set_rules('desc_rif','desc_rif', 'required');
+		if ($this->form_validation->run() == FALSE) {
+			$data = array('responce' => 'error', 'message' => validation_errors());
+		} else {
+			$ajax_data = $this->input->post();
+
+			if ($this->Tablas_model->save_edocivil($ajax_data)) {
+				$data = array('responce' => 'success', 'message' => 'Se ha creado con Exito el Estado Civil');
+			} else {
+				$data = array('responce' => 'error', 'message' => 'Error , vuelva a intentar');
+			}
+		}
+
+		echo json_encode($data);
+	} else {
+		echo "No direct script access allowed";
+	}
+}
+public function fetcheedocivil()
+{
+	if ($this->input->is_ajax_request()) {
+		if ($posts = $this->Tablas_model->get_edocivil()) {
+			$data = array('responce' => 'success', 'posts' => $posts);
+		} else {
+			$data = array('responce' => 'error', 'menssage' => 'error, Actualize la Pagina');
+		}
+		echo json_encode($data);
+	} else {
+		echo "'No direct script access allowed'";
+	}
+}
+public function editedocivil()
+{
+	if ($this->input->is_ajax_request()) {
+		$edit_id = $this->input->post('edit_id');
+
+		if ($post = $this->Tablas_model->single_edocivil($edit_id)) {
+			$data = array('responce' => 'success', 'post' => $post);
+		} else {
+			$data = array('responce' => 'error', 'message' => 'error al guardar');
+		}
+		echo json_encode($data);
+	} else {
+		echo "No direct script access allowed";
+	}
+}
+public function updateedocivil()
+{
+	if ($this->input->is_ajax_request()) {
+		$this->form_validation->set_rules('edit_desc_rif', 'edit_record_id', 'required');
+		if ($this->form_validation->run() == FALSE) {
+			$data = array('responce' => 'error', 'message' => validation_errors());
+		} else {
+			$data['id_edo_civil'] = $this->input->post('edit_record_id');
+			$data['desc_rif'] = $this->input->post('edit_desc_rif');
+
+			if ($this->Tablas_model->update_edocivil($data)) {
+				$data = array('responce' => 'success', 'message' => 'Estado Civil Modificado Con Exito');
+			} else {
+				$data = array('responce' => 'error', 'message' => 'Error al Modificar Registor');
+			}
+		}
+
+		echo json_encode($data);
+	} else {
+		echo "No direct script access allowed";
+	}
+}
+
 }

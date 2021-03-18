@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="panel panel-inverse" data-sortable-id="form-validation-1">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Municipio</h4>
+                    <h4 class="panel-title">ESTADO CIVIL</h4>
                 </div>
                 <div class="row">
                     <div class="col-md-12 mt-2">
@@ -20,7 +20,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Crear Municipio</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Crear ESTADO CIVIL</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -28,23 +28,11 @@
                                     <div class="modal-body">
                                         <form action="" method="post" id="form">
                                             <div class="form-group">
-                                                <label for="">Nombre del Municipio</label>
-                                                <input type="text" class="form-control" id="descmun"
-                                                    placeholder="Nombre del Municipio">
+                                                <label for="">ESTADO CIVIL</label>
+                                                <input type="text" class="form-control" id="desc_rif"
+                                                    placeholder="ESTADO CIVIL">
                                             </div>
-                                            <div class="form-group">
-                                                <label for="">Codigo de área del Municipio</label>
-                                                <input type="text" class="form-control" id="codug"
-                                                    placeholder="Codigo de área  del Municipio">
-                                            </div>
-                                            <div class="form-group">
-                                                <select class="form-control" name="id_estado" id="id_estado">
-                                                    <option value="0">Seleccione</option>
-                                                    <?php foreach ($estados as $data): ?>
-                                                    <option value="<?=$data['id']?>"><?=$data['descedo']?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
+                                           
                                         </form>
                                     </div>
                                     <div class="modal-footer">
@@ -71,8 +59,8 @@
                                     <form action="" method="post" id="update_form">
                                         <input type="hidden" id="edit_record_id" name="edit_record_id" value="">
                                         <div class="form-group">
-                                            <label for="">Ingrese Nombre del Municipio</label>
-                                            <input type="text" class="form-control" id="edit_descmun">
+                                            <label for="">ESTADO CIVIL</label>
+                                            <input type="text" class="form-control" id="edit_desc_rif">
                                         </div>
                                     </form>
                                 </div>
@@ -109,24 +97,18 @@
 <script>
 $(document).on("click", "#add", function(e) {
     e.preventDefault();
-    var descmun = $("#descmun").val();
-    var codug = $("#codug").val();
-    var id_estado = $("#id_estado").val();
-    
-    
-    //alert(descmun + '' + desc_porcentaj);
-    if (descmun == ""|| id_estado == "" || codug == "") {
-        alert("Both field is required");
+    var desc_rif = $("#desc_rif").val();
+  // alert(descripcion );
+    if (desc_rif == "") {
+        alert("El campo NO puede estar vacio.");
     } else {
         $.ajax({
-            url: "<?php echo base_url(); ?>index.php/Fuentefinanc/savemunicipio",
+            url: "<?php echo base_url(); ?>index.php/Fuentefinanc/saveedocivil",
             type: "post",
             dataType: "json",
             data: {
                 
-                codug: codug,
-                estado_id : id_estado,
-                descmun: descmun
+                desc_rif: desc_rif
 
 
             },
@@ -153,7 +135,7 @@ $(document).on("click", "#add", function(e) {
 
 function fetch() {
     $.ajax({
-        url: "<?php echo base_url(); ?>index.php/Fuentefinanc/fetchmunicipio",
+        url: "<?php echo base_url(); ?>index.php/Fuentefinanc/fetcheedocivil",
         type: "post",
         dataType: "json",
         success: function(data) {
@@ -176,14 +158,14 @@ function fetch() {
                         },
 
                         {
-                            "data": "descmun"
+                            "data": "desc_rif"
                         },
 
                         {
                             "render": function(data, type, row, meta) {
                                 var a = `
 
-                                    <a href="#" value="${row.id}" id="edit" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
+                                    <a href="#" value="${row.id_edo_civil}" id="edit" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
                             `;
                                 return a;
                             }
@@ -207,7 +189,7 @@ $(document).on("click", "#edit", function(e) {
     var edit_id = $(this).attr("value");
 
     $.ajax({
-        url: "<?php echo base_url(); ?>index.php/Fuentefinanc/editmunicipio",
+        url: "<?php echo base_url(); ?>index.php/Fuentefinanc/editedocivil",
         type: "post",
         dataType: "json",
         data: {
@@ -216,8 +198,8 @@ $(document).on("click", "#edit", function(e) {
         success: function(data) {
             if (data.responce == "success") {
                 $('#edit_modal').modal('show');
-                $("#edit_record_id").val(data.post.id);
-                $("#edit_descmun").val(data.post.descmun);
+                $("#edit_record_id").val(data.post.id_edo_civil);
+                $("#edit_desc_rif").val(data.post.desc_rif);
 
             } else {
                 toastr["error"](data.message);
@@ -228,36 +210,35 @@ $(document).on("click", "#edit", function(e) {
 });
 
 // Update Record
-
 $(document).on("click", "#update", function(e) {
-    e.preventDefault();
-    var edit_record_id = $("#edit_record_id").val();
-    var edit_descmun = $("#edit_descmun").val();
-    if (edit_record_id == "" || edit_descmun == "") {
-        alert("Both field is required");
-    } else {
-        $.ajax({
-            url: "<?php echo base_url(); ?>index.php/Fuentefinanc/updatemunicipio",
-            type: "post",
-            dataType: "json",
-            data: {
-                edit_record_id: edit_record_id,
-                edit_descmun: edit_descmun
-            },
-            success: function(data) {
-                if (data.responce == "success") {
-                    $('#records').DataTable().destroy();
-                    fetch();
-                    $('#edit_modal').modal('hide');
-                    toastr["success"](data.message);
+                e.preventDefault();
+
+                var edit_record_id = $("#edit_record_id").val();
+                var edit_desc_rif = $("#edit_desc_rif").val();
+                if (edit_record_id == "" || edit_desc_rif == "") {
+                    alert("No se puede Dejar el Campo Vacio, REQUERIDO");
                 } else {
-                    toastr["error"](data.message);
+                    $.ajax({
+                        url: "<?php echo base_url(); ?>index.php/Fuentefinanc/updateedocivil",
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            edit_record_id: edit_record_id,
+                            edit_desc_rif: edit_desc_rif,
+                        },
+                        success: function(data) {
+                            if (data.responce == "success") {
+                                $('#records').DataTable().destroy();
+                                fetch();
+                                $('#edit_modal').modal('hide');
+                                toastr["success"](data.message);
+                            } else {
+                                toastr["error"](data.message);
+                            }
+                        }
+                    });
+
                 }
-            }
-        });
 
-    }
-
-});
+            });
 </script>
-<script src="<?=base_url()?>/js/eval_desempenio/registro.js"></script>

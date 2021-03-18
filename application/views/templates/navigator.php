@@ -240,6 +240,11 @@
 											- Supuestos de Procedimientos
 										</a>
 									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Fuentefinanc/edocivil">
+											- Estado Civil
+										</a>
+									</li>
 								</ul>
 							</li>
 							<li class="has-sub">

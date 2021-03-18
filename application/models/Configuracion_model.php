@@ -17,6 +17,12 @@
             $query = $this->db->get('public.estados');
              return $response = $query->result_array();
         }
+        public function consulta_modalidad(){
+            $this->db->select('*');
+            $this->db->order_by('id asc');
+            $query = $this->db->get('evaluacion_desempenio.modalidad');
+             return $response = $query->result_array();
+        }
 
         public function listar_municipio($data){
             $response = array();

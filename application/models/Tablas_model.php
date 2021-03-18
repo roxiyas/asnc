@@ -374,4 +374,66 @@ public function update_proce($data)
 {
  return $this->db->update('evaluacion_desempenio.modalidad', $data, array('id' => $data['id']));
 }
+//_________________________________________supuestos modslidad_________________
+public function get_supuestos()
+
+ 
+{
+    $this->db->order_by("id", "ASC");
+    $query = $this->db->get('evaluacion_desempenio.sub_modalidad');
+   
+       if (count($query->result()) > 0) {
+         return $query->result();
+     }
+}
+public function save_supuestos($data)
+{ 
+    
+    return $this->db->insert('evaluacion_desempenio.sub_modalidad', $data);
+}
+public function single_supuestos($id)
+{
+ $this->db->select('*');
+ $this->db->from('evaluacion_desempenio.sub_modalidad');
+ $this->db->where('id', $id);
+ $query = $this->db->get();
+ if (count($query->result()) > 0) {
+     return $query->row();
+ }
+}
+public function update_supuestos($data)
+{
+ return $this->db->update('evaluacion_desempenio.sub_modalidad', $data, array('id' => $data['id']));
+}
+//_________________________________________edo civil_________________
+public function get_edocivil()
+
+ 
+{
+    $this->db->order_by("id_edo_civil", "ASC");
+    $query = $this->db->get('public.edo_civil');
+   
+       if (count($query->result()) > 0) {
+         return $query->result();
+     }
+}
+public function save_edocivil($data)
+{ 
+    
+    return $this->db->insert('public.edo_civil', $data);
+}
+public function single_edocivil($id)
+{
+ $this->db->select('*');
+ $this->db->from('public.edo_civil');
+ $this->db->where('id_edo_civil', $id);
+ $query = $this->db->get();
+ if (count($query->result()) > 0) {
+     return $query->row();
+ }
+}
+public function update_edocivil($data)
+{
+ return $this->db->update('public.edo_civil', $data, array('id_edo_civil' => $data['id_edo_civil']));
+}
 }
