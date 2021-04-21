@@ -145,7 +145,7 @@
                                 </select>
                             </div>
                             <div class="card card-outline-danger">
-                                <h5 class="mt-3 text-center"><b>Distribución Porcentual de la Ejecución Trimestral</b></h5>
+                                <h5 class="mt-3 text-center"><b>Distribución de la cantidad de la Ejecución Trimestral</b></h5>
                                 <div class="row mt-2">
                                     <div class="form-group col-2">
                                         <label>Cantidad<b style="color:red">*</b></label>

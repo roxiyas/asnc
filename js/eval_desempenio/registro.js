@@ -392,92 +392,65 @@ function registrar(){
     var medio           = $("#medio").val();
     var nro_oc_os       = $("#nro_oc_os").val();
     var fileImagen      = $("#fileImagen").val();
-
+    var tipo = fileImagen.split(".")[1];
     if (exitte == '0'){
         if (rif_cont_n == '') {
             document.getElementById("rif_cont_n").focus();
         }else if (nombre_n == '') {
             document.getElementById("nombre_n").focus();
-        }
-        else if (id_estado_n == '0') {
+        }else if (id_estado_n == '0') {
             document.getElementById("id_estado_n").focus();
-        }
-        else if (id_municipio_n == '0') {
+        }else if (id_municipio_n == '0') {
             document.getElementById("id_municipio_n").focus();
-        }
-        else if (id_parroquia_n == '0') {
+        }else if (id_parroquia_n == '0') {
             document.getElementById("id_parroquia_n").focus();
-        }
-        else if (ciudad_n == '0') {
+        }else if (ciudad_n == '0') {
             document.getElementById("ciudad_n").focus();
-        }
-        else if (id_pais_n == '0') {
+        }else if (id_pais_n == '0') {
             document.getElementById("id_pais_n").focus();
-        }
-        else if (ced_rep_leg_n == '') {
+        }else if (ced_rep_leg_n == '') {
             document.getElementById("ced_rep_leg_n").focus();
-        }
-        else if (nom_rep_leg_n == '') {
+        }else if (nom_rep_leg_n == '') {
             document.getElementById("nom_rep_leg_n").focus();
-        }
-        else if (ape_rep_leg_n == '') {
+        }else if (ape_rep_leg_n == '') {
             document.getElementById("ape_rep_leg_n").focus();
-        }
-        else if (edo_civil_n == '0') {
+        }else if (edo_civil_n == '0') {
             document.getElementById("edo_civil_n").focus();
-        }
-        else if (cargo_rep_leg_n == '') {
+        }else if (cargo_rep_leg_n == '') {
             document.getElementById("cargo_rep_leg_n").focus();
-        }
-        else if (operadora_n == '0') {
+        }else if (operadora_n == '0') {
             document.getElementById("operadora_n").focus();
-        }
-        else if (numero_n == '') {
+        }else if (numero_n == '') {
             document.getElementById("numero_n").focus();
-        }
-        else if (id_modalidad == '0') {
+        }else if (id_modalidad == '0') {
             document.getElementById("id_modalidad").focus();
-        }
-        else if (id_sub_modalidad == '0') {
+        }else if (id_sub_modalidad == '0') {
             document.getElementById("id_sub_modalidad").focus();
-        }
-        else if (fecha_desde == '') {
+        }else if (fecha_desde == '') {
             document.getElementById("fecha_desde").focus();
-        }
-        else if (fecha_hasta == '') {
+        }else if (fecha_hasta == '') {
             document.getElementById("fecha_hasta").focus();
-        }
-        else if (nro_procedimiento == '') {
+        }else if (nro_procedimiento == '') {
             document.getElementById("nro_procedimiento").focus();
-        }
-        else if (nro_cont_oc_os == '') {
+        }else if (nro_cont_oc_os == '') {
             document.getElementById("nro_cont_oc_os").focus();
-        }
-        else if (id_estado_dc == '0') {
+        }else if (id_estado_dc == '0') {
             document.getElementById("id_estado_dc").focus();
-        }
-        else if (desc_contratacion == '') {
+        }else if (desc_contratacion == '') {
             document.getElementById("desc_contratacion").focus();
-        }
-        else if (monto == '') {
+        }else if (monto == '') {
             document.getElementById("monto").focus();
-        }
-        else if (calidad == '3') {
+        }else if (calidad == '3') {
             document.getElementById("calidad").focus();
-        }
-        else if (responsabilidad == '3') {
+        }else if (responsabilidad == '3') {
             document.getElementById("responsabilidad").focus();
-        }
-        else if (conocimiento == '3') {
+        }else if (conocimiento == '3') {
             document.getElementById("conocimiento").focus();
-        }
-        else if (oportunidad == '3') {
+        }else if (oportunidad == '3') {
             document.getElementById("oportunidad").focus();
-        }
-        else if (total_claf == '') {
+        }else if (total_claf == '') {
             document.getElementById("total_claf").focus();
-        }
-        else if (calificacion == '') {
+        }else if (calificacion == '') {
             document.getElementById("calificacion").focus();
         }
         // else if (notf_cont == '0') {
@@ -485,14 +458,15 @@ function registrar(){
         // }
         else if (fecha_not == '') {
             document.getElementById("datepicker-default").focus();
-        }
-        else if (medio == '0') {
+        }else if (medio == '0') {
             document.getElementById("medio").focus();
-        }
-        else if (nro_oc_os == '') {
+        }else if (nro_oc_os == '') {
             document.getElementById("nro_oc_os").focus();
         }
         else if (fileImagen == '') {
+            document.getElementById("fileImagen").focus();
+        }else if (tipo != 'pdf' && tipo != 'jpg' && tipo != 'img'&& tipo != 'png' && tipo != 'jpeg') {
+            swal("Mensaje de alerta!", "El tipo de archivo debe ser en formato pdf, jpg, img, png o jpeg.")
             document.getElementById("fileImagen").focus();
         }else{
             var calificacion = $('#calificacion').val();
@@ -596,47 +570,33 @@ function registrar(){
     }else if (exitte == '1'){
         if (id_modalidad == '0') {
             document.getElementById("id_modalidad").focus();
-        }
-        else if (id_sub_modalidad == '0') {
+        }else if (id_sub_modalidad == '0') {
             document.getElementById("id_sub_modalidad").focus();
-        }
-        else if (fecha_desde == '') {
+        }else if (fecha_desde == '') {
             document.getElementById("fecha_desde").focus();
-        }
-        else if (fecha_hasta == '') {
+        }else if (fecha_hasta == '') {
             document.getElementById("fecha_hasta").focus();
-        }
-        else if (nro_procedimiento == '') {
+        }else if (nro_procedimiento == '') {
             document.getElementById("nro_procedimiento").focus();
-        }
-        else if (nro_cont_oc_os == '') {
+        }else if (nro_cont_oc_os == '') {
             document.getElementById("nro_cont_oc_os").focus();
-        }
-        else if (id_estado_dc == '0') {
+        }else if (id_estado_dc == '0') {
             document.getElementById("id_estado_dc").focus();
-        }
-        else if (desc_contratacion == '') {
+        }else if (desc_contratacion == '') {
             document.getElementById("desc_contratacion").focus();
-        }
-        else if (monto == '') {
+        }else if (monto == '') {
             document.getElementById("monto").focus();
-        }
-        else if (calidad == '3') {
+        }else if (calidad == '3') {
             document.getElementById("calidad").focus();
-        }
-        else if (responsabilidad == '3') {
+        }else if (responsabilidad == '3') {
             document.getElementById("responsabilidad").focus();
-        }
-        else if (conocimiento == '3') {
+        }else if (conocimiento == '3') {
             document.getElementById("conocimiento").focus();
-        }
-        else if (oportunidad == '3') {
+        }else if (oportunidad == '3') {
             document.getElementById("oportunidad").focus();
-        }
-        else if (total_claf == '') {
+        }else if (total_claf == '') {
             document.getElementById("total_claf").focus();
-        }
-        else if (calificacion == '') {
+        }else if (calificacion == '') {
             document.getElementById("calificacion").focus();
         }
         // else if (notf_cont == '0') {
@@ -644,17 +604,16 @@ function registrar(){
         // }
         else if (fecha_not == '') {
             document.getElementById("datepicker-default").focus();
-        }
-        else if (medio == '0') {
+        }else if (medio == '0') {
             document.getElementById("medio").focus();
-        }
-        else if (nro_oc_os == '') {
+        }else if (nro_oc_os == '') {
             document.getElementById("nro_oc_os").focus();
-        }
-        else if (fileImagen == '') {
+        }else if (fileImagen == '') {
             document.getElementById("fileImagen").focus();
-        }
-        else{
+        }else if (tipo != 'pdf' && tipo != 'jpg' && tipo != 'img'&& tipo != 'png' && tipo != 'jpeg') {
+            swal("Mensaje de alerta!", "El tipo de archivo debe ser en formato pdf, jpg, img, png o jpeg.")
+            document.getElementById("fileImagen").focus();
+        }else{
             var calificacion = $('#calificacion').val();
             if (calificacion == 'DEFICIENTE' || calificacion == 'SIN CALIFICACIÓN'){
                 event.preventDefault();

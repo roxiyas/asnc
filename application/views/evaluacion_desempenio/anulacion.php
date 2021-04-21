@@ -56,7 +56,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registro de Anulación de Desempeño</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Solicitud de Anulación de Desempeño</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -82,7 +82,7 @@
                             <input class="form-control" type="text" name="nro_expediente" id="nro_expediente">
                         </div>
                         <div class="form-group col-3">
-                            <label>Nro. Gaceta o Resolución</label>
+                            <label>Nro. Gaceta, Resolución o Providencia</label>
                             <input class="form-control" type="text" name="nro_gacet_resol" id="nro_gacet_resol">
                         </div>
                         <div class="form-group col-3">

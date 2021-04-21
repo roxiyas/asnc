@@ -134,7 +134,7 @@ class Evaluacion_desempenio extends CI_Controller {
 
 		if (!empty($_FILES['fileImagen']['name'])){
 			$config['upload_path'] = './imagenes';;
-			$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+			$config['allowed_types'] = 'jpg|png|jpeg|pdf';
 			$config['max_size'] = '204800000';
 			$config['max_width'] = '202400000';
 			$config['max_height'] = '200800000';

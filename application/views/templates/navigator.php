@@ -84,6 +84,7 @@
 									</a>
 									<ul class="sub-menu">
 										<li><a href="<?= base_url() ?>index.php/evaluacion_desempenio">Registrar</a></li>
+										<?php if (($this->session->userdata('perfil') == 1)) : ?>
 										<li class="has-sub">
 											<a href="javascript:;">
 												<b class="caret"></b>
@@ -91,11 +92,12 @@
 											</a>
 											<ul class="sub-menu">
 												<li><a href="<?= base_url() ?>index.php/evaluacion_desempenio/anulacion">- Sol. Anulación</a></li>
-												<?php if (($this->session->userdata('perfil') == 1)) : ?>
+
 													<li><a href="<?= base_url() ?>index.php/Evaluacion_desempenio/proc_anulacion">- Proc. Anulaciones</a></li>
-												<?php endif; ?>
+
 											</ul>
 										</li>
+										<?php endif; ?>
 										<li class="has-sub">
 											<a href="javascript:;">
 												<b class="caret"></b>

@@ -1,9 +1,9 @@
 <div class="sidebar-bg"></div>
 <div id="content" class="content">
 	<div class="col-lg-12">
-    <div class="row">
-      <div class="panel panel-inverse">
-        <div class="panel-body">
+    	<div class="row">
+      		<div class="panel panel-inverse">
+        		<div class="panel-body">
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-4">
@@ -17,31 +17,31 @@
 							</button>
 						</div>
 					</div>
-          <form id="reg_bien" method="POST" class="form-horizontal">
-            <div class="row">
-                  <div class="col-1"></div>
-                  <div class="col-10 mt-4">
-                      <div class="card card-outline-danger text-center bg-white">
-                          <div class="card-block">
-                              <blockquote class="card-blockquote" style="margin-bottom: -19px;">
-                                  <p class="f-s-18 text-inverse f-w-600">Nombre Órgano / Ente: <?=$des_unidad?>.</p>
-                                  <p class="f-s-16">RIF.: <?=$rif?> <br>
-                                  Código ONAPRE: <?=$codigo_onapre?> <br>
-                                  Año: <b><?=$anio?></b></p>
-                                  <input type="hidden" id="id_programacion" name="id_programacion" value="<?=$id_programacion?>">
-                                  <input type="hidden" name="fecha_est" id="fecha_est" value="<?=$anio?>">
-                              </blockquote>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-3 mt-3" >
-                      <label>Acción a Cargar</label>
-                      <select id="acc_cargar" name="acc_cargar" class="select2 form-control">
-                          <option value="0">Seleccione</option>
-                          <option value="1">Proyecto</option>
-                          <option value="2">Acción Centralizada</option>
-                      </select>
-                  </div>
+          			<form id="reg_bien" method="POST" class="form-horizontal">
+            			<div class="row">
+		                  	<div class="col-1"></div>
+		                  	<div class="col-10 mt-4">
+		                      	<div class="card card-outline-danger text-center bg-white">
+		                          	<div class="card-block">
+		                              	<blockquote class="card-blockquote" style="margin-bottom: -19px;">
+		                                  	<p class="f-s-18 text-inverse f-w-600">Nombre Órgano / Ente: <?=$des_unidad?>.</p>
+		                                  	<p class="f-s-16">RIF.: <?=$rif?> <br>
+		                                  	Código ONAPRE: <?=$codigo_onapre?> <br>
+		                                  	Año: <b><?=$anio?></b></p>
+		                                  	<input type="hidden" id="id_programacion" name="id_programacion" value="<?=$id_programacion?>">
+		                                  	<input type="hidden" name="fecha_est" id="fecha_est" value="<?=$anio?>">
+		                              	</blockquote>
+		                          	</div>
+		                      	</div>
+		                  	</div>
+                  	<div class="col-3 mt-3" >
+                      	<label>Acción a Cargar</label>
+                      	<select id="acc_cargar" name="acc_cargar" class="select2 form-control">
+                          	<option value="0">Seleccione</option>
+                          	<option value="1">Proyecto</option>
+                          	<option value="2">Acción Centralizada</option>
+                      	</select>
+                  	</div>
                   <div class="col-6 mt-3 form-group" id="acc_s" style="display:none;">
                       <label>Acción Centralizada<b style="color:red">*</b></label><br>
                       <select style="width: 100%;"  name="id_accion_centralizada" id="id_accion_centralizada" class="default-select2 form-control">
@@ -165,7 +165,7 @@
 									</div>
 
 								<div class="card card-outline-danger">
-									<h5 class="mt-3 text-center"><b>Distribución Porcentual de la Ejecución Trimestral</b></h5>
+									<h5 class="mt-3 text-center"><b>Distribución de la cantidad de la Ejecución Trimestral</b></h5>
 									<div class="row mt-2">
 										<div class="form-group col-2">
 											<label>Cantidad<b style="color:red">*</b></label>
