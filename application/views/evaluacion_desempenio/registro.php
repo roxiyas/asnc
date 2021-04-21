@@ -332,7 +332,7 @@
                                         </td>
 									</tr>
                                     <tr>
-										<td>Opotunidad (Plazos Establecidos)</td>
+										<td>Oportunidad (Plazos Establecidos)</td>
 										<td>Corresponde al periodo establecido en el contrato para la ejecución de la obra, prestación del servicio o suministro de bienes.</td>
                                         <td>25</td>
                                         <td>
