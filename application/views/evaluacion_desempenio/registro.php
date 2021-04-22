@@ -303,7 +303,7 @@
 									</tr>
 									<tr>
 										<td>Responsabilidad</td>
-										<td>Cumplimiento de leyes, decretos y clausulas relativos al contrato, respuestas a demandas o reclamos de proveedores/subcontratistas, cumplimiento y respuesta de requisitos como solvencia laboral, administración de vacaciones, reclamos laborales, paros, demñas obligraciones legales y contractuales</td>
+										<td>Cumplimiento de leyes, decretos y clausulas relativos al contrato, respuestas a demandas o reclamos de proveedores/subcontratistas, cumplimiento y respuesta de requisitos como solvencia laboral, administración de vacaciones, reclamos laborales, paros, demás obligaciones legales y contractuales</td>
                                         <td>25</td>
 										<td>
                                             <select class="selected form-control" name="responsabilidad" id="responsabilidad" onclick="evaluar();">
@@ -318,7 +318,7 @@
 									</tr>
 									<tr>
                                         <td>Conocimiento del trabajo</td>
-										<td>Cumplimiento de practicas de trabajo seguro, programas de inspección SHA, herramientas y equipos, condiciones del area de trabajo adecuadas, adiestramiento y motivación al personal, SHA de contratistas, respuesta y control de emergencias entre otras, aplicacion de las normativas técnicas.</td>
+										<td>Cumplimiento de prácticas de trabajo seguro, programas de inspección SHA, herramientas y equipos, condiciones del área de trabajo adecuadas, adiestramiento y motivación al personal, SHA de contratistas, respuesta y control de emergencias entre otras, aplicación de las normativas técnicas.</td>
                                         <td>25</td>
                                         <td>
                                             <select class="selected form-control" name="conocimiento" id="conocimiento" onclick="evaluar();">
