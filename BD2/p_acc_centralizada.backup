@@ -1,0 +1,110 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 10.16 (Ubuntu 10.16-0ubuntu0.18.04.1)
+-- Dumped by pg_dump version 10.16 (Ubuntu 10.16-0ubuntu0.18.04.1)
+
+-- Started on 2021-04-22 15:33:44 -04
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 240 (class 1259 OID 16728)
+-- Name: p_acc_centralizada; Type: TABLE; Schema: programacion; Owner: postgres
+--
+
+CREATE TABLE programacion.p_acc_centralizada (
+    id_p_acc_centralizada integer NOT NULL,
+    id_programacion integer NOT NULL,
+    id_accion_centralizada integer,
+    id_obj_comercial integer NOT NULL,
+    id_usuario integer,
+    fecha date DEFAULT now(),
+    estatus integer NOT NULL
+);
+
+
+ALTER TABLE programacion.p_acc_centralizada OWNER TO postgres;
+
+--
+-- TOC entry 241 (class 1259 OID 16732)
+-- Name: p_acc_centralizada_id_p_acc_centralizada_seq; Type: SEQUENCE; Schema: programacion; Owner: postgres
+--
+
+CREATE SEQUENCE programacion.p_acc_centralizada_id_p_acc_centralizada_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE programacion.p_acc_centralizada_id_p_acc_centralizada_seq OWNER TO postgres;
+
+--
+-- TOC entry 3511 (class 0 OID 0)
+-- Dependencies: 241
+-- Name: p_acc_centralizada_id_p_acc_centralizada_seq; Type: SEQUENCE OWNED BY; Schema: programacion; Owner: postgres
+--
+
+ALTER SEQUENCE programacion.p_acc_centralizada_id_p_acc_centralizada_seq OWNED BY programacion.p_acc_centralizada.id_p_acc_centralizada;
+
+
+--
+-- TOC entry 3380 (class 2604 OID 18178)
+-- Name: p_acc_centralizada id_p_acc_centralizada; Type: DEFAULT; Schema: programacion; Owner: postgres
+--
+
+ALTER TABLE ONLY programacion.p_acc_centralizada ALTER COLUMN id_p_acc_centralizada SET DEFAULT nextval('programacion.p_acc_centralizada_id_p_acc_centralizada_seq'::regclass);
+
+
+--
+-- TOC entry 3504 (class 0 OID 16728)
+-- Dependencies: 240
+-- Data for Name: p_acc_centralizada; Type: TABLE DATA; Schema: programacion; Owner: postgres
+--
+
+COPY programacion.p_acc_centralizada (id_p_acc_centralizada, id_programacion, id_accion_centralizada, id_obj_comercial, id_usuario, fecha, estatus) FROM stdin;
+12	1	4	3	1	2021-02-26	1
+13	1	3	2	1	2021-02-26	1
+\.
+
+
+--
+-- TOC entry 3512 (class 0 OID 0)
+-- Dependencies: 241
+-- Name: p_acc_centralizada_id_p_acc_centralizada_seq; Type: SEQUENCE SET; Schema: programacion; Owner: postgres
+--
+
+SELECT pg_catalog.setval('programacion.p_acc_centralizada_id_p_acc_centralizada_seq', 13, true);
+
+
+--
+-- TOC entry 3382 (class 2606 OID 17763)
+-- Name: p_acc_centralizada id_p_acc_centralizada_pkey; Type: CONSTRAINT; Schema: programacion; Owner: postgres
+--
+
+ALTER TABLE ONLY programacion.p_acc_centralizada
+    ADD CONSTRAINT id_p_acc_centralizada_pkey PRIMARY KEY (id_p_acc_centralizada);
+
+
+-- Completed on 2021-04-22 15:33:44 -04
+
+--
+-- PostgreSQL database dump complete
+--
+

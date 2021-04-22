@@ -1,0 +1,130 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 10.16 (Ubuntu 10.16-0ubuntu0.18.04.1)
+-- Dumped by pg_dump version 10.16 (Ubuntu 10.16-0ubuntu0.18.04.1)
+
+-- Started on 2021-04-22 15:33:10 -04
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 244 (class 1259 OID 16742)
+-- Name: p_items; Type: TABLE; Schema: programacion; Owner: postgres
+--
+
+CREATE TABLE programacion.p_items (
+    id_p_items integer NOT NULL,
+    id_enlace integer NOT NULL,
+    id_p_acc integer NOT NULL,
+    id_partidad_presupuestaria integer NOT NULL,
+    id_ccnu integer NOT NULL,
+    id_tip_obra integer NOT NULL,
+    id_alcance_obra integer NOT NULL,
+    id_obj_obra integer NOT NULL,
+    fecha_desde date NOT NULL,
+    fecha_hasta date NOT NULL,
+    especificacion character varying NOT NULL,
+    id_unidad_medida integer NOT NULL,
+    cantidad numeric NOT NULL,
+    i numeric NOT NULL,
+    ii numeric NOT NULL,
+    iii numeric NOT NULL,
+    iv numeric NOT NULL,
+    cant_total_distribuir character varying NOT NULL,
+    costo_unitario character varying NOT NULL,
+    precio_total character varying NOT NULL,
+    alicuota_iva character varying NOT NULL,
+    iva_estimado character varying NOT NULL,
+    monto_estimado character varying NOT NULL
+);
+
+
+ALTER TABLE programacion.p_items OWNER TO postgres;
+
+--
+-- TOC entry 245 (class 1259 OID 16748)
+-- Name: p_items_id_p_items_seq; Type: SEQUENCE; Schema: programacion; Owner: postgres
+--
+
+CREATE SEQUENCE programacion.p_items_id_p_items_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE programacion.p_items_id_p_items_seq OWNER TO postgres;
+
+--
+-- TOC entry 3510 (class 0 OID 0)
+-- Dependencies: 245
+-- Name: p_items_id_p_items_seq; Type: SEQUENCE OWNED BY; Schema: programacion; Owner: postgres
+--
+
+ALTER SEQUENCE programacion.p_items_id_p_items_seq OWNED BY programacion.p_items.id_p_items;
+
+
+--
+-- TOC entry 3379 (class 2604 OID 18180)
+-- Name: p_items id_p_items; Type: DEFAULT; Schema: programacion; Owner: postgres
+--
+
+ALTER TABLE ONLY programacion.p_items ALTER COLUMN id_p_items SET DEFAULT nextval('programacion.p_items_id_p_items_seq'::regclass);
+
+
+--
+-- TOC entry 3503 (class 0 OID 16742)
+-- Dependencies: 244
+-- Data for Name: p_items; Type: TABLE DATA; Schema: programacion; Owner: postgres
+--
+
+COPY programacion.p_items (id_p_items, id_enlace, id_p_acc, id_partidad_presupuestaria, id_ccnu, id_tip_obra, id_alcance_obra, id_obj_obra, fecha_desde, fecha_hasta, especificacion, id_unidad_medida, cantidad, i, ii, iii, iv, cant_total_distribuir, costo_unitario, precio_total, alicuota_iva, iva_estimado, monto_estimado) FROM stdin;
+8	18	0	275	0	2	1	3	2021-02-01	2021-02-04	asd	7	0	100	0	0	0	0	0	12.333,33	0.12	1.480	13.813,33
+9	12	1	278	0	4	2	3	2021-02-01	2021-02-12	sdfdf	3	0	100	0	0	0	0	0	12.123,23	0.12	1.454,79	13.578,02
+10	19	0	278	10121508	0	0	0	2021-02-01	2021-02-05	sasdsd	4	0	100	0	0	0	0	0	12.345,67	0.08	987,65	13.333,32
+11	13	1	279	10122001	0	0	0	2021-02-01	2021-02-12	sdd	9	0	100	0	0	0	0	0	12.345,67	0.12	1.481,48	13.827,15
+12	20	0	277	10122002	0	0	0	2021-02-26	2021-02-26	esdfgfghhjh	8	100	25	25	25	25	0	5.385,42	538.542	0.16	86.166,72	624.708,72
+13	21	0	275	25121605	0	0	0	2021-04-22	2021-04-22	dsdsd	20	43	43	0	0	0	0	4.353.454,35	187.198.537,05	0.08	14.975.882,96	202.174.420,01
+\.
+
+
+--
+-- TOC entry 3511 (class 0 OID 0)
+-- Dependencies: 245
+-- Name: p_items_id_p_items_seq; Type: SEQUENCE SET; Schema: programacion; Owner: postgres
+--
+
+SELECT pg_catalog.setval('programacion.p_items_id_p_items_seq', 13, true);
+
+
+--
+-- TOC entry 3381 (class 2606 OID 17767)
+-- Name: p_items id_p_items_pkey; Type: CONSTRAINT; Schema: programacion; Owner: postgres
+--
+
+ALTER TABLE ONLY programacion.p_items
+    ADD CONSTRAINT id_p_items_pkey PRIMARY KEY (id_p_items);
+
+
+-- Completed on 2021-04-22 15:33:10 -04
+
+--
+-- PostgreSQL database dump complete
+--
+
