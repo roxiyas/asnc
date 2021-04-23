@@ -17,8 +17,13 @@
 							</button>
 						</div>
 					</div>
+					<div class="col-12">
+					  <br>
+						<h3 class="text-center">Información de Bienes</h3>
+					</div>
           			<form id="reg_bien" method="POST" class="form-horizontal">
             			<div class="row">
+						
 		                  	<div class="col-1"></div>
 		                  	<div class="col-10 mt-4">
 		                      	<div class="card card-outline-danger text-center bg-white">

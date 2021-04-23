@@ -17,6 +17,10 @@
 							</button>
 						</div>
 					</div>
+                    <div class="col-12">
+					  <br>
+						<h3 class="text-center">Información de Obra</h3>
+					</div>
                     <form id="reg_obra" method="POST" class="form-horizontal">
                         <div class="row">
                             <div class="col-1"></div>
