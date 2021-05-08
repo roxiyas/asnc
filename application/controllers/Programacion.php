@@ -540,10 +540,10 @@ class Programacion extends CI_Controller {
 
         $p_items = array(
             'id_par_presupuestaria'  => $this->input->post('par_presupuestaria'),
-			         'id_ccnu' 		         => $this->input->post('id_ccnu'),
+			'id_ccnu' 		         => $this->input->post('id_ccnu'),
             'fecha_desde'   	     => $this->input->POST('fecha_desde'),
             'fecha_hasta'   	     => $this->input->POST('fecha_hasta'),
-			         'especificacion' 		 => $this->input->post('especificacion'),
+			'especificacion' 		 => $this->input->post('especificacion'),
             'id_unidad_medida' 		 => $this->input->post('id_unidad_medida'),
             'i' 		             => $this->input->post('i'),
             'ii' 		             => $this->input->post('ii'),
@@ -553,7 +553,7 @@ class Programacion extends CI_Controller {
             'id_alicuota_iva' 		 => $this->input->post('id_alicuota_iva'),
             'iva_estimado' 		     => $this->input->post('iva_estimado'),
             'monto_estimado' 		 => $this->input->post('monto_estimado'),
-		        );
+		);
 
         $p_ffinanciamiento = array(
             'id_estado'   		        => $this->input->post('id_estado'),

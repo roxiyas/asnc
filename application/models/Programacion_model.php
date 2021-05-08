@@ -612,6 +612,9 @@
                             'id_p_acc'                   => 0,
                             'id_partidad_presupuestaria' => $p_items['id_par_presupuestaria'][$i],
                             'id_ccnu'                    => $p_items['id_ccnu'][$i],
+                            'id_tip_obra'                => 0,
+                            'id_alcance_obra'            => 0,
+                            'id_obj_obra'                => 0,
                             'fecha_desde'                => $p_items['fecha_desde'][$i],
                             'fecha_hasta'                => $p_items['fecha_hasta'][$i],
                             'especificacion'             => $p_items['especificacion'][$i],
@@ -671,6 +674,9 @@
                             'id_p_acc'                   => 0,
                             'id_partidad_presupuestaria' => $p_items['id_par_presupuestaria'][$i],
                             'id_ccnu'                    => $p_items['id_ccnu'][$i],
+                            'id_tip_obra'                => 0,
+                            'id_alcance_obra'            => 0,
+                            'id_obj_obra'                => 0,
                             'fecha_desde'                => $p_items['fecha_desde'],
                             'fecha_hasta'                => $p_items['fecha_hasta'],
                             'especificacion'             => $p_items['especificacion'][$i],
@@ -687,7 +693,7 @@
                             'iva_estimado'               => $p_items['iva_estimado'][$i],
                             'monto_estimado'             => $p_items['monto_estimado'][$i],
                         );
-                        $this->db->insert('programacion.p_items',$data1);
+                        $this->db->insert('programacion.p_items', $data1);
                     }
                     $this->db->where('id_enlace', $id_p_proyecto);
                     $this->db->where('id_p_acc', 0);
