@@ -31,7 +31,7 @@ function guardar_not(){
         event.preventDefault();
         swal.fire({
             title: '¿Registrar?',
-            text: '¿Esta seguro de Registrar la Nitificación de Evaluación de Desempeño?',
+            text: '¿Esta seguro de Registrar la Notificación de Evaluación de Desempeño?',
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

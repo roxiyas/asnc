@@ -1,6 +1,6 @@
-function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
+function consultar_rif() { //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
     var rif_b = $('#rif_b').val();
-    if (rif_b == ''){
+    if (rif_b == '') {
         swal({
             title: "¡ATENCION!",
             text: "El campo no puede estar vacio.",
@@ -9,31 +9,31 @@ function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
             confirmButtonColor: "#00897b",
             confirmButtonText: "CONTINUAR",
             closeOnConfirm: false
-        }, function(){
+        }, function () {
             swal("Deleted!", "Your imaginary file has been deleted.", "success");
         });
         $('#ueba').attr("disabled", true);
-    }else{
+    } else {
         $("#items").show();
-        var base_url =window.location.origin+'/asnc/index.php/Contratista/llenar_contratista';
-       // var base_url =window.location.origin+'/asnc/index.php/Contratista/llenar_contratista';
+        var base_url = window.location.origin + '/asnc/index.php/Contratista/llenar_contratista';
+        // var base_url =window.location.origin+'/asnc/index.php/Contratista/llenar_contratista';
 
         //var base_url = '/index.php/evaluacion_desempenio/llenar_contratista';
         //var base_url2 = '/index.php/evaluacion_desempenio/llenar_contratista_rp';
 
         $.ajax({
-            url:base_url,
+            url: base_url,
             method: 'post',
-            data: {rif_b: rif_b},
+            data: { rif_b: rif_b },
             dataType: 'json',
-            success: function(data){
+            success: function (data) {
                 if (data == null) {
                     $("#no_existe").show();
                     $("#existe").hide();
 
                     $('#exitte').val(0);
 
-                }else{
+                } else {
                     $("#existe").show();
                     $("#no_existe").hide();
 
@@ -41,8 +41,6 @@ function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
                     $('#descedocont').val(data['descedocont']);
                     $('#infoadic').val(data['infoadic']);
                     $('#idedocontratistas').val(data['idedocontratistas']);
-
-
                     $('#rif_cont').val(data['rifced']);
                     $('#nombre').val(data['nombre']);
                     $('#tipopersona').val(data['tipopersona']);
@@ -64,33 +62,44 @@ function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
         })
     }
 }
+/*$('#resumen').click(function() {
+   var rif_cont = $('rif_cont').val();
 
 
-	/*function check() {
-        var descedocont = document.getElementById('descedocont');
-    var porId=document.getElementById("idedocontratistas").value;
-    var t=1;
-    alert(porId);
-		if (porId = t) {
-            descedocont.style.color = '#000';
-		} else {
-            descedocont.style.color = '#FF0000';
+});*/
+$(document).ready(function(){
+    $('.action').click(function(){
+        var st = $(this).attr('name');
+        $('#id').attr('value',st);
+        $('.send').click();
+    });
+});
 
-		}
-	}
-	descedocont.addEventListener('blur', check);
-	check();
+/*function check() {
+    var descedocont = document.getElementById('descedocont');
+var porId=document.getElementById("idedocontratistas").value;
+var t=1;
+alert(porId);
+    if (porId = t) {
+        descedocont.style.color = '#000';
+    } else {
+        descedocont.style.color = '#FF0000';
+
+    }
+}
+descedocont.addEventListener('blur', check);
+check();
 function mayus(e) {
-    e.value = e.value.toUpperCase();
+e.value = e.value.toUpperCase();
 }*/
 
-function valideKey(evt){
-   var code = (evt.which) ? evt.which : evt.keyCode;
-    if(code==8) { // backspace.
+function valideKey(evt) {
+    var code = (evt.which) ? evt.which : evt.keyCode;
+    if (code == 8) { // backspace.
         return true;
-    }else if(code>=48 && code<=57) { // is a number.
+    } else if (code >= 48 && code <= 57) { // is a number.
         return true;
-    }else{ // other keys.
+    } else { // other keys.
         return false;
     }
 }

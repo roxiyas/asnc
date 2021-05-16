@@ -26,4 +26,39 @@ class Contratista_model extends CI_Model
                 return $result;
             }
     }
+
+    public function consulta_planillaresumen($rifced){
+        $this->db_b->select('*');
+        $this->db_b->where('rifced', $rifced);
+        $query = $this->db_b->get('public.planillapirmera2');
+        return $response = $query->row_array();
+    }
+    public function consulta_planillaresumen2($rif){
+        $this->db_b->select('p.rifced, p.proceso_id, r.proceso_id, r.domfiscal, r.objsocial, r.fecduremp_at, r.fecdurjd_at, 
+        r.diaciefcal, r.mesciefcal, r.capsusc, r.cappagado');
+        $this->db_b->join('public.planillapirmera2 p', 'p.proceso_id = r.proceso_id');
+        $this->db_b->where('p.rifced', $rif);
+        $this->db_b->order_by("p.proceso_id", "desc");
+        $query = $this->db_b->get('public.regmercantiles r');
+        return $response = $query->row_array();
+    }
+    public function consulta_accionistas($rif){
+        $this->db_b->select('p.rifced, p.proceso_id, r.proceso_id,  r.apeacc, r.nomacc, r.tipo, r.cedrif, r.edocivil, 
+        r.acc, r.jd, r.rl, r.porcacc, r.cargo, r.tipobl');
+        $this->db_b->join('public.planillapirmera2 p', 'p.proceso_id = r.proceso_id');
+        $this->db_b->where('p.rifced', $rif);
+        $this->db_b->order_by("p.proceso_id", "desc");
+        $query = $this->db_b->get('public.accionistas r');
+        return $response = $query->row_array();
+    }
+    public function consulta_comisarios($rif){
+        $this->db_b->select('p.rifced, p.proceso_id, r.proceso_id, r.cedcom, r.nomcom, r.apecom, r.tipocom, r.cpc, r.fecdurcom_at');
+        $this->db_b->join('public.planillapirmera2 p', 'p.proceso_id = r.proceso_id');
+        $this->db_b->where('p.rifced', $rif);
+        $this->db_b->order_by("p.proceso_id", "desc");
+        $query = $this->db_b->get('public.comisarios r');
+        return $response = $query->row_array();
+    }
+   
+
 }

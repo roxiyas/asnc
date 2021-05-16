@@ -1,0 +1,223 @@
+
+create view planiresumedatosgenerales as
+SELECT 
+  datosgenerales.id, 
+  datosgenerales.numcertrnc, 
+  datosgenerales.fecinscrnc_at, 
+  datosgenerales.fecvencrnc_at, 
+  datosgenerales.rifced, 
+  datosgenerales.nombre, 
+  datosgenerales.tipopersona,
+  CASE datosgenerales.tipopersona
+           WHEN 'J'
+           THEN 'Persona Juridica'
+           ELSE 'Desconocido'
+       END AS tipopersona2, 
+  datosgenerales.dencomerciale_id, 
+  dencomerciales.descdencom, 
+  datosgenerales.siglas, 
+  datosgenerales.nomprom, 
+  datosgenerales.empseguro, 
+  datosgenerales.objcontratista_id, 
+  objcontratistas.descobjcont, 
+  datosgenerales.provf,
+  CASE datosgenerales.provf
+           WHEN 'f'
+           THEN 'NO'
+           WHEN 't'
+           THEN 'SI'
+           ELSE 'Desconocido'
+       END AS provf2, 
+  datosgenerales.provd, 
+  CASE datosgenerales.provd
+           WHEN 'f'
+           THEN 'NO'
+           WHEN 't'
+           THEN 'SI'
+           ELSE 'Desconocido'
+       END AS provd2,
+  datosgenerales.prova,
+    CASE datosgenerales.prova
+           WHEN 'f'
+           THEN 'NO'
+           WHEN 't'
+           THEN 'SI'
+           ELSE 'Desconocido'
+       END AS prova2, 
+  datosgenerales.obras,
+   CASE datosgenerales.obras
+           WHEN 'f'
+           THEN 'NO'
+           WHEN 't'
+           THEN 'SI'
+           ELSE 'Desconocido'
+       END AS obras2, 
+  datosgenerales.servn, 
+  CASE datosgenerales.servn
+           WHEN 'f'
+           THEN 'NO'
+           WHEN 't'
+           THEN 'SI'
+           ELSE 'Desconocido'
+       END AS servn2,
+  datosgenerales.serva,
+   CASE datosgenerales.serva
+           WHEN 'f'
+           THEN 'NO'
+           WHEN 't'
+           THEN 'SI'
+           ELSE 'Desconocido'
+       END AS serva2,
+  datosgenerales.dir1, 
+  datosgenerales.dir2, 
+  datosgenerales.dir3, 
+  datosgenerales.dir4, 
+  datosgenerales.ptoref, 
+  datosgenerales.percontacto, 
+  datosgenerales.telf1, 
+  datosgenerales.telf2, 
+  datosgenerales.telf3, 
+  datosgenerales.email, 
+  datosgenerales.website
+FROM 
+  public.datosgenerales, 
+  public.objcontratistas, 
+  public.dencomerciales
+WHERE 
+  datosgenerales.objcontratista_id = objcontratistas.id AND
+  datosgenerales.dencomerciale_id = dencomerciales.id;
+
+____________________________________________________________
+create view actacontitutivaymodificacionesPROCESO as
+SELECT 
+  modificaciones.id, 
+  modificaciones.proceso_id, 
+  modificaciones.tipmodificacione_id, 
+  tipmodificaciones.descmodif, 
+  modificaciones.tipregmercantile_id, 
+  tipregmercantiles.descrm, 
+  modificaciones.cirjudiciale_id, 
+  cirjudiciales.desccirjudicial, 
+  modificaciones.numreg, 
+  modificaciones.fecreg_at, 
+  modificaciones.tomo, 
+  modificaciones.folio
+FROM 
+  public.modificaciones, 
+  public.tipmodificaciones, 
+  public.tipregmercantiles, 
+  public.cirjudiciales
+WHERE 
+  modificaciones.tipmodificacione_id = tipmodificaciones.id AND
+  modificaciones.tipregmercantile_id = tipregmercantiles.id AND
+  modificaciones.cirjudiciale_id = cirjudiciales.id ;
+____________________________________________________________________
+create view planiprimeraparte as
+SELECT 
+  planiresumedatosgenerales.id, 
+  planiresumedatosgenerales.numcertrnc, 
+  planiresumedatosgenerales.fecinscrnc_at, 
+  planiresumedatosgenerales.fecvencrnc_at, 
+  planiresumedatosgenerales.rifced, 
+  planiresumedatosgenerales.nombre, 
+  planiresumedatosgenerales.tipopersona, 
+  planiresumedatosgenerales.dencomerciale_id, 
+  planiresumedatosgenerales.descdencom, 
+  planiresumedatosgenerales.siglas, 
+  planiresumedatosgenerales.nomprom, 
+  planiresumedatosgenerales.empseguro, 
+  planiresumedatosgenerales.objcontratista_id, 
+  planiresumedatosgenerales.descobjcont, 
+  planiresumedatosgenerales.provf, 
+  planiresumedatosgenerales.provd, 
+  planiresumedatosgenerales.prova, 
+  planiresumedatosgenerales.obras, 
+  planiresumedatosgenerales.servn, 
+  planiresumedatosgenerales.serva, 
+  planiresumedatosgenerales.dir1, 
+  planiresumedatosgenerales.dir2, 
+  planiresumedatosgenerales.dir3, 
+  planiresumedatosgenerales.dir4, 
+  planiresumedatosgenerales.ptoref, 
+  planiresumedatosgenerales.percontacto, 
+  planiresumedatosgenerales.telf1, 
+  planiresumedatosgenerales.telf2, 
+  planiresumedatosgenerales.telf3, 
+  planiresumedatosgenerales.email, 
+  planiresumedatosgenerales.website, 
+  planiresumedatosgenerales.estado_id, 
+  planiresumedatosgenerales.ciudade_id, 
+  planiresumedatosgenerales.municipio_id, 
+  planiresumedatosgenerales.parroquia_id, 
+  planiresumedatosgenerales.proceso_id, 
+  actacontitutivaymodificacionesproceso.descmodif, 
+  actacontitutivaymodificacionesproceso.descrm, 
+  actacontitutivaymodificacionesproceso.desccirjudicial, 
+  actacontitutivaymodificacionesproceso.numreg, 
+  actacontitutivaymodificacionesproceso.fecreg_at, 
+  actacontitutivaymodificacionesproceso.tomo, 
+  actacontitutivaymodificacionesproceso.folio
+FROM 
+  public.actacontitutivaymodificacionesproceso, 
+  public.planiresumedatosgenerales
+WHERE 
+  planiresumedatosgenerales.proceso_id = actacontitutivaymodificacionesproceso.proceso_id;
+________________________________________________________________________________________
+create view planillapirmera2 as
+SELECT 
+  planiprimeraparte.numcertrnc, 
+  planiprimeraparte.fecinscrnc_at, 
+  planiprimeraparte.fecvencrnc_at, 
+  planiprimeraparte.rifced, 
+  infcontratista.infoadic, 
+  infcontratista.descedocont, 
+  planiprimeraparte.nombre, 
+  planiprimeraparte.tipopersona, 
+  planiprimeraparte.dencomerciale_id, 
+  planiprimeraparte.descdencom, 
+  planiprimeraparte.siglas, 
+  planiprimeraparte.nomprom, 
+  planiprimeraparte.empseguro, 
+  planiprimeraparte.objcontratista_id, 
+  planiprimeraparte.descobjcont, 
+  planiprimeraparte.provf, 
+  planiprimeraparte.provd, 
+  planiprimeraparte.prova, 
+  planiprimeraparte.obras, 
+  planiprimeraparte.servn, 
+  planiprimeraparte.serva, 
+  planiprimeraparte.dir1, 
+  planiprimeraparte.dir2, 
+  planiprimeraparte.dir3, 
+  planiprimeraparte.dir4, 
+  planiprimeraparte.ptoref, 
+  planiprimeraparte.percontacto, 
+  planiprimeraparte.telf1, 
+  planiprimeraparte.telf2, 
+  planiprimeraparte.telf3, 
+  planiprimeraparte.email, 
+  planiprimeraparte.website, 
+  planiprimeraparte.estado_id, 
+  planiprimeraparte.ciudade_id, 
+  planiprimeraparte.municipio_id, 
+  planiprimeraparte.parroquia_id, 
+  planiprimeraparte.proceso_id, 
+  planiprimeraparte.descmodif, 
+  planiprimeraparte.descrm, 
+  planiprimeraparte.desccirjudicial, 
+  planiprimeraparte.numreg, 
+  planiprimeraparte.fecreg_at, 
+  planiprimeraparte.tomo, 
+  planiprimeraparte.folio, 
+  infcontratista.numcertrnc as numcertrnc2, 
+  infcontratista.fecvencrnc_at as fecvencrnc_at2, 
+  infcontratista.fecinscrnc_at as fecinscrnc_at2
+FROM 
+  public.infcontratista, 
+  public.planiprimeraparte
+WHERE 
+  planiprimeraparte.rifced = infcontratista.rifced ';
+__________________________________________________________________________________
+   <?php //foreach($data1  as $data):?>
+                                <?= // $data['descmodif'][1] ?>
+                            <?php //endforeach; ?>
