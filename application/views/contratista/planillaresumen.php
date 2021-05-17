@@ -25,7 +25,7 @@
                     <h2> <b style="color:red;"><?= $rifced['infoadic'] ?></b> </h2>
                 </div>
                 <div class="panel-heading">
-                    <h2 style="font-size: 16px;" class="panel-title text-center"><b>Indomración en el RNC</b></h2>
+                    <h2 style="font-size: 16px;" class="panel-title text-center"><b>Infomación en el RNC</b></h2>
                 </div>
                 <div class="panel-body">
                     <div class="row">
