@@ -1,0 +1,23 @@
+where fecvencrnc_at between '2001-01-01' and '2020-01-09'
+where fecvencrnc_at between '2001-01-01' and '2020-01-09'
+
+________________________________________________________
+
+SELECT 
+  segcontratistas.id, 
+  segcontratistas.proceso_id, 
+  segcontratistas.segmento_id, 
+  segmentos.id, 
+  segmentos.desc_seg_mostrar, 
+  segcontratistas.anoexp, 
+  segcontratistas.tipexp, 
+  segcontratistas.principal, 
+  segmentos.tipo, 
+  familias.desc_fam_mostrar
+FROM 
+  public.segmentos, 
+  public.segcontratistas, 
+  public.familias
+WHERE 
+  segcontratistas.segmento_id = segmentos.id AND
+  segcontratistas.segmento_id = familias.segmento_id limit 1;
