@@ -360,7 +360,7 @@ class Programacion extends CI_Controller {
         $p_acc_centralizada = array(
             'id_programacion'        => $this->input->POST('id_programacion'),
             'id_accion_centralizada' => $this->input->POST('id_accion_centralizada'),
-            'id_obj_comercial'       => 1,
+            'id_obj_comercial'       => 3,
             'id_usuario' 		     => $this->session->userdata('id_user'),
             'estatus'                => 1
        );
