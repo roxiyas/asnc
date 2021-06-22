@@ -15,10 +15,10 @@ function consultar_rif() { //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
         $('#ueba').attr("disabled", true);
     } else {
         $("#items").show();
-        var base_url = window.location.origin + '/asnc/index.php/Contratista/llenar_contratista';
+        //var base_url = window.location.origin + '/asnc/index.php/Contratista/llenar_contratista';
         // var base_url =window.location.origin+'/asnc/index.php/Contratista/llenar_contratista';
 
-        //var base_url = '/index.php/evaluacion_desempenio/llenar_contratista';
+        var base_url = '/index.php/Contratista/llenar_contratista';
         //var base_url2 = '/index.php/evaluacion_desempenio/llenar_contratista_rp';
 
         $.ajax({

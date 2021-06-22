@@ -14,8 +14,8 @@ function guardar_bien(){
 
             event.preventDefault();
             var datos = new FormData($("#reg_bien")[0]);
-            var base_url =window.location.origin+'/asnc/index.php/Programacion/registrar_bien';
-            // var base_url = '/index.php/Programacion/registrar_servicio';
+          //  var base_url =window.location.origin+'/asnc/index.php/Programacion/registrar_bien';
+            var base_url = '/index.php/Programacion/registrar_bien';
             $.ajax({
                 url:base_url,
                 method: 'POST',

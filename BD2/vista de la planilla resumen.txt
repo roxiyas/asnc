@@ -78,15 +78,33 @@ SELECT
   datosgenerales.telf2, 
   datosgenerales.telf3, 
   datosgenerales.email, 
-  datosgenerales.website
+  datosgenerales.website,
+  datosgenerales.estado_id,
+  estados.descedo, 
+  datosgenerales.ciudade_id,
+  ciudades.descciu,  
+  datosgenerales.municipio_id,
+  municipios.descmun, 
+  datosgenerales.parroquia_id, 
+  parroquias.descparro, 
+  datosgenerales.proceso_id,
+  datosgenerales.vigilancia,
+  datosgenerales.prendamilitar 
 FROM 
   public.datosgenerales, 
   public.objcontratistas, 
-  public.dencomerciales
+  public.dencomerciales,
+   public.estados,
+   public.ciudades,
+   public.municipios,
+   public.parroquias
 WHERE 
   datosgenerales.objcontratista_id = objcontratistas.id AND
-  datosgenerales.dencomerciale_id = dencomerciales.id;
-
+  datosgenerales.dencomerciale_id = dencomerciales.id and 
+  datosgenerales.estado_id = estados.id and 
+ datosgenerales.ciudade_id = ciudades.id and 
+ datosgenerales.municipio_id = municipios.id and 
+ datosgenerales.parroquia_id = parroquias.id  limit 1;
 ____________________________________________________________
 create view actacontitutivaymodificacionesPROCESO as
 SELECT 
@@ -145,11 +163,13 @@ SELECT
   planiresumedatosgenerales.telf3, 
   planiresumedatosgenerales.email, 
   planiresumedatosgenerales.website, 
-  planiresumedatosgenerales.estado_id, 
-  planiresumedatosgenerales.ciudade_id, 
-  planiresumedatosgenerales.municipio_id, 
-  planiresumedatosgenerales.parroquia_id, 
+  planiresumedatosgenerales.descedo, 
+  planiresumedatosgenerales.descciu , 
+  planiresumedatosgenerales.descmun, 
+  planiresumedatosgenerales.descparro, 
   planiresumedatosgenerales.proceso_id, 
+  planiresumedatosgenerales.vigilancia,
+  planiresumedatosgenerales.prendamilitar,
   actacontitutivaymodificacionesproceso.descmodif, 
   actacontitutivaymodificacionesproceso.descrm, 
   actacontitutivaymodificacionesproceso.desccirjudicial, 
@@ -161,7 +181,8 @@ FROM
   public.actacontitutivaymodificacionesproceso, 
   public.planiresumedatosgenerales
 WHERE 
-  planiresumedatosgenerales.proceso_id = actacontitutivaymodificacionesproceso.proceso_id;
+  planiresumedatosgenerales.proceso_id = actacontitutivaymodificacionesproceso.proceso_id
+  ;
 ________________________________________________________________________________________
 create view planillapirmera2 as
 SELECT 
@@ -196,12 +217,15 @@ SELECT
   planiprimeraparte.telf2, 
   planiprimeraparte.telf3, 
   planiprimeraparte.email, 
-  planiprimeraparte.website, 
-  planiprimeraparte.estado_id, 
-  planiprimeraparte.ciudade_id, 
-  planiprimeraparte.municipio_id, 
-  planiprimeraparte.parroquia_id, 
-  planiprimeraparte.proceso_id, 
+  planiprimeraparte.website,
+   planiprimeraparte.descedo, 
+   planiprimeraparte.descciu , 
+   planiprimeraparte.descmun, 
+   planiprimeraparte.descparro, 
+   planiprimeraparte.proceso_id, 
+   planiprimeraparte.vigilancia,
+   planiprimeraparte.prendamilitar,
+   
   planiprimeraparte.descmodif, 
   planiprimeraparte.descrm, 
   planiprimeraparte.desccirjudicial, 
@@ -216,8 +240,39 @@ FROM
   public.infcontratista, 
   public.planiprimeraparte
 WHERE 
-  planiprimeraparte.rifced = infcontratista.rifced ';
+  planiprimeraparte.rifced = infcontratista.rifced ;
 __________________________________________________________________________________
    <?php //foreach($data1  as $data):?>
                                 <?= // $data['descmodif'][1] ?>
                             <?php //endforeach; ?>
+
+_________________________________________________________________
+create view planiresumedatosgenerales as
+SELECT datosgenerales.id, datosgenerales.proceso_id, datosgenerales.objcontratista_id,
+public.objcontratistas.descobjcont , datosgenerales.dencomerciale_id,dencomerciales.descdencom, 
+datosgenerales.estado_id, public.estados.descedo ,
+datosgenerales.ciudade_id, public.ciudades.descciu, 
+public.municipios.descmun, datosgenerales.municipio_id,
+datosgenerales.parroquia_id,public.parroquias.descparro ,
+datosgenerales.rifced, datosgenerales.nombre, datosgenerales.tipopersona, 
+datosgenerales.provd, datosgenerales.prova, datosgenerales.provf, datosgenerales.obras,
+datosgenerales.servn, datosgenerales.serva, datosgenerales.siglas, datosgenerales.nomprom,
+datosgenerales.empseguro, datosgenerales.dir1, datosgenerales.dir2, datosgenerales.dir3, 
+datosgenerales.dir4, datosgenerales.ptoref, datosgenerales.percontacto,
+datosgenerales.codarea1, datosgenerales.telf1,datosgenerales.codarea2,
+datosgenerales.telf2, datosgenerales.codarea3, datosgenerales.telf3,
+datosgenerales.email, datosgenerales.website, datosgenerales.fecinscrnc_at,
+datosgenerales.fecvencrnc_at, datosgenerales.numcertrnc, datosgenerales.numcontrol_certrnc,
+datosgenerales.modif, datosgenerales.vigilancia, datosgenerales.prendamilitar
+FROM public.datosgenerales, public.objcontratistas  , public.dencomerciales,
+public.estados ,public.ciudades, public.municipios, public.parroquias
+
+
+
+where datosgenerales.objcontratista_id = public.objcontratistas.id 
+and datosgenerales.dencomerciale_id= public.dencomerciales.id 
+and datosgenerales.estado_id=public.estados.id 
+and datosgenerales.ciudade_id= public.ciudades.id
+and public.municipios.id= datosgenerales.municipio_id
+and datosgenerales.parroquia_id=public.parroquias.id 
+and rifced='J401748333' limit 1; 

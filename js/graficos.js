@@ -1,8 +1,8 @@
 function consultar_rif(){
 
     var rif_b = $('#rif_b').val();
-        var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/graficos';
-        //var base_url_11 = '/index.php/graficos/graficos_x_fecha';
+      //  var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/graficos';
+        var base_url = '/index.php/evaluacion_desempenio/graficos';
         $.ajax({
             url: base_url,
             method: "POST",

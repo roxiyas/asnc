@@ -22,7 +22,7 @@
 
             <div class="panel panel-inverse">
                 <div class="panel-heading">
-                    <h4 class="panel-title"><b>Información del Contratista </b></h4>
+                    <h4 class="panel-title text-center"><b>Información del Contratista </b></h4>
                 </div>
                 <div class="panel-body" id="no_existe">
 
@@ -46,7 +46,7 @@
 
 
                             <div class="form-group col-12 text-center">
-                                <h4 class="panel-title"><b>Modalidad de la Contratación</b> </h4>
+                                <h4 class="panel-title"> <b> Información de la Empresa </b> </h4>
                             </div>
                             <div class="form-group col-3">
                                 <label>Número RIF</label>
@@ -69,9 +69,10 @@
                                 <input type="text" name="descobjcont" id="descobjcont" class="form-control" readonly>
                             </div>
                             <br>
-                            <div class="form-group col-3">
+                            <div class="form-group col-3" >
                                 <label>Dirección Fiscal</label>
-                                <input type="text" name="dirfiscal" id="dirfiscal" class="form-control" readonly>
+<textarea class="form-control" name="dirfiscal" id="dirfiscal" rows="3" readonly></textarea>
+
                             </div>
                             <div class="form-group col-3">
                                 <label>Teléfonos</label>

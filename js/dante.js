@@ -15,7 +15,8 @@ function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
         $('#ueba').attr("disabled", true);
     }else{
         $("#items").show();
-        var base_url =window.location.origin+'/asnc/index.php/user/llenar';
+        // var base_url =window.location.origin+'/asnc/index.php/user/llenar';
+        var base_url = '/index.php/user/llenar';
         //var base_url2 =window.location.origin+'/asnc/index.php/evaluacion_desempenio/llenar_contratista_rp';
 
         $.ajax({
@@ -43,7 +44,7 @@ function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
                     $('#direccion_fiscal').val(data['direccion_fiscal']);
 
                   //  var user_id = data['user_id'];
-                    
+
                 }
             }
         })
@@ -65,7 +66,3 @@ function valideKey(evt){
         return false;
     }
 }
-
-
-
-

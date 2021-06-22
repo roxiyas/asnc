@@ -4,8 +4,8 @@ function modal(id){
 
 function modal_ver(id){
     var id_evaluacion = id;
-    var base_url = window.location.origin+'/asnc/index.php/Evaluacion_desempenio/consulta_anulacion';
-    // var base_url = '/index.php/Configuracion/consulta_anulacion';
+    //var base_url = window.location.origin+'/asnc/index.php/Evaluacion_desempenio/consulta_anulacion';
+    var base_url = '/index.php/Evaluacion_desempenio/consulta_anulacion';
     $.ajax({
         url: base_url,
         method:'post',
@@ -67,8 +67,8 @@ function guardar_anulacion(){
 
                 event.preventDefault();
                 var datos = new FormData($("#resgistrar_anulacion")[0]);
-                var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/resgistrar_anulacion';
-                // var base_url = '/index.php/evaluacion_desempenio/registrar';
+                //var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/resgistrar_anulacion';
+                var base_url = '/index.php/evaluacion_desempenio/resgistrar_anulacion';
                 $.ajax({
                     url:base_url,
                     method: 'POST',
@@ -117,9 +117,9 @@ function aprovar_anul(id){
             event.preventDefault();
 
             var id_evaluacion = id;
-            console.log(id_evaluacion);
-            var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/resgistrar_aprv_anulacion';
-            // var base_url = '/index.php/evaluacion_desempenio/resgistrar_aprv_anulacion';
+            // console.log(id_evaluacion);
+            // var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/resgistrar_aprv_anulacion';
+            var base_url = '/index.php/evaluacion_desempenio/resgistrar_aprv_anulacion';
             $.ajax({
                 url:base_url,
                 method: 'POST',

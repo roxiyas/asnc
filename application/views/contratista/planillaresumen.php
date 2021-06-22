@@ -5,7 +5,7 @@
             <a class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" href="javascript:history.back()"> Volver</a>
         </div>
         <?                       //var_dump($mercantil['domfiscal'] );
-        //  exit ($mercantil['domfiscal'] ); 
+        //  exit ($mercantil['domfiscal'] );
         ?>
         <!-- <div class="col-3 text-center">
             <button class="btn btn-default mt-1 mb-1" type="button" onclick="printDiv();">Descargar Registro</button>
@@ -29,17 +29,17 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="form-group col-2">
+                        <div class="form-group col-4">
                             <h5><b>Número de Certificado:</b></h5>
-                            <h5><?= $rifced['numcertrnc'] ?></h5>
+                            <h5><?= $rifced['numcertrnc2'] ?></h5>
                         </div>
                         <div class="form-group col-10">
                             <h5><b>Inscripción den el RNC:</b></h5>
-                            <h5><?= $rifced['fecinscrnc_at'] ?></h5>
+                            <h5><?= $rifced['fecinscrnc_at2'] ?></h5>
                         </div>
-                        <div class="form-group col-2">
+                        <div class="form-group col-3">
                             <h5><b>Vencimiento en el RNC:</b></h5>
-                            <h5><?= $rifced['fecvencrnc_at'] ?></h5>
+                            <h5><?= $rifced['fecvencrnc_at2'] ?></h5>
                         </div>
                         <div class="form-group col-2">
                             <h5><b>Oficina Registro Auxiliar o Unico::</b></h5>
@@ -65,9 +65,9 @@
                         <div class="form-group col-2">
                             <h5><b>Tipo de persona:</b></h5>
                             <h5><?php if ($rifced['tipopersona'] == 'J') {
-                                    echo "Persona Natural";
+                                    echo "Persona Jurídica";
                                 } else {
-                                    echo "campo indefinido";
+                                    echo "Persona Natural";
                                 } ?></h5>
                         </div>
                         <div class="form-group col-2">
@@ -96,11 +96,19 @@
                         </div>
                         <div class="form-group col-4">
                             <h5><b>Empresa del Vigilancia y Seguridad:</b></h5>
-                            <h5>Desconocido</h5>
+                            <h5><?php if ($rifced['vigilancia'] == 0) {
+                                    echo "NO";
+                                } else {
+                                    echo "SI";
+                                } ?></h5>
                         </div>
                         <div class="form-group col-2">
                             <h5><b>Fabricante de Prendas Militares:</b></h5>
-                            <h5>Desconocido</h5>
+                            <h5><?php if ($rifced['prendamilitar'] == 0) {
+                                    echo "NO";
+                                } else {
+                                    echo "SI";
+                                } ?></h5>
                         </div>
                         <div class="form-group col-2">
                             <h5><b>Objeto Principal de la Empresa:</b></h5>
@@ -195,15 +203,20 @@
                         </div>
                         <div class="form-group col-2">
                             <h5><b>Estado:</b></h5>
+                            <h5><?= $rifced['descedo'] ?></h5>
                         </div>
                         <div class="form-group col-2">
                             <h5><b>Ciudad:</b></h5>
+                            <h5><?= $rifced['descciu'] ?></h5>
                         </div>
                         <div class="form-group col-2">
                             <h5><b>Municipio:</b></h5>
+                            <h5><?= $rifced['descmun'] ?></h5>
                         </div>
-                        <div class="form-group col-2">
+                        <div class="form-group col-3">
                             <h5><b>Parroquia:</b></h5>
+                            <h5><?= $rifced['descparro'] ?></h5>
+
                         </div>
                         <div class="form-group col-12">
                             <h5><b>Información de Contacto:</b></h5>
@@ -220,11 +233,11 @@
                             <h5><b>Teléfono Móvil:</b></h5>
                             <h5><?= $rifced['telf2'] ?></h5>
                         </div>
-                        <div class="form-group col-2">
+                        <div class="form-group col-3">
                             <h5><b>Fax o Telefax:</b></h5>
                             <h5><?= $rifced['telf3'] ?></h5>
                         </div>
-                        <div class="form-group col-2">
+                        <div class="form-group col-5">
                             <h5><b>Correo Electrónico:</b></h5>
                             <h5><?= $rifced['email'] ?></h5>
                         </div>

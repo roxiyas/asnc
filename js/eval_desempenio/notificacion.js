@@ -43,8 +43,8 @@ function guardar_not(){
 
                 event.preventDefault();
                 var datos = new FormData($("#resgistrar_not_2")[0]);
-                var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar_not_2';
-                // var base_url = '/index.php/evaluacion_desempenio/registrar_not_m';
+                //var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/registrar_not_2';
+                var base_url = '/index.php/evaluacion_desempenio/registrar_not_2';
                 $.ajax({
                     url:base_url,
                     method: 'POST',
