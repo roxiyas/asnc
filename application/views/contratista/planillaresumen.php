@@ -1302,7 +1302,7 @@
                               <td><?=number_format($lista['gastdepre'], 2, ".", ",")?> </td>
                             </tr>
                             <tr class="odd gradeX" style="text-align:center">
-                              <td> TOTAL GASTOS OPERATIVOS</td>
+                              <td> TOTAL GASTOS OPERATIVOS </td>
                               <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
                               <td><?=number_format($lista['totgastop'], 2, ".", ",")?> </td>
                             </tr>
@@ -1380,7 +1380,7 @@
                   </table>
 
                           <?php endforeach;?>
-                    
+
               </div>
             </div>
 
