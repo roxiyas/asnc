@@ -19,7 +19,7 @@ function consultar_rif() { //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
         // var base_url =window.location.origin+'/asnc/index.php/Contratista/llenar_contratista';
 
         var base_url = '/index.php/Contratista/llenar_contratista';
-        //var base_url2 = '/index.php/evaluacion_desempenio/llenar_contratista_rp';
+      //  var base_url2 = '/index.php/Contratista/llenar_contratista_rp';
 
         $.ajax({
             url: base_url,
@@ -56,7 +56,22 @@ function consultar_rif() { //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
                     $('#fecinscrnc_at').val(data['fecinscrnc_at']);
                     $('#fecvencrnc_at').val(data['fecvencrnc_at']);
                     $('#situacionact').val(data['descedocont']);
+                    $('#proceso_id').val(data['proceso_id']);
 
+                  //  var rif_cont_nr = data['rifced'];
+                  //  var proceso_id = data['proceso_id'];
+                  //  $.ajax({
+                    //    url:base_url2,
+                      //  method: 'post',
+                      //  data: {proceso_id: proceso_id,
+                      //        rif_cont_nr: rif_cont_nr},
+                      ///  dataType: 'json',
+                      //  success: function(data){
+                          //  $.each(data, function(index, response){
+                          //     $('#tabla_rep tbody').append('<tr><td>' + response['descmodif'] + '</td><td>' + response['descrm'] + '</td><td>' + response['desccirjudicial'] + '</td><td>' + response['numreg'] + '</td><td>' + response['fecreg_at'] + '</td><td>' + response['tomo'] + '</td><td>' + response['folio']+ '</td></tr>');
+                        //    });
+                      //  }
+                  //  });
                 }
             }
         })
@@ -74,7 +89,39 @@ $(document).ready(function(){
         $('.send').click();
     });
 });
+function fetch() {
+    $.ajax({
+        url: "<?= var base_url2 =/index.php/Contratista/llenar_contratista_rp",
+        type: "post",
+        dataType: "json",
+        success: function(data) {
+            console.log(data);
+            // if (data.responce == "success") {
 
+            var i = "1";
+            $('#records').DataTable({
+              data: {proceso_id: proceso_id},
+                "data": data.posts,
+                "columns": [{
+                        "render": function() {
+                            return a = i++;
+                        }
+                    },
+                    {
+                        "data": "descmodif"
+                    },
+
+                ]
+            });
+            //}else{
+            // toastr["error"](data.message);
+
+        }
+
+        // }
+    });
+
+}
 /*function check() {
     var descedocont = document.getElementById('descedocont');
 var porId=document.getElementById("idedocontratistas").value;

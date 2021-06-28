@@ -13,11 +13,27 @@ SELECT
   segcontratistas.tipexp, 
   segcontratistas.principal, 
   segmentos.tipo, 
-  familias.desc_fam_mostrar
+ 
+artcontratistas.proceso_id as proce2 ,
+artcontratistas.articulo_id ,
+articulos.id,
+articulos.desc_arti_mostrar, 
+artcontratistas.infoprod, 
+artcontratistas.tiprelproducto_id,
+tiprelproductos.id ,
+tiprelproductos.desctiprel 
+  
 FROM 
   public.segmentos, 
   public.segcontratistas, 
-  public.familias
+  
+ public.artcontratistas,
+ public.articulos,
+ public.tiprelproductos
 WHERE 
-  segcontratistas.segmento_id = segmentos.id AND
-  segcontratistas.segmento_id = familias.segmento_id limit 1;
+  segcontratistas.segmento_id = segmentos.id 
+  
+  and segcontratistas.proceso_id = artcontratistas.proceso_id 
+  and artcontratistas.articulo_id= articulos.id
+  and segcontratistas.segmento_id= articulos.segmento_id 
+  and artcontratistas.tiprelproducto_id= tiprelproductos.id ;

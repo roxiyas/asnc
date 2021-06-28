@@ -52,6 +52,10 @@
                                 <label>Número RIF</label>
                                 <input class="form-control" type="text" name="rif_cont" id="rif_cont" readonly>
                             </div>
+                            <div class="form-group col-3">
+                                <label>Número RIF</label>
+                                <input class="form-control" type="text" name="proceso_id" id="proceso_id" readonly>
+                            </div>
                             <div class="form-group col-6">
                                 <label>Nombre o Razón Social</label>
                                 <input type="text" name="nombre" id="nombre" class="form-control" readonly>
