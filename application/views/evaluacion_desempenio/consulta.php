@@ -33,3 +33,8 @@
 		</div>
 	</div>
 	<script src="<?=base_url()?>/js/graficos.js"></script>
+	<script type="text/javascript">
+	    function may(e){
+	         e.value = e.value.toUpperCase();
+	    }
+	</script>
