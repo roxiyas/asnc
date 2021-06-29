@@ -119,6 +119,12 @@ class Contratista_model extends CI_Model
         $this->db_b->where('proceso_id', $proceso_id);
         $query = $this->db_b->get('public.edoresultados');
         return $query->result_array();
+    }
+    public function consulta_anafinancieros($rif,$proceso_id){
+        $this->db_b->select('*') ;
+        $this->db_b->where('proceso_id', $proceso_id);
+        $query = $this->db_b->get('public.anafinancieros');
+        return $query->result_array();
 }
 
 }

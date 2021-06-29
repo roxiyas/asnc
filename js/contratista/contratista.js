@@ -48,13 +48,13 @@ function consultar_rif() { //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
                     $('#descobjcont').val(data['descobjcont']);
                     $('#dirfiscal').val(data['dirfiscal']);
                     $('#percontacto').val(data['percontacto']);
-                    $('#telf1').val(data['telf1']);
+                    $('#tele11').val(data['tele11']);
                     $('#fecactsusc_at').val(data['fecactsusc_at']);
                     $('#fecvencsusc_at').val(data['fecvencsusc_at']);
-                    $('#numcertrnc').val(data['numcertrnc']);
+                    $('#numcertrnc2').val(data['numcertrnc2']);
                     $('#numcontrol_certrnc').val(data['numcontrol_certrnc']);
-                    $('#fecinscrnc_at').val(data['fecinscrnc_at']);
-                    $('#fecvencrnc_at').val(data['fecvencrnc_at']);
+                    $('#fecinscrnc_at2').val(data['fecinscrnc_at2']);
+                    $('#fecvencrnc_at2').val(data['fecvencrnc_at2']);
                     $('#situacionact').val(data['descedocont']);
                     $('#proceso_id').val(data['proceso_id']);
 

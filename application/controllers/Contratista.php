@@ -38,9 +38,8 @@ class Contratista extends CI_Controller
 		$data1['consultadictamen']= $this->Contratista_model->consulta_dictamen($rif,$proceso_id);
 		$data1['consulta_Balance']= $this->Contratista_model->consulta_Balance($rif,$proceso_id);
 		$data1['edoresultados']= $this->Contratista_model->consulta_edoresultados($rif,$proceso_id);
-
-
-	//	var_dump($data1['proceso_id']);
+		$data1['anafinancieros']= $this->Contratista_model->consulta_anafinancieros($rif,$proceso_id);
+		//	var_dump($data1['proceso_id']);
 	//	exit ($data1['proceso_id']);
   $data1['proceso_id'] = $this->Contratista_model->llenar_contratista_rp($proceso_id);
 

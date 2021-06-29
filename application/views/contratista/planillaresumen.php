@@ -18,11 +18,11 @@
                             REGISTRADA</b></h3>
                 </div>
                 <div class="col-12">
-                    <h1> <b style="color:red;" class="text-center"> <?= $rifced['descedocont'] ?> </b></h1>
+                    <h4> <b style="color:red;" class="text-center"> <?= $rifced['descedocont'] ?> </b></h4>
                 </div>
 
                 <div class="col-12">
-                    <h2> <b style="color:red;"><?= $rifced['infoadic'] ?></b> </h2>
+                    <h4> <b style="color:red;"><?= $rifced['infoadic'] ?></b> </h4>
                 </div>
                 <div class="panel-heading">
                     <h2 style="font-size: 16px;" class="panel-title text-center"><b>Infomación en el RNC</b></h2>
@@ -1246,7 +1246,7 @@
                     <h5><b><?= number_format($consulta_Balance['totpaspatri'], 2, ".", ",") ?></b></h5>
                     </div>
          </div>
-            </div>
+       </div>
             <br>
             <div class="row">
               <div class="panel-title text-center">
@@ -1254,127 +1254,218 @@
                   <table class="table  style="border: hidden"">
                         <tbody>
                           <?php foreach($edoresultados as $lista):?>
+                          <tr class="odd gradeX" style="text-align:center">
+                          <td> Estado de Resultado de Cierre</td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> Fecha de Inicio</td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=$lista['fecini_at']?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> Fecha de Cierre</td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=$lista['feccie_at']?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> Ingresos Por Obras, Servicios o Ventas (Neto)</td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['ingnetoosv'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> (Costos de Obra, Servicios o Ventas)</td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['costoosv'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> Utilidad (PERDIDA) BRUTA</td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['up_bruta'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> GASTOS OPERATIVOS</td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> (Gastos de Venta)</td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['gastventas'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> (Gastos Generales y Administrativos)</td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['gastadmin'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> (Gastos de Depreciación)</td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['gastdepre'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> TOTAL GASTOS OPERATIVOS </td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['totgastop'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> Utilidad (Perdida) En Operaciones</td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['up_op'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> (COSTO) BENEFICIO INTEGRAL DE FINANCIAMIENTO</td>
+                         <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> Intereses Ganados y Causados Netos</td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['intgancaunetos'], 2, ".", ",")?> </td>
+                         </tr>
+
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> Ganancia o Pérdida Cambiaria</td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['gpcamb'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> Ganancia o Pérdida Monetaria (REME)</td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['reme'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> TOTAL (COSTO) BENEFICIO INTEGRAL DE FINANCIAMIENTO </td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['totbeneficfinan'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td>Resultado Realizado Por Tenencia de Activos </td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['tenenactivos'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> Otros Ingresos y Egresos </td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['otringegr'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> UTILIDAD (PÉRDIDA) ANTES DEL I.S.L.R </td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['up_antesislr'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> Impuestos sobre la Renta </td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['islr'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> Impuestos Activos Empresariales</td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['impactemp'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> UTILIDAD (PÉRDIDA) NETA DEL EJERCICIO</td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['up_neta'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td> Apartado Reserva Legal </td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['apresrleg'], 2, ".", ",")?> </td>
+                         </tr>
+                         <tr class="odd gradeX" style="text-align:center">
+                           <td>TRASLADO A UTILIDADES O PERDIDAS ACUMULADAS</td>
+                           <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                           <td><?=number_format($lista['trasupacum'], 2, ".", ",")?> </td>
+                           </tr>
+                              <?php endforeach;?>
+                      </tbody>
+                  </table>
+
+
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="panel-title text-center">
+
+                  <table class="table  style="border: hidden"">
+                        <tbody>
+                          <?php foreach($anafinancieros as $lista):?>
 
                           <tr class="odd gradeX" style="text-align:center">
 
-                          <td> Estado de Resultado de Cierre</td> </tr>
+                          <td> Análisis Financiero de Ciere</td> </tr>
                             <tr class="odd gradeX" style="text-align:center">
-                              <td> Fecha de Inicio</td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=$lista['fecini_at']?> </td>
+                              <td> Empresa en Porceso de Descapitalización</td>
+                              <td> </td><td> </td>
+                              <td><?php if ($lista['descapital'] == 'f') {
+                                        echo "NO";
+                                  } else {
+                                        echo "SI";
+                                  } ?>
+                                 </td>
                             </tr>
                             <tr class="odd gradeX" style="text-align:center">
-                              <td> Fecha de Cierre</td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=$lista['feccie_at']?> </td>
+                              <td> ¿Los Valores del Balance están a Costo Histórico?</td>
+                              <td> </td><td> </td>
+                              <td><?php if ($lista['costohist'] == 'f') {
+                                      echo "NO";
+                                  } else {
+                                      echo "SI";
+                                  } ?>
+                                 </td>
                             </tr>
                             <tr class="odd gradeX" style="text-align:center">
-                              <td> Ingresos Por Obras, Servicios o Ventas (Neto)</td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['ingnetoosv'], 2, ".", ",")?> </td>
+                            <td> </td><td> </td>
                             </tr>
                             <tr class="odd gradeX" style="text-align:center">
-                              <td> (Costos de Obra, Servicios o Ventas))</td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['costoosv'], 2, ".", ",")?> </td>
+
+                            <td> Indicador Financiero</td>
+                            <td> </td> <td> </td><td> </td>
+                              <td> Valor Ponderado del Indicador</td>
+                           </tr>
+                            <tr class="odd gradeX" style="text-align:center">
+                              <td>Solvencia</td>
+                              <td> </td>
+                              <td><?=number_format($lista['solvencia'], 3, ".", ",")?> </td>
+                              <td> </td>
+                              <td><?=number_format($lista['solvpond'], 3, ".", ",")?> </td>
                             </tr>
                             <tr class="odd gradeX" style="text-align:center">
-                              <td> Utilidad (PERDIDA) BRUTA</td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['up_bruta'], 2, ".", ",")?> </td>
+                              <td>Ácido</td>
+                              <td> </td>
+                              <td><?=number_format($lista['acido'], 3, ".", ",")?> </td>
+                              <td> </td>
+                              <td><?=number_format($lista['acidopond'], 3, ".", ",")?> </td>
                             </tr>
                             <tr class="odd gradeX" style="text-align:center">
-                              <td> GASTOS OPERATIVOS</td>
+                              <td>Rendimiento Sobre los Activos (ROA)</td>
+                              <td> </td>
+                              <td><?=number_format($lista['roa'], 3, ".", ",")?> </td>
+                              <td> </td>
+                              <td><?=number_format($lista['roapond'], 3, ".", ",")?> </td>
                             </tr>
                             <tr class="odd gradeX" style="text-align:center">
-                              <td> (Gastos de Venta)</td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['gastventas'], 2, ".", ",")?> </td>
+                              <td>Rotación de Cuentas por Cobrar</td>
+                              <td> </td>
+                              <td><?=number_format($lista['rotcxc'], 3, ".", ",")?> </td>
+                              <td> </td>
+                              <td><?=number_format($lista['rotcxcpond'], 3, ".", ",")?> </td>
                             </tr>
                             <tr class="odd gradeX" style="text-align:center">
-                              <td> (Gastos Generales y Administrativos)</td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['gastadmin'], 2, ".", ",")?> </td>
+                              <td>Endeudamiento</td>
+                              <td> </td>
+                              <td><?=number_format($lista['endeu'], 3, ".", ",")?> </td>
+                              <td> </td>
+                              <td><?=number_format($lista['endeudpond'], 3, ".", ",")?> </td>
                             </tr>
                             <tr class="odd gradeX" style="text-align:center">
-                              <td> (Gastos de Depreciación)</td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['gastdepre'], 2, ".", ",")?> </td>
+                              <td>Rentabilidad</td>
+                              <td> </td>
+                              <td><?=number_format($lista['rentab'], 3, ".", ",")?> </td>
+                              <td> </td>
+                              <td><?=number_format($lista['rentabpond'], 3, ".", ",")?> </td>
                             </tr>
-                            <tr class="odd gradeX" style="text-align:center">
-                              <td> TOTAL GASTOS OPERATIVOS </td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['totgastop'], 2, ".", ",")?> </td>
-                            </tr>
-                            <tr class="odd gradeX" style="text-align:center">
-                              <td> Utilidad (Perdida) En Operaciones</td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['up_op'], 2, ".", ",")?> </td>
-                            </tr>
-                            <tr class="odd gradeX" style="text-align:center">
-                              <td> (COSTO) Beneficio Integral de Financiamiento</td>
-                              <?=number_format($lista['totgastop'], 2, ".", ",")?> </td>
-                            </tr>
-                            <tr class="odd gradeX" style="text-align:center">
-                              <td> Intereses Ganados y Causados Netos</td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['intgancaunetos'], 2, ".", ",")?> </td>
-                            </tr>
-                            <tr class="odd gradeX" style="text-align:center">
-                              <td> Ganancia o Pérdida Cambiaria</td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['gpcamb'], 2, ".", ",")?> </td>
-                            </tr>
-                            <tr class="odd gradeX" style="text-align:center">
-                              <td> Ganancia o Pérdida Monetaria (REME)</td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['reme'], 2, ".", ",")?> </td>
-                            </tr>
-                            <tr class="odd gradeX" style="text-align:center">
-                              <td> TOTAL (COSTO) BENEFICIO INTEGRAL DE FINANCIAMIENTO </td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['totbeneficfinan'], 2, ".", ",")?> </td>
-                            </tr>
-                            <tr class="odd gradeX" style="text-align:center">
-                              <td>Resultado Realizado Por Tenencia de Activos </td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['tenenactivos'], 2, ".", ",")?> </td>
-                            </tr>
-                            <tr class="odd gradeX" style="text-align:center">
-                              <td> Otros Ingresos y Egresos </td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['otringegr'], 2, ".", ",")?> </td>
-                            </tr>
-                            <tr class="odd gradeX" style="text-align:center">
-                              <td> UTILIDAD (PÉRDIDA) ANTES DEÑ I.S.L.R </td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['up_antesislr'], 2, ".", ",")?> </td>
-                            </tr>
-                            <tr class="odd gradeX" style="text-align:center">
-                              <td> Impuestos sobre la Renta </td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['islr'], 2, ".", ",")?> </td>
-                            </tr>
-                            <tr class="odd gradeX" style="text-align:center">
-                              <td> Impuestos Activos Empresariales</td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['impactemp'], 2, ".", ",")?> </td>
-                            </tr>
-                            <tr class="odd gradeX" style="text-align:center">
-                              <td> UTILIDAD (PÉRDIDA) NETA DEL EJERCICIO</td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['up_neta'], 2, ".", ",")?> </td>
-                            </tr>
-                            <tr class="odd gradeX" style="text-align:center">
-                              <td> Apartado Reserva Legal </td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['apresrleg'], 2, ".", ",")?> </td>
-                            </tr>
-                            <tr class="odd gradeX" style="text-align:center">
-                              <td>TRASLADO A UTILIDADES O PERDIDAS</td>
-                              <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
-                              <td><?=number_format($lista['trasupacum'], 2, ".", ",")?> </td>
-                              </tr>
+
                       </tbody>
 
                   </table>

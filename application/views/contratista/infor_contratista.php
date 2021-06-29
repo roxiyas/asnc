@@ -51,11 +51,9 @@
                             <div class="form-group col-3">
                                 <label>Número RIF</label>
                                 <input class="form-control" type="text" name="rif_cont" id="rif_cont" readonly>
+                                <input class="form-control" type="hidden" name="proceso_id" id="proceso_id" readonly>
                             </div>
-                            <div class="form-group col-3">
-                                <label>Número RIF</label>
-                                <input class="form-control" type="text" name="proceso_id" id="proceso_id" readonly>
-                            </div>
+
                             <div class="form-group col-6">
                                 <label>Nombre o Razón Social</label>
                                 <input type="text" name="nombre" id="nombre" class="form-control" readonly>
@@ -80,7 +78,7 @@
                             </div>
                             <div class="form-group col-3">
                                 <label>Teléfonos</label>
-                                <input type="text" name="telf1" id="telf1" class="form-control" readonly>
+                                <input type="text" name="tele11" id="tele11" class="form-control" readonly>
                             </div>
                             <div class="form-group col-3">
                                 <label>Persona de Contacto</label>
@@ -106,19 +104,19 @@
                             </div>
                             <div class="form-group col-3">
                                 <label>Número de Certificado RNC</label>
-                                <input type="text" name="numcertrnc" id="numcertrnc" class="form-control" readonly>
+                                <input type="text" name="numcertrnc2" id="numcertrnc2" class="form-control" readonly>
                             </div>
                             <div class="form-group col-3">
                                 <label>Número de Control del Certificado RNC</label>
                                 <input type="text" name="numcontrol_certrnc" id="numcontrol_certrnc" class="form-control" readonly>
                             </div>
                             <div class="form-group col-3">
-                                <label>inscrición en el RNC</label>
-                                <input type="text" name="fecinscrnc_at" id="fecinscrnc_at" class="form-control" readonly>
+                                <label>Inscrición en el RNC</label>
+                                <input type="text" name="fecinscrnc_at2" id="fecinscrnc_at2" class="form-control" readonly>
                             </div>
                             <div class="form-group col-3">
                                 <label>Vencimiento en el RNC</label>
-                                <input type="text" name="fecvencrnc_at" id="fecvencrnc_at" class="form-control" readonly>
+                                <input type="text" name="fecvencrnc_at2" id="fecvencrnc_at2" class="form-control" readonly>
                             </div>
                         </div>
                         <div class="form-group col 12 text-center">

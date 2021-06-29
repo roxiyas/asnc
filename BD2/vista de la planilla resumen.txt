@@ -1,110 +1,33 @@
-
 create view planiresumedatosgenerales as
-SELECT 
-  datosgenerales.id, 
-  datosgenerales.numcertrnc, 
-  datosgenerales.fecinscrnc_at, 
-  datosgenerales.fecvencrnc_at, 
-  datosgenerales.rifced, 
-  datosgenerales.nombre, 
-  datosgenerales.tipopersona,
-  CASE datosgenerales.tipopersona
-           WHEN 'J'
-           THEN 'Persona Juridica'
-           ELSE 'Desconocido'
-       END AS tipopersona2, 
-  datosgenerales.dencomerciale_id, 
-  dencomerciales.descdencom, 
-  datosgenerales.siglas, 
-  datosgenerales.nomprom, 
-  datosgenerales.empseguro, 
-  datosgenerales.objcontratista_id, 
-  objcontratistas.descobjcont, 
-  datosgenerales.provf,
-  CASE datosgenerales.provf
-           WHEN 'f'
-           THEN 'NO'
-           WHEN 't'
-           THEN 'SI'
-           ELSE 'Desconocido'
-       END AS provf2, 
-  datosgenerales.provd, 
-  CASE datosgenerales.provd
-           WHEN 'f'
-           THEN 'NO'
-           WHEN 't'
-           THEN 'SI'
-           ELSE 'Desconocido'
-       END AS provd2,
-  datosgenerales.prova,
-    CASE datosgenerales.prova
-           WHEN 'f'
-           THEN 'NO'
-           WHEN 't'
-           THEN 'SI'
-           ELSE 'Desconocido'
-       END AS prova2, 
-  datosgenerales.obras,
-   CASE datosgenerales.obras
-           WHEN 'f'
-           THEN 'NO'
-           WHEN 't'
-           THEN 'SI'
-           ELSE 'Desconocido'
-       END AS obras2, 
-  datosgenerales.servn, 
-  CASE datosgenerales.servn
-           WHEN 'f'
-           THEN 'NO'
-           WHEN 't'
-           THEN 'SI'
-           ELSE 'Desconocido'
-       END AS servn2,
-  datosgenerales.serva,
-   CASE datosgenerales.serva
-           WHEN 'f'
-           THEN 'NO'
-           WHEN 't'
-           THEN 'SI'
-           ELSE 'Desconocido'
-       END AS serva2,
-  datosgenerales.dir1, 
-  datosgenerales.dir2, 
-  datosgenerales.dir3, 
-  datosgenerales.dir4, 
-  datosgenerales.ptoref, 
-  datosgenerales.percontacto, 
-  datosgenerales.telf1, 
-  datosgenerales.telf2, 
-  datosgenerales.telf3, 
-  datosgenerales.email, 
-  datosgenerales.website,
-  datosgenerales.estado_id,
-  estados.descedo, 
-  datosgenerales.ciudade_id,
-  ciudades.descciu,  
-  datosgenerales.municipio_id,
-  municipios.descmun, 
-  datosgenerales.parroquia_id, 
-  parroquias.descparro, 
-  datosgenerales.proceso_id,
-  datosgenerales.vigilancia,
-  datosgenerales.prendamilitar 
-FROM 
-  public.datosgenerales, 
-  public.objcontratistas, 
-  public.dencomerciales,
-   public.estados,
-   public.ciudades,
-   public.municipios,
-   public.parroquias
-WHERE 
-  datosgenerales.objcontratista_id = objcontratistas.id AND
-  datosgenerales.dencomerciale_id = dencomerciales.id and 
-  datosgenerales.estado_id = estados.id and 
- datosgenerales.ciudade_id = ciudades.id and 
- datosgenerales.municipio_id = municipios.id and 
- datosgenerales.parroquia_id = parroquias.id  limit 1;
+SELECT datosgenerales.id, datosgenerales.proceso_id, datosgenerales.objcontratista_id,
+public.objcontratistas.descobjcont , datosgenerales.dencomerciale_id,dencomerciales.descdencom, 
+datosgenerales.estado_id, public.estados.descedo ,
+datosgenerales.ciudade_id, public.ciudades.descciu, 
+public.municipios.descmun, datosgenerales.municipio_id,
+datosgenerales.parroquia_id,public.parroquias.descparro ,
+datosgenerales.rifced, datosgenerales.nombre, datosgenerales.tipopersona, 
+datosgenerales.provd, datosgenerales.prova, datosgenerales.provf, datosgenerales.obras,
+datosgenerales.servn, datosgenerales.serva, datosgenerales.siglas, datosgenerales.nomprom,
+datosgenerales.empseguro, datosgenerales.dir1, datosgenerales.dir2, datosgenerales.dir3, 
+datosgenerales.dir4, datosgenerales.ptoref, datosgenerales.percontacto,
+datosgenerales.codarea1, datosgenerales.telf1,datosgenerales.codarea2,
+datosgenerales.telf2, datosgenerales.codarea3, datosgenerales.telf3,
+datosgenerales.email, datosgenerales.website, datosgenerales.fecinscrnc_at,
+datosgenerales.fecvencrnc_at, datosgenerales.numcertrnc, datosgenerales.numcontrol_certrnc,
+datosgenerales.modif, datosgenerales.vigilancia, datosgenerales.prendamilitar
+FROM public.datosgenerales, public.objcontratistas  , public.dencomerciales,
+public.estados ,public.ciudades, public.municipios, public.parroquias
+
+
+
+where datosgenerales.objcontratista_id = public.objcontratistas.id 
+and datosgenerales.dencomerciale_id= public.dencomerciales.id 
+and datosgenerales.estado_id=public.estados.id 
+and datosgenerales.ciudade_id= public.ciudades.id
+and public.municipios.id= datosgenerales.municipio_id
+and datosgenerales.parroquia_id=public.parroquias.id 
+rifced='J401748333' limit 1; 
+
 ____________________________________________________________
 create view actacontitutivaymodificacionesPROCESO as
 SELECT 
@@ -235,12 +158,16 @@ SELECT
   planiprimeraparte.folio, 
   infcontratista.numcertrnc as numcertrnc2, 
   infcontratista.fecvencrnc_at as fecvencrnc_at2, 
-  infcontratista.fecinscrnc_at as fecinscrnc_at2
+  infcontratista.fecinscrnc_at as fecinscrnc_at2,
+  infcontratista.fecactsusc_at, 
+ infcontratista.dirfiscal,
+ infcontratista.fecvencsusc_at ,
+ infcontratista.telf1 as tele11
 FROM 
   public.infcontratista, 
   public.planiprimeraparte
 WHERE 
-  planiprimeraparte.rifced = infcontratista.rifced ;
+  planiprimeraparte.rifced = infcontratista.rifced 
 __________________________________________________________________________________
    <?php //foreach($data1  as $data):?>
                                 <?= // $data['descmodif'][1] ?>
