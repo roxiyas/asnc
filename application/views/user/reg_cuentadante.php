@@ -6,49 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/font-awesome/5.3/css/all.min.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/animate/animate.min.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/css/apple/style-responsive.min.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/css/apple/theme/default.css" rel="stylesheet" id="theme" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/jquery-jvectormap/jquery-jvectormap.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/AutoFill/css/autoFill.bootstrap.min.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/ionRangeSlider/css/ion.rangeSlider.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/ionRangeSlider/css/ion.rangeSlider.skinNice.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/password-indicator/css/password-indicator.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-combobox/css/bootstrap-combobox.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/jquery-tag-it/css/jquery.tagit.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-eonasdan-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-colorpalette/css/bootstrap-colorpalette.css" rel="stylesheet" />
-
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-fontawesome.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-glyphicons.css" rel="stylesheet" />
-    <link href="<?= base_url() ?>Plantilla/admin/assets/plugins/parsley/src/parsley.css" rel="stylesheet" />
-    <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/pace/pace.min.js"></script>
-    <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/jquery/jquery-3.3.1.min.js"></script>
-    <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/sweetalert/sweetalert.min.js"></script>
-    <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/sweetalert/jquery.sweet-alert.custom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
  </head>
 
  <body class="pace-top bg-white">

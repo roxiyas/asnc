@@ -39,8 +39,7 @@ class Contratista extends CI_Controller
 		$data1['consulta_Balance']= $this->Contratista_model->consulta_Balance($rif,$proceso_id);
 		$data1['edoresultados']= $this->Contratista_model->consulta_edoresultados($rif,$proceso_id);
 		$data1['anafinancieros']= $this->Contratista_model->consulta_anafinancieros($rif,$proceso_id);
-		//	var_dump($data1['proceso_id']);
-	//	exit ($data1['proceso_id']);
+
   $data1['proceso_id'] = $this->Contratista_model->llenar_contratista_rp($proceso_id);
 
 			 $this->load->view('templates/header.php');
@@ -51,6 +50,32 @@ class Contratista extends CI_Controller
 
 
 	}
+
+
+
+	public function ver_comprobante()
+	{
+		  	if(!$this->session->userdata('session'))redirect('login');
+	//	if(isset($_POST["texto"]))
+			//{
+			$dato = $_GET['variable1'];
+			// $dato=$_POST["texto"];
+			//	if($dato)
+     echo "El el rif es: $dato";
+				
+				$data['consulta'] =	$this->Contratista_model->comprobante($dato);
+
+				$this->load->view('templates/header.php');
+				$this->load->view('templates/navigator.php');
+				$this->load->view('contratista/comprobante.php',$data);
+				$this->load->view('templates/footer.php');
+    //redirect('/index.php/Contratista/ver_comprobante',);
+			//	else
+				//	echo "He recibido un campo vacio";
+		//	}//
+      }
+
+
 
 
 

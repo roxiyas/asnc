@@ -9,7 +9,8 @@
                     <div class="row">
                         <div class="col-4">
                             <label>Rif del Contratista a Consultar</label>
-                            <input class="form-control" type="text" name="rif_b" id="rif_b" onkeypress="may(this);" placeholder="J123456789">
+                            <input class="form-control" type="text" name="rif_b" id="rif_b"  placeholder="J123456789" onkeyup="mayusculas(this);">
+
                         </div>
                         <div class="col- mt-4">
                             <button type="button" class="btn btn-default" onclick="consultar_rif();" name="button"> <i class="fas fa-search"></i> </button>
@@ -35,13 +36,11 @@
                     </div>
                 </div>
                 <div class="panel-body" id="existe">
-                    <form action="<?= base_url() ?>index.php/Contratista/planillaresumen" class="form-horizontal" data-parsley-validate="true" name="demo-form" id="form" method="POST">
+                    <form action="<?= base_url() ?>index.php/Contratista/planillaresumen" class="form-horizontal" data-parsley-validate="true" name="demo-form" id="form-Registrar" method="POST">
                         <div class="row">
                             <div class="form-group col-12">
                                 <input class="form-control" type="hidden" name="idedocontratistas" id="idedocontratistas">
                                 <textarea class="form-control" name="descedocont" id="descedocont" rows="4" readonly></textarea>
-                                <textarea class="form-control" name="infoadic" id="infoadic" rows="4" readonly></textarea>
-
                             </div>
 
 
@@ -50,7 +49,7 @@
                             </div>
                             <div class="form-group col-3">
                                 <label>Número RIF</label>
-                                <input class="form-control" type="text" name="rif_cont" id="rif_cont" readonly>
+                                <input class="form-control" type="text" name="rif_cont" id="rif_cont" value="" readonly>
                                 <input class="form-control" type="hidden" name="proceso_id" id="proceso_id" readonly>
                             </div>
 
@@ -84,31 +83,20 @@
                                 <label>Persona de Contacto</label>
                                 <input type="text" name="percontacto" id="percontacto" class="form-control" readonly>
                             </div>
-                            <div class="form-group col-12 text-center">
-                                <h4 class="panel-title"><b>Información de Cuenta Suscripción en el Sistema</b> </h4>
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Fecha de Actualización de la Suscripción</label>
-                                <input type="text" name="fecactsusc_at" id="fecactsusc_at" class="form-control" readonly>
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Fecha de Vencimiento de la Suscripción</label>
-                                <input type="text" name="fecvencsusc_at" id="fecvencsusc_at" class="form-control" readonly>
-                            </div>
-                            <div class="form-group col-12 text-center">
+                          <div class="form-group col-12 text-center">
                                 <h4 class="panel-title"><b>Información en el RNC</b> </h4>
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-4">
                                 <label>Siuación Actual en el RNC</label>
                                 <textarea class="form-control" id="situacionact" rows="6" readonly></textarea>
                             </div>
-                            <div class="form-group col-3">
+                            <div class="form-group col-4">
                                 <label>Número de Certificado RNC</label>
                                 <input type="text" name="numcertrnc2" id="numcertrnc2" class="form-control" readonly>
                             </div>
-                            <div class="form-group col-3">
+                            <div class="form-group col-4">
                                 <label>Número de Control del Certificado RNC</label>
-                                <input type="text" name="numcontrol_certrnc" id="numcontrol_certrnc" class="form-control" readonly>
+                                <input type="text" name="nro_correlativo" id="nro_correlativo" class="form-control" readonly>
                             </div>
                             <div class="form-group col-3">
                                 <label>Inscrición en el RNC</label>
@@ -118,9 +106,18 @@
                                 <label>Vencimiento en el RNC</label>
                                 <input type="text" name="fecvencrnc_at2" id="fecvencrnc_at2" class="form-control" readonly>
                             </div>
+
                         </div>
                         <div class="form-group col 12 text-center">
-                            <button type="submit" class="send" >Planilla Resumen</button>
+                        <input type="button" class="btn btn-default mt-1 mb-1" name="imprimir" value="Imprimir Información de Contratistas" onclick="window.print();">
+                        </div>
+                        <div class="form-group col 12 text-center">
+                            <button type="button" class="btn btn-default" onclick="call(document.getElementById('rif_cont').id)" name="button"> Ver Comprobante RNC2 </button>
+
+                                <a href="/index.php/Contratista/ver_comprobante?rif_cont='$v'">No serve</a>
+                              
+
+            							</div>
                         </div>
                         <div class="form-group col 12 text-center">
 
@@ -139,8 +136,3 @@
 </div>
 
 <script src="<?= base_url() ?>/js/contratista/contratista.js"></script>
-<script type="text/javascript">
-    function may(e) {
-        e.value = e.value.toUpperCase();
-    }
-</script>

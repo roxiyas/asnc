@@ -7,23 +7,21 @@
         <?                       //var_dump($mercantil['domfiscal'] );
         //  exit ($mercantil['domfiscal'] );
         ?>
-        <!-- <div class="col-3 text-center">
-            <button class="btn btn-default mt-1 mb-1" type="button" onclick="printDiv();">Descargar Registro</button>
-        </div> -->
-        <div class="col-lg-12" id="imp1">
+       <div class="col-3 text-center">
+          
+        </div>
+        <div class="col-lg-12" id="imp1" >
             <div class="panel panel-inverse">
                 <br>
                 <div class="panel-heading">
                     <h3 style="font-size: 16px;" class="panel-title text-center"><b>INFORMACIÓN DE LA EMPRESA
                             REGISTRADA</b></h3>
                 </div>
-                <div class="col-12">
-                    <h4> <b style="color:red;" class="text-center"> <?= $rifced['descedocont'] ?> </b></h4>
+                <div class="col-15 text-center">
+                    <h4> <b style="color:red;" class="col-3 text-center"> <?= $rifced['descedocont'] ?> </b></h4>
+
                 </div>
 
-                <div class="col-12">
-                    <h4> <b style="color:red;"><?= $rifced['infoadic'] ?></b> </h4>
-                </div>
                 <div class="panel-heading">
                     <h2 style="font-size: 16px;" class="panel-title text-center"><b>Infomación en el RNC</b></h2>
                 </div>
@@ -31,18 +29,24 @@
                     <div class="row">
                         <div class="form-group col-4">
                             <h5><b>Número de Certificado:</b></h5>
+                            </div>
+                            <div class="form-group col-6">
                             <h5><?= $rifced['numcertrnc2'] ?></h5>
                         </div>
-                        <div class="form-group col-10">
-                            <h5><b>Inscripción den el RNC:</b></h5>
-                            <h5><?= date("d-m-Y ", strtotime($rifced['fecinscrnc_at2'])) ?></h5>
+                        <div class="form-group col-4">
+                            <h5><b>Inscripción en el RNC:</b></h5>
+                        </div>
+                        <div class="form-group col-6">
+                            <h5><?= date("d-m-Y", strtotime($rifced['fecinscrnc_at2'])) ?></h5>
+                        </div>
+                        <div class="form-group col-4">
+                            <h5><b>Vencimiento en el RNC:</b></h5>
                         </div>
                         <div class="form-group col-3">
-                            <h5><b>Vencimiento en el RNC:</b></h5>
-                            <h5><?= date("d-m-Y ", strtotime($rifced['fecvencrnc_at2'])) ?></h5>
+                          <h5><?= date("d-m-Y ", strtotime($rifced['fecvencrnc_at2'])) ?></h5>
                         </div>
-                        <div class="form-group col-2">
-                            <h5><b>Oficina Registro Auxiliar o Unico::</b></h5>
+                        <div class="form-group col-6">
+                            <h5><b>Oficina Registro Auxiliar o Unico:</b></h5>
                             <h5></h5>
                         </div>
 
@@ -63,7 +67,7 @@
                             <h5><?= $rifced['nombre'] ?></h5>
                         </div>
                         <div class="form-group col-2">
-                            <h5><b>Tipo de persona:</b></h5>
+                            <h5><b>Tipo de Persona:</b></h5>
                             <h5><?php if ($rifced['tipopersona'] == 'J') {
                                     echo "Persona Jurídica";
                                 } else {
@@ -244,10 +248,10 @@
                         <div class="form-group col-2">
                             <h5><b>Página Web:</b></h5>
                             <h5><?= $rifced['website'] ?></h5>
-
-
                         </div>
+
                     </div>
+
                     <div class="panel-heading">
                         <h2 style="font-size: 16px;" class="panel-title text-center"><b>Acta Constitutiva y Modificaciones Estatutarias</b>
                         </h2>
@@ -280,7 +284,9 @@
                                 <?php endforeach;?>
                             </tbody>
                         </table>
+
                     </div>
+
                     <div class="panel-heading">
                         <h5 style="font-size: 16px;" class="panel-title text-center"><b>Información del Registro Mercantil</b></h5>
                     </div>
@@ -361,10 +367,36 @@
                                             }  ?></td>
 
                                 </tr>
+
                                 <?php endforeach;?>
+                                <tr class="odd gradeX" style="text-align:center">
+                                    <td> </td><td> </td><td> </td><td> </td>
+                                </tr>
+                                <tr class="odd gradeX" style="text-align:center">
+                                    <td> </td><td> </td><td> </td><td> </td>
+                                </tr>
+                                <tr class="odd gradeX" style="text-align:center">
+                                    <td> </td><td> </td><td> </td><td> </td>
+                                </tr>
+                                <tr class="odd gradeX" style="text-align:center">
+                                    <td> </td><td> </td><td> </td><td> </td>
+                                </tr>
+                                <tr class="odd gradeX" style="text-align:center">
+                                    <td> </td><td> </td><td> </td><td> </td>
+                                </tr>
+                                <tr class="odd gradeX" style="text-align:center">
+                                    <td> </td><td> </td><td> </td><td> </td>
+                                </tr>
+                                <tr class="odd gradeX" style="text-align:center">
+                                    <td> </td><td> </td><td> </td><td> </td>
+                                </tr>
+                                <tr class="odd gradeX" style="text-align:center">
+                                    <td> </td><td> </td><td> </td><td> </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
+
 
                     <div class="panel-heading">
                         <h5 style="font-size: 16px;" class="panel-title text-center"><b>Comisario(s) de la Empresa</b></h5>
@@ -395,8 +427,9 @@
 
                                               <td><?=$lista['cpc']?> </td>
                                               <td><?=date("d-m-Y ", strtotime($lista['fecdurcom_at']))?> </td>
-
-
+                                      </tr>
+                                      <tr class="odd gradeX" style="text-align:center">
+                                          <td> </td><td> </td><td> </td>
                                       </tr>
                                       <?php endforeach;?>
                                   </tbody>
@@ -554,83 +587,118 @@
                     <div class="panel-heading">
                         <h1 style="font-size: 16px;" class="panel-title text-center">Dictamen de Auditoría</h1>
                     </div>
-                    <div class="form-group col-4">
-                        <h5><b>Apellidos del Contador Público Colegiado:</b></h5>
-                        <h5><?= $consultadictamen['apecont'] ?></h5>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="form-group col-7">
+                              <h5><b>Apellidos del Contador Público Colegiado:</b></h5>
+                                </div>
+                                <div class="form-group col-2">
+                                <h5><?= $consultadictamen['apecont'] ?></h5>
+                                </div>
+                                <div class="form-group col-7">
+                                    <h5><b>Nombres del Contador Público Colegiado:</b></h5>
+                                </div>
+                                <div class="form-group col-2">
+                                    <h5><?= $consultadictamen['nomcont'] ?></h5>
+                                </div>
+                                <div class="form-group col-7">
+                                    <h5><b>Cedula del Contador Público Colegiado:</b></h5>
+                                </div>
+                                <div class="form-group col-2">
+                                  <h5><?= $consultadictamen['cedcont'] ?></h5>
+                                </div>
+                                <div class="form-group col-7">
+                                    <h5><b>Número del Contador Público Colegiado (CPC):</b></h5>
+                                </div>
+                                <div class="form-group col-2">
+                                      <h5><?= $consultadictamen['cpc'] ?></h5>
+                                </div>
+                                <div class="form-group col-7">
+                                    <h5><b>Fecha del Dictamen:</b></h5>
+                                </div>
+                                <div class="form-group col-2">
+                                      <h5><?= date("d-m-Y ", strtotime($consultadictamen['fecha_at'])) ?></h5>
+                                </div>
+                                <div class="form-group col-7">
+                                    <h5><b>Nombre de la firma de la Auditoría:</b></h5>
+                                </div>
+                                <div class="form-group col-2">
+                                      <h5><?= $consultadictamen['firmaaudit'] ?></h5>
+                                </div>
+                                <div class="form-group col-7">
+                                      <h5><b>Presenta Dictamen de opinión Limpia:</b></h5>
+                                </div>
+                                <div class="form-group col-2">
+                                  <h5><?php if ($consultadictamen['opilimpia'] == '1') {
+                                          echo "SI";
+                                      } else {
+                                          echo "NO";
+                                      } ?>
+                                    </h5>
+                                </div>
+                                <div class="form-group col-7">
+                                      <h5><b>Presenta Dictamen de Absteción de Opinión:</b></h5>
+                                </div>
+                                <div class="form-group col-2">
+                                  <h5><?php if ($consultadictamen['abstopinion'] == '1') {
+                                          echo "SI";
+                                      } else {
+                                          echo "NO";
+                                      } ?>
+                                    </h5>
+                                </div>
+                                <div class="form-group col-7">
+                                      <h5><b>Opinión con Salvedad:</b></h5>
+                                </div>
+                                <div class="form-group col-2">
+                                    <h5><?= $consultadictamen['opinion'] ?></h5>
+                                </div>
+
+                        </div>
                     </div>
-                    <div class="form-group col-4">
-                        <h5><b>Nombres del Contador Público Colegiado:</b></h5>
-                        <h5><?= $consultadictamen['nomcont'] ?></h5>
-                    </div>
-                    <div class="form-group col-4">
-                        <h5><b>Cedula del Contador Público Colegiado:</b></h5>
-                        <h5><?= $consultadictamen['cedcont'] ?></h5>
-                    </div>
-                    <div class="form-group col-4">
-                        <h5><b>Número del Contador Público Colegiado (CPC):</b></h5>
-                        <h5><?= $consultadictamen['cpc'] ?></h5>
-                    </div>
-                    <div class="form-group col-4">
-                        <h5><b>Fecha del Dictamen:</b></h5>
-                        <h5><?= date("d-m-Y ", strtotime($consultadictamen['fecha_at'])) ?></h5>
-                    </div>
-                    <div class="form-group col-4">
-                        <h5><b>Nombre de la firma de la Auditoría:</b></h5>
-                        <h5><?= $consultadictamen['firmaaudit'] ?></h5>
-                    </div>
-                    <div class="form-group col-4">
-                        <h5><b>Presenta Dictamen de opinión Limpia:</b></h5>
-                        <h5><?php if ($consultadictamen['opilimpia'] == '1') {
-                                echo "SI";
-                            } else {
-                                echo "NO";
-                            } ?>
-                          </h5>
-                    </div>
-                    <div class="form-group col-4">
-                        <h5><b>Presenta Dictamen de Absteción de Opinión:</b></h5>
-                        <h5><?php if ($consultadictamen['abstopinion'] == '1') {
-                                echo "SI";
-                            } else {
-                                echo "NO";
-                            } ?>
-                          </h5>
-                    </div>
-                    <div class="form-group col-4">
-                        <h5><b>Opinión con Salvedad:</b></h5>
-                        <h5><?= $consultadictamen['opinion'] ?></h5>
-                    </div>
-                    <div class="panel-heading">
+                  <div class="panel-heading">
                         <h5 style="font-size: 16px;" class="panel-title text-center"><b>Balance General de Cierre</b></h5>
                     </div>
-                    <div class="form-group col-4">
-                        <h5><b>Fecha del Balance:</b></h5>
-                        <h5><?= date("d-m-Y ", strtotime($consulta_Balance['fecbalgen_at'])) ?></h5>
-                    </div>
-                    <div class="form-group col-4">
-                        <h5><b>¡¿Es Balance de Apertura?:</b></h5>
-                        <h5><?php if ($consulta_Balance['apertura'] == '1') {
-                                echo "SI";
-                            } else {
-                                echo "NO";
-                            } ?>
-                            </h5>
-                    </div>
-                    <div class="form-group col-4">
-                        <h5><b>Tuvo Actididad Económica:</b></h5>
-                        <h5><?php if ($consulta_Balance['actecon'] == '1') {
-                                echo "SI";
-                            } else {
-                                echo "NO";
-                            } ?></h5>
-                    </div>
-                    <div class="form-group col-4">
-                        <h5><b>Los Valores del Balance están a Costos Históricos:</b></h5>
-                        <h5><?php if ($consulta_Balance['costohist'] == '1') {
-                                echo "SI";
-                            } else {
-                                echo "NO";
-                            } ?></h5>
+                    <div class="row">
+                        <div class="form-group col-4">
+                          <h5><b>Fecha del Balance:</b></h5>
+                            </div>
+                            <div class="form-group col-6">
+                            <h5><?= date("d-m-Y ", strtotime($consulta_Balance['fecbalgen_at'])) ?></h5>
+                        </div>
+                        <div class="form-group col-4">
+                            <h5><b>¿Es Balance de Apertura?:</b></h5>
+                        </div>
+                        <div class="form-group col-6">
+                          <h5><?php if ($consulta_Balance['apertura'] == '1') {
+                                  echo "SI";
+                              } else {
+                                  echo "NO";
+                              } ?>
+                              </h5>
+                        </div>
+                        <div class="form-group col-4">
+                            <h5><b>Tuvo Actididad Económica:</b></h5>
+                        </div>
+                        <div class="form-group col-3">
+                          <h5><?php if ($consulta_Balance['actecon'] == '1') {
+                                  echo "SI";
+                              } else {
+                                  echo "NO";
+                              } ?></h5>
+                        </div>
+                        <div class="form-group col-6">
+                              <h5><b>Los Valores del Balance están a Costos Históricos:</b></h5>
+                            <h5></h5>
+                        </div>
+                        <div class="form-group col-6">
+                          <h5><?php if ($consulta_Balance['costohist'] == '1') {
+                                  echo "SI";
+                              } else {
+                                  echo "NO";
+                              } ?></h5>
+                            </div>
+
                     </div>
                     <div class="panel-heading">
                         <h1 style="font-size: 16px;" class="panel-title text-center">ACTIVOS</h1>
@@ -651,12 +719,26 @@
                             <h5><b><?= number_format($consulta_Balance['caja_banco'], 2, ".", ",") ?></b></h5>
                             </div>
                             <div class="form-group col-8">
-                                <h5><b>Inversiones Temporales (Provisión Para Cuentas Incobrales):</b></h5>
+                                <h5><b>Inversiones Temporales:</b></h5>
                                 </div>
 
                             <div class="form-group col-2"> </div>
                             <div class="form-group col-2">
                             <h5><b><?= number_format($consulta_Balance['invtemp'], 2, ".", ",") ?></b></h5>
+                            </div>
+                            <div class="form-group col-8">
+                                <h5><b>Cuentas por Cobrar Comerciales:</b></h5>
+                                </div>
+                            <div class="form-group col-2"> </div>
+                            <div class="form-group col-2">
+                            <h5><b><?= number_format($consulta_Balance['cxccom'], 2, ".", ",") ?></b></h5>
+                            </div>
+                            <div class="form-group col-8">
+                                <h5><b>(Provisión Para Cuentas Incobrales):</b></h5>
+                                </div>
+                            <div class="form-group col-2"> </div>
+                            <div class="form-group col-2">
+                            <h5><b><?= number_format($consulta_Balance['provctasinco'], 2, ".", ",") ?></b></h5>
                             </div>
                             <div class="form-group col-4">
                                 <h5><b>Cuentas por Cobrar Neto:</b></h5>
@@ -679,7 +761,7 @@
                             <h5><b><?= number_format($consulta_Balance['retxcobrar'], 2, ".", ",") ?></b></h5>
                             </div>
                             <div class="form-group col-6">
-                                <h5><b>Otras Cuentas por Cobrar :</b></h5>
+                                <h5><b>Otras Cuentas por Cobrar:</b></h5>
                                 </div>
 
                                 <div class="form-group col-2">
@@ -690,7 +772,7 @@
                             <h5><b><?= number_format($consulta_Balance['otrcxc'], 2, ".", ",") ?></b></h5>
                             </div>
                             <div class="form-group col-4">
-                                <h5><b>Efectos por Cobrar :</b></h5>
+                                <h5><b>Efectos por Cobrar:</b></h5>
                                 </div>
 
                                 <div class="form-group col-4">
@@ -701,7 +783,7 @@
                             <h5><b><?= number_format($consulta_Balance['efectos_cobrar'], 2, ".", ",") ?></b></h5>
                             </div>
                             <div class="form-group col-4">
-                                <h5><b>Efectos por Cobrar Descontados :</b></h5>
+                                <h5><b>(Efectos por Cobrar Descontados):</b></h5>
                                 </div>
                                 <div class="form-group col-4">
                                     <h5></b></h5>
@@ -752,14 +834,17 @@
                             <div class="form-group col-2">
                               <h5><b><?= number_format($consulta_Balance['otractcirc'], 2, ".", ",") ?></b></h5>
                             </div>
-
+                            <div class="form-group col-4"><h5></b></h5></div>
+                            <div class="form-group col-6">
+                                  <h5>TOTAL ACTIVO CIRCULANTE:</h5>
+                                  </div>
+                                  <div class="form-group col-1">
+                              <h5><b><?= number_format($consulta_Balance['totactcirc'], 2, ".", ",") ?></b></h5>
+                            </div>
                         </div>
                     </div>
                     <div class="panel-heading">
-                        <h1 style="font-size: 16px;" class="panel-title text-center">TOTAL ACTIVO CIRCULANTE</h1>
-                    </div>
-                    <div class="panel-heading">
-                        <h1 style="font-size: 16px;" class="panel-title text-center">PROPIEDAD, PLANTA Y EQUIPO</h1>
+                        <h1 style="font-size: 16px;" class="panel-title text-center">PROPIEDAD, PLANTA Y EQUIPOS</h1>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -1089,7 +1174,7 @@
                     <h5><b></b></h5>
                     </div>
                     <div class="form-group col-4">
-                        <h5><b>Deuda a largo Plazo:</b></h5>
+                        <h5><b>Deuda a Largo Plazo:</b></h5>
                         </div>
                     <div class="form-group col-4"><h5></b></h5></div>
                     <div class="form-group col-2"> </div>
@@ -1475,21 +1560,21 @@
               </div>
             </div>
 
-                </div>
-                </div>
+            <div class="form-group col 12 text-center">
+                <button class="btn btn-default mt-1 mb-1" type="button" id="print" onclick="printContent('imp1');" >Imprimir Panilla Resumen</button>
+
+
             </div>
+      </div>
+      </div>
+    </div>
             <script src="<?= base_url() ?>/js/contratista/contratista.js"></script>
-
-            <script type="text/javascript">
-                function printDiv(areaImprimir) {
-                    //console.log('yeaghh');
-                    var contenido = document.getElementById('imp1').innerHTML;
-                    var contenidoOriginal = document.body.innerHTML;
-
-                    document.body.innerHTML = contenido;
-
-                    window.print();
-
-                    document.body.innerHTML = contenidoOriginal;
-                }
-            </script>
+            <script>
+          function printContent(imp1){
+          var restorepage = $('body').html();
+          var printcontent = $('#' + imp1).clone();
+          $('body').empty().html(printcontent);
+          window.print();
+          $('body').html(restorepage);
+          }
+          </script>

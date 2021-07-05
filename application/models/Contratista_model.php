@@ -11,21 +11,15 @@ class Contratista_model extends CI_Model
         $this->db_b = $this->load->database('SNCenlinea', true);
     }
 
+
+
     public function llenar_contratista($data){
         $this->db_b->select('*');
-        $this->db_b->where('rifced',$data['rif_b']);
+        $this->db_b->where('rifced', $data['rif_b']);
+        $this->db_b->order_by("proceso_id", "Desc");
         $query = $this->db_b->get('public.planillapirmera2');
-        $result = $query->row_array();
-            if ($result == '') {
-                $this->db_b->select('*');
-                $this->db_b->where('rifced',$data['rif_b']);
-                $query = $this->db_b->get('public.planillapirmera2');
-                return $result = $query->row_array();
-            }else {
-                return $result;
-            }
+        return $response = $query->row_array(); // sin el foreach
     }
-
     public function consulta_planillaresumen($rifced){
         $this->db_b->select('*');
         $this->db_b->where('rifced', $rifced);
@@ -125,6 +119,14 @@ class Contratista_model extends CI_Model
         $this->db_b->where('proceso_id', $proceso_id);
         $query = $this->db_b->get('public.anafinancieros');
         return $query->result_array();
-}
+      }
 
+      public function comprobante($dato){
+          $this->db_b->select('*');
+          $this->db_b->where('rifced', $dato);
+          $this->db_b->order_by("proceso_id", "Desc");
+          $query = $this->db_b->get('public.planillapirmera2');
+          return $response = $query->row_array(); // sin el foreach
+
+       }
 }

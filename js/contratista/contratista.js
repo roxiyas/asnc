@@ -52,36 +52,24 @@ function consultar_rif() { //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
                     $('#fecactsusc_at').val(data['fecactsusc_at']);
                     $('#fecvencsusc_at').val(data['fecvencsusc_at']);
                     $('#numcertrnc2').val(data['numcertrnc2']);
-                    $('#numcontrol_certrnc').val(data['numcontrol_certrnc']);
+                    $('#nro_correlativo').val(data['nro_correlativo']);
                     $('#fecinscrnc_at2').val(data['fecinscrnc_at2']);
                     $('#fecvencrnc_at2').val(data['fecvencrnc_at2']);
                     $('#situacionact').val(data['descedocont']);
                     $('#proceso_id').val(data['proceso_id']);
-
-                  //  var rif_cont_nr = data['rifced'];
-                  //  var proceso_id = data['proceso_id'];
-                  //  $.ajax({
-                    //    url:base_url2,
-                      //  method: 'post',
-                      //  data: {proceso_id: proceso_id,
-                      //        rif_cont_nr: rif_cont_nr},
-                      ///  dataType: 'json',
-                      //  success: function(data){
-                          //  $.each(data, function(index, response){
-                          //     $('#tabla_rep tbody').append('<tr><td>' + response['descmodif'] + '</td><td>' + response['descrm'] + '</td><td>' + response['desccirjudicial'] + '</td><td>' + response['numreg'] + '</td><td>' + response['fecreg_at'] + '</td><td>' + response['tomo'] + '</td><td>' + response['folio']+ '</td></tr>');
-                        //    });
-                      //  }
-                  //  });
+                  }
                 }
-            }
-        })
-    }
+              });
+          }
+      }
+
+
+
+function mayusculas(e) {
+e.value = e.value.toUpperCase();
 }
-/*$('#resumen').click(function() {
-   var rif_cont = $('rif_cont').val();
 
 
-});*/
 $(document).ready(function(){
     $('.action').click(function(){
         var st = $(this).attr('name');
@@ -89,56 +77,7 @@ $(document).ready(function(){
         $('.send').click();
     });
 });
-function fetch() {
-    $.ajax({
-        url: "<?= var base_url2 =/index.php/Contratista/llenar_contratista_rp",
-        type: "post",
-        dataType: "json",
-        success: function(data) {
-            console.log(data);
-            // if (data.responce == "success") {
 
-            var i = "1";
-            $('#records').DataTable({
-              data: {proceso_id: proceso_id},
-                "data": data.posts,
-                "columns": [{
-                        "render": function() {
-                            return a = i++;
-                        }
-                    },
-                    {
-                        "data": "descmodif"
-                    },
-
-                ]
-            });
-            //}else{
-            // toastr["error"](data.message);
-
-        }
-
-        // }
-    });
-
-}
-/*function check() {
-    var descedocont = document.getElementById('descedocont');
-var porId=document.getElementById("idedocontratistas").value;
-var t=1;
-alert(porId);
-    if (porId = t) {
-        descedocont.style.color = '#000';
-    } else {
-        descedocont.style.color = '#FF0000';
-
-    }
-}
-descedocont.addEventListener('blur', check);
-check();
-function mayus(e) {
-e.value = e.value.toUpperCase();
-}*/
 
 function valideKey(evt) {
     var code = (evt.which) ? evt.which : evt.keyCode;
@@ -150,3 +89,32 @@ function valideKey(evt) {
         return false;
     }
 }
+
+
+
+var call = function(id){
+  var x = document.getElementById(id).value;
+//  alert(x);
+  $.post("http://sistemaintegradoprueba.snc.gob.ve/index.php/Contratista/ver_comprobante",{"texto":x},function(respuesta){
+  		//	alert(respuesta);
+
+  		});
+
+
+
+
+}
+
+function enviar()
+	{
+		// Esta es la variable que vamos a pasar
+		var miVariableJS=$("#rif_cont").val();
+
+		// Enviamos la variable de javascript a archivo.php
+		$.post("/index.php/Contratista/ver_comprobante",{"texto":miVariableJS},function(respuesta){
+			//alert(respuesta);
+
+
+		});
+  redirect('/index.php/Contratista/ver_comprobante');
+	}
