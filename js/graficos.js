@@ -1,8 +1,14 @@
 function consultar_rif(){
 
     var rif_b = $('#rif_b').val();
-      //  var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/graficos';
-        var base_url = '/index.php/evaluacion_desempenio/graficos';
+       // var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/graficos';
+       // var base_url2 =window.location.origin+'/asnc/index.php/evaluacion_desempenio/inf_tabla';
+
+       var base_url = '/index.php/evaluacion_desempenio/graficos';
+       var base_url2 = '/index.php/evaluacion_desempenio/inf_tabla';
+
+       $("#mensaje").show();
+
         $.ajax({
             url: base_url,
             method: "POST",
@@ -62,6 +68,26 @@ function consultar_rif(){
             },
             error: function(data) {
                 console.log(data);
+            }
+        });
+
+        $.ajax({
+            url:base_url2,
+            method: 'post',
+            data: {rif_b: rif_b},
+            dataType: 'json',
+            success: function(data){
+
+                $.each(data, function(index, response){
+                   $('#data-table-buttons tbody').append('<tr><td>' + response['fecha_evaluacion'] +
+                                                '</td><td>' + response['rif_contratista'] +
+                                                '</td><td>' + response['contratista'] +
+                                                '</td><td>' + response['nombre_ente'] +
+                                                '</td><td>' + response['nombre_calificacion'] +
+                                                '</td><td>' + response['num_contrato'] +
+                                                '</td><td>' + response['numero_procedimiento'] +
+                                                '</td></tr>');
+                });
             }
         });
 }

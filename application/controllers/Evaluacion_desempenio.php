@@ -289,6 +289,13 @@ class Evaluacion_desempenio extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function inf_tabla(){
+		if(!$this->session->userdata('session'))redirect('login');
+		$data = $this->input->post();
+		$data =	$this->Evaluacion_desempenio_model->inf_tabla($data);
+		echo json_encode($data);
+	}
+
 	// CONSULTA DE CONTRATISTAS QUE CONTRATARON A NOREG
 
 	public function estatus_contratista(){

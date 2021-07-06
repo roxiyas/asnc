@@ -1,6 +1,13 @@
 <?php
     class Evaluacion_desempenio_model extends CI_model{
 
+        public function __construct(){
+            parent::__construct();
+            // Este metodo conecta a nuestra segunda conexión
+            // y asigna a nuestra propiedad $this->db_b_b; los recursos de la misma.
+            $this->db_c = $this->load->database('rnc', true);
+        }
+
         public function consulta_operadora(){
             $this->db->select('*');
             $query = $this->db->get('public.operadora');
@@ -14,7 +21,7 @@
         }
 //-------------------------------------------------------
         public function llenar_contratista($data){
-            $this->db->select('c.user_id,
+            $this->db_c->select('c.user_id,
                                 c.edocontratista_id,
                                 c.rifced,
                                 c.nombre,
@@ -25,12 +32,12 @@
                                 m.descmun,
                                 c.percontacto,
                                 c.telf1,
-                                c.procactual');
-            $this->db->join('public.estados e', 'e.id = c.estado_id');
-            $this->db->join('public.municipios m', 'm.id = c.municipio_id');
-            $this->db->join('public.ciudades c2', 'c2.id = c.ciudade_id');
-            $this->db->where('c.rifced',$data['rif_b']);
-            $query = $this->db->get('evaluacion_desempenio.contratistas c');
+                                c.ultprocaprob');
+            $this->db_c->join('public.estados e', 'e.id = c.estado_id');
+            $this->db_c->join('public.municipios m', 'm.id = c.municipio_id');
+            $this->db_c->join('public.ciudades c2', 'c2.id = c.ciudade_id');
+            $this->db_c->where('c.rifced',$data['rif_b']);
+            $query = $this->db_c->get('public.contratistas c');
             $result = $query->row_array();
                 if ($result == '') {
                     $this->db->select('c.user_id,
@@ -54,13 +61,12 @@
         }
 //-------------------------------------------------------
         public function llenar_contratista_rp($data){
-            $this->db->select('proceso_id,
+            $this->db_c->select('proceso_id,
                         	   cedrif,
                                concat(nomacc, \'\' ,apeacc) as repr,
                         	   cargo ');
-            $this->db->where('proceso_id', $data['procactual']);
-            //$this->db->like('cargo', 'representante');
-            $query = $this->db->get('evaluacion_desempenio.accionistas');
+            $this->db_c->where('proceso_id', $data['ultprocaprob']);
+            $query = $this->db_c->get('public.accionistas');
             $result = $query->result_array();
 
             if ($result == Array ()) {
@@ -68,8 +74,8 @@
                                    concat(nomacc, \'\' ,apeacc) as repr,
                             	   cargo ');
                 $this->db->where('rif_contratista', $data['rif_cont_nr']);
-                //$this->db->like('cargo', 'representante');
                 $query = $this->db->get('evaluacion_desempenio.accionistas_nr');
+
                 return $result = $query->result_array();
             }else {
                 return $result;
@@ -327,6 +333,21 @@
             return $response;
         }
 
+        public function inf_tabla($data){
+            $this->db->select('fecha_evaluacion,
+                        	   rif_contratista,
+                        	   razon_social as contratista,
+                        	   nombre_ente,
+                        	   calificacion,
+                        	   nombre_calificacion,
+                        	   num_contrato,
+                        	   numero_procedimiento');
+            $this->db->where('eca.rif_contratista', $data['rif_b']);
+            $query = $this->db->get('evaluacion_desempenio.evaluacion_contratistas_ant eca');
+            $response = $query->result_array();
+            return $response;
+        }
+
         public function consulta_contr_nr(){
             $this->db->select('cn.id,
                         	   cn.user_id,
@@ -349,19 +370,6 @@
 
         // Consulta de Evaluacion completas para anulación
         public function consulta_eval_anul($usuario){
-            // $this->db->select('ed.id,
-            //                    ed.rif_contrat,
-            //                    concat(cn.nombre,\'\',c.nombre ) as nombre,
-            //                    ed.calificacion,
-            //                    ed.id_estatus,
-            //                    e.descripcion
-            // ');
-            // $this->db->join('evaluacion_desempenio.contratistas c', 'c.rifced = ed.rif_contrat', 'left');
-            // $this->db->join('evaluacion_desempenio.contratistas_nr cn', 'cn.rifced = ed.rif_contrat', 'left');
-            // $this->db->join('public.estatus e', 'e.id = ed.id_estatus');
-            // $query = $this->db->get('evaluacion_desempenio.evaluacion ed');
-            // return $response = $query->result_array();
-
             $query = $this->db->query("SELECT ed.id,
                                     		to_char(ed.fecha_reg_eval, 'dd-mm-yyyy') as fecha,
                                         ed.rif_contrat,

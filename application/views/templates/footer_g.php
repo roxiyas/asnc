@@ -3,7 +3,6 @@
 <script src="<?=base_url()?>Plantilla/admin/assets/plugins/js-cookie/js.cookie.js"></script>
 <script src="<?=base_url()?>Plantilla/admin/assets/js/theme/apple.min.js"></script>
 <script src="<?=base_url()?>Plantilla/admin/assets/js/apps.min.js"></script>
-
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 <script src="<?=base_url()?>Plantilla/admin/assets/plugins/chart-js/Chart.min.js"></script>
 <script src="<?=base_url()?>Plantilla/admin/assets/js/demo/chart-js.demo.min.js"></script>
