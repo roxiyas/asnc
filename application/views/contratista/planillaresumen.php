@@ -4,7 +4,7 @@
         <div class="col-6 mb-3">
             <a class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" href="javascript:history.back()"> Volver</a>
         </div>
-        
+
        <div class="col-3 text-center">
 
         </div>
@@ -1467,7 +1467,7 @@
 
               </div>
             </div>
-
+            <?php if (($this->session->userdata('perfil') == 1)?>
             <div class="row" id="solousersnc">
               <div class="panel-title text-center">
 
@@ -1477,7 +1477,7 @@
 
                           <tr class="odd gradeX" style="text-align:center">
 
-                          <td> Análisis Financiero de Ciere</td> </tr>
+                          <td> Análisis Financiero de Cierre</td> </tr>
                             <tr class="odd gradeX" style="text-align:center">
                               <td> Empresa en Porceso de Descapitalización</td>
                               <td> </td><td> </td>
@@ -1554,11 +1554,11 @@
 
                   </table>
 
-                          <?php endforeach;?>
+                <?php endforeach;?>
 
               </div>
             </div>
-
+        <?php endif; ?>
             <div class="form-group col 12 text-center">
                 <button class="btn btn-default mt-1 mb-1" type="button" id="print" onclick="printContent('imp1');" >Imprimir Panilla Resumen</button>
 
