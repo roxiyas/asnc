@@ -120,6 +120,7 @@ $db['default'] = array(
 //  	'save_queries' => TRUE
 //  );
 
+
  $db['SNCenlinea'] = array(
   	'dsn'	=> '',
   	'hostname' => '10.10.10.147',
