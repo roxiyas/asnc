@@ -121,9 +121,9 @@ class Contratista_model extends CI_Model
         return $query->result_array();
       }
 
-      public function comprobante($dato){
+      public function comprobante($rifced){
           $this->db_b->select('*');
-          $this->db_b->where('rifced', $dato);
+          $this->db_b->where('rifced', $rifced);
           $this->db_b->order_by("proceso_id", "Desc");
           $query = $this->db_b->get('public.planillapirmera2');
           return $response = $query->row_array(); // sin el foreach

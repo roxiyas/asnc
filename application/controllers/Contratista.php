@@ -56,14 +56,15 @@ class Contratista extends CI_Controller
 	public function ver_comprobante()
 	{
 		  	if(!$this->session->userdata('session'))redirect('login');
+						$rifced = $this->input->post("rif_cont");
 	//	if(isset($_POST["texto"]))
 			//{
-			$dato = $_GET['variable1'];
+		//	$dato = $_GET['variable1'];
 			// $dato=$_POST["texto"];
 			//	if($dato)
-     echo "El el rif es: $dato";
-				
-				$data['consulta'] =	$this->Contratista_model->comprobante($dato);
+     echo "El el rif es: $rifced";
+
+				$data['consulta'] =	$this->Contratista_model->comprobante($rifced);
 
 				$this->load->view('templates/header.php');
 				$this->load->view('templates/navigator.php');

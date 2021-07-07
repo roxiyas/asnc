@@ -112,18 +112,12 @@
                         <input type="button" class="btn btn-default mt-1 mb-1" name="imprimir" value="Imprimir Información de Contratistas" onclick="window.print();">
                         </div>
                         <div class="form-group col 12 text-center">
-                            <button type="button" class="btn btn-default" onclick="call(document.getElementById('rif_cont').id)" name="button"> Ver Comprobante RNC2 </button>
-
-                                <a href="/index.php/Contratista/ver_comprobante?rif_cont='$v'">No serve</a>
-                              
+                            <button class="btn btn-default mt-1 mb-1"  type="submit" class="send"> Ver Planilla Resumen</button>
+                            <input class="btn btn-default" type="submit" value="Ver Comprobante RNC" formaction="<?= base_url() ?>index.php/Contratista/ver_comprobante"/>
 
             							</div>
                         </div>
-                        <div class="form-group col 12 text-center">
-
-                    Imprimir Certificado / Imprimir Copia Certificada <br>
-                                se encuentra en desarrollo
-                        </div>
+                      
                     </form>
                 </div>
             </div>
