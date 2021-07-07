@@ -48,11 +48,11 @@ function consultar_rif(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
                     $('#tel_cont').val(data['telf1']);
 
                     var rif_cont_nr = data['rifced'];
-                    var procactual = data['procactual'];
+                    var ultprocaprob = data['ultprocaprob'];
                     $.ajax({
                         url:base_url2,
                         method: 'post',
-                        data: {procactual: procactual,
+                        data: {ultprocaprob: ultprocaprob,
                               rif_cont_nr: rif_cont_nr},
                         dataType: 'json',
                         success: function(data){
