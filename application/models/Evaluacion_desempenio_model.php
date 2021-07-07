@@ -5,7 +5,7 @@
             parent::__construct();
             // Este metodo conecta a nuestra segunda conexión
             // y asigna a nuestra propiedad $this->db_b_b; los recursos de la misma.
-            $this->db_c = $this->load->database('rnc', true);
+            $this->db_c = $this->load->database('SNCenlinea', true);
         }
 
         public function consulta_operadora(){
