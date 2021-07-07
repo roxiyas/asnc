@@ -31,13 +31,7 @@
                 <tr>
                 <td align="center" colspan="3"  style="border: hidden"><strong>INFORMACIÓN DEL CONTRATISTA </strong></td>
               </tr>
-
-
-
-
-
-
-                        <tr class="odd gradeX" style="text-align:center">
+  <tr class="odd gradeX" style="text-align:center">
                             <th>Razón Social:</th>
                             <td><?=$consulta['nombre']?> </td>
                         </tr>
@@ -89,7 +83,7 @@
                     <label>Fecha de Consulta:</label>
                     <h5><?php echo date("d-m-Y"); ?></h5>
                 </div>
-<br><br>
+<br>
 
                 <div class="form-group col-3 ">
                     <label>Firma electrónica de datos consultados:
@@ -109,7 +103,7 @@ un ejemplar a objeto de ser incorporado al expediente de la contratación o conc
       </div>
     </div>
     <div class="form-group col 12 text-center">
-        <button class="btn btn-default mt-1 mb-1" type="button" id="print" onclick="printContent('imp1');" >Imprimir Panilla Resumen</button>
+        <button class="btn btn-default mt-1 mb-1" type="button" id="print" onclick="printContent('imp1');" >Imprimir </button>
 
 
     </div>

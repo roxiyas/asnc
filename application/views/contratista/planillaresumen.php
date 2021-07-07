@@ -4,11 +4,9 @@
         <div class="col-6 mb-3">
             <a class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" href="javascript:history.back()"> Volver</a>
         </div>
-        <?                       //var_dump($mercantil['domfiscal'] );
-        //  exit ($mercantil['domfiscal'] );
-        ?>
+        
        <div class="col-3 text-center">
-          
+
         </div>
         <div class="col-lg-12" id="imp1" >
             <div class="panel panel-inverse">
@@ -1469,7 +1467,8 @@
 
               </div>
             </div>
-            <div class="row">
+
+            <div class="row" id="solousersnc">
               <div class="panel-title text-center">
 
                   <table class="table  style="border: hidden"">
