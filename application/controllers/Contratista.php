@@ -62,7 +62,7 @@ class Contratista extends CI_Controller
 		//	$dato = $_GET['variable1'];
 			// $dato=$_POST["texto"];
 			//	if($dato)
-     echo "El el rif es: $rifced";
+    ////////////sssssssss echo "El el rif es: $rifced";
 
 				$data['consulta'] =	$this->Contratista_model->comprobante($rifced);
 

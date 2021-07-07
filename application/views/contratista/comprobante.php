@@ -31,30 +31,30 @@
                 <tr>
                 <td align="center" colspan="3"  style="border: hidden"><strong>INFORMACIÓN DEL CONTRATISTA </strong></td>
               </tr>
-  <tr class="odd gradeX" style="text-align:center">
-                            <th>Razón Social:</th>
-                            <td><?=$consulta['nombre']?> </td>
+  <tr class="odd gradeX" style="text-align:center" >
+                            <th style="border: hidden">Razón Social:</th>
+                            <td style="border: hidden"><?=$consulta['nombre']?> </td>
                         </tr>
                         <tr class="odd gradeX" style="text-align:center">
-                            <th>RIF:</th>
-                            <td><?=$consulta['rifced']?> </td>
+                            <th style="border: hidden">RIF:</th>
+                            <td style="border: hidden"><?=$consulta['rifced']?> </td>
                         </tr>
                         <tr>
 
 
                 				<td align="justify" colspan="3">Se encuentra HABILITADO para contratar con la Administración Pública Nacional, Estadal y Municipal en adquisición de bienes, servicios y ejecución de obras, de conformidad con lo previsto en el artículo 8 de la Ley Constitucional Contra la Guerra Económica para la Racionalidad y Uniformidad en la Adquisición de Bienes, Servicios y Obras Públicas, publicada en Gaceta Oficial de la República Bolivariana de Venezuela N° 40.398, de fecha 11 de enero de 2018 en concordancia con el artículo 47 del Decreto con Rango, Valor y Fuerza de Ley de Contrataciones Públicas, publicado en Gaceta Oficial de la República Bolivariana de Venezuela Extraordinario N° 6.154, de fecha 19 de noviembre de 2014, para el período:</td>
                 			</tr>
-                      <tr class="odd gradeX" style="text-align:center">
-                          <th>Desde:</th>
-                          <td><?=$consulta['fecinscrnc_at2']?> </td>
+                      <tr class="odd gradeX" style="text-align:center" style="border: hidden">
+                          <th style="border: hidden">Desde:</th>
+                          <td style="border: hidden"><?=$consulta['fecinscrnc_at2']?> </td>
                       </tr>
-                      <tr class="odd gradeX" style="text-align:center">
+                      <tr class="odd gradeX" style="text-align:center" style="border: hidden">
                           <th>Hasta:</th>
                           <td><?=$consulta['fecvencrnc_at2']?> </td>
                       </tr>
-                      <tr class="odd gradeX" style="text-align:center">
-                          <th>N° de Comprobante:</th>
-                          <td><?=$consulta['numcertrnc2']?> </td>
+                      <tr class="odd gradeX" style="text-align:center" style="border: hidden">
+                          <th style="border: hidden" >N° de Comprobante:</th>
+                          <td style="border: hidden"><?=$consulta['numcertrnc2']?> </td>
                       </tr>
                       <tr>
                       <td align="justify" colspan="3">El contratista acepta someterse a lo establecido en el artículo 10 de la Ley Constitucional Contra la Guerra Económica para la Racionalidad y Uniformidad en la Adquisición de Bienes, Servicios y Obras Públicas, el cual establece lo siguiente. Artículo 10. Las personas naturales o jurídicas que presten declaraciones falsas para obtener el comprobante de inscripción a que se refiere el artículo precedente serán inhabilitados para contratar con el estado, por un plazo de diez (10) años. Si la inhabilitación recae sobre sujetos que poseen contrataciones en ejecución con el Estado, estas serán susceptibles de resolución unilateral por causas imputables al contratista o nulidad de esos contratos por parte del contratante, con fundamento a lo establecido en el Decreto con Rango, Valor y Fuerza de Ley de Contrataciones Públicas.</td>
@@ -79,11 +79,12 @@
               </tr>
                                 </tbody>
                 </table>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 <div class="form-group col-3 pull-right pull-right">
                     <label>Fecha de Consulta:</label>
                     <h5><?php echo date("d-m-Y"); ?></h5>
                 </div>
-<br>
+<br><br><br><br><br><br><br>
 
                 <div class="form-group col-3 ">
                     <label>Firma electrónica de datos consultados:
