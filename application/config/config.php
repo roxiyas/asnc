@@ -23,8 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-//$config['base_url'] = 'http://sistemaintegradoprueba.snc.gob.ve';
-$config['base_url'] = 'http://localhost/asnc';
+$config['base_url'] = 'http://sistemaintegradoprueba.snc.gob.ve';
+//$config['base_url'] = 'http://localhost/asnc';
 /*
 |--------------------------------------------------------------------------
 | Index File

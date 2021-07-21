@@ -1467,7 +1467,7 @@
 
               </div>
             </div>
-            <?php if (($this->session->userdata('perfil') == 1)?>
+            <?php if ($this->session->userdata('perfil') == 1):?>
             <div class="row" id="solousersnc">
               <div class="panel-title text-center">
 

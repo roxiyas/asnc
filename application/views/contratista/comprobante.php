@@ -84,7 +84,7 @@
                     <label>Fecha de Consulta:</label>
                     <h5><?php echo date("d-m-Y"); ?></h5>
                 </div>
-<br><br><br><br><br><br><br>
+<br><br><br>
 
                 <div class="form-group col-3 ">
                     <label>Firma electrónica de datos consultados:
