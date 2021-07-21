@@ -135,9 +135,9 @@ class Evaluacion_desempenio extends CI_Controller {
 		if (!empty($_FILES['fileImagen']['name'])){
 			$config['upload_path'] = './imagenes';;
 			$config['allowed_types'] = 'jpg|png|jpeg|pdf';
-			$config['max_size'] = '204800000';
-			$config['max_width'] = '202400000';
-			$config['max_height'] = '200800000';
+			// $config['max_size'] = '1000px';
+			// $config['max_width'] = '1000px';
+			// $config['max_height'] = '1000px';
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
 			if ($this->upload->do_upload('fileImagen')){
@@ -293,6 +293,13 @@ class Evaluacion_desempenio extends CI_Controller {
 		if(!$this->session->userdata('session'))redirect('login');
 		$data = $this->input->post();
 		$data =	$this->Evaluacion_desempenio_model->inf_tabla($data);
+		echo json_encode($data);
+	}
+
+	public function inf_tabla2(){
+		if(!$this->session->userdata('session'))redirect('login');
+		$data = $this->input->post();
+		$data =	$this->Evaluacion_desempenio_model->inf_tabla2($data);
 		echo json_encode($data);
 	}
 

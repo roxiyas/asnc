@@ -34,19 +34,30 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12">
+			<div class="col-6">
 				<br>
-				<h3 class="text-center">Evaluaciones Registradas</h3>
-				<table id="data-table-buttons" class="table table-striped table-bordered">
+				<h3 class="text-center">Evaluaciones Registradas Anterior Sistema</h3>
+				<table id="data1" class="table table-striped table-bordered">
 					<thead style="background:#e4e7e8">
 						<tr class="text-center">
-							<th>Fecha Evaluacion</th>
-							<th>Rif contratista</th>
-							<th>Razón Social</th>
+							<th>Fecha Evaluación</th>
 							<th>Ente Calificador</th>
 							<th>Clasificación</th>
-							<th>Nº Contrato</th>
-							<th>Nº Certificado</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-6">
+				<br>
+				<h3 class="text-center">Evaluaciones Registradas Nuevo Sistema</h3>
+				<table id="data2" class="table table-striped table-bordered">
+					<thead style="background:#e4e7e8">
+						<tr class="text-center">
+							<th>Fecha Evaluación</th>
+							<th>Ente Calificador</th>
+							<th>Clasificación</th>
 						</tr>
 					</thead>
 					<tbody>

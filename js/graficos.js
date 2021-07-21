@@ -3,9 +3,11 @@ function consultar_rif(){
     var rif_b = $('#rif_b').val();
        // var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/graficos';
        // var base_url2 =window.location.origin+'/asnc/index.php/evaluacion_desempenio/inf_tabla';
+       // var base_url3 =window.location.origin+'/asnc/index.php/evaluacion_desempenio/inf_tabla2';
 
     var base_url = '/index.php/evaluacion_desempenio/graficos';
     var base_url2 = '/index.php/evaluacion_desempenio/inf_tabla';
+    var base_url3 = '/index.php/evaluacion_desempenio/inf_tabla2';
 
    $("#mensaje").show();
 
@@ -77,16 +79,29 @@ function consultar_rif(){
         data: {rif_b: rif_b},
         dataType: 'json',
         success: function(data){
-            $('#data-table-buttons tbody').empty();
+            $('#data1 tbody').empty();
             $.each(data, function(index, response){
-               $('#data-table-buttons tbody').append('<tr><td>' + response['fecha_evaluacion'] +
-                                            '</td><td>' + response['rif_contratista'] +
-                                            '</td><td>' + response['contratista'] +
-                                            '</td><td>' + response['nombre_ente'] +
-                                            '</td><td>' + response['nombre_calificacion'] +
-                                            '</td><td>' + response['num_contrato'] +
-                                            '</td><td>' + response['numero_procedimiento'] +
-                                            '</td></tr>');
+               $('#data1 tbody').append('<tr><td>' + response['fecha_evaluacion']
+                                                        +
+                                                        '</td><td>' + response['nombre_ente'] +
+                                                        '</td><td>' + response['nombre_calificacion'] +
+                                                        '</td></tr>');
+            });
+        }
+    });
+
+    $.ajax({
+        url:base_url3,
+        method: 'post',
+        data: {rif_b: rif_b},
+        dataType: 'json',
+        success: function(data){
+            $('#data2 tbody').empty();
+            $.each(data, function(index, response){
+               $('#data2 tbody').append('<tr><td>' + response['fecha_evaluacion']+
+                                                        '</td><td>' + response['nombre_ente'] +
+                                                        '</td><td>' + response['nombre_calificacion'] +
+                                                        '</td></tr>');
             });
         }
     });

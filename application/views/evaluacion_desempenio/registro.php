@@ -391,7 +391,7 @@
                             </div>
                             <div class="form-group col-6">
                                 <label>Acuse de Recibido <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <input type="file" name="fileImagen" id="fileImagen" class="form-control">
+                                <input type="file" name="fileImagen" id="fileImagen" width="300" height="300" class="form-control">
                             </div>
                         </div>
                     </div>

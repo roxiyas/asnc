@@ -1,17 +1,28 @@
+<style media="screen">
+@media print {
+        .non-printable, .fancybox-outer { display: none; }
+        .printable, #printDiv {
+          display: block;
+          font-size: 26pt;
+        }
+        }
+</style>
 <div class="sidebar-bg"></div>
 <div id="content" class="content">
     <div class="row">
-      <div class="col-6 mb-3">
+        <div class="col-3"></div>
+      <div class="col-3 mb-3">
         <a class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" href="javascript:history.back()"> Volver</a>
       </div>
-        <!-- <div class="col-3 text-center">
-            <button class="btn btn-default mt-1 mb-1" type="button" onclick="printDiv();">Descargar Registro</button>
-        </div> -->
+        <div class="col-3 text-center">
+            <!-- <button class="btn btn-default mt-1 mb-1" type="button" onclick="printDiv();">Descargar Registro</button> -->
+            <button class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" onclick="printContents('imp1');" >Imprimir</button>
+        </div>
 		  <div class="col-lg-12" id="imp1">
-        <div class="col-10 pull-left pull-left">
+              <div class="col-12 text-center">
+                  <img class="mb-2" src="<?php echo base_url('Plantilla/img/membretesnc.png'); ?>" height="90"  />
+              </div>
 
-           <img src="<?php echo base_url('Plantilla/img/membretesnc.png'); ?>" height="90"  />
-       </div>
             <div class="panel panel-inverse">
                 <br>
                 <div class="col-6">
@@ -270,7 +281,6 @@
                         </div>
                     </div>
                 </div>
-                <br><br><br>
                 <div class="panel-heading">
 					<h5 style="font-size: 16px;" class="panel-title text-center"><b>Información de Notificación al Contratista</b></h5>
 				</div>
@@ -334,23 +344,20 @@
                 </div>
             </div>
         </div>
-        <div class="form-group col 12 text-center">
-            <button class="btn btn-default mt-1 mb-1" type="button" id="print" onclick="printDiv('areaImprimir');" >Imprimir </button>
-
-
-        </div>
     </div>
 </div>
-<script type="text/javascript">
-    function printDiv(areaImprimir){
-        //console.log('yeaghh');
-        var contenido= document.getElementById('imp1').innerHTML;
-        var contenidoOriginal= document.body.innerHTML;
-
-        document.body.innerHTML = contenido;
-
-        window.print();
-
-        document.body.innerHTML = contenidoOriginal;
-    }
+<script>
+function printContents(imp1) {
+    let printElement = document.getElementById(imp1);
+      var printWindow = window.open('', 'PRINT');
+      printWindow.document.write(document.documentElement.innerHTML);
+      setTimeout(() => { // Needed for large documents
+        printWindow.document.body.style.margin = '0 0';
+        printWindow.document.body.innerHTML = printElement.outerHTML;
+        printWindow.document.close(); // necessary for IE >= 10
+        printWindow.focus(); // necessary for IE >= 10*/
+        printWindow.print();
+        printWindow.close();
+      }, 1000)
+}
 </script>

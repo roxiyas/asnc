@@ -348,6 +348,23 @@
             return $response;
         }
 
+        public function inf_tabla2($data){
+            $this->db->select('e.rif_contrat rif_contratista,
+                        	   e.fecha_reg_eval fecha_evaluacion,
+                        	   e.calificacion nombre_calificacion,
+                        	   e.id_usuario,
+                        	   u.nombre,
+                        	   u.unidad,
+                        	   concat(o.desc_organo,\'\', e2.desc_entes) nombre_ente');
+            $this->db->join('seguridad.usuarios u', 'u.id = e.id_usuario');
+            $this->db->join('public.organos o', 'o.codigo = u.unidad', 'left');
+            $this->db->join('public.entes e2', 'e2.codigo = u.unidad', 'left');
+            $this->db->where('e.rif_contrat', $data['rif_b']);
+            $query = $this->db->get('evaluacion_desempenio.evaluacion e');
+            $response = $query->result_array();
+            return $response;
+        }
+
         public function consulta_contr_nr(){
             $this->db->select('cn.id,
                         	   cn.user_id,

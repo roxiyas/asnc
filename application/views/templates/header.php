@@ -35,7 +35,6 @@
 
 	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 
-	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/DataTables/extensions/AutoFill/css/autoFill.bootstrap.min.css" rel="stylesheet" />
 
 	<link href="<?=base_url()?>Plantilla/admin/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
