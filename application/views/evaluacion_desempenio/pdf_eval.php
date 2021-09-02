@@ -20,32 +20,31 @@
         </div>
 		  <div class="col-lg-12" id="imp1">
               <div class="col-12 text-center">
-                  <img class="mb-2" src="<?php echo base_url('Plantilla/img/membretesnc.png'); ?>" height="90"  />
+                  <img class="mb-2" src="<?php echo base_url('Plantilla/img/membretesnc.png'); ?>" height="70"  />
               </div>
 
             <div class="panel panel-inverse">
-                <br>
                 <div class="col-6">
-                    <h4>Identificador de Evaluación de Desempeño: <?=$eval_ind['id']?></h4>
+                    <h6>Identificador de Evaluación de Desempeño: <?=$eval_ind['id']?></h6>
                 </div>
                 <?php if ($eval_ind['id_estatus'] == 3): ?>
                     <div class="col-6">
-                        <h4>Estatus de Evaluación de Desempeño: <b style="color:red;"><?=$eval_ind['descripcion']?></b> </h4>
+                        <h6>Estatus de Evaluación de Desempeño: <b style="color:red;"><?=$eval_ind['descripcion']?></b> </h6>
                     </div>
                 <?php endif; ?>
                 <?php if ($eval_ind['id_estatus'] != 3): ?>
                     <div class="col-6">
-                        <h4>Estatus de Evaluación de Desempeño: <b><?=$eval_ind['descripcion']?></b> </h4>
+                        <h6>Estatus de Evaluación de Desempeño: <b><?=$eval_ind['descripcion']?></b> </h6>
                     </div>
                 <?php endif; ?>
                 <div class="col-12">
-                    <h4>Fecha de Registro de la Evaluación de Desempeño: <?=$fecha_reg_eval?></h4>
+                    <h6>Fecha de Registro de la Evaluación de Desempeño: <?=$fecha_reg_eval?></h6>
                 </div>
-                <div class="panel-heading">
+                <div class="panel-heading" style="padding: 2px 15px;">
                     <h2 style="font-size: 16px;" class="panel-title text-center"><b>Datos del Contratante</b></h2>
                 </div>
-                <div class="panel-body">
-                    <div class="row">
+                <div class="panel-body" style="padding: 0px;">
+                    <div class="row" style="margin-bottom: -23px;">
                         <div class="form-group col-2">
                             <h5><b>Rif de Contratante:</b></h5>
                             <h5><?=$eval_ind['rif_organo']?></h5>
@@ -56,11 +55,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel-heading">
+                <div class="panel-heading" style="padding: 2px 15px;">
                     <h2 style="font-size: 16px;" class="panel-title text-center"><b>Datos del Contratista Adjudicado</b></h2>
                 </div>
-			    <div class="panel-body">
-                    <div class="row">
+                <div class="panel-body" style="padding: 0px;">
+                    <div class="row" style="margin-bottom: -23px;">
                         <div class="form-group col-2">
                             <h5><b>Rif del Contratista:</b></h5>
                             <h5><?=$eval_ind['rif_contrat']?></h5>
@@ -83,11 +82,11 @@
                         </div>
                     </div>
 			    </div>
-				<div class="panel-heading">
+				<div class="panel-heading" style="padding: 2px 15px;">
 					<h5 style="font-size: 16px;" class="panel-title text-center"><b>Modalidad de la Contratación</b></h5>
 				</div>
-				<div class="panel-body">
-                    <div class="row">
+                <div class="panel-body" style="padding: 0px;">
+                    <div class="row" style="margin-bottom: -23px;">
                         <div class="form-group col-7">
                             <h5><b>Procedimiento de Selección del Contratista:</b></h5>
                             <h5><?=$eval_ind['modalidad']?></h5>
@@ -102,11 +101,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel-heading">
+                <div class="panel-heading" style="padding: 2px 15px;">
 					<h5 style="font-size: 16px;" class="panel-title text-center"><b>Datos del Contrato</b></h5>
 				</div>
-				<div class="panel-body">
-                    <div class="row">
+                <div class="panel-body" style="padding: 0px;">
+                    <div class="row" style="margin-bottom: -12px;">
                         <div class="form-group col-3">
                             <h5><b>Nro. del Procedimiento:</b></h5>
                             <h5><?=$eval_ind['nro_procedimiento']?></h5>
@@ -182,7 +181,7 @@
                                         <input type="checkbox" value="bolivares" name="bolivares" id="cssCheckbox1" checked disabled/>
                                         <label for="cssCheckbox1">Otro</label>
 
-                                        <h5 class="mt-3"><b>Especifique:</b></h5>
+                                        <h5 class="mt-1"><b>Especifique:</b></h5>
                                         <h5><?=$eval_ind['mod_otro']?></h5>
                                     </div>
                                 <?php endif; ?>
@@ -190,115 +189,102 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel-heading">
+                <div class="panel-heading" style="padding: 2px 15px;">
 					<h5 style="font-size: 16px;" class="panel-title text-center"><b>Tabla de Evaluación del Contratista</b></h5>
 				</div>
-				<div class="panel-body">
-                    <div class="row">
+                <div class="panel-body">
+                    <div class="row" style="margin-bottom: -23px;">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Criterio</th>
-                                    <th>Descripción</th>
-                                    <th>Peso</th>
-                                    <th>Clasificación</th>
-                                    <th>Total</th>
+                                    <th style="padding: 2px 15px;">Criterio</th>
+                                    <th style="padding: 2px 15px;">Descripción</th>
+                                    <th style="padding: 2px 15px;">Peso</th>
+                                    <th style="padding: 2px 15px;">Clasificación</th>
+                                    <th style="padding: 2px 15px;">Total</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr style="font-size: 10px;">
                                     <td>Calidad</td>
                                     <td>Mide el cumplimiento de los parámetros técnicos y de calidad exigidos: disposición del personal capacitado/calificado, disponibilidad oportuna y confiable de equipos, instrumentos e infraestructura adecuados, procura (compra, manejo y almacenaje), respuesta eficiente a reclamos técnicos/calidad, organización e implantación de mejoras</td>
-                                    <td><h5 class="text-center mt-3">25</h5></td>
+                                    <td>25</td>
                                     <td>
                                         <?php if ($eval_ind['calidad'] == 1): ?>
-                                            <h5 class="text-center mt-3">Si</h5>
+                                            Si
                                         <?php endif; ?>
                                         <?php if ($eval_ind['calidad'] == 0): ?>
-                                            <h5 class="text-center mt-3">No</h5>
+                                            No
                                         <?php endif; ?>
                                     </td>
                                     <td>
-                                        <h5 class="text-center mt-3"><?=$calc_cald?></h5>
+                                        <?=$calc_cald?>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr style="font-size: 10px;">
                                     <td>Responsabilidad</td>
                                     <td>Cumplimiento de leyes, decretos y clausulas relativos al contrato, respuestas a demandas o reclamos de proveedores/subcontratistas, cumplimiento y respuesta de requisitos como solvencia laboral, administración de vacaciones, reclamos laborales, paros, demñas obligraciones legales y contractuales</td>
-                                    <td><h5 class="text-center mt-3">25</h5></td>
+                                    <td>25</td>
                                     <td>
                                         <?php if ($eval_ind['responsabilidad'] == 1): ?>
-                                            <h5 class="text-center mt-3">Si</h5>
+                                            Si
                                         <?php endif; ?>
                                         <?php if ($eval_ind['responsabilidad'] == 0): ?>
-                                            <h5 class="text-center mt-3">No</h5>
+                                            No
                                         <?php endif; ?>
                                     </td>
                                     <td>
-                                        <h5 class="text-center mt-3"><?=$calc_responsabilidad?></h5>
+                                        <?=$calc_responsabilidad?>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr style="font-size: 10px;">
                                     <td>Conocimiento del trabajo</td>
                                     <td>Cumplimiento de practicas de trabajo seguro, programas de inspección SHA, herramientas y equipos, condiciones del area de trabajo adecuadas, adiestramiento y motivación al personal, SHA de contratistas, respuesta y control de emergencias entre otras, aplicacion de las normativas técnicas.</td>
-                                    <td><h5 class="text-center mt-3">25</h5></td>
+                                    <td>25</td>
                                     <td>
                                         <?php if ($eval_ind['conocimiento'] == 1): ?>
-                                            <h5 class="text-center mt-3">Si</h5>
+                                            Si
                                         <?php endif; ?>
                                         <?php if ($eval_ind['conocimiento'] == 0): ?>
-                                            <h5 class="text-center mt-3">No</h5>
+                                            No
                                         <?php endif; ?>
                                     </td>
                                     <td>
-                                        <h5 class="text-center mt-3"><?=$calc_conocimiento?></h5>
+                                        <?=$calc_conocimiento?>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr style="font-size: 10px;">
                                     <td>Oportunidad (Plazos Establecidos)</td>
                                     <td>Corresponde al periodo establecido en el contrato para la ejecución de la obra, prestación del servicio o suministro de bienes.</td>
-                                    <td><h5 class="text-center mt-3">25</h5></td>
+                                    <td>25</td>
                                     <td>
                                         <?php if ($eval_ind['oportunidad'] == 1): ?>
-                                            <h5 class="text-center mt-3">Si</h5>
+                                            Si
                                         <?php endif; ?>
                                         <?php if ($eval_ind['oportunidad'] == 0): ?>
-                                            <h5 class="text-center mt-3">No</h5>
+                                            No
                                         <?php endif; ?>
                                     </td>
                                     <td>
-                                        <h5 class="text-center mt-3"><?=$calc_oportunidad?></h5>
+                                        <?=$calc_oportunidad?>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                         <div class="col-5"></div>
-                        <div class="col-4" class="form-control">
-                            <h5><b>Puntuaje Total de la Clasificación:</b> <?=$eval_ind['total_calif']?></h5>
+                        <div class="col-3 text-right">
+                            <h5><b>Calificacion:</b> <?=$eval_ind['calificacion']?></h6>
                         </div>
-                        <div class="col-3" class="form-control">
-                            <h5><b>Calificacion:</b> <?=$eval_ind['calificacion']?></h4>
+                        <div class="col-4 text-right">
+                            <h5><b>Puntuaje Total de la Clasificación:</b> <?=$eval_ind['total_calif']?>
                         </div>
                     </div>
                 </div>
-                <div class="panel-heading">
+                <div class="panel-heading" style="padding: 2px 15px;">
 					<h5 style="font-size: 16px;" class="panel-title text-center"><b>Información de Notificación al Contratista</b></h5>
 				</div>
-                <div class="panel-body">
-                    <div class="row">
-                        <!-- <div class="form-group col-4">
-                            <h5><b>¿Fue notificado al contratista?:</b></h5>
-                            <?php if ($eval_ind['notf_cont'] == 1): ?>
-                                <div>
-                                    <h5>Sí, fué notificado al contratista</h5>
-                                </div>
-                            <?php endif; ?>
-                            <?php if ($eval_ind['notf_cont'] == 2): ?>
-                                <div>
-                                    <h5>No, no fué notificado al contratista</h5>
-                                </div>
-                            <?php endif; ?>
-                        </div> -->
+                <div class="panel-body" style="padding: 0px;">
+                    <div class="row" style="margin-bottom: -23px;">
                         <div class="form-group col-6">
                             <h5><b>Fecha de la Notificación:</b></h5>
                             <h5><?=$eval_ind['fecha_not']?></h5>
