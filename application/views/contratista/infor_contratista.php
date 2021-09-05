@@ -20,19 +20,15 @@
             </div>
         </div>
         <div class="col-lg-12" style="display: none" id="items">
-
             <div class="panel panel-inverse">
                 <div class="panel-heading">
                     <h4 class="panel-title text-center"><b>Información del Contratista </b></h4>
                 </div>
                 <div class="panel-body" id="no_existe">
-
                     <div class="row">
                         <div class="col-md-12 mt-2 mb-2">
                             <h4 class="mt-2"><label>Por Favor revise el Rif ingresado! y vuelva a intentar.</label></h4>
-
                         </div>
-
                     </div>
                 </div>
                 <div class="panel-body" id="existe">
@@ -42,8 +38,6 @@
                                 <input class="form-control" type="hidden" name="idedocontratistas" id="idedocontratistas">
                                 <textarea class="form-control" name="descedocont" id="descedocont" rows="4" readonly></textarea>
                             </div>
-
-
                             <div class="form-group col-12 text-center">
                                 <h4 class="panel-title"> <b> Información de la Empresa </b> </h4>
                             </div>
@@ -72,8 +66,7 @@
                             <br>
                             <div class="form-group col-3" >
                                 <label>Dirección Fiscal</label>
-<textarea class="form-control" name="dirfiscal" id="dirfiscal" rows="3" readonly></textarea>
-
+                                    <textarea class="form-control" name="dirfiscal" id="dirfiscal" rows="3" readonly></textarea>
                             </div>
                             <div class="form-group col-3">
                                 <label>Teléfonos</label>
@@ -113,11 +106,9 @@
                         </div>
                         <div class="form-group col 12 text-center">
                             <button class="btn btn-default mt-1 mb-1"  type="submit" class="send"> Ver Planilla Resumen</button>
-                            <input class="btn btn-default" type="submit" value="Ver Comprobante RNC" formaction="<?= base_url() ?>index.php/Contratista/ver_comprobante"/>
-
-            							</div>
+                            <input class="btn btn-default" type="submit" value="Ver Comprobante RNC" formaction="<?= base_url() ?>index.php/Contratista/ver_comprobante"/></div>
                         </div>
-                      
+
                     </form>
                 </div>
             </div>
@@ -128,5 +119,9 @@
     </div>
 </div>
 </div>
-
-<script src="<?= base_url() ?>/js/contratista/contratista.js"></script>
+<script type="text/javascript">
+function mayusculas(e) {
+    e.value = e.value.toUpperCase();
+}
+</script>
+<script src="<?=base_url()?>/js/contratista/contratista.js"></script>
