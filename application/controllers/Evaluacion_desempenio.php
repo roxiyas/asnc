@@ -238,6 +238,7 @@ class Evaluacion_desempenio extends CI_Controller {
 		if(!$this->session->userdata('session'))redirect('login');
 		$id_evaluacion = $this->input->get('id');
 		$data['eval_ind'] 	= $this->Evaluacion_desempenio_model->consulta_eval_ind($id_evaluacion);
+		$data['dt_eval']	= $this->Evaluacion_desempenio_model->consutar_dt_eval($id_evaluacion);
 
 		$fecha_d = $data['eval_ind']['fec_inicio_cont'];
 		$date_d = date("d-m-Y", strtotime($fecha_d));
@@ -330,7 +331,6 @@ class Evaluacion_desempenio extends CI_Controller {
 
 	public function resgistrar_anulacion(){
 		$id = $this->input->POST('id');
-
 		$d_anulacion = array(
 			'id_evaluacion'   => $this->input->POST('id'),
             'nro_oficicio'    => $this->input->POST('nro_oficicio'),
@@ -341,6 +341,7 @@ class Evaluacion_desempenio extends CI_Controller {
 			'nom_ape_solc'    => $this->input->POST('nom_ape_solc'),
 			'cargo'        	  => $this->input->POST('cargo'),
 			'telf_solc'       => $this->input->POST('telf_solc'),
+			'descp_anul'	  => $this->input->POST('descp_anul'),
 			'id_usuario' 	  => $this->session->userdata('id_user'),
 			'fecha_aprv_anul' => date('Y-m-d'),
         );

@@ -24,15 +24,45 @@
               </div>
 
             <div class="panel panel-inverse">
-                <div class="col-6">
+                <div class="col-6 mt-2">
                     <h6>Identificador de Evaluación de Desempeño: <?=$eval_ind['id']?></h6>
                 </div>
-                <?php if ($eval_ind['id_estatus'] == 3): ?>
+                <?php if ($eval_ind['id_estatus'] >= 2): ?>
                     <div class="col-6">
                         <h6>Estatus de Evaluación de Desempeño: <b style="color:red;"><?=$eval_ind['descripcion']?></b> </h6>
                     </div>
+                    <div class="row ml-1">
+                        <div class="col-3">
+                            <h6>Nro de Oficio: <?=$dt_eval['nro_oficicio']?></h6>
+                        </div>
+                        <div class="col-3">
+                            <h6>Fecha de Anulación: <?=$dt_eval['fecha_anulacion']?></h6>
+                        </div>
+                        <div class="col-3">
+                            <h6>Nroº de Expediente: <?=$dt_eval['nro_expediente']?></h6>
+                        </div>
+                        <div class="col-3">
+                            <h6>Nroº de Gaceta y/o Resolución: <?=$dt_eval['nro_gacet_resol']?></h6>
+                        </div>
+                        <div class="col-3">
+                            <h6>Cédula del Solicitante: <?=$dt_eval['cedula_solc']?></h6>
+                        </div>
+                        <div class="col-3">
+                            <h6>Télefono del Solicitante: <?=$dt_eval['telf_solc']?></h6>
+                        </div>
+                        <div class="col-3">
+                            <h6>Nombre y Apellido del Solicitante: <?=$dt_eval['nom_ape_solc']?></h6>
+                        </div>
+                        <div class="col-3">
+                            <h6>Cargo: <?=$dt_eval['cargo']?></h6>
+                        </div>
+                        <div class="col-3">
+                            <h6>Breve Descripción: <?=$dt_eval['descp_anul']?></h6>
+                        </div>
+                    </div>
+
                 <?php endif; ?>
-                <?php if ($eval_ind['id_estatus'] != 3): ?>
+                <?php if ($eval_ind['id_estatus'] == 1): ?>
                     <div class="col-6">
                         <h6>Estatus de Evaluación de Desempeño: <b><?=$eval_ind['descripcion']?></b> </h6>
                     </div>
@@ -200,7 +230,7 @@
                                     <th style="padding: 2px 15px;">Criterio</th>
                                     <th style="padding: 2px 15px;">Descripción</th>
                                     <th style="padding: 2px 15px;">Peso</th>
-                                    <th style="padding: 2px 15px;">Clasificación</th>
+                                    <th style="padding: 2px 15px;">Calificación</th>
                                     <th style="padding: 2px 15px;">Total</th>
                                 </tr>
                             </thead>
@@ -276,7 +306,7 @@
                             <h5><b>Calificacion:</b> <?=$eval_ind['calificacion']?></h6>
                         </div>
                         <div class="col-4 text-right">
-                            <h5><b>Puntuaje Total de la Clasificación:</b> <?=$eval_ind['total_calif']?>
+                            <h5><b>Puntuaje Total de la Calificación:</b> <?=$eval_ind['total_calif']?>
                         </div>
                     </div>
                 </div>

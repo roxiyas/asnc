@@ -66,40 +66,45 @@
                     <div class="row">
                         <div class="form-group col-2">
                             <label>ID de Evaluación</label>
-                            <input class="form-control" type="text" name="id" id="id" readonly>
+                            <input class="form-control text-center" type="text" name="id" id="id" readonly>
                         </div>
                         <div class="col-10"></div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label>Nro. de Oficio de la Solicitud</label>
                             <input class="form-control" type="text" name="nro_oficicio" id="nro_oficicio">
                         </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label>Fecha de Notificación</label>
                             <input type="text" class="form-control" id="datepicker-default" name="fec_solicitud" placeholder="Seleccionar Fecha"/>
                         </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label>Nro. del Expediente</label>
                             <input class="form-control" type="text" name="nro_expediente" id="nro_expediente">
                         </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label>Nro. Gaceta, Resolución o Providencia</label>
                             <input class="form-control" type="text" name="nro_gacet_resol" id="nro_gacet_resol">
                         </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label>Cédula del Sol.</label>
                             <input class="form-control" type="text" name="cedula_solc" id="cedula_solc">
+                        </div>
+                        <div class="form-group col-4">
+                            <label>Télefono del Solicitante</label>
+                            <input class="form-control" type="text" name="telf_solc" id="telf_solc">
                         </div>
                         <div class="form-group col-6">
                             <label>Nombre y Apellido del Solicitante</label>
                             <input class="form-control" type="text" name="nom_ape_solc" id="nom_ape_solc">
                         </div>
-                        <div class="form-group col-3">
-                            <label>Télefono del Solicitante</label>
-                            <input class="form-control" type="text" name="telf_solc" id="telf_solc">
-                        </div>
+
                         <div class="form-group col-6">
                             <label>Cargo</label>
                             <input class="form-control" type="text" name="cargo" id="cargo">
+                        </div>
+                        <div class="form-group col-12">
+                            <label>Breve descripción de la Solicitud</label>
+                            <textarea class="form-control" rows="2" name="descp_anul" id="descp_anul"></textarea>
                         </div>
                     </div>
                 </form>
@@ -126,13 +131,14 @@
                     <div class="row">
                         <div class="form-group col-2">
                             <label>ID de Evaluación</label>
-                            <input class="form-control" type="text" name="id_ver" id="id_ver" readonly>
+                            <input class="form-control text-center" type="text" name="id_ver" id="id_ver" readonly>
                         </div>
-                        <div class="form-group col-3">
+                        <div class="col-10"></div>
+                        <div class="form-group col-4">
                             <label>Nro. de Oficio de la Solicitud</label>
                             <input class="form-control" type="text" name="nro_oficicio_ver" id="nro_oficicio_ver" readonly>
                         </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label>Fecha de Notificación</label>
                             <input type="text" class="form-control" id="fec_solicitud_ver" name="fec_solicitud_ver" readonly />
                         </div>
@@ -140,17 +146,29 @@
                             <label>Nro. del Expediente</label>
                             <input class="form-control" type="text" name="nro_expediente_ver" id="nro_expediente_ver" readonly>
                         </div>
-                        <div class="form-group col-2">
+                        <div class="form-group col-4">
+                            <label>Nro. Gaceta, Resolución o Providencia</label>
+                            <input class="form-control" type="text" name="nro_gacet_resol_ver" id="nro_gacet_resol_ver" readonly>
+                        </div>
+                        <div class="form-group col-4">
                             <label>Cédula del Sol.</label>
                             <input class="form-control" type="text" name="cedula_solc_ver" id="cedula_solc_ver" readonly>
+                        </div>
+                        <div class="form-group col-4">
+                            <label>Télefono del Solicitante</label>
+                            <input class="form-control" type="text" name="telf_solc_ver" id="telf_solc_ver" readonly>
                         </div>
                         <div class="form-group col-6">
                             <label>Nombre y Apellido del Solicitante</label>
                             <input class="form-control" type="text" name="nom_ape_solc_ver" id="nom_ape_solc_ver" readonly>
                         </div>
-                        <div class="form-group col-4">
+                        <div class="form-group col-6">
                             <label>Cargo</label>
                             <input class="form-control" type="text" name="cargo_ver" id="cargo_ver" readonly>
+                        </div>
+                        <div class="form-group col-12">
+                            <label>Breve descripción de la Solicitud</label>
+                            <textarea class="form-control" rows="2" name="descp_anul_ver" id="descp_anul_ver" readonly></textarea>
                         </div>
                     </div>
                 </form>
