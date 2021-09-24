@@ -42,7 +42,7 @@
 						<tr class="text-center">
 							<th>Fecha Evaluación</th>
 							<th>Ente Calificador</th>
-							<th>Clasificación</th>
+							<th>Calificación</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -57,7 +57,7 @@
 						<tr class="text-center">
 							<th>Fecha Evaluación</th>
 							<th>Ente Calificador</th>
-							<th>Clasificación</th>
+							<th>Calificación</th>
 						</tr>
 					</thead>
 					<tbody>

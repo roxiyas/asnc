@@ -11,7 +11,7 @@
                             <tr class="text-center">
                                 <th>Rif contratista</th>
                                 <th>Denominación Razón Social</th>
-                                <th>Clasificación</th>
+                                <th>Calificación</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>

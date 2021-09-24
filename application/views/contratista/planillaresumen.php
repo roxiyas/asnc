@@ -1334,20 +1334,14 @@
                               <td> </td>
                               <td><?=number_format($lista['rentabpond'], 3, ".", ",")?> </td>
                             </tr>
-
                       </tbody>
-
                   </table>
-
                 <?php endforeach;?>
-
               </div>
             </div>
         <?php endif; ?>
             <div class="col 12 text-center">
                 <button class="btn btn-default mt-1 mb-1" type="button" id="print" onclick="printContent('imp1');" >Imprimir Panilla Resumen</button>
-
-
             </div>
       </div>
       </div>

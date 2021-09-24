@@ -321,13 +321,6 @@
             return $response = $query->row_array();
         }
 
-        public function consutar_dt_eval($id_evaluacion){
-            $this->db->select('*');
-            $this->db->where('a.id_evaluacion', $id_evaluacion);
-            $query = $this->db->get('evaluacion_desempenio.anulacion a');
-            return $response = $query->row_array();
-        }
-
         public function graficos($data){
             $response = array();
             $this->db->select('count(e.calificacion) as t_calificacion,
@@ -410,7 +403,9 @@
         }
 
         public function save_anulacion($id, $d_anulacion){
+
             $quers =$this->db->insert('evaluacion_desempenio.anulacion', $d_anulacion);
+
             $data2 = array(
                 'id_estatus' => 2,
             );

@@ -281,7 +281,7 @@
 										<th>Criterio</th>
 										<th>Descripción</th>
                                         <th>Peso</th>
-										<th>Clasificación</th>
+										<th>Calificación</th>
                                         <th>Total</th>
 									</tr>
 								</thead>
