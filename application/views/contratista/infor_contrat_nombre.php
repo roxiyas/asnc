@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-4">
                             <label>Nombre del Contratista a Consultar</label>
-                            <input class="form-control" type="text" name="nombre" id="nombre"  placeholder="NOMBRE" onkeyup="mayusculas(this);">
+                            <input class="form-control" type="text" name="nombre" id="nombre"  placeholder="Ingrese el nombre completo de la Empresa" onkeyup="mayusculas(this);">
 
                         </div>
                         <div class="col- mt-4">
@@ -49,7 +49,7 @@
 
                             <div class="form-group col-6">
                                 <label>Nombre o Razón Social</label>
-                                <input type="text" name="nombre" id="nombre" class="form-control" readonly>
+                                <input type="text" name="nombre_e" id="nombre_e" class="form-control" readonly>
                             </div>
                             <div class="form-group col-3">
                                 <label>Tipo de Persona</label>

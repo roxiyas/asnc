@@ -113,7 +113,7 @@ function consultar_nombre() { //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
                     $('#infoadic').val(data['infoadic']);
                     $('#idedocontratistas').val(data['idedocontratistas']);
                     $('#rif_cont').val(data['rifced']);
-                    $('#nombre').val(data['nombre']);
+                    $('#nombre_e').val(data['nombre']);
                     $('#tipopersona').val(data['tipopersona']);
                     $('#descdencom').val(data['descdencom']);
                     $('#descobjcont').val(data['descobjcont']);
