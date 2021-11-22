@@ -4,15 +4,18 @@
         public function iniciar($usuario,$contrasena){
 
             $this->db->select('*');
-			$this->db->where('nombre',$usuario);
-			$this->db->from('seguridad.usuarios');
-			$result = $this->db->get();
-
+			      $this->db->where('nombre',$usuario);
+			      $this->db->from('seguridad.usuarios');
+			      $result = $this->db->get();
+            //print_r($result->num_rows() == 1);die;
 			if($result->num_rows() == 1){
+
 				$db_clave = $result->row('password');
                 $unidad = $result->row('unidad');
+                //print_r($db_clave);die;
                 if(password_verify( base64_encode(hash('sha256', $contrasena, true)),$db_clave)){
-					return $result->row_array();
+				return $result->row_array();
+          //print_r($result->row_array());die;
 				}
 			}else{
 				return 'FALSE';

@@ -11,6 +11,7 @@ class Login extends CI_Controller {
         $usuario = $_POST['usuario'];
         $contrasena = $_POST ['contrasena'];
         $data = $this->login_model->iniciar($usuario,$contrasena);
+			//print_r($data);die;
 		if($data == 'FALSE'){
 			$this->session->set_flashdata('sa-error', 'Datos de autenticación erróneos.');
 			redirect('login/index', 'refres');
@@ -74,6 +75,7 @@ class Login extends CI_Controller {
 						),
 						PASSWORD_DEFAULT
 					);
+				//	print_r($clave_r);die;
 			$data = array (
 					'password'         => $clave_r,
 					'fecha_update'     => date('Y-m-d h:i:s'),
