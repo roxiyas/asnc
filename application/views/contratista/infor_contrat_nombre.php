@@ -27,7 +27,7 @@
                 <div class="panel-body" id="no_existe">
                     <div class="row">
                         <div class="col-md-12 mt-2 mb-2">
-                            <h4 class="mt-2"><label>Por Favor revise el Rif ingresado! y vuelva a intentar.</label></h4>
+                            <h4 class="mt-2"><label>Por Favor revise el Nombre ingresado! y vuelva a intentar.</label></h4>
                         </div>
                     </div>
                 </div>
