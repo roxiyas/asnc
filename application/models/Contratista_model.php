@@ -20,6 +20,16 @@ class Contratista_model extends CI_Model
         $query = $this->db_b->get('public.planillapirmera2');
         return $response = $query->row_array(); // sin el foreach
     }
+
+
+    public function llenar_contratista_nombre($data){
+        $this->db_b->select('*');
+        $this->db_b->like('nombre', $data['nombre']);
+        $this->db_b->order_by("proceso_id", "Desc");
+        $query = $this->db_b->get('public.planillapirmera2');
+        return $response = $query->row_array(); // sin el foreach
+    }
+
     public function consulta_planillaresumen($rifced){
         $this->db_b->select('*');
         $this->db_b->where('rifced', $rifced);
@@ -53,7 +63,8 @@ class Contratista_model extends CI_Model
         $this->db_b->order_by("p.proceso_id", "desc");
         $query = $this->db_b->get('public.accionistas r');
         return $query->result_array();
-    }
+      }
+
     public function consulta_comisarios($rif,$proceso_id){
         $this->db_b->select('p.rifced, p.proceso_id, r.proceso_id, r.cedcom, r.nomcom, r.apecom, r.tipocom, r.cpc, r.fecdurcom_at');
         $this->db_b->join('public.planillapirmera2 p', 'p.proceso_id = r.proceso_id');
