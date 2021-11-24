@@ -716,11 +716,11 @@ class Programacion extends CI_Controller {
 	}
 
     //LLENADO PARA EL MODAL DE PROYECTO / OBRAS
-    public function cons_items_proy(){
+    public function cons_items_proy_o(){
         if(!$this->session->userdata('session'))
         redirect('login');
 		$data = $this->input->post();
-		$data = $this->Programacion_model->cons_items_proy_o	($data);
+		$data = $this->Programacion_model->cons_items_proy_o($data);
 		
 		echo json_encode($data);
     }
@@ -732,6 +732,14 @@ class Programacion extends CI_Controller {
   		echo json_encode($data);
   	}
 
+	public function editar_fila_ip_o(){
+		if(!$this->session->userdata('session'))redirect('login');
+		$data = $this->input->post();
+		$data =	$this->Programacion_model->editar_fila_ip_b_o($data);
+		echo json_encode($data);
+	}
+
+	/////LLENA LOS SELECT DENTRO DE LOS MODALES
     public function llenar_par_pre_mod(){
   		if(!$this->session->userdata('session'))redirect('login');
   		$data = $this->input->post();
@@ -760,6 +768,29 @@ class Programacion extends CI_Controller {
   		echo json_encode($data);
   	}
 
+	public function llenar_alic_tip_obra(){
+		if(!$this->session->userdata('session'))redirect('login');
+		$data = $this->input->post();
+		$data =	$this->Programacion_model->llenar_alic_tip_obra($data);
+		echo json_encode($data);
+	}
+
+	public function llenar_alic_alc_obra(){
+		if(!$this->session->userdata('session'))redirect('login');
+		$data = $this->input->post();
+		$data =	$this->Programacion_model->llenar_alic_alc_obra($data);
+		echo json_encode($data);
+	}
+
+	public function llenar_alic_obj_obra(){
+		if(!$this->session->userdata('session'))redirect('login');
+		$data = $this->input->post();
+		$data =	$this->Programacion_model->llenar_alic_obj_obra($data);
+		echo json_encode($data);
+	}
+	
+
+	///////
     public function eliminar_proy(){
         if(!$this->session->userdata('session'))redirect('login');
         $data = $this->input->post();
@@ -860,6 +891,29 @@ class Programacion extends CI_Controller {
             $this->load->view('templates/navigator.php');
             $this->load->view('programacion/bien/editar_acc_b.php', $data);
             $this->load->view('templates/footer.php');
+        }elseif ($id_obj_comercial == '3') {
+            //OBRA
+            $data['part_pres'] = $this->Programacion_model->consulta_part_pres();
+            $data['fuente'] = $this->Programacion_model->consulta_fuente();
+            $data['act_com'] = $this->Programacion_model->consulta_act_com();
+            $data['ccnu'] = $this->Programacion_model->consulta_cnnu();
+            $data['estados'] 	= $this->Configuracion_model->consulta_estados();
+            $data['unid'] 	= $this->Programacion_model->consulta_unid();
+            $data['iva'] 	= $this->Programacion_model->consulta_iva();
+
+			$data['tip_obra'] 	= $this->Programacion_model->consulta_tip_obra();
+			$data['alcance_obra'] 	= $this->Programacion_model->consulta_alcance_obra();
+			$data['obj_obra'] 	= $this->Programacion_model->consulta_obj_obra();
+
+            $data['act_com2'] = $this->Programacion_model->consulta_act_com2();
+            $data['acc_cent'] = $this->Programacion_model->accion_centralizada();
+
+            $data['inf_1_acc'] = $this->Programacion_model->inf_1_acc($data['id_p_acc_centralizada']);
+
+            $this->load->view('templates/header.php');
+            $this->load->view('templates/navigator.php');
+            $this->load->view('programacion/obra/editar_acc.php', $data);
+            $this->load->view('templates/footer.php');
         }
     }
 
@@ -877,6 +931,22 @@ class Programacion extends CI_Controller {
 		      $data = $this->input->post();
 		        $data = $this->Programacion_model->inf_3_acc($data);
 		          echo json_encode($data);
+    }
+
+	public function ver_acc_editar_o(){
+        if(!$this->session->userdata('session'))
+        redirect('login');
+		$data = $this->input->post();
+		$data = $this->Programacion_model->inf_2_acc($data);
+		 echo json_encode($data);
+    }
+
+	public function ver_acc_editar_items_o(){
+        if(!$this->session->userdata('session'))
+        redirect('login');
+		$data = $this->input->post();
+		$data = $this->Programacion_model->inf_4_acc_o($data);
+		echo json_encode($data);
     }
 
     public function ver_acc_editar_items_b(){
@@ -1015,6 +1085,14 @@ class Programacion extends CI_Controller {
         redirect('login');
         $data = $this->input->post();
         $data = $this->Programacion_model->cons_items_acc_b($data);
+        echo json_encode($data);
+    }
+
+	public function cons_items_acc_o(){
+        if(!$this->session->userdata('session'))
+        redirect('login');
+        $data = $this->input->post();
+        $data = $this->Programacion_model->cons_items_acc_o($data);
         echo json_encode($data);
     }
 

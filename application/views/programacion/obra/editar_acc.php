@@ -15,21 +15,26 @@
                                             <p class="f-s-16">RIF.: <?=$rif?> <br>
                                             Código ONAPRE: <?=$codigo_onapre?> <br>
                                             Año: <b><?=$anio?></b></p>
-                                            <input type="hidden" id="id_programacion" name="id_programacion" value="<?=$id_programacion?>/<?=$id_p_proyecto?>">
+                                            <input type="hidden" id="id_programacion" name="id_programacion" value="<?=$id_programacion?>/<?=$id_p_acc_centralizada?>">
                                             <input type="hidden" name="fecha_est" id="fecha_est" value="<?=$anio?>">
                                         </blockquote>
                                     </div>
                                 </div>
                             </div>
-                            <?php foreach($inf_1 as $inf_1):?><?php endforeach;?>
-                            <div class="col-9 mt-2 form-group">
-                                <label>Nombre del Proyecto <b style="color:red">*</b></label>
-                                <input id="nombre_proyecto_a" name="nombre_proyecto_a" value="<?=$inf_1['nombre_proyecto']?>" type="text" class="form-control" >
-                            </div>
-                            <div class="form-group mt-2  col-3">
+                             <?php foreach($inf_1_acc as $inf_1_acc):?><?php endforeach;?>
+                             <div class="col-6 mt-3 form-group">
+                                 <label>Acción Centralizada<b style="color:red">*</b></label><br>
+                                 <select style="width: 100%;"  name="id_accion_centralizada" id="id_accion_centralizada" class="default-select2 form-control">
+                                     <option value="<?=$inf_1_acc['id_accion_centralizada']?>"><?=$inf_1_acc['desc_accion_centralizada']?></option>
+                                     <?php foreach ($acc_cent as $data): ?>
+                                     <option value="<?=$data['id_accion_centralizada']?>"><?=$data['desc_accion_centralizada']?></option>
+                                     <?php endforeach; ?>
+                                 </select>
+                             </div>
+							 <div class="form-group mt-3 col-3">
                                 <label>Objeto de Contratación</label>
                                 <select id="id_obj_comercial" name="id_obj_comercial" class="default-select2 form-control">
-                                    <option value="<?=$inf_1['id_obj_comercial']?>"><?=$inf_1['desc_objeto_contrata']?></option>
+                                    <option value="<?=$inf_1_acc['id_obj_comercial']?>"><?=$inf_1_acc['desc_objeto_contrata']?></option>
                                     <?php foreach ($act_com as $data): ?>
                                         <option value="<?=$data['id_objeto_contrata']?>"><?=$data['desc_objeto_contrata']?></option>
                                     <?php endforeach; ?>
@@ -321,7 +326,7 @@
 						<input id="alcance_obra_m" class="form-control" name="alcance_obra_m" class="form-control" disabled>
                     </div>
 					<div class="form-group col-4">
-                        <label>Alcance de la Obra </label>
+                        <label>Objeto de la Obra </label>
                         <input type="hidden" id="id_obj_obra_m" class="form-control" name="id_obj_obra_m" class="form-control" disabled>
 						<input id="obj_obra_m" class="form-control" name="obj_obra_m" class="form-control" disabled>
                     </div>
@@ -456,7 +461,7 @@
     </div>
 </div>-
 
-<script src="<?=base_url()?>/js/obra/llenar_editar_proy.js"></script>
+<script src="<?=base_url()?>/js/obra/llenar_editar_acc.js"></script>
 <script src="<?=base_url()?>/js/obra/calculos_edit.js"></script>
 
 <script src="<?=base_url()?>/js/dependientes.js"></script>

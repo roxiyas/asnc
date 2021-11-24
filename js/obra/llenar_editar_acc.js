@@ -2,14 +2,14 @@ if ($('#id_programacion').val().length != " "){//FUNCION EN DONDE SE CARGA LA TA
     var id_programacion = $('#id_programacion').val();
     var separar   = id_programacion.split("/");
     var id_p_programacion = separar['0'];
-    var id_p_proyecto = separar['1'];
+	var id_p_acc_centralizada = separar['1'];
 
-    var base_url =window.location.origin+'/asnc/index.php/Programacion/ver_proy_editar';
+    var base_url =window.location.origin+'/asnc/index.php/Programacion/ver_acc_editar_o';
     //var base_url = '/index.php/Programacion/ver_proy_editar';
     $.ajax({
        url:base_url,
        method: 'post',
-       data: {id_p_proyecto: id_p_proyecto},
+       data: {id_p_acc_centralizada: id_p_acc_centralizada},
        dataType: 'json',
 
         success: function(data){
@@ -60,19 +60,20 @@ if ($('#id_programacion').val().length != " "){//FUNCION EN DONDE SE CARGA LA TA
     var id_programacion = $('#id_programacion').val();
     var separar   = id_programacion.split("/");
     var id_p_programacion = separar['0'];
-    var id_p_proyecto = separar['1'];
+    var id_p_acc_centralizada = separar['1'];
 
-    var base_url =window.location.origin+'/asnc/index.php/Programacion/ver_proy_editar_items_o';
+    var base_url =window.location.origin+'/asnc/index.php/Programacion/ver_acc_editar_items_o';
     //var base_url = '/index.php/Programacion/ver_proy_editar_items_o';
     $.ajax({
        url:base_url,
        method: 'post',
-       data: {id_p_proyecto: id_p_proyecto},
+       data: {id_p_acc_centralizada: id_p_acc_centralizada},
        dataType: 'json',
 
         success: function(data){
             $("#target_req tbody").html('');
             if(data != null && $.isArray(data)){
+				
                 $.each(data, function(index, value){
 					
                     var newRow = document.createElement('tr');
@@ -135,14 +136,15 @@ if ($('#id_programacion').val().length != " "){//FUNCION EN DONDE SE CARGA LA TA
 function editar_modal(id){
     var id_items_proy = id
 
-    var base_url =window.location.origin+'/asnc/index.php/Programacion/cons_items_proy_o';
-    var base_url1 =window.location.origin+'/asnc/index.php/Programacion/llenar_par_pre_mod';
-    var base_url2 =window.location.origin+'/asnc/index.php/Programacion/llenar_uni_med_mod';
-    var base_url3 =window.location.origin+'/asnc/index.php/Programacion/llenar_alic_iva_mod';
+	 var base_url =window.location.origin+'/asnc/index.php/Programacion/cons_items_acc_o';
+     var base_url1 =window.location.origin+'/asnc/index.php/Programacion/llenar_par_pre_mod';
+     var base_url2 =window.location.origin+'/asnc/index.php/Programacion/llenar_uni_med_mod';
+     var base_url3 =window.location.origin+'/asnc/index.php/Programacion/llenar_alic_iva_mod';
 
-	var base_url4 =window.location.origin+'/asnc/index.php/Programacion/llenar_alic_tip_obra';
-	var base_url5 =window.location.origin+'/asnc/index.php/Programacion/llenar_alic_alc_obra';
-	var base_url6 =window.location.origin+'/asnc/index.php/Programacion/llenar_alic_obj_obra';
+	 var base_url4 =window.location.origin+'/asnc/index.php/Programacion/llenar_alic_tip_obra';
+	 var base_url5 =window.location.origin+'/asnc/index.php/Programacion/llenar_alic_alc_obra';
+	 var base_url6 =window.location.origin+'/asnc/index.php/Programacion/llenar_alic_obj_obra';
+ 
 
     //var base_url = '/index.php/Programacion/cons_items_proy';
     //var base_url1 = '/index.php/Programacion/llenar_par_pre_mod';
@@ -155,6 +157,7 @@ function editar_modal(id){
         data: {id_items_proy: id_items_proy},
         dataType: 'json',
         success: function(response){
+
             $('#id_items').val(id);
             $('#id_part_pres').val(response['id_partidad_presupuestaria']);
             $('#cod_partida_pre').val(response['codigopartida_presupuestaria']);
@@ -242,6 +245,7 @@ function editar_modal(id){
                     });
                 }
             })
+
 
 			var id_tipo_obra_m = response['id_tip_obra'];
             $.ajax({

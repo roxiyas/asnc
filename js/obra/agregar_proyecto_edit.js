@@ -39,10 +39,10 @@ function agregar_ccnuToCartTable(cells){
  	var can  = $("#cantidad").val();
    	var pret  = $("#precio_total_e").val();
 
-	var i = $('#estimado_i').val();
-	var ii = $('#estimado_ii').val();
-	var iii = $('#estimado_iii').val();
-	var iv = $('#estimado_iV').val();
+	var i = $('#i').val();
+	var ii = $('#ii').val();
+	var iii = $('#iii').val();
+	var iv = $('#iv').val();
 
 	var al_iva  = $("#id_alicuota_iva").val();
 	var al_iva1 = al_iva.split("/")[0];
