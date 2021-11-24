@@ -473,7 +473,7 @@ class Programacion extends CI_Controller {
             $this->load->view('programacion/servicio/editar_proy.php', $data);
             $this->load->view('templates/footer.php');
 
-        }elseif ($id_obj_comercial == '1') {
+        }elseif ($id_obj_comercial == '1'){
             //BIEN
             $data['inf_1'] = $this->Programacion_model->inf_1($data['id_p_proyecto']);
 
@@ -493,6 +493,31 @@ class Programacion extends CI_Controller {
             $this->load->view('templates/header.php');
             $this->load->view('templates/navigator.php');
             $this->load->view('programacion/bien/editar_proy_b.php', $data);
+            $this->load->view('templates/footer.php');
+        }elseif ($id_obj_comercial == '3'){
+            //OBRA
+            $data['inf_1'] = $this->Programacion_model->inf_1($data['id_p_proyecto']);
+
+            //Proyecto
+            $data['part_pres'] = $this->Programacion_model->consulta_part_pres();
+            $data['fuente'] = $this->Programacion_model->consulta_fuente();
+            $data['act_com'] = $this->Programacion_model->consulta_act_com();
+          
+			$data['tip_obra'] 	= $this->Programacion_model->consulta_tip_obra();
+			$data['alcance_obra'] 	= $this->Programacion_model->consulta_alcance_obra();
+			$data['obj_obra'] 	= $this->Programacion_model->consulta_obj_obra();
+
+            $data['estados'] 	= $this->Configuracion_model->consulta_estados();
+            $data['unid'] 	= $this->Programacion_model->consulta_unid();
+            $data['iva'] 	= $this->Programacion_model->consulta_iva();
+
+            //ACCION CENTRALIZADA
+            $data['act_com2'] = $this->Programacion_model->consulta_act_com2();
+            $data['acc_cent'] = $this->Programacion_model->accion_centralizada();
+
+            $this->load->view('templates/header.php');
+            $this->load->view('templates/navigator.php');
+            $this->load->view('programacion/obra/editar_proy.php', $data);
             $this->load->view('templates/footer.php');
         }
     }
@@ -517,6 +542,14 @@ class Programacion extends CI_Controller {
         redirect('login');
 		$data = $this->input->post();
 		$data = $this->Programacion_model->inf_3_b($data);
+		echo json_encode($data);
+    }
+
+	public function ver_proy_editar_items_o(){
+        if(!$this->session->userdata('session'))
+        redirect('login');
+		$data = $this->input->post();
+		$data = $this->Programacion_model->inf_3_o($data);
 		echo json_encode($data);
     }
 
@@ -590,10 +623,10 @@ class Programacion extends CI_Controller {
 
         $p_items = array(
             'id_par_presupuestaria'  => $this->input->post('par_presupuestaria_acc'),
-			         'id_ccnu' 		         => $this->input->post('id_ccnu_acc'),
+			'id_ccnu' 		         => $this->input->post('id_ccnu_acc'),
             'fecha_desde'   	     => date('Y-m-d'),
             'fecha_hasta'   	     => date('Y-m-d'),
-			         'especificacion' 		 => $this->input->post('especificacion_acc'),
+			'especificacion' 		 => $this->input->post('especificacion_acc'),
             'id_unidad_medida' 		 => $this->input->post('id_unidad_medida_acc'),
             'cantidad'               => $this->input->post('cantidad_acc'),
             'i' 		             => $this->input->post('I_acc'),
@@ -625,12 +658,70 @@ class Programacion extends CI_Controller {
   	    }
     }
 
+	public function editar_programacion_proy_o(){
+		if(!$this->session->userdata('session'))redirect('login');
+
+        $nombre_proy = $this->input->POST('nombre_proyecto_a');
+
+        $id_programaciones  = $this->input->POST('id_programacion');
+        $separar          = explode("/", $id_programaciones);
+        $id_programacion  = $separar['0'];
+        $id_p_proyecto    = $separar['1'];
+
+        $p_proyecto = array(
+            'nombre_proyecto'        => $this->input->POST('nombre_proyecto_a'),
+            'id_obj_comercial'       => 3,
+            'id_usuario' 		     => $this->session->userdata('id_user'),
+            'estatus'                => 1
+        );
+
+       $p_items = array(
+           'id_par_presupuestaria'  => $this->input->post('par_presupuestaria'),
+           'id_ccnu' 		        => $this->input->post('id_ccnu'),
+           'id_tip_obra' 		    => $this->input->post('id_tip_obra_e'),
+           'id_alcance_obra' 		=> $this->input->post('id_alcance_obra_e'),
+           'id_obj_obra' 		    => $this->input->post('id_obj_obra_e'),
+           'fecha_desde'   	        => $this->input->POST('fecha_desde'),
+           'fecha_hasta'   	        => $this->input->POST('fecha_hasta'),
+           'especificacion' 		=> $this->input->post('especificacion'),
+           'id_unidad_medida' 		=> $this->input->post('id_unidad_medida'),
+           'i' 		                => $this->input->post('i'),
+           'ii' 		            => $this->input->post('ii'),
+           'iii' 		            => $this->input->post('iii'),
+           'iv' 		            => $this->input->post('iv'),
+           'precio_total' 		    => $this->input->post('precio_total_e'),
+           'id_alicuota_iva' 		=> $this->input->post('id_alicuota_iva'),
+           'iva_estimado' 		    => $this->input->post('iva_estimado'),
+           'monto_estimado' 	    => $this->input->post('monto_estimado'),
+       );
+
+       $p_ffinanciamiento = array(
+           'id_estado'   		        => $this->input->post('id_estado'),
+           'id_par_presupuestaria' 	    => $this->input->post('par_presupuestaria_ff'),
+           'id_fuente_financiamiento'   => $this->input->post('fuente_financiamiento'),
+           'descripcion_ff' 	        => $this->input->post('descripcion_ff'),
+           'porcentaje' 	            => $this->input->post('porcentaje'),
+       );
+      /* $data = $this->Programacion_model->save_obra($acc_cargar,$p_proyecto,$p_acc_centralizada,$p_items,$p_ffinanciamiento);
+       echo json_encode($data);*/
+
+	   $data = $this->Programacion_model->editar_programacion_proy_o($id_p_proyecto, $id_programacion, $p_proyecto,$p_items,$p_ffinanciamiento);
+	   if ($data) {
+		   $this->session->set_flashdata('sa-success2', 'Se guardo los datos correctamente');
+		   redirect('Programacion/nueva_prog?id='.$id_programacion);
+	   }else{
+			 $this->session->set_flashdata('sa-error', 'error');
+			redirect('Programacion/nueva_prog?id='.$id_programacion);
+		 }
+	}
+
     //LLENADO PARA EL MODAL DE PROYECTO / OBRAS
     public function cons_items_proy(){
         if(!$this->session->userdata('session'))
         redirect('login');
 		$data = $this->input->post();
-		$data = $this->Programacion_model->cons_items_proy($data);
+		$data = $this->Programacion_model->cons_items_proy_o	($data);
+		
 		echo json_encode($data);
     }
 
