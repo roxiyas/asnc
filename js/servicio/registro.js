@@ -1,8 +1,8 @@
 function buscar_ccnnu(){ //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
     var ccnu_b = $('#ccnu').val();
 
-    //var base_url =window.location.origin+'/asnc/index.php/Programacion/llenar_selc_ccnu_m';
-    var base_url = '/index.php/Programacion/llenar_selc_ccnu_m';
+    var base_url =window.location.origin+'/asnc/index.php/Programacion/llenar_selc_ccnu_m';
+    //var base_url = '/index.php/Programacion/llenar_selc_ccnu_m';
     $.ajax({
         url:base_url,
         method: 'post',
@@ -34,8 +34,8 @@ function reg_servicio(){
 
             event.preventDefault();
             var datos = new FormData($("#reg_servicio")[0]);
-            //var base_url =window.location.origin+'/asnc/index.php/Programacion/registrar_servicio';
-            var base_url = '/index.php/Programacion/registrar_servicio';
+            var base_url =window.location.origin+'/asnc/index.php/Programacion/registrar_servicio';
+            //var base_url = '/index.php/Programacion/registrar_servicio';
             $.ajax({
                 url:base_url,
                 method: 'POST',

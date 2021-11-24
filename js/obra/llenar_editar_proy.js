@@ -62,8 +62,8 @@ if ($('#id_programacion').val().length != " "){//FUNCION EN DONDE SE CARGA LA TA
     var id_p_programacion = separar['0'];
     var id_p_proyecto = separar['1'];
 
-    var base_url =window.location.origin+'/asnc/index.php/Programacion/ver_proy_editar_items';
-    //var base_url = '/index.php/Programacion/ver_proy_editar_items';
+    var base_url =window.location.origin+'/asnc/index.php/Programacion/ver_proy_editar_items_o';
+    //var base_url = '/index.php/Programacion/ver_proy_editar_items_o';
     $.ajax({
        url:base_url,
        method: 'post',
@@ -73,8 +73,10 @@ if ($('#id_programacion').val().length != " "){//FUNCION EN DONDE SE CARGA LA TA
         success: function(data){
             $("#target_req tbody").html('');
             if(data != null && $.isArray(data)){
+				console.log(data);
+				
                 $.each(data, function(index, value){
-
+					
                     var newRow = document.createElement('tr');
 
                     var increment = increment +1;
@@ -83,7 +85,10 @@ if ($('#id_programacion').val().length != " "){//FUNCION EN DONDE SE CARGA LA TA
                     <td>${value.id_p_items}<input type="text" name="id_p_items[]" id="ins-type-${increment}" hidden value="${value.id_p_items}"></td>
                     <td>${value.codigopartida_presupuestaria}<input type="text" name="par_presupuestaria[]" id="ins-type-${increment}" hidden value="${value.id_partidad_presupuestaria}"></td>
 
-                    <td>${value.desc_ccnu}<input type="text" name="id_ccnu[]" id="ins-type-${increment}" hidden value="${value.id_ccnu}"></td>
+                    <td>${value.descripcion_tip_obr}<input type="text" name="id_tip_obra_e[]" id="ins-type-${increment}" hidden value="${value.id_tip_obra}"></td>
+					<td>${value.descripcion_alcance_obra}<input type="text" name="id_alcance_obra_e[]" id="ins-type-${increment}" hidden value="${value.id_alcance_obra}"></td>
+					<td>${value.descripcion_obj_obra}<input type="text" name="id_obj_obra_e[]" id="ins-type-${increment}" hidden value="${value.id_obj_obra}"></td>
+
                     <td>${value.fecha_desde}<input type="text" name="fecha_desde[]" id="ins-type-${increment}" hidden value="${value.fecha_desde}"></td>
                     <td>${value.fecha_hasta}<input type="text" name="fecha_hasta[]" id="ins-type-${increment}" hidden value="${value.fecha_hasta}"></td>
 
@@ -95,7 +100,7 @@ if ($('#id_programacion').val().length != " "){//FUNCION EN DONDE SE CARGA LA TA
                     <td>${value.iii}<input type="text" hidden name="iii[]" id="ins-pres-${increment}" value="${value.iii}"></td>
                     <td>${value.iv}<input type="text" hidden name="iv[]" id="ins-pres-${increment}" value="${value.iv}"></td>
 
-                    <td>${value.precio_total}<input type="text" hidden name="precio_total[]" id="ins-pres-${increment}" value="${value.precio_total}"></td>
+                    <td>${value.precio_total}<input type="text" hidden name="precio_total_e[]" id="ins-pres-${increment}" value="${value.precio_total}"></td>
                     <td>${value.alicuota_iva}<input type="text" hidden name="id_alicuota_iva[]" id="ins-pres-${increment}" value="${value.alicuota_iva}"></td>
                     <td>${value.iva_estimado}<input type="text" hidden name="iva_estimado[]" id="ins-pres-${increment}" value="${value.iva_estimado}"></td>
                     <td>${value.monto_estimado}<input type="text" hidden name="monto_estimado[]" id="ins-pres-${increment}" value="${value.monto_estimado}"></td>
@@ -131,6 +136,7 @@ if ($('#id_programacion').val().length != " "){//FUNCION EN DONDE SE CARGA LA TA
 
 function editar_modal(id){
     var id_items_proy = id
+
      var base_url =window.location.origin+'/asnc/index.php/Programacion/cons_items_proy';
      var base_url1 =window.location.origin+'/asnc/index.php/Programacion/llenar_par_pre_mod';
      var base_url2 =window.location.origin+'/asnc/index.php/Programacion/llenar_uni_med_mod';
@@ -147,6 +153,7 @@ function editar_modal(id){
         data: {id_items_proy: id_items_proy},
         dataType: 'json',
         success: function(response){
+			console.log(response);
 
             $('#id_items').val(id);
             $('#id_part_pres').val(response['id_partidad_presupuestaria']);

@@ -113,6 +113,20 @@
 										</li>
 									</ul>
 								</li>
+
+								<li class="has-sub">
+									<a href="javascript:;">
+										<b class="caret"></b>
+										<span>Llamado a Concurso</span>
+									</a>
+									<ul class="sub-menu">
+										<li>
+											<a>
+												- Registro llamado a consurso
+											</a>
+										</li>
+									</ul>
+								</li>
 							<?php endif; ?>
 						</ul>
 					</li>
@@ -175,6 +189,7 @@
 							</li>
 							<li class="has-sub">
 								<a href="javascript:;">
+								<b class="caret"></b>
 									<span>Tablas Parametros</span>
 								</a>
 								<ul class="sub-menu">
@@ -248,6 +263,45 @@
 											- Estado Civil
 										</a>
 									</li>
+								</ul>
+							</li>
+							<li class="has-sub">
+								<a href="javascript:;">
+								<b class="caret"></b>
+									<span>Configuración de Públicaciones</span>
+								</a>
+								<ul class="sub-menu">
+								<li>
+										<a href="<?= base_url() ?>index.php/Publicaciones/banco">
+											- Banco
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Publicaciones/tipo_cuenta">
+											- Tipo de Cuenta
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Publicaciones/datosbancarios">
+											- Datos Bancarios
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Publicaciones/modalidad">
+										- Modalidad
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Publicaciones/mecanismo">
+											- Mécanismo
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url() ?>index.php/Publicaciones/actividad">
+											- Actividad
+										</a>
+									</li>
+									
 								</ul>
 							</li>
 							<li class="has-sub">

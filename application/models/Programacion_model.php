@@ -444,7 +444,7 @@
         }
 
         //------------------------------------------------------
-        // INVETIGAR
+        // INVESTIGAR
         public function inf_1($id_p_proyecto){
             $this->db->select('pp.id_p_proyecto,
                                pp.nombre_proyecto,
@@ -593,6 +593,43 @@
             return $query->result_array();
         }
 
+		public function inf_3_o($id_p_proyecto){
+            $this->db->select('pi2.id_p_items,
+                               pi2.id_enlace,
+                               pi2.id_partidad_presupuestaria,
+                               pp.desc_partida_presupuestaria,
+                               pp.codigopartida_presupuestaria,
+                               pi2.id_tip_obra,
+                               to2.descripcion_tip_obr,
+                               pi2.id_alcance_obra,
+                               ao.descripcion_alcance_obra,
+                               pi2.id_obj_obra,
+                               oo.descripcion_obj_obra,
+                               pi2.fecha_desde,
+                               pi2.fecha_hasta,
+                               pi2.especificacion,
+                               pi2.id_unidad_medida,
+                               um.desc_unidad_medida,
+                               pi2.i,
+                               pi2.ii,
+                               pi2.iii,
+                               pi2.iv,
+                               pi2.precio_total,
+                               pi2.alicuota_iva,
+                               pi2.iva_estimado,
+                               pi2.monto_estimado');
+            $this->db->join('programacion.ccnu c2','c2.codigo_ccnu = pi2.id_ccnu', 'left');
+            $this->db->join('programacion.tip_obra to2','to2.id_tip_obra = pi2.id_tip_obra', 'left');
+            $this->db->join('programacion.alcance_obra ao','ao.id_alcance_obra = pi2.id_alcance_obra', 'left');
+            $this->db->join('programacion.obj_obra oo','oo.id_obj_obra = pi2.id_obj_obra', 'left');
+            $this->db->join('programacion.partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
+            $this->db->join('programacion.unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
+            $this->db->where('pi2.id_enlace', $id_p_proyecto['id_p_proyecto']);
+            $this->db->where('pi2.id_p_acc', 0);
+            $query = $this->db->get('programacion.p_items pi2');
+            return $query->result_array();
+        }
+
         public function editar_programacion_proy($id_p_proyecto, $id_programacion, $p_proyecto,$p_items,$p_ffinanciamiento){
 
             $this->db->where('id_programacion', $id_programacion);
@@ -717,7 +754,76 @@
             return true;
         }
 
+		public function editar_programacion_proy_o($id_p_proyecto, $id_programacion, $p_proyecto, $p_items, $p_ffinanciamiento){
+			
+			//print_r($id_p_proyecto);die;
+
+            $this->db->where('id_programacion', $id_programacion);
+            $this->db->where('id_p_proyecto', $id_p_proyecto);
+            $update = $this->db->update('programacion.p_proyecto', $p_proyecto);
+
+            if ($update){
+                $this->db->where('id_enlace', $id_p_proyecto);
+                $this->db->where('id_p_acc', 0);
+                $this->db->delete('programacion.p_items');
+
+				
+                    $cant_proy = $p_items['id_tip_obra'];
+                    $count_prog = count($cant_proy);
+                    for ($i=0; $i < $count_prog; $i++) {
+                        $data_inf = array(
+                            'id_enlace'                  => $id_p_proyecto,
+                            'id_p_acc'                   => 0,
+                            'id_partidad_presupuestaria' => $p_items['id_par_presupuestaria'][$i],
+							'id_ccnu'                    => 0,
+                            'id_tip_obra'                => $p_items['id_tip_obra'][$i],
+                            'id_alcance_obra'            => $p_items['id_alcance_obra'][$i],
+                            'id_obj_obra'                => $p_items['id_obj_obra'][$i],
+                            'fecha_desde'                => $p_items['fecha_desde'][$i],
+                            'fecha_hasta'                => $p_items['fecha_hasta'][$i],
+                            'especificacion'             => $p_items['especificacion'][$i],
+                            'id_unidad_medida'           => $p_items['id_unidad_medida'][$i],
+                            'cantidad'                   => 0,
+                            'i'                          => $p_items['i'][$i],
+                            'ii'                         => $p_items['ii'][$i],
+                            'iii'                        => $p_items['iii'][$i],
+                            'iv'                         => $p_items['iv'][$i],
+                            'cant_total_distribuir'      => 0,
+                            'costo_unitario'             => 0,
+                            'precio_total'               => $p_items['precio_total'][$i],
+                            'alicuota_iva'               => $p_items['id_alicuota_iva'][$i],
+                            'iva_estimado'               => $p_items['iva_estimado'][$i],
+                            'monto_estimado'             => $p_items['monto_estimado'][$i],
+                        );
+						//print_r($data_inf);die;
+                        $this->db->insert('programacion.p_items',$data_inf);
+                    }
+
+                    $this->db->where('id_enlace', $id_p_proyecto);
+                    $this->db->where('id_p_acc', 0);
+                    $this->db->delete('programacion.p_ffinanciamiento');
+
+                    $cant_pff = $p_ffinanciamiento['id_par_presupuestaria'];
+                    $count_pff = count($cant_pff);
+
+                    for ($i=0; $i < $count_pff; $i++) {
+
+                        $data2 = array(
+                            'id_enlace'                  => $id_p_proyecto,
+                            'id_p_acc'                   => 0,
+                            'id_estado'                  => $p_ffinanciamiento['id_estado'][$i],
+                            'id_partidad_presupuestaria' => $p_ffinanciamiento['id_par_presupuestaria'][$i],
+                            'id_fuente_financiamiento'   => $p_ffinanciamiento['id_fuente_financiamiento'][$i],
+                            'porcentaje'                 => $p_ffinanciamiento['porcentaje'][$i],
+                        );
+                        $this->db->insert('programacion.p_ffinanciamiento',$data2);
+                    }
+            }
+            return true;
+        }
+
         public function cons_items_proy($data){
+			print_r($data);die;
             $this->db->select('pi2.id_p_items,
                         	   pi2.id_enlace,
                                pi2.id_partidad_presupuestaria,
@@ -747,6 +853,45 @@
             $this->db->where('pi2.id_p_items', $data['id_items_proy']);
             $this->db->where('pi2.id_p_acc', 0);
             $query = $this->db->get('programacion.p_items pi2');
+			
+            return $query->row_array();
+        }
+
+		public function cons_items_proy_o($data){
+            $this->db->select('pi2.id_p_items,
+								pi2.id_enlace,
+								pi2.id_partidad_presupuestaria,
+								pp.desc_partida_presupuestaria,
+								pp.codigopartida_presupuestaria,
+								pi2.id_tip_obra,
+								to2.descripcion_tip_obr,
+								pi2.id_alcance_obra,
+								ao.descripcion_alcance_obra,
+								pi2.id_obj_obra,
+								oo.descripcion_obj_obra,
+								pi2.fecha_desde,
+								pi2.fecha_hasta,
+								pi2.especificacion,
+								pi2.id_unidad_medida,
+								um.desc_unidad_medida,
+								pi2.i,
+								pi2.ii,
+								pi2.iii,
+								pi2.iv,
+								pi2.precio_total,
+								pi2.alicuota_iva,
+								pi2.iva_estimado,
+								pi2.monto_estimado');
+				$this->db->join('programacion.ccnu c2','c2.codigo_ccnu = pi2.id_ccnu', 'left');
+				$this->db->join('programacion.tip_obra to2','to2.id_tip_obra = pi2.id_tip_obra', 'left');
+				$this->db->join('programacion.alcance_obra ao','ao.id_alcance_obra = pi2.id_alcance_obra', 'left');
+				$this->db->join('programacion.obj_obra oo','oo.id_obj_obra = pi2.id_obj_obra', 'left');
+				$this->db->join('programacion.partida_presupuestaria pp','pp.id_partida_presupuestaria = pi2.id_partidad_presupuestaria');
+				$this->db->join('programacion.unidad_medida um','um.id_unidad_medida = pi2.id_unidad_medida');
+            $this->db->where('pi2.id_p_items', $data['id_items_proy']);
+            $this->db->where('pi2.id_p_acc', 0);
+            $query = $this->db->get('programacion.p_items pi2');
+			
             return $query->row_array();
         }
 
@@ -1044,6 +1189,9 @@
                             'id_p_acc'                   => 1,
                             'id_partidad_presupuestaria' => $p_items['id_par_presupuestaria'][$i],
                             'id_ccnu'                    => $p_items['id_ccnu'][$i],
+							'id_tip_obra'                => 0,
+                            'id_alcance_obra'            => 0,
+                            'id_obj_obra'                => 0,
                             'fecha_desde'                => $p_items['fecha_desde'][$i],
                             'fecha_hasta'                => $p_items['fecha_hasta'][$i],
                             'especificacion'             => $p_items['especificacion'][$i],
@@ -1105,6 +1253,9 @@
                             'id_p_acc'                   => 1,
                             'id_partidad_presupuestaria' => $p_items['id_par_presupuestaria'][$i],
                             'id_ccnu'                    => $p_items['id_ccnu'][$i],
+							'id_tip_obra'                => 0,
+                            'id_alcance_obra'            => 0,
+                            'id_obj_obra'                => 0,
                             'fecha_desde'                => $p_items['fecha_desde'],
                             'fecha_hasta'                => $p_items['fecha_hasta'],
                             'especificacion'             => $p_items['especificacion'][$i],
@@ -1119,7 +1270,7 @@
                             'precio_total'               => $p_items['precio_total'][$i],
                             'alicuota_iva'               => $p_items['id_alicuota_iva'][$i],
                             'iva_estimado'               => $p_items['iva_estimado'][$i],
-                            'monto_estimado'               => $p_items['monto_estimado'][$i],
+                            'monto_estimado'             => $p_items['monto_estimado'][$i],
                         );
                         $this->db->insert('programacion.p_items',$data1);
                     }

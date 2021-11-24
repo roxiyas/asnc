@@ -75,10 +75,10 @@ function cant_total(){
             swal("Deleted!", "Your imaginary file has been deleted.", "success");
         });
 
-        $("#precio_total").prop('disabled', true);
+        $("#precio_total_e").prop('disabled', true);
         $("#id_alicuota_iva").prop('disabled', true);
     }else {
-        $("#precio_total").prop('disabled', false);
+        $("#precio_total_e").prop('disabled', false);
         $("#id_alicuota_iva").prop('disabled', false);
     }
 }
@@ -106,17 +106,17 @@ function calculo(){
             swal("Deleted!", "Your imaginary file has been deleted.", "success");
         });
 
-        $("#precio_total").prop('disabled', true);
+        $("#precio_total_e").prop('disabled', true);
         $("#id_alicuota_iva").prop('disabled', true);
     }else {
-        $("#precio_total").prop('disabled', false);
+        $("#precio_total_e").prop('disabled', false);
         $("#id_alicuota_iva").prop('disabled', false);
         //Calculo Cantidad x DIstribuir
             var can_x_distr =   cantidad - i - ii - iii - iv
             $('#cant_total_distribuir').val(can_x_distr);
 
         //Remplazar decimales para caculos
-            var precio_total = $('#precio_total').val();
+            var precio_total = $('#precio_total_e').val();
             var newstr = precio_total.replace('.', "");
             var newstr2 = newstr.replace('.', "");
             var newstr3 = newstr2.replace('.', "");
@@ -188,7 +188,7 @@ function verif_d(){
 
         $("#especificacion").prop('disabled', true);
         $("#id_unidad_medida").prop('disabled', true);
-        $("#precio_total").prop('disabled', true);
+        $("#precio_total_e").prop('disabled', true);
         $("#i").prop('disabled', true);
         $("#ii").prop('disabled', true);
         $("#iii").prop('disabled', true);
@@ -197,7 +197,7 @@ function verif_d(){
     }else {
         $("#especificacion").prop('disabled', false);
         $("#id_unidad_medida").prop('disabled', false);
-        $("#precio_total").prop('disabled', false);
+        $("#precio_total_e").prop('disabled', false);
         $("#btn_editar").prop('disabled', false);
     }
 }
@@ -223,7 +223,7 @@ function verif_h(){
 
         $("#especificacion").prop('disabled', true);
         $("#id_unidad_medida").prop('disabled', true);
-        $("#precio_total").prop('disabled', true);
+        $("#precio_total_e").prop('disabled', true);
         $("#I").prop('disabled', true);
         $("#II").prop('disabled', true);
         $("#III").prop('disabled', true);
@@ -231,7 +231,7 @@ function verif_h(){
     }else{
         $("#especificacion").prop('disabled', false);
         $("#id_unidad_medida").prop('disabled', false);
-        $("#precio_total").prop('disabled', false);
+        $("#precio_total_e").prop('disabled', false);
     }
 }
 
@@ -313,7 +313,7 @@ $(document).ready(function(){
         }
     });
 
-    $("#precio_total").on({
+    $("#precio_total_e").on({
         "focus": function (event) {
             $(event.target).select();
         },
