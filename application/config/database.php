@@ -97,28 +97,28 @@ $db['default'] = array(
 );
 
 //Base de datos solo de consulta del SNC Anterior
- //$db['SNCenlinea'] = array(
-  //	'dsn'	=> '',
-  //	'hostname' => 'localhost',
-  //	'username' => 'postgres',
-  //	'password' => '1234',
- //	'database' => 'SNCenlinea',
-  //	'dbdriver' => 'postgre',
-  //	'port'	   => '5432',
-  //	'dbprefix' => '',
-  //	'pconnect' => FALSE,
-  //	'db_debug' => (ENVIRONMENT !== 'production'),
-  //	'cache_on' => FALSE,
-  //	'cachedir' => '',
-  //	'char_set' => 'utf8',
-  //	'dbcollat' => 'utf8_general_ci',
-  //	'swap_pre' => '',
-  //	'encrypt' => FALSE,
-  //	'compress' => FALSE,
-  //	'stricton' => FALSE,
-  //	'failover' => array(),
-  //	'save_queries' => TRUE
-//  );
+/*$db['SNCenlinea'] = array(
+  		'dsn'	=> '',
+  		'hostname' => 'localhost',
+  		'username' => 'postgres',
+  		'password' => '1234',
+ 		'database' => 'RNC',
+  		'dbdriver' => 'postgre',
+  		'port'	   => '5432',
+  		'dbprefix' => '',
+  		'pconnect' => FALSE,
+  		'db_debug' => (ENVIRONMENT !== 'production'),
+  		'cache_on' => FALSE,
+  		'cachedir' => '',
+  		'char_set' => 'utf8',
+  		'dbcollat' => 'utf8_general_ci',
+  		'swap_pre' => '',
+  		'encrypt' => FALSE,
+  		'compress' => FALSE,
+  		'stricton' => FALSE,
+  		'failover' => array(),
+  		'save_queries' => TRUE
+  );*/
 
 
 $db['SNCenlinea'] = array(

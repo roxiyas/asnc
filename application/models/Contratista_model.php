@@ -11,7 +11,19 @@ class Contratista_model extends CI_Model
         $this->db_b = $this->load->database('SNCenlinea', true);
     }
 
+	public function consulta_estados(){
+		$this->db_b->select('*');
+        $this->db_b->order_by("id", "ASC");
+        $query = $this->db_b->get('public.estados');
+        return $response = $query->result_array();
+	}
 
+	public function consulta_objcon(){
+		$this->db_b->select('*');
+        $this->db_b->order_by("id", "ASC");
+        $query = $this->db_b->get('public.objcontratistas');
+        return $response = $query->result_array();
+	}
 
     public function llenar_contratista($data){
         $this->db_b->select('*');
@@ -21,13 +33,28 @@ class Contratista_model extends CI_Model
         return $response = $query->row_array(); // sin el foreach
     }
 
-
+	//BUSQUEDA DE CONTRATISTAS POR NOMBRE
     public function llenar_contratista_nombre($data){
         $this->db_b->select('*');
         $this->db_b->like('nombre', $data['nombre']);
-        $this->db_b->order_by("proceso_id", "Desc");
-        $query = $this->db_b->get('public.planillapirmera2');
-        return $response = $query->row_array(); // sin el foreach
+        $this->db_b->order_by("rifced", "Desc");
+        $query = $this->db_b->get('public.infcontratista');
+        return $response = $query->result_array(); // sin el foreach
+    }
+
+	//BUSQUEDA DE CONTRATISTAS POR OBJETO DE CONTRATACION
+    public function llenar_contratista_objCont($data){
+        $this->db_b->select('c.rifced,
+							 c.nombre,
+							 c.objcontratista_id,
+							 o.descobjcont');
+		$this->db_b->join('objcontratistas o', 'o.id = c.objcontratista_id ');
+        $this->db_b->like('c.nombre', $data['nombre']);
+		$this->db_b->where('c.objcontratista_id', $data['obj_cont']);
+		$this->db_b->where('c.estado_id', $data['estado_id']); 
+        $this->db_b->order_by("rifced", "Desc");
+        $query = $this->db_b->get('public.contratistas c');
+        return $response = $query->result_array(); // sin el foreach
     }
 
     public function consulta_planillaresumen($rifced){

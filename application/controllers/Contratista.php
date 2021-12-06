@@ -13,6 +13,7 @@ class Contratista extends CI_Controller
 		$this->load->view('templates/footer.php');
 	}
 
+	///VISTAS PARA INFORMACION POR NOMBRE
 	public function infor_contrat_nombre()
 	{
 		$this->load->view('templates/header.php');
@@ -21,16 +22,48 @@ class Contratista extends CI_Controller
 		$this->load->view('templates/footer.php');
 	}
 
-
-
-	public function llenar_contratista_nombre()
-	{
+	public function llenar_contratista_nombre(){
 		if(!$this->session->userdata('session'))redirect('login');
 		$data = $this->input->post();
 		$data =	$this->Contratista_model->llenar_contratista_nombre($data);
 		echo json_encode($data);
 	}
 
+	public function llenar_contratista_nombre_ind(){
+		if(!$this->session->userdata('session'))redirect('login');
+
+		$data['rif_consultado'] = $this->input->get('id');
+
+		$this->load->view('templates/header.php');
+		$this->load->view('templates/navigator.php');
+		$this->load->view('contratista/llenar_contratista_inf.php', $data);
+		$this->load->view('templates/footer.php');
+	}
+	/////FIN DE POR NOMBRE
+	///VISTAS PARA INFORMACION POR OBJETO DE CONTRATACION
+	public function infor_contrat_objCont()
+	{
+		$data['estados'] 	 = $this->Contratista_model->consulta_estados();
+		$data['objcon'] 	 = $this->Contratista_model->consulta_objcon();
+
+		$this->load->view('templates/header.php');
+		$this->load->view('templates/navigator.php');
+		$this->load->view('contratista/infor_contrat_objCont.php', $data);
+		$this->load->view('templates/footer.php');
+	}
+
+	public function llenar_contratista_objCont(){
+		if(!$this->session->userdata('session'))redirect('login');
+		$data = $this->input->post();
+		$data =	$this->Contratista_model->llenar_contratista_objCont($data);
+		echo json_encode($data);
+	}
+	/////FIN DE POR NOMBRE
+	
+	public function ver_cont(){
+		$parametros = $this->input->get('id');
+		print_r($parametros);die;
+	}
 
 
 	public function llenar_contratista()

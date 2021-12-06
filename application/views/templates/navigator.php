@@ -148,6 +148,7 @@
 									<ul class="sub-menu">
 									<li><a href="<?= base_url() ?>index.php/Contratista/infor_contratista">- Planilla Resumen</a></li>
 									<li><a href="<?= base_url() ?>index.php/Contratista/infor_contrat_nombre">- Planilla Resumen por Nombre</a></li>
+									<li><a href="<?= base_url() ?>index.php/Contratista/infor_contrat_objCont">- Busqueda de Contratista</a></li>
 										<!-- <li><a>- Reprogramación</a></li> -->
 									</ul>
 								</li>
