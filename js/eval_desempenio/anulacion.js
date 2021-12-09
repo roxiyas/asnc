@@ -13,7 +13,6 @@ function modal_ver(id){
         dataType:'json',
 
         success: function(response){
-            console.log(response);
             $('#id_ver').val(response['id_evaluacion']);
             $('#nro_oficicio_ver').val(response['nro_oficicio']);
             $('#fec_solicitud_ver').val(response['fecha_anulacion']);
@@ -121,7 +120,6 @@ function aprovar_anul(id){
             event.preventDefault();
 
             var id_evaluacion = id;
-            // console.log(id_evaluacion);
             //var base_url =window.location.origin+'/asnc/index.php/evaluacion_desempenio/resgistrar_aprv_anulacion';
             var base_url = '/index.php/evaluacion_desempenio/resgistrar_aprv_anulacion';
             $.ajax({

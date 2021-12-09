@@ -330,6 +330,7 @@ class Evaluacion_desempenio extends CI_Controller {
 	}
 
 	public function resgistrar_anulacion(){
+		if(!$this->session->userdata('session'))redirect('login');
 		$id = $this->input->POST('id');
 		$d_anulacion = array(
 			'id_evaluacion'   => $this->input->POST('id'),

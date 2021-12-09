@@ -72,7 +72,6 @@
 												- Programación Anual
 											</a>
 										</li>
-										<!-- <li><a>- Reprogramación</a></li> -->
 									</ul>
 								</li>
 
@@ -92,9 +91,7 @@
 											</a>
 											<ul class="sub-menu">
 												<li><a href="<?= base_url() ?>index.php/evaluacion_desempenio/anulacion">- Sol. Anulación</a></li>
-
-													<li><a href="<?= base_url() ?>index.php/Evaluacion_desempenio/proc_anulacion">- Proc. Anulaciones</a></li>
-
+												<li><a href="<?= base_url() ?>index.php/Evaluacion_desempenio/proc_anulacion">- Proc. Anulaciones</a></li>
 											</ul>
 										</li>
 										<?php endif; ?>
@@ -121,7 +118,7 @@
 									</a>
 									<ul class="sub-menu">
 										<li>
-											<a>
+											<a href="<?= base_url() ?>index.php/publicaciones/registro_p">
 												- Registro llamado a consurso
 											</a>
 										</li>

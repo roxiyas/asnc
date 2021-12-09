@@ -258,35 +258,6 @@ function evaluar(){
     }
 }
 
-// function val_not(){
-//     var notf_cont = $('#notf_cont').val();
-//     if (notf_cont == 2) {
-//         swal({
-//             title: "¡ATENCION!",
-//             text: "Con base a lo establecido en el Art. 51 del Decreto con Rango Valor y Fuerza de Ley de Contrataciones Públicas, la carga de los campos correspondientes a la Notificación del Resultado de la Evaluación de Desempeño son Obligatorios.",
-//             type: "warning",
-//             showCancelButton: false,
-//             confirmButtonColor: "#00897b",
-//             confirmButtonText: "CONTINUAR",
-//             closeOnConfirm: false
-//         }, function(){
-//             swal("Deleted!", "Your imaginary file has been deleted.", "success");
-//         });
-//         $('#registrar_eval').attr("disabled", true);
-//         $('#datepicker-default').attr("disabled", true);
-//         $('#medio').attr("disabled", true);
-//         $('#nro_oc_os').attr("disabled", true);
-//         $('#fileImagen').attr("disabled", true);
-//
-//     }else{
-//         $('#registrar_eval').attr("disabled", false);
-//         $('#datepicker-default').attr("disabled", false);
-//         $('#medio').attr("disabled", false);
-//         $('#nro_oc_os').attr("disabled", false);
-//         $('#fileImagen').attr("disabled", false);
-//     }
-// }
-
 function validar_fecha(){
     var fecha_hasta = $('#fecha_hasta').val();
     var fecha_ntf = $('#datepicker-default').val();
@@ -387,7 +358,6 @@ function registrar(){
     var total_claf        = $("#total_claf").val();
     var calificacion      = $("#calificacion").val();
 
-    // var notf_cont       = $("#notf_cont").val();
     var fecha_not       = $("#datepicker-default").val();
     var medio           = $("#medio").val();
     var nro_oc_os       = $("#nro_oc_os").val();
@@ -461,9 +431,6 @@ function registrar(){
         }else if (calificacion == '') {
             document.getElementById("calificacion").focus();
         }
-        // else if (notf_cont == '0') {
-        //     document.getElementById("notf_cont").focus();
-        // }
         else if (fecha_not == '') {
             document.getElementById("datepicker-default").focus();
         }else if (medio == '0') {
