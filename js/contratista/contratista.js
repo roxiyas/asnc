@@ -15,8 +15,8 @@ function consultar_rif() { //PARA LLENAR EN SELECT DE CCNNU DENTRO DEL MODAL
         $('#ueba').attr("disabled", true);
     }else{
         $("#items").show();
-        //var base_url =window.location.origin+'/asnc/index.php/Contratista/llenar_contratista';
-        var base_url = '/index.php/Contratista/llenar_contratista';
+        //var base_url =window.location.origin+'/asnc/index.php/Contratista/llenar_contratista';S
+        var base_url = '/index.php/contratista/llenar_contratista';
 
         $.ajax({
             url: base_url,
@@ -90,8 +90,8 @@ function consultar_nombre(){
 			success: function(data) {
 				$('#tabla tbody').children().remove()
 				$.each(data, function(index, response){
-					$('#tabla tbody').append('<tr><td>' + response['rifced'] + '</td><td>' 
-														+ response['nombre'] + '</td><td>' 
+					$('#tabla tbody').append('<tr><td>' + response['rifced'] + '</td><td>'
+														+ response['nombre'] + '</td><td>'
 														+ response['descobjcont'] + '</td><td>'
 														+ '<button class="boton2 btn"> <a href="llenar_contratista_nombre_ind?id='+ response['rifced'] +'">VER</button></td></tr>');
 				});
@@ -120,22 +120,22 @@ function consultar_objContr(){
 		$('#ueba').attr("disabled", true);
 	}else{
 		$("#items").show();
-		
+
 		//var base_url =window.location.origin+'/asnc/index.php/Contratista/llenar_contratista_objCont';
 		var base_url = '/index.php/Contratista/llenar_contratista_objCont';
 
 		$.ajax({
 			url: base_url,
 			method: 'post',
-			data: { obj_cont: obj_cont, 
+			data: { obj_cont: obj_cont,
 					nombre: nombre,
 					estado_id : estado_id},
 			dataType: 'json',
 			success: function(data) {
 				$('#tabla tbody').children().remove()
 				$.each(data, function(index, response){
-					$('#tabla tbody').append('<tr><td>' + response['rifced'] + '</td><td>' 
-														+ response['nombre'] + '</td><td>' 
+					$('#tabla tbody').append('<tr><td>' + response['rifced'] + '</td><td>'
+														+ response['nombre'] + '</td><td>'
 														+ response['descobjcont'] + '</td><td>'
 														+ '<button class="boton2 btn"> <a href="llenar_contratista_nombre_ind?id='+ response['rifced'] +'">VER</button></td></tr>');
 				});
