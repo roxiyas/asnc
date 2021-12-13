@@ -44,8 +44,8 @@
 						<?php foreach($mecanismos as $data):?>
                             <tr class="odd gradeX" style="text-align:center">
                                 <td><?=$data['id_mecanismo']?> </td>
+                                <td><?=$data['decr_modalidad']?> </td>
                                 <td><?=$data['decr_mecanismo']?> </td>
-								<td><?=$data['decr_modalidad']?> </td>
                                 <td class="center">
 									<a class="button">
                                         <i title="Editar" onclick="modal_ver_mec(<?php echo $data['id_mecanismo']?>+'/'+<?php echo $data['id_modalidad']?>);" data-toggle="modal" data-target="#exampleModal" class="fas fa-lg fa-fw fa-edit" style="color:green"></i>

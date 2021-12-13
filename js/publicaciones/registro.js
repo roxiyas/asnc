@@ -825,11 +825,12 @@ function valideKey(evt){
 				});
 			}
 		})
-		
+
 		$.ajax({
 			url: base_url,
 			method:'post',
-			data: {id_mecanismo: id_mecanismo},
+			data: {id_mecanismo: id_mecanismo,
+						id_modalidad: id_modalidad},
 			dataType:'json',
 
 			success: function(response){
@@ -1221,4 +1222,3 @@ function valideKey(evt){
 			}
 		});
 	}
-
