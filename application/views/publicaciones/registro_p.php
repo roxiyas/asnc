@@ -2,7 +2,7 @@
 <div class="sidebar-bg"></div>
 <div id="content" class="content">
 	<h2>Registro de Llamado Concurso</h2>
-	<div class="row">			
+	<div class="row">
 		<section class="signup-step-container">
         <div class="container">
             <div class="row d-flex justify-content-center">
@@ -17,7 +17,7 @@
 								<li role="presentation" class="disabled">
                                     <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" aria-expanded="false"><span class="round-tab">2 </span> <i>Configuración Llamado</i></a>
                                 </li>
-                               
+
                                 <li role="presentation" class="disabled">
                                     <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab"  aria-expanded="false"><span class="round-tab">3</span> <i>Períodos Aclaratoria / Respuesta	</i></a>
                                 </li>
@@ -26,7 +26,7 @@
                                 </li>
                             </ul>
                         </div>
-        
+
                         <form role="form" action="index.html" class="login-box">
                             <div class="tab-content" id="main_form">
                                 <div class="tab-pane active" role="tabpanel" id="step1">
@@ -39,7 +39,7 @@
 										<div class="form-group col-6">
 											<label>Nivel de Ente <b title="Campo Obligatorio" style="color:red">*</b></label>
 											<select class="form-control" name="id_ente" id="id_ente">
-												<option value="0">SELECCIONE</option>	
+												<option value="0">SELECCIONE</option>
 											</select>
 										</div>
 										<div class="form-group col-3">
@@ -175,7 +175,7 @@
                                         <li><button type="button" class="default-btn next-step">Siguiente</button></li>
                                     </ul>
                                 </div>
-								
+
                                 <div class="tab-pane" role="tabpanel" id="step2">
                                     <h4 class="text-center">Configuración Llamado</h4>
                                     <div class="row">
@@ -194,17 +194,23 @@
 
 										<div class="form-group col-4">
 											<label>Estado <b title="Campo Obligatorio" style="color:red">*</b></label>
-											<select class="form-control" name="id_modalidad" id="id_modalidad" >
+											<select class="form-control" name="id_estado" id="id_estado" onclick="llenar_municipio();">
+													<option value="0">SELECCIONE</option>
+														<?php foreach ($estados as $data): ?>
+															<option value="<?=$data['id']?>"><?=$data['descedo']?></option>
+														<?php endforeach; ?>
 											</select>
 										</div>
 										<div class="form-group col-4">
 											<label>Municipio <b title="Campo Obligatorio" style="color:red">*</b></label>
-											<select class="form-control" name="id_modalidad" id="id_modalidad">
+											<select class="form-control" name="id_municipio" id="id_municipio" onclick="llenar_parroquia();">
+													<option value="0">SELECCIONE</option>
 											</select>
 										</div>
 										<div class="form-group col-4">
 											<label>Parroquia <b title="Campo Obligatorio" style="color:red">*</b></label>
-											<select class="form-control" name="id_modalidad" id="id_modalidad">
+											<select class="form-control" name="id_parroquia" id="id_parroquia">
+													<option value="0">SELECCIONE</option>
 											</select>
 										</div>
 										<div class="form-group col-12">
@@ -257,17 +263,23 @@
 										</div>
 										<div class="form-group col-6">
 											<label>Estado <b title="Campo Obligatorio" style="color:red">*</b></label>
-											<select class="form-control" name="id_modalidad" id="id_modalidad" >
+											<select class="form-control" name="id_estado_n" id="id_estado_n" onclick="llenar_municipio_n();">
+													<option value="0">SELECCIONE</option>
+														<?php foreach ($estados as $data): ?>
+															<option value="<?=$data['id']?>"><?=$data['descedo']?></option>
+														<?php endforeach; ?>
 											</select>
 										</div>
 										<div class="form-group col-6">
 											<label>Municipio <b title="Campo Obligatorio" style="color:red">*</b></label>
-											<select class="form-control" name="id_modalidad" id="id_modalidad">
+											<select class="form-control" name="id_municipio_n" id="id_municipio_n" onclick="llenar_parroquia_n();">
+												<option value="0">SELECCIONE</option>
 											</select>
 										</div>
 										<div class="form-group col-6">
 											<label>Parroquia <b title="Campo Obligatorio" style="color:red">*</b></label>
-											<select class="form-control" name="id_modalidad" id="id_modalidad">
+											<select class="form-control" name="id_parroquia_n" id="id_parroquia_n">
+												<option value="0">SELECCIONE</option>
 											</select>
 										</div>
 										<div class="form-group col-12">
@@ -285,15 +297,14 @@
                                     </ul>
                                 </div>
                             </div>
-                            
+
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-	</div>	
+	</div>
 </div>
 <script src="<?=base_url()?>/js/publicaciones/registro_llamado.js"></script>
 <script src="<?=base_url()?>/js/publicaciones/wizard.js"></script>
-
