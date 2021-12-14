@@ -34,7 +34,7 @@
 							</div>
 							<div class="form-group col-6">
 								<label>Días <b title="Campo Obligatorio" style="color:red">*</b></label>
-								<input class="form-control"  type="text" name="dias" id="dias" placeholder="Beneficiario">
+								<input class="form-control"  type="text" name="dias" id="dias" placeholder="Días (Mínimo)">
 							</div>
 						</div>
 						<div class="form-group col 12 text-center">
@@ -55,7 +55,7 @@
 								<th>Modalidad</th>
 								<th>Mécanisco</th>
 								<th>Descripción</th>
-								<th>Días</th>	
+								<th>Días</th>
 								<th>Acción</th>
 							</tr>
 						</thead>
