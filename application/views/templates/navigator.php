@@ -52,14 +52,14 @@
 			</ul>
 			<ul class="nav">
 				<li class="nav-header">Navegador</li>
-
+				<?php if (($this->session->userdata('perfil') == 1) ||  ($this->session->userdata('perfil') == 3)) : ?>
 					<li class="has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
 							<i class="fas fa-sliders-h" style="background:darkred;"></i>
 							<span>RNCE</span>
 						</a>
-						<?php if (($this->session->userdata('perfil') == 1) ||  ($this->session->userdata('perfil') <= 3)) : ?>
+
 							<ul class="sub-menu">
 								<li class="has-sub">
 									<a href="javascript:;">
@@ -110,7 +110,6 @@
 										</li>
 									</ul>
 								</li>
-
 								<li class="has-sub">
 									<a href="javascript:;">
 										<b class="caret"></b>
@@ -124,18 +123,16 @@
 										</li>
 									</ul>
 								</li>
-							<?php endif; ?>
 						</ul>
 					</li>
-
-
+					<?php endif; ?>
+					<?php if (($this->session->userdata('perfil') == 1) ||  ($this->session->userdata('perfil') == 3)) : ?>
 					<li class="has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
 							<i class="fas fa-server" style="background:darkred;"></i>
 							<span>RNC</span>
 						</a>
-						<?php if (($this->session->userdata('perfil') == 1) ||  ($this->session->userdata('perfil') <= 3)) : ?>
 							<ul class="sub-menu">
 								<li class="has-sub">
 									<a href="javascript:;">
@@ -149,17 +146,20 @@
 										<!-- <li><a>- Reprogramación</a></li> -->
 									</ul>
 								</li>
-							<?php endif; ?>
 						</ul>
+
 					</li>
-					<?php if (($this->session->userdata('perfil') == 1)) : ?>
+					<?php endif; ?>
+					<?php if (($this->session->userdata('perfil') <= 2)) : ?>
 					<li class="has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
 							<i class="ion-md-settings fa-spin" style="background:darkred;"></i>
 							<span>Configuración</span>
 						</a>
+
 						<ul class="sub-menu">
+							<?php if (($this->session->userdata('perfil') <= 2)) : ?>
 							<li class="has-sub">
 								<a href="javascript:;">
 									<b class="caret"></b>
@@ -185,6 +185,8 @@
 									</li>
 								</ul>
 							</li>
+							<?php endif; ?>
+							<?php if (($this->session->userdata('perfil') == 1)) : ?>
 							<li class="has-sub">
 								<a href="javascript:;">
 								<b class="caret"></b>
@@ -299,9 +301,10 @@
 											- Actividad
 										</a>
 									</li>
-									
+
 								</ul>
 							</li>
+							<?php endif; ?>
 							<li class="has-sub">
 								<a href="javascript:;">
 									<span>Usuarios</span>
@@ -312,6 +315,13 @@
 											<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>- Registros
 										</a>
 									</li>
+									<?php if ($this->session->userdata('perfil') <= 2) : ?>
+										<li>
+											<a href="<?= base_url() ?>index.php/user/int">
+												<i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>- Registros Usuarios Externos
+											</a>
+										</li>
+									<?php endif; ?>
 								</ul>
 							</li>
 						</ul>

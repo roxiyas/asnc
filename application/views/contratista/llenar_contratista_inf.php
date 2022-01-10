@@ -3,7 +3,9 @@
 		<div class="panel-body" id="existe">
 		<form action="<?= base_url() ?>index.php/Contratista/planillaresumen" class="form-horizontal" data-parsley-validate="true" name="demo-form" id="form-Registrar" method="POST">
 				<div class="row">
-					
+					<div class="col-6 mb-3">
+							<a class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary" href="javascript:history.back()"> Volver</a>
+					</div>
 					<div class="form-group col-12">
 						<input class="form-control" type="hidden" name="idedocontratistas" id="idedocontratistas">
 						<textarea class="form-control" name="descedocont" id="descedocont" rows="4" readonly></textarea>

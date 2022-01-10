@@ -35,10 +35,13 @@ class Contratista_model extends CI_Model
 
 	//BUSQUEDA DE CONTRATISTAS POR NOMBRE
     public function llenar_contratista_nombre($data){
-        $this->db_b->select('*');
+        $this->db_b->select(' rifced, nombre,fecactsusc_at ,descobjcont');
+        $this->db_b->where("fecactsusc_at >", "01-01-2017");
         $this->db_b->like('nombre', $data['nombre']);
-        $this->db_b->order_by("rifced", "Desc");
-        $query = $this->db_b->get('public.infcontratista');
+        $this->db_b->group_by("rifced, nombre,fecactsusc_at,descobjcont");
+        $this->db_b->order_by("rifced", "Asc");
+        //  $query = $this->db_b->get('public.infcontratista');
+        $query = $this->db_b->get('public.planillapirmera2');
         return $response = $query->result_array(); // sin el foreach
     }
 
@@ -51,7 +54,7 @@ class Contratista_model extends CI_Model
 		$this->db_b->join('objcontratistas o', 'o.id = c.objcontratista_id ');
         $this->db_b->like('c.nombre', $data['nombre']);
 		$this->db_b->where('c.objcontratista_id', $data['obj_cont']);
-		$this->db_b->where('c.estado_id', $data['estado_id']); 
+		$this->db_b->where('c.estado_id', $data['estado_id']);
         $this->db_b->order_by("rifced", "Desc");
         $query = $this->db_b->get('public.contratistas c');
         return $response = $query->result_array(); // sin el foreach

@@ -41,10 +41,10 @@
 					<div class="login-content">
 						<form action="<?=base_url()?>index.php/login/validacion" method="POST" class="margin-bottom-0">
 							<div class="form-group m-b-15">
-								<input type="text" class="form-control form-control-lg" placeholder="Usuario" name="usuario"required />
+							<input type="text" id="bloquear"  class="form-control form-control-lg" autocomplete=off placeholder="Usuario" name="usuario"required />
 							</div>
 							<div class="form-group m-b-15">
-								<input type="password" class="form-control form-control-lg" placeholder="Contraseña" name="contrasena" required />
+							<input type="password" id="bloquear1" onpaste="return false;" onCopy="return false" onCut="return false" class="form-control form-control-lg" placeholder="Contraseña" name="contrasena" required />
 							</div>
 							<div class="login-buttons">
 								<button type="submit" class="btn btn-block btn-lg" style="background-color:darkred;color:#FFFFFF">Ingresar</button>
@@ -77,7 +77,30 @@
 		<script src="<?=base_url()?>Plantilla/admin/assets/plugins/sweetalert/sweetalert.min.js"></script>
 		<script src="<?=base_url()?>Plantilla/admin/assets/plugins/sweetalert/jquery.sweet-alert.custom.js"></script>
 		<!-- ================== END BASE JS ================== -->
+		<script>
+			$(document).ready(function(){
+			$("#bloquear").on('paste', function(e){
+				e.preventDefault();
+				alert('Esta acción está deshabilitada');
+			})
 
+			$("#bloquear").on('copy', function(e){
+				e.preventDefault();
+				alert('Esta acción está deshabilitada');
+			})
+			})</script>
+			<script>
+			$(document).ready(function(){
+			$("#bloquear1").on('paste', function(e){
+				e.preventDefault();
+				alert('Esta acción está deshabilitada');
+			})
+
+			$("#bloquear1").on('copy', function(e){
+				e.preventDefault();
+				alert('Esta acción está deshabilitada');
+			})
+			})</script>
 		<script>
 			$(document).ready(function() {
 				App.init();

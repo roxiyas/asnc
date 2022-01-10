@@ -428,7 +428,7 @@
                 <div class="panel-heading" style="padding: 3px 15px;">
                     <h5 style="font-size: 16px;" class="panel-title text-center"><b>Relación de Obras y/o Servicios</b></h5>
                 </div>
-                <div class="panel-title text-center" style="line-height: 9px;">
+                <div class="panel-title text-center" style="line-height: 15px;">
                   <table class="table  style="border: hidden"" style="margin-bottom: 0rem;">
                       <thead style="background:#FFFFFF">
                           <tr class="text-center">
@@ -1187,7 +1187,7 @@
                          <tr class="odd gradeX" style="text-align:center">
                            <td> (COSTO) BENEFICIO INTEGRAL DE FINANCIAMIENTO</td>
                          <!-- <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td> -->
-                         <td>VACIIO</td>
+                         <td>VACIO</td>
                          </tr>
                          <tr class="odd gradeX" style="text-align:center">
                            <td> Intereses Ganados y Causados Netos</td>
