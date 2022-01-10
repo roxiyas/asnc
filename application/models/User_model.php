@@ -132,18 +132,18 @@ class User_model extends CI_Model
     }
 
 
-    // ava debe guardar cuenta dante en usuario y guardar los otros datos en funcionarios
+    // aca debe guardar cuenta dante en usuario y guardar los otros datos en funcionarios
     public function savedante($data1,$datos2)
     {
-
         $this->db->insert("seguridad.usuarios", $data1);
-
-
-
-//se se supone que la funcion  insert_id(); me guarda el id del ultimo registo
+        //la funcion  insert_id(); me guarda el id del ultimo registo
         $identificador = $this->db->insert_id();
+        if ($identificador != 0) {
+          $datos2['id_usuario'] = $identificador;
+          $this->db->insert('seguridad.funcionarios', $datos2);
+          return true;
+        }
 
-        $datos2['id_usuario']=$identificador;
-        $this->db->insert('seguridad.funcionarios', $datos2);
     }
+
 }

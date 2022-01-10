@@ -12,12 +12,12 @@
 							<div class="row">
 								<div class="col-5">
 								<label>Nombre <b style="color:red">*</b></label>
-									<input class="form-control" type="text" name="nombre" id="nombre"  placeholder="Ingrese el nombre completo de la Empresa" onkeyup="mayusculas(this);">
+									<input class="form-control" type="text" name="nombre" id="nombre"  placeholder="Ingrese el nombre completo de la Empresa"  onkeyup="mayusculas(this);" required>
 								</div>
 
 								<div class="form-group col-3">
 								<label>Estado <b style="color:red">*</b></label>
-									<select class="form-control" name="estado_id" id="estado_id">
+									<select class="form-control" name="estado_id" id="estado_id" required>
 										<option value="0">SELECCIONE</option>
 										<?php foreach ($estados as $data): ?>
 											<option value="<?=$data['id']?>"><?=$data['descedo']?></option>
@@ -26,7 +26,7 @@
 									</div>
 								<div class="form-group col-3">
 								<label>Objeto de Contratación <b style="color:red">*</b></label>
-									<select class="form-control" name="obj_cont" id="obj_cont">
+									<select class="form-control" name="obj_cont" id="obj_cont" required>
 										<option value="0">SELECCIONE</option>
 										<?php foreach ($objcon as $data): ?>
                                         <option value="<?=$data['id']?>"><?=$data['descobjcont']?></option>
