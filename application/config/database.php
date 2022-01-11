@@ -97,7 +97,7 @@ $db['default'] = array(
 );
 
 //Base de datos solo de consulta del SNC Anterior
-/*$db['SNCenlinea'] = array(
+$db['SNCenlinea'] = array(
   		'dsn'	=> '',
   		'hostname' => 'localhost',
   		'username' => 'postgres',
@@ -118,10 +118,10 @@ $db['default'] = array(
   		'stricton' => FALSE,
   		'failover' => array(),
   		'save_queries' => TRUE
-  );*/
+  );
 
 
-$db['SNCenlinea'] = array(
+/*$db['SNCenlinea'] = array(
   	'dsn'	=> '',
   	'hostname' => '10.10.10.147',
   	'username' => 'snc_si',
@@ -142,5 +142,5 @@ $db['SNCenlinea'] = array(
   	'stricton' => FALSE,
   	'failover' => array(),
   	'save_queries' => TRUE
-  );
+  );*/
 

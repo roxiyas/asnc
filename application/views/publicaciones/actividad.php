@@ -34,7 +34,7 @@
 							</div>
 							<div class="form-group col-6">
 								<label>Días <b title="Campo Obligatorio" style="color:red">*</b></label>
-								<input class="form-control"  type="text" name="dias" id="dias" placeholder="Días (Mínimo)">
+								<input class="form-control"  type="text" name="dias" onblur="minimo_obj();" id="dias" placeholder="Días (Mínimo)">
 							</div>
 						</div>
 						<div class="form-group col 12 text-center">
@@ -83,7 +83,7 @@
         </div>
 	</div>
 </div>
-<script src="<?=base_url()?>/js/publicaciones/registro.js"></script>
+<script src="<?=base_url()?>/js/publicaciones/actividad.js"></script>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

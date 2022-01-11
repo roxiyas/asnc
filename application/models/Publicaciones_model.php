@@ -75,7 +75,7 @@
 		}
 	////////////////////////////////////////////////////////////////
 	//CRUP DATOS BANCARIOS
-		function consultar_datosb(){
+		function consultar_datosb($usuario){
 			$this->db->select('d.id_datosb,
 								d.id_banco,
 								b.nombre_b,
@@ -87,6 +87,7 @@
 			$this->db->join('publicaciones.banco b', 'b.id_banco = d.id_banco');
 			$this->db->join('publicaciones.tipocuenta t', 't.id_tipocuenta = d.id_tipocuenta');
 			$this->db->from('publicaciones.datosbancarios d');
+			$this->db->where('d.id_usuario', $usuario);
 			$this->db->order_by("d.id_datosb", "Asc");
 			$query = $this->db->get();
 			return $query->result_array();
@@ -216,7 +217,7 @@
 								m2.decr_modalidad');
 			$this->db->from('publicaciones.mecanismo m');
 			$this->db->join('publicaciones.modalidad m2', 'm2.id_modalidad = m.id_modalidad');
-      $this->db->where('m.id_mecanismo', $data['id_mecanismo']);
+      		$this->db->where('m.id_mecanismo', $data['id_mecanismo']);
 			$this->db->order_by("id_mecanismo", "Asc");
 			$query = $this->db->get();
 			return $query->row_array();
@@ -270,7 +271,6 @@
 			$this->db->insert('publicaciones.actividad',$data);
 			return true;
 		}
-
 		function consulta_mecanismos($data){
 			$this->db->select('*');
 			$this->db->from('publicaciones.mecanismo');
@@ -279,7 +279,6 @@
 			$query = $this->db->get();
 			return $query->result_array();
 		}
-
 		function consulta_objconta($data){
 			$this->db->select('*');
 			$this->db->from('programacion.objeto_contrata');
@@ -288,7 +287,6 @@
 			$query = $this->db->get();
 			return $query->result_array();
 		}
-
 		function consulta_act($data){
 			$this->db->select('a.id_actividad,
 								a.id_modalidad,
@@ -319,7 +317,44 @@
 			$query = $this->db->delete('publicaciones.actividad');
 			return true;
 		}
-
+	//CRUD FERIADOS NACIONALES
+		function consultar_d(){
+			$this->db->select('*');
+			$this->db->from('publicaciones.feriados_nacionales');
+			$this->db->order_by("id_feriado_n", "Asc");
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+		//GUARDAR
+		function registrar_fer($data){
+			$this->db->insert('publicaciones.feriados_nacionales',$data);
+			return true;
+		}
+		//VER PARA EDITAR
+		function consulta_d($data){
+			$this->db->select('*');
+			$this->db->from('publicaciones.feriados_nacionales');
+			$this->db->where('id_feriado_n', $data['id_feriado_n']);
+			$query = $this->db->get();
+			if (count($query->result()) > 0) {
+				return $query->row();
+			}
+		}
+		//EDITAR
+		function editar_d($data){
+			$this->db->where('id_feriado_n', $data['id_feriado_n']);
+			$update = $this->db->update('publicaciones.feriados_nacionales', $data);
+			return true;
+		}
+		//ELIMAR
+		function eliminar_d($data){
+			$this->db->where('id_feriado_n', $data['id_feriado_n']);
+			$query = $this->db->delete('publicaciones.feriados_nacionales');
+			return true;
+		}
+	//CRUD FERIADOS ESTADALES
+		
+	//LLAMADO A CONCURSO
 		function buscar_act($data){
 			$this->db->select('*');
 			$this->db->from('publicaciones.actividad');
@@ -329,7 +364,13 @@
 			$query = $this->db->get();
 			return $query->result_array();
 		}
-
+		function buscar_act_e($data){
+			$this->db->select('*');
+			$this->db->from('publicaciones.actividad');
+			$this->db->where('id_actividad', $data['id_actividad']);
+			$query = $this->db->get();
+			return $query->row_array();
+		}
 		function buscar_obj($data){
 			$this->db->select('*');
 			$this->db->from('programacion.objeto_contrata');

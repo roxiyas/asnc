@@ -1,3 +1,44 @@
+<?php
+srand(time());
+$captcha_value = (string)rand(1000,9999);
+$captcha_numbers = array(0,1,2,3,4,5,6,7,8,9);
+?>
+
+<style>
+	.current_captcha {
+font-family: emoji;
+font-size: 22px;
+font-weight: 400;
+color: #ffffff;
+ background-image: url(http://localhost/asnc/Plantilla/img/images.jpeg);
+margin: 0 0 25px;
+overflow: hidden;
+border-radius: 35px 0px 35px 0px;
+-moz-border-radius: 35px 0px 35px 0px;
+-webkit-border-radius: 35px 0px 35px 0px;
+border: 2px solid #ca9258;
+text-align: center;
+	}
+	
+	.captha_numbers {
+		margin-bottom: 10px;
+	}
+	
+	.captha_numbers a {
+		border: 1px solid #0085CF;
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+		color: #0085CF;
+		padding: 6px;
+		text-decoration: none;
+	}
+	
+	.captha_numbers a:hover {
+		background-color: #0085CF;
+		color: #ffffff;
+	}
+</style>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -26,7 +67,7 @@
 					<div class="news-image" style="background-image: url(<?=base_url()?>Plantilla/img/2.png);"></div>
 					<!-- <img style="background-repeat: no-repeat;" src="<?=base_url()?>Plantilla/img/2.png" alt=""> -->
 				</div>
-				<div class="right-content" style="padding-top:7%">
+				<div class="right-content" style="padding-top:4%">
 					<div class="login-header">
 						<div class="brand  text-center">
 							<span class="logo">
@@ -46,10 +87,28 @@
 							<div class="form-group m-b-15">
 							<input type="password" id="bloquear1" onpaste="return false;" onCopy="return false" onCut="return false" class="form-control form-control-lg" placeholder="Contraseña" name="contrasena" required />
 							</div>
+							<p class="form-group current_captcha">
+								<?php echo $captcha_value; ?>
+							</p>
+	
+							<div class="col-12 text-center">
+							<p class="text form-group">
+								<label for="captcha" class="captha_numbers">
+									<?php foreach ($captcha_numbers as $number) {
+										echo '<a href="#" data="'.$number.'">'.$number.'</a> ';
+									}
+									?>
+								</label>
+								<input type="text" size="4" maxlength="4" id="captcha" name="captcha" class="form-control">
+								<input type="hidden" id="current_captcha" name="current_captcha" value="<?php echo $captcha_value; ?>">
+							</p>
+							</div>
+
 							<div class="login-buttons">
-								<button type="submit" class="btn btn-block btn-lg" style="background-color:darkred;color:#FFFFFF">Ingresar</button>
+								<button onclick="$(this).hide();"  name="submitContact" type="submit" class="btn btn-block btn-lg button" style="background-color:darkred;color:#FFFFFF">Ingresar</button>
 							</div>
 							<hr />
+							
 							<div class="login-buttons mt-2">
 								<!-- <button type="button"
 	                                onclick="location.href='<?php echo base_url()?>index.php/User/contrato'"
@@ -77,6 +136,22 @@
 		<script src="<?=base_url()?>Plantilla/admin/assets/plugins/sweetalert/sweetalert.min.js"></script>
 		<script src="<?=base_url()?>Plantilla/admin/assets/plugins/sweetalert/jquery.sweet-alert.custom.js"></script>
 		<!-- ================== END BASE JS ================== -->
+
+		<script>
+			$(document).ready(function(){
+				$('.button').attr("disabled", true);
+				$('.captha_numbers a').on('click', function(){
+					var data = $(this).attr('data');
+					$('#captcha').val($('#captcha').val() + data);
+			
+					if ($('#captcha').val() == $('#current_captcha').val())
+						$('.button').attr("disabled", false);
+			
+					return false;
+				});
+			});
+			</script>
+
 		<script>
 			$(document).ready(function(){
 			$("#bloquear").on('paste', function(e){

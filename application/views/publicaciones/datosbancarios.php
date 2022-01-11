@@ -82,7 +82,7 @@
         </div>
 	</div>
 </div>
-<script src="<?=base_url()?>/js/publicaciones/registro.js"></script>
+<script src="<?=base_url()?>/js/publicaciones/datos_bancarios.js"></script>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

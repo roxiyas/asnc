@@ -1,8 +1,8 @@
 function llenar(){
 	var id_modalidad = $('#id_modalidad').val();
 
-	//var base_url = window.location.origin+'/asnc/index.php/Publicaciones/buscar_mec';
-	var base_url = '/index.php/Publicaciones/buscar_mec';
+	var base_url = window.location.origin+'/asnc/index.php/Publicaciones/buscar_mec';
+	//var base_url = '/index.php/Publicaciones/buscar_mec';
 	$.ajax({
 		url: base_url,
 		method:'post',
@@ -20,8 +20,8 @@ function llenar(){
 
 function llenar_municipio(){
     var id_estado_n = $('#id_estado').val();
-    //var base_url = window.location.origin+'/asnc/index.php/evaluacion_desempenio/listar_municipio';
-    var base_url = '/index.php/evaluacion_desempenio/listar_municipio';
+    var base_url = window.location.origin+'/asnc/index.php/evaluacion_desempenio/listar_municipio';
+    //var base_url = '/index.php/evaluacion_desempenio/listar_municipio';
 
     $.ajax({
         url: base_url,
@@ -40,8 +40,8 @@ function llenar_municipio(){
 
 function llenar_parroquia(){
     var id_municipio_n = $('#id_estado').val();
-    //var base_url = window.location.origin+'/asnc/index.php/evaluacion_desempenio/listar_parroquia';
-    var base_url = '/index.php/evaluacion_desempenio/listar_parroquia';
+    var base_url = window.location.origin+'/asnc/index.php/evaluacion_desempenio/listar_parroquia';
+    //var base_url = '/index.php/evaluacion_desempenio/listar_parroquia';
 
     $.ajax({
         url: base_url,
@@ -58,11 +58,10 @@ function llenar_parroquia(){
     });
 }
 
-
 function llenar_municipio_n(){
     var id_estado_n = $('#id_estado_n').val();
-    //var base_url = window.location.origin+'/asnc/index.php/evaluacion_desempenio/listar_municipio';
-    var base_url = '/index.php/evaluacion_desempenio/listar_municipio';
+    var base_url = window.location.origin+'/asnc/index.php/evaluacion_desempenio/listar_municipio';
+    //var base_url = '/index.php/evaluacion_desempenio/listar_municipio';
 
     $.ajax({
         url: base_url,
@@ -81,8 +80,8 @@ function llenar_municipio_n(){
 
 function llenar_parroquia_n(){
     var id_municipio_n = $('#id_estado_n').val();
-    //var base_url = window.location.origin+'/asnc/index.php/evaluacion_desempenio/listar_parroquia';
-    var base_url = '/index.php/evaluacion_desempenio/listar_parroquia';
+    var base_url = window.location.origin+'/asnc/index.php/evaluacion_desempenio/listar_parroquia';
+    //var base_url = '/index.php/evaluacion_desempenio/listar_parroquia';
 
     $.ajax({
         url: base_url,
@@ -104,8 +103,8 @@ function llenarca(){
 	var id_mecanismo = $('#id_mecanismo').val();
 	var id_obj_cont	 = $('#id_obj_cont').val();
 
-	//var base_url = window.location.origin+'/asnc/index.php/Publicaciones/buscar_act';
-	var base_url = '/index.php/Publicaciones/buscar_act';
+	var base_url = window.location.origin+'/asnc/index.php/Publicaciones/buscar_act';
+	//var base_url = '/index.php/Publicaciones/buscar_act';
 
 	$.ajax({
 		url: base_url,
@@ -120,6 +119,24 @@ function llenarca(){
 			$.each(response, function(index, data){
 				$('#id_actividad').append('<option value="'+data['id_actividad']+'">'+data['dias']+'</option>');
 			});
+		}
+	});
+}
+//LLENA EL CAMPO DE DÍAS PARA EDITAR
+function llenar_act(){
+	var id_actividad = $('#id_actividad').val();
+
+	var base_url = window.location.origin+'/asnc/index.php/Publicaciones/buscar_act_e';
+	//var base_url = '/index.php/Publicaciones/buscar_act_e';
+
+	$.ajax({
+		url: base_url,
+		method:'post',
+		data: {id_actividad: id_actividad},
+		dataType:'json',
+
+		success: function(response){
+			$('#act').val(response['dias']);
 		}
 	});
 }
@@ -140,4 +157,24 @@ function verificar2(){
 	}else{
 		$("#datos2").hide();
 	}
+}
+
+function calcular_dias(){
+	//la fecha
+		var TuFecha = new Date($('#fecha_llamado').val());
+		var numero = document.getElementById('act');
+	//dias a sumar
+		var numero_fij = 1;
+		var dias = parseInt(numero.value);
+		TuFecha.setDate(TuFecha.getDate() + numero_fij);
+		console.log(TuFecha);
+		//nueva fecha nueva a sumar
+		var dias = parseInt(numero.value);
+		TuFecha.setDate(TuFecha.getDate() + dias);
+		//formato de salida para la fecha
+		resultado.innerText = TuFecha.getDate() + '/' +
+		(TuFecha.getMonth() + 1) + '/' + TuFecha.getFullYear();
+
+
+
 }

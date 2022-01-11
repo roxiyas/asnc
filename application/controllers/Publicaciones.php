@@ -110,7 +110,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$data['bancos'] = $this->Publicaciones_model->consultar_b();
 			$data['tipocuenta'] = $this->Publicaciones_model->consultar_tc();
 
-			$data['datosb'] = $this->Publicaciones_model->consultar_datosb();
+			$usuario = $this->session->userdata('id_user');
+			$data['datosb'] = $this->Publicaciones_model->consultar_datosb($usuario);
 
 			$this->load->view('templates/header.php');
 			$this->load->view('templates/navigator.php');
@@ -305,7 +306,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$data =	$this->Publicaciones_model->registrar_act($data);
 			echo json_encode($data);
 		}
-		//CONSULTA
+		//CONSULTAS
 		public function consulta_mecanismos(){
 			if(!$this->session->userdata('session'))redirect('login');
 			$data = $this->input->post();
@@ -350,8 +351,57 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$data =	$this->Publicaciones_model->eliminar_act($data);
 			echo json_encode($data);
 		}
+	///////////////////////////////////
+	//CRUD FERIADOS NACIONALES
+		public function feriados(){
+			$data['dias'] = $this->Publicaciones_model->consultar_d();
+			
+			$this->load->view('templates/header.php');
+			$this->load->view('templates/navigator.php');
+			$this->load->view('publicaciones/feriados.php', $data);
+			$this->load->view('templates/footer.php');
+		}
+		//GUARDAR
+		public function registrar_fer(){
+			if(!$this->session->userdata('session'))redirect('login');
+			$data = array (
+				'dia' 			=> $this->input->POST('dia'),
+				'descripcion' 	=> $this->input->POST('descripcion'),
+				'id_usuario' 	=> $this->session->userdata('id_user')
+			);
+			$data =	$this->Publicaciones_model->registrar_fer($data);
+			echo json_encode($data);
+		}
+		//LLENAR MODAL PARA EDITAR
+		public function consulta_d(){
+			if(!$this->session->userdata('session'))redirect('login');
+			$data = $this->input->post();
+			$data =	$this->Publicaciones_model->consulta_d($data);
+			echo json_encode($data);
+		}
+		//EDITAR
+		public function editar_d(){
+			if(!$this->session->userdata('session'))redirect('login');
+			$data = $this->input->post();
+			
+			$data = array (
+				'id_feriado_n'	=> $data['id_feriado'],
+				'dia' 			=> $data['dia'],
+				'descripcion' 	=> $data['descripcion'],
+				'id_usuario' 	=> $this->session->userdata('id_user')
+			);
 
-		///////////////////////////////////
+			$data =	$this->Publicaciones_model->editar_d($data);
+			echo json_encode($data);
+		}
+		//ELIMINAR
+		public function eliminar_d(){
+			if(!$this->session->userdata('session'))redirect('login');
+			$data = $this->input->post();
+			$data =	$this->Publicaciones_model->eliminar_d($data);
+			echo json_encode($data);
+		}
+	//REGISTRO DE LLAMADO A CONCURSO
 		public function registro_p(){
 			$data['obj_contrat'] = $this->Publicaciones_model->consulta_obj_cont();
 			$data['modalidades'] = $this->Publicaciones_model->consultar_m();
@@ -361,14 +411,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$this->load->view('publicaciones/registro_p.php', $data);
 			$this->load->view('templates/footer.php');
 		}
-
 		public function buscar_act(){
 			if(!$this->session->userdata('session'))redirect('login');
 			$data = $this->input->post();
 			$data =	$this->Publicaciones_model->buscar_act($data);
 			echo json_encode($data);
 		}
-		
+		public function buscar_act_e(){
+			if(!$this->session->userdata('session'))redirect('login');
+			$data = $this->input->post();
+			$data =	$this->Publicaciones_model->buscar_act_e($data);
+			echo json_encode($data);
+		}
 	}
 
 ?>
