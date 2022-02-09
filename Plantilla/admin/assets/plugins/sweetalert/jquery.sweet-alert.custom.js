@@ -36,6 +36,33 @@
         });
     });
 
+	$('#sa-error2').each(function(){
+        swal({
+            title: "¡Su usuario se encuentra bloqueado, por favor contactar ...!",
+            text: "",
+            type: "error",
+            showCancelButton: false,
+            confirmButtonColor: "#00897b",
+            confirmButtonText: "CONTINUAR",
+            closeOnConfirm: false
+        }, function(){
+            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        });
+    });
+
+	$('#fallido').each(function(){
+        swal({
+            title: "¡ATENCION!",
+            text: "Intento Fallido.",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonColor: "#00897b",
+            confirmButtonText: "CONTINUAR",
+            closeOnConfirm: false
+        }, function(){
+            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        });
+    });
     //Warning Message
         $('#sa-warning').each(function(){
         swal({

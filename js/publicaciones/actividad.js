@@ -18,8 +18,8 @@ function valideKey(evt){
 	function buscar_mec(){
 		var id_modalidad = $('#id_modalidad').val();
 
-		//var base_url = window.location.origin+'/asnc/index.php/Publicaciones/buscar_mec';
-		var base_url = '/index.php/publicaciones/buscar_mec';
+		var base_url = window.location.origin+'/asnc/index.php/Publicaciones/buscar_mec';
+		//var base_url = '/index.php/publicaciones/buscar_mec';
         $.ajax({
             url: base_url,
             method:'post',
@@ -122,8 +122,8 @@ function valideKey(evt){
 				if (result.value == true) {
 					event.preventDefault();
 					var datos = new FormData($("#guardar_act")[0]);
-					//var base_url =window.location.origin+'/asnc/index.php/publicaciones/registrar_act';
-					var base_url = '/index.php/publicaciones/registrar_act';
+					var base_url =window.location.origin+'/asnc/index.php/publicaciones/registrar_act';
+					//var base_url = '/index.php/publicaciones/registrar_act';
 					$.ajax({
 						url:base_url,
 						method: 'POST',
@@ -159,17 +159,17 @@ function valideKey(evt){
 		id_mecanismo = inf[2];
 		id_obj_cont  = inf[3];
 
-		//var base_url = window.location.origin+'/asnc/index.php/Publicaciones/consulta_act';
-		var base_url = '/index.php/Publicaciones/consulta_act';
+		var base_url = window.location.origin+'/asnc/index.php/Publicaciones/consulta_act';
+		//var base_url = '/index.php/Publicaciones/consulta_act';
 
-		//var base_url1 = window.location.origin+'/asnc/index.php/Publicaciones/consulta_modalidades';
-		var base_url1 = '/index.php/Publicaciones/consulta_modalidades';
+		var base_url1 = window.location.origin+'/asnc/index.php/Publicaciones/consulta_modalidades';
+		//var base_url1 = '/index.php/Publicaciones/consulta_modalidades';
 
 		//var base_url2 = window.location.origin+'/asnc/index.php/Publicaciones/consulta_mecanismos';
 		var base_url2 = '/index.php/Publicaciones/consulta_mecanismos';
 
-		//var base_url3 = window.location.origin+'/asnc/index.php/Publicaciones/consulta_objconta';
-		var base_url3 = '/index.php/Publicaciones/consulta_objconta';
+		var base_url3 = window.location.origin+'/asnc/index.php/Publicaciones/consulta_objconta';
+		//var base_url3 = '/index.php/Publicaciones/consulta_objconta';
 
 		$.ajax({
 			url: base_url1,
@@ -276,8 +276,8 @@ function valideKey(evt){
 				if (result.value == true) {
 					event.preventDefault();
 					var datos = new FormData($("#editar")[0]);
-					//var base_urls =window.location.origin+'/asnc/index.php/publicaciones/editar_act';
-					var base_urls = '/index.php/publicaciones/editar_act';
+					var base_urls =window.location.origin+'/asnc/index.php/publicaciones/editar_act';
+					//var base_urls = '/index.php/publicaciones/editar_act';
 					$.ajax({
 						url: base_urls,
 						method:'post',
@@ -322,8 +322,8 @@ function valideKey(evt){
 		}).then((result) => {
 			if (result.value == true) {
 				var id_actividad = id
-				//var base_url =window.location.origin+'/asnc/index.php/publicaciones/eliminar_act';
-				var base_url = '/index.php/publicaciones/eliminar_act';
+				var base_url =window.location.origin+'/asnc/index.php/publicaciones/eliminar_act';
+				//var base_url = '/index.php/publicaciones/eliminar_act';
 
 				$.ajax({
 					url:base_url,

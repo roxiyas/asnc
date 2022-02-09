@@ -2,21 +2,35 @@
     class Login_model extends CI_model{
 
         public function iniciar($usuario,$contrasena){
-
-            $this->db->select('*');
-			      $this->db->where('nombre',$usuario);
-			      $this->db->from('seguridad.usuarios');
-			      $result = $this->db->get();
-            //print_r($result->num_rows() == 1);die;
+            	$this->db->select('*');
+			    $this->db->where('nombre',$usuario);
+			    $this->db->from('seguridad.usuarios');
+			    $result = $this->db->get();
 			if($result->num_rows() == 1){
-
-				$db_clave = $result->row('password');
-                $unidad = $result->row('unidad');
-                //print_r($db_clave);die;
-                if(password_verify( base64_encode(hash('sha256', $contrasena, true)),$db_clave)){
-				return $result->row_array();
-          //print_r($result->row_array());die;
-				}
+				$id_estatus= $result->row('id_estatus');
+				if ($id_estatus == 1) {
+					$db_clave = $result->row('password');
+					$unidad = $result->row('unidad');
+					if(password_verify( base64_encode(hash('sha256', $contrasena, true)),$db_clave)){
+						return $result->row_array();
+					}else{
+						$intento = $result->row('intentos');
+						if ($intento <= 1) {
+							$intento = $intento + 1 ;
+							$this->db->set('intentos', $intento);
+							$this->db->where('nombre', $usuario);
+							$this->db->update('seguridad.usuarios');
+							return 'FALLIDO';
+						}else{
+							$this->db->set('id_estatus', 4);
+							$this->db->where('nombre', $usuario);
+							$this->db->update('seguridad.usuarios');
+							return 'FALLIDO';
+						}
+					}
+				}else{
+					return 'BLOQUEADO';
+				}				
 			}else{
 				return 'FALSE';
 			}

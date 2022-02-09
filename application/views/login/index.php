@@ -120,9 +120,15 @@ text-align: center;
 			</div>
 		</div>
 
-	<?php if ($this->session->flashdata('sa-error')) { ?>
-		<div hidden id="sa-error"> <?= $this->session->flashdata('sa-error') ?> </div>
-	<?php } ?>
+		<?php if ($this->session->flashdata('sa-error')) { ?>
+			<div hidden id="sa-error"> <?= $this->session->flashdata('sa-error') ?> </div>
+		<?php } ?>
+		<?php if ($this->session->flashdata('sa-error2')) { ?>
+			<div hidden id="sa-error2"> <?= $this->session->flashdata('sa-error2') ?> </div>
+		<?php } ?>
+		<?php if ($this->session->flashdata('fallido')) { ?>
+			<div hidden id="fallido"> <?= $this->session->flashdata('fallido') ?> </div>
+		<?php } ?>
 
 		<!-- ================== BEGIN BASE JS ================== -->
 		<script src="<?=base_url()?>Plantilla/admin/assets/plugins/jquery/jquery-3.3.1.min.js"></script>

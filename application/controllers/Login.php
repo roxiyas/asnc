@@ -11,8 +11,14 @@ class Login extends CI_Controller {
         $usuario = $_POST['usuario'];
         $contrasena = $_POST ['contrasena'];
         $data = $this->login_model->iniciar($usuario,$contrasena);
-			//print_r($data);die;
-		if($data == 'FALSE'){
+			//print_r();die;
+		if($data == 'FALLIDO'){
+			$this->session->set_flashdata('fallido', 'Intento Fallido.');
+			redirect('login/index', 'refres');
+		}else if($data == 'BLOQUEADO'){
+			$this->session->set_flashdata('sa-error2', 'Usuario bloqueado.');
+			redirect('login/index', 'refres');
+		}else if($data == 'FALSE'){
 			$this->session->set_flashdata('sa-error', 'Datos de autenticación erróneos.');
 			redirect('login/index', 'refres');
 		}else{
